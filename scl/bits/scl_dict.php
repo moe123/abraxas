@@ -103,14 +103,14 @@ namespace std
 		}
 
 		function has_key(string $key)
-		{ return isset($this->_M_container[$key]); }
+		{ return _F_builtin_offset_exists($this->_M_container, $key); }
 
 		function del(string $key)
 		{ unset($this->_M_container[$key]); }
 
 		function pop(string $key)
 		{
-			if (isset($this->_M_container[$key])) {
+			if (_F_builtin_offset_exists($this->_M_container, $key)) {
 				$pop = $this->_M_container[$key];
 				unset($this->_M_container[$key]);
 				return $pop;
@@ -132,7 +132,7 @@ namespace std
 
 		function pop_item(string $key)
 		{
-			if (isset($this->_M_container[$key])) {
+			if (_F_builtin_offset_exists($this->_M_container, $key)) {
 				$pop_item = make_pair($key, $this->_M_container[$key]);
 				unset($this->_M_container[$key]);
 				return $pop_item;
@@ -143,7 +143,7 @@ namespace std
 
 		function get(string $key)
 		{
-			if (isset($this->_M_container[$key])) {
+			if (_F_builtin_offset_exists($this->_M_container, $key)) {
 				return $this->_M_container[$key];
 			}
 			_F_throw_logic_error("Key does not exist error");
@@ -152,7 +152,7 @@ namespace std
 
 		function get_item(string $key)
 		{
-			if (isset($this->_M_container[$key])) {
+			if (_F_builtin_offset_exists($this->_M_container, $key)) {
 				return make_pair($key, $this->_M_container[$key]);
 			}
 			_F_throw_logic_error("Key does not exist error");
@@ -161,7 +161,7 @@ namespace std
 
 		function & set(string $key, $val)
 		{
-			$exists = isset($this->_M_container[$key]);
+			$exists = _F_builtin_offset_exists($this->_M_container, $key);
 			$this->_M_container[$key] = $val;
 			if (!$exists) {
 				++$this->_M_size;
@@ -171,7 +171,7 @@ namespace std
 
 		function & set_item(pair &$pair)
 		{
-			$exists = isset($this->_M_container[$pair->first]);
+			$exists = _F_builtin_offset_exists($this->_M_container, $pair->first);
 			$this->_M_container[$pair->first] = $pair->second;
 			if (!$exists) {
 				++$this->_M_size;
