@@ -406,20 +406,6 @@ namespace std
 
 	function getlocale()
 	{ return locale::get_global(); }
-
-	$src = "hello world";
-	echo memsub($src , 1, 4) . PHP_EOL;
-
-	echo locale::canonicalize_id("fr_FR.UTF-8") . PHP_EOL;
-
-	echo getlocale() . PHP_EOL;
-
-	$l = setlocale(locale_category::all, "fr_FR.UTF-8");
-
-	echo $l->name() . PHP_EOL;
-	echo $l->id() . PHP_EOL;
-
-	echo getlocale() . PHP_EOL;
 } /* EONS */
 
 /* EOF */
