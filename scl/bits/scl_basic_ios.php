@@ -21,8 +21,6 @@ namespace
 
 namespace std
 {
-	io\println("Hello %s", "!!!");
-
 	const endl  = char_utils::eol;
 
 	abstract class ios_base
