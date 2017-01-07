@@ -21,6 +21,8 @@ namespace
 
 namespace std
 {
+	io\println("Hello %s", "!!!");
+
 	const endl  = char_utils::eol;
 
 	abstract class ios_base
@@ -260,27 +262,6 @@ namespace std
 		$os = $os($d___);
 		return $os;
 	}
-} /* EONS */
-
-namespace std\io
-{
-	function stdin(&$d___)
-	{ return (($d___ = \fgets(\STDIN)) !== false) ? true : false; }
-
-	function stdout($d___)
-	{
-		echo $d___;
-		return true;
-	}
-
-	function stderr($d___)
-	{ return (\fwrite(\STDERR, $d___) !== false) ? true : false; }
-	
-	function putc(int $ch___, callable $os___)
-	{ $os___(\chr($ch___)); }
-
-	function putchar(int $ch___)
-	{ stdout(\chr($ch___)); }
 } /* EONS */
 
 /* EOF */
