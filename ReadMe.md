@@ -64,8 +64,8 @@ if ($pos != std\end($v)) {
 Abraxas implements four different types of iterators:
 Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
 Unlike the `C++ STL`, Abraxas `Iterators` implementation is not opaque to the `Algorithms` component.
-Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` call ; 
-where `first()` is the key or index (it depends on the container category) and `second()` the value.
+Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` member ; 
+where `first()` is the key or index (depends on the container category) and `second()` the value.
 
 #### Algorithms
 A large number of algorithms have been already written, in the same way than `C++ STL`, it requires
