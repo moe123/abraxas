@@ -171,6 +171,20 @@ namespace std
 			return $this;
 		}
 	} /* EOC */
+
+	function setlocale(int $caterory, string $locale_id, int $collator_level =  collator_level::none)
+	{
+		return locale::set_global(
+			make_locale(
+				  $locale_id
+				, $collator_level
+				, $caterory
+			)
+		);
+	}
+
+	function getlocale()
+	{ return locale::get_global(); }
 } /* EONS */
 
 /* EOF */

@@ -35,9 +35,6 @@ namespace std
 		}
 	} /* EOC */
 
-	function make_comparator(callable $f)
-	{ return new comparator($f); }
-
 	function greater(callable $f___ = null)
 	{
 		return function () use ($f___) {

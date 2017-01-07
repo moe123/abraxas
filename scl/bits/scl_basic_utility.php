@@ -89,19 +89,8 @@ namespace std
 	function make_locale(string $locale_id, int $collator_level =  collator_level::none, int $caterory = locale_category::all)
 	{ return new locale($locale_id, $collator_level, $caterory); }
 
-	function setlocale(int $caterory, string $locale_id, int $collator_level =  collator_level::none)
-	{
-		return locale::set_global(
-			make_locale(
-				  $locale_id
-				, $collator_level
-				, $caterory
-			)
-		);
-	}
-
-	function getlocale()
-	{ return locale::get_global(); }
+	function make_comparator(callable $f)
+	{ return new comparator($f); }
 
 	function make_vector(...$args___)
 	{
@@ -111,10 +100,10 @@ namespace std
 		return new vector;
 	}
 
-	function make_seq(...$args___)
+	function make_seq_list(...$args___)
 	{
 		if (\is_array($args___) && \count($args___)) {
-			return new seq($args___);
+			return new seq_list($args___);
 		}
 		return new seq_list;
 	}
