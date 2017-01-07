@@ -14,11 +14,6 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "builtin" . DIRECTORY_SEPARATOR . "scl_builtin_limits.php";
-} /* EONS */
-
 namespace std
 {
 	abstract class numeric_limits_float

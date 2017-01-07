@@ -14,6 +14,11 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
+namespace
+{
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "builtin" . DIRECTORY_SEPARATOR . "scl_basic_builtin.php";
+} /* EONS */
+
 namespace std
 {
 	abstract class comparison_result
@@ -77,6 +82,26 @@ namespace std
 		}
 		return null;
 	}
+
+	function make_collator(string $locale_id, int $collator_level = collator_level::none)
+	{ return new collator($locale_id, $collator_level); }
+
+	function make_locale(string $locale_id, int $collator_level =  collator_level::none, int $caterory = locale_category::all)
+	{ return new locale($locale_id, $collator_level, $caterory); }
+
+	function setlocale(int $caterory, string $locale_id, int $collator_level =  collator_level::none)
+	{
+		return locale::set_global(
+			make_locale(
+				  $locale_id
+				, $collator_level
+				, $caterory
+			)
+		);
+	}
+
+	function getlocale()
+	{ return locale::get_global(); }
 
 	function make_vector(...$args___)
 	{
