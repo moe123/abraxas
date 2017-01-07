@@ -91,7 +91,7 @@ namespace std
 		if (\is_array($args___) && \count($args___)) {
 			return new seq($args___);
 		}
-		return new seq;
+		return new seq_list;
 	}
 
 	function make_tuple(...$args___)
