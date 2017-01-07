@@ -316,7 +316,7 @@ namespace std
 				$a___ = [];
 				$i_1 = 0;
 				$i_2 = 0;
-				while ($i_1 < \count($a_1) && $i_2 <\ count($a_2)) {
+				while ($i_1 < \count($a_1) && $i_2 < \count($a_2)) {
 					if ($compare___($a_1[$i_1], $a_2[$i_2]) != 1) {
 						$a___[] = $a_1[$i_1++];
 					}
