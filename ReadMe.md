@@ -22,7 +22,7 @@ while(!std\cin($buf)->eof()) {
 
 ...
 ```
-~~~
+
 #### Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
 measures and designs such as adding more comparator callbacks in the `Algorithms` component. However, by default, we compare 
@@ -59,7 +59,7 @@ if ($pos != std\end($v)) {
 ...
 
 ```
-~~~
+
 #### Iterators
 Abraxas implements four different types of iterators:
 Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
