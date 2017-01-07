@@ -26,7 +26,7 @@ while(!std\cin($buf)->eof()) {
 #### Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
 measures and designs such as adding more comparator callbacks in the `Algorithms` component. However, by default, we compare 
-on type and value re-introducing type safety on any internal structures.
+on type and value, hence re-introducing type safety on any internal structures.
 
 #### Containers
 It contains sequence containers and associative containers and maybe in the future public 
@@ -64,13 +64,13 @@ if ($pos != std\end($v)) {
 Abraxas implements four different types of iterators:
 Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
 Unlike the `C++ STL`, Abraxas `Iterators` implementation is not opaque to the `Algorithms` component.
-Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` call, 
+Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` call ; 
 where `first()` is the key or index (it depends on the container category) and `second()` the value.
 
 #### Algorithms
 A large number of algorithms have been already written, in the same way than `C++ STL`, it requires
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
-existing built-ins functions (not always, depends on performances, zero-copying/COW and what can 
+existing builtin functions (not always, depends on performances, zero-copying/COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
 this is transparent to the end-user).
 
