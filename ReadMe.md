@@ -6,17 +6,17 @@ A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ 
 and the `C++ STL`. Providing the same five main components: algorithms, containers, functional, iterators and locale.
 (I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
 
-```cpp
+```php
 
 $buf;
 
-while(std\io\stdin($buf)) {
+while (std\io\stdin($buf)) {
 	std\io\stdout($buf);
 }
 
 ...
 
-while(!std\cin($buf)->eof()) {
+while (!std\cin($buf)->eof()) {
 	std\cout($buf);
 }
 
@@ -31,26 +31,34 @@ on type and value, hence re-introducing type safety on any internal structures.
 #### Containers
 It contains sequence containers and associative containers and maybe in the future public 
 container adaptors: `forward_list`, `tuple`, `seq_list`, `vector`, `map`, `dict`, `set` are almost done.
-```cpp
 
-$v  = std\make_vector(1, 2, 3, 4, 5);
-$it = std\begin($v, 1);
+```php
 
-while ($it != std\end($v))
-{
+$v  = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+$it = $v->rbegin();
+
+while ($it != $v->rend()) {
 	std\cout($it->second())(" ");
-	$it->advance();
+	$it->advance(2);
 }
 
 std\cout(std\endl);
 
 ...
 
-$pos = std\find(
-	  std\begin_p($it)
-	, std\end($v)
-	, 3
-);
+$it = std\begin($v, 1);
+
+while ($it != std\end($v)) {
+	std\cout($it->second())(" ");
+	$it->next();
+}
+
+std\cout(std\endl);
+
+...
+
+$pos = std\find(std\begin_p($it), std\end($v), 3);
 
 if ($pos != std\end($v)) {
 	std\cout("\$v contains: 3")(std\endl);
