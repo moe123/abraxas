@@ -276,7 +276,7 @@ namespace std\io
 	function stderr($d___)
 	{ return (\fwrite(\STDERR, $d___) !== false) ? true : false; }
 	
-		function putc(int $ch___, callable $os___)
+	function putc(int $ch___, callable $os___)
 	{ $os___(\chr($ch___)); }
 
 	function putchar(int $ch___)
