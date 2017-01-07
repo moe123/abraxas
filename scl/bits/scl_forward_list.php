@@ -23,7 +23,7 @@ namespace std
 		function __construct()
 		{
 			parent::__construct();
-			$this->_F_multi_construct("forward_list", func_num_args(), func_get_args());
+			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
 		function _F_forward_list_1(array $list_initializer)
