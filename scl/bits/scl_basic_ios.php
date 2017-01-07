@@ -282,4 +282,5 @@ namespace std\io
 	function putchar(int $ch___)
 	{ stdout(\chr($ch___)); }
 } /* EONS */
+
 /* EOF */

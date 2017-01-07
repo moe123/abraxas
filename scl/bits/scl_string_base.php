@@ -179,4 +179,5 @@ namespace std\utf8
 		}
 	}
 } /* EONS */
+
 /* EOF */
