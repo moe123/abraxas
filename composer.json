@@ -1,0 +1,8 @@
+{
+    "name": "moe123/abraxas",
+    "description": "A Standard Container Library (SCL) influenced and freely inspired by the C++ Standard Library and the C++ STL.",
+    "type": "library",
+    "license": "BSD 3-Clause License (Revised)",
+    "minimum-stability": "alpha",
+    "require": {}
+}
