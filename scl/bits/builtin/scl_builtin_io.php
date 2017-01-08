@@ -97,22 +97,16 @@ namespace std\io
 	{ return (($buf___ = \fgets(\STDIN)) !== false) ? true : false; }
 
 	function cout($in___)
-	{ return (($n = \fwrite(\STDOUT, $in___)) !== false) ? $n : 0; }
+	{ return (($n = \fwrite(\STDOUT, $in___)) !== false) ? $n : -1; }
 
 	function cerr($in___)
-	{ return (($n = \fwrite(\STDERR, $in___)) !== false) ? $n : 0; }
+	{ return (($n = \fwrite(\STDERR, $in___)) !== false) ? $n : -1; }
 
 	function putc(int $ch___, $ios___)
-	{
-		if (\is_resource($ios___)) {
-			\fwrite($ios___, \chr($ch___));
-		} else {
-			_F_throw_invalid_argument("Invalid stream error");
-		}
-	}
+	{ return (\fwrite($ios___, \chr($ch___)) !== false) ? $ch___ : -1; }
 
 	function putchar(int $ch___)
-	{ \fwrite(\STDOUT, \chr($ch___)); }
+	{ return (\fwrite(\STDOUT, \chr($ch___)) !== false) ? $ch___ : -1; }
 
 	function println(string $fmt___, ...$args___)
 	{
