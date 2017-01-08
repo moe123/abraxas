@@ -18,6 +18,14 @@ std\io\fwrite($buf, 1, 3, std\io\stderr);
 
 ...
 
+std\io\fseek(std\io\stderr, 0, std\io\seek_set);
+
+...
+
+std\io\fprintln(std\io\stderr, "%s %s %s", "Hello", "World", "!");
+
+...
+
 while (!std\cin($buf)->eof()) {
 	std\cout($buf);
 }
