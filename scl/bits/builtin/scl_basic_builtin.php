@@ -22,6 +22,7 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_builtin_iterator_traits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_builtin_limits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_builtin_operator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_builtin_str.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_builtin_utility_traits.php";
 } /* EONS */
 
