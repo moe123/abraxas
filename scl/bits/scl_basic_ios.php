@@ -26,7 +26,7 @@ namespace std
 	abstract class ios_base
 	{
 		/* seekdir */
-		const beg     = 0;
+		const beg     = \SEEK_SET;
 		const end     = \SEEK_END;
 		const cur     = \SEEK_CUR;
 

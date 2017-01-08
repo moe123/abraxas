@@ -105,8 +105,6 @@ namespace std\str
 
 namespace std\str\utf8
 {
-	use \std\str as str;
-
 	function glyph_len($c___)
 	{
 		$cp = \ord($c___);
@@ -125,7 +123,7 @@ namespace std\str\utf8
 
 	function is_valid(string $in___)
 	{
-		for ($i = 0 ; i < str\memlen($in___) ; $i++) {
+		for ($i = 0 ; i < \std\str\memlen($in___) ; $i++) {
 			if (utf8_glyph_len($in___[$i]) === 0
 			) {
 				return false;
@@ -158,7 +156,7 @@ namespace std\str\utf8
 	function del_bom(string &$in___)
 	{
 		if (have_bom($in___)) {
-			$in___ = str\memsub($in___, 3, str\memlen($in___));
+			$in___ = \std\str\memsub($in___, 3, \std\str\memlen($in___));
 		}
 	}
 } /* EONS */
