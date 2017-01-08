@@ -64,9 +64,4 @@ namespace std\io
 	}
 } /* EONS */
 
-namespace
-{
-	std\io\fwrite("34\n", 1, 3, std\io\stdout);
-}
-
 /* EOF */
