@@ -17,21 +17,34 @@
 
 namespace std\io
 {
-	function stdin(&$d___)
+	const stdin  = \STDIN;
+	const stdout = \STDOUT;
+	const stderr = \STDERR;
+
+	function fwrite($d___, int $siz___, int $cnt___, $os___)
+	{
+		$n = 0;
+		if (\ is_resource($os___)) {
+			if ($n = \fwrite($os___, $d___, $siz___ * $cnt___) === false) {
+				$n = 0;
+			}
+		}
+		return $n;
+	}
+
+	function cin(&$d___)
 	{ return (($d___ = \fgets(\STDIN)) !== false) ? true : false; }
 
-	function stdout($d___)
-	{ return (\fwrite(\STDOUT, $d___) !== false) ? true : false; }
+	function cout($d___)
+	{ return (($n = \fwrite(\STDOUT, $d___)) !== false) ? $n : 0; }
 
-	function stderr($d___)
-	{ return (\fwrite(\STDERR, $d___) !== false) ? true : false; }
+	function cerr($d___)
+	{ return (($n = \fwrite(\STDERR, $d___)) !== false) ? $n : 0; }
 
 	function putc(int $ch___, $os___)
 	{
 		if (\ is_resource($os___)) {
-			return (\fwrite($os___, \chr($ch___)) !== false) ? true : false;
-		} else if (\ is_callable($os___)) {
-			$os___(\chr($ch___));
+			\fwrite($os___, \chr($ch___));
 		}
 	}
 
@@ -50,5 +63,10 @@ namespace std\io
 		}
 	}
 } /* EONS */
+
+namespace
+{
+	std\io\fwrite("34\n", 1, 3, std\io\stdout);
+}
 
 /* EOF */

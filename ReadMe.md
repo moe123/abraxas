@@ -10,9 +10,11 @@ and the `C++ STL`. Providing the same five main components: algorithms, containe
 
 $buf;
 
-while (std\io\stdin($buf)) {
-	std\io\stdout($buf);
+while (std\io\cin($buf)) {
+	std\io\cout($buf);
 }
+
+std\io\fwrite($buf, 1, 3, std\io\stderr);
 
 ...
 
