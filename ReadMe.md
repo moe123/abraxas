@@ -6,7 +6,7 @@ A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ 
 and the `C++ STL`. Providing the same five main components: algorithms, containers, functional, iterators and locale.
 (I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
 
-```cpp
+```php
 
 $buf;
 
@@ -42,7 +42,7 @@ on type and value, hence re-introducing type safety on any internal structures.
 It contains sequence containers and associative containers and maybe in the future public 
 container adaptors: `forward_list`, `tuple`, `seq_list`, `vector`, `map`, `dict`, `set` are almost done.
 
-```cpp
+```php
 
 $v  = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
