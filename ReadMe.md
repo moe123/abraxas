@@ -3,7 +3,7 @@ A digression to the world of scripting languages and PHP.
 
 #### Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
-and the `C++ STL`. Providing the same five main components: algorithms, containers, functional, iterators and locale.
+and the `C++ STL`. Providing the same five main components: `Algorithms`, `Containers`, `Functional`, `Iterators` and `Locale`.
 (I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
 
 ```php
@@ -73,6 +73,38 @@ $pos = std\find(std\begin_p($it), std\end($v), 3);
 if ($pos != std\end($v)) {
 	std\cout("\$v contains: 3")(std\endl);
 }
+
+$v  = std\make_vector(
+	"Hémimorphite",
+	"Calcédoine",
+	"Pastèque",
+	"Fève de Cacao",
+	"Amétrine",
+	"Pêche",
+	"Amélanche",
+	"Fruit-à-pain",
+	"Pomélos",
+	"Magnésite",
+	"Nèfle du Japon",
+	"Séraphinite",
+	"Caïmite",
+	"Fèves",
+	"Galène",
+	"Célestine",
+	"Hématite",
+	"Mûre",
+	"Charoïte",
+	"Plaquebière",
+	"Hypersthène",
+	"Péridot",
+	"Améthyste",
+	"Nèfles",
+	"Angélite",
+	"Bois silicifié",
+	"Magnétite"
+);
+
+std\sort(std\begin($v), std\end($v), std::make_locale("fr_FR.UTF-8"));
 
 ...
 
