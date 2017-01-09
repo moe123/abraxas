@@ -75,33 +75,33 @@ if ($pos != std\end($v)) {
 }
 
 $v  = std\make_vector(
-	"Hémimorphite",
-	"Calcédoine",
-	"Pastèque",
-	"Fève de Cacao",
-	"Amétrine",
-	"Pêche",
-	"Amélanche",
-	"Fruit-à-pain",
-	"Pomélos",
-	"Magnésite",
-	"Nèfle du Japon",
-	"Séraphinite",
-	"Caïmite",
-	"Fèves",
-	"Galène",
-	"Célestine",
-	"Hématite",
-	"Mûre",
-	"Charoïte",
-	"Plaquebière",
-	"Hypersthène",
-	"Péridot",
-	"Améthyste",
-	"Nèfles",
-	"Angélite",
-	"Bois silicifié",
-	"Magnétite"
+	  "Hémimorphite"
+	, "Calcédoine"
+	, "Pastèque"
+	, "Fève de Cacao"
+	, "Amétrine"
+	, "Pêche"
+	, "Amélanche"
+	, "Fruit-à-pain"
+	, "Pomélos"
+	, "Magnésite"
+	, "Nèfle du Japon"
+	, "Séraphinite"
+	, "Caïmite"
+	, "Fèves"
+	, "Galène"
+	, "Célestine"
+	, "Hématite"
+	, "Mûre"
+	, "Charoïte"
+	, "Plaquebière"
+	, "Hypersthène"
+	, "Péridot"
+	, "Améthyste"
+	, "Nèfles"
+	, "Angélite"
+	, "Bois silicifié"
+	, "Magnétite"
 );
 
 std\sort(std\begin($v), std\end($v), std\make_locale("fr_FR.UTF-8"));
