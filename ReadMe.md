@@ -104,7 +104,7 @@ $v  = std\make_vector(
 	"Magnétite"
 );
 
-std\sort(std\begin($v), std\end($v), std::make_locale("fr_FR.UTF-8"));
+std\sort(std\begin($v), std\end($v), std\make_locale("fr_FR.UTF-8"));
 
 ...
 
