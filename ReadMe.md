@@ -1,7 +1,7 @@
 # Abraxas
 A digression to the world of scripting languages and PHP.
 
-#### Brief
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
 and the `C++ STL`. Providing the same five main components: `Algorithms`, `Containers`, `Functional`, `Iterators` and `Locale`.
 (I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
@@ -33,14 +33,63 @@ while (!std\cin($buf)->eof()) {
 ...
 ```
 
-#### Caveats
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
 measures and designs such as adding more comparator callbacks in the `Algorithms` component. However, by default, we compare 
 on type and value, hence re-introducing type safety on any internal structures.
 
-#### Containers
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Containers
 It contains sequence containers and associative containers and maybe in the future public 
 container adaptors: `forward_list`, `tuple`, `seq_list`, `vector`, `map`, `dict`, `set` are almost done.
+
+```php
+
+$l  = std\make_seq_list(
+	  "Hémimorphite"
+	, "Calcédoine"
+	, "Pastèque"
+	, "Fève de Cacao"
+	, "Amétrine"
+	, "Pêche"
+	, "Amélanche"
+	, "Fruit-à-pain"
+	, "Pomélos"
+	, "Magnésite"
+	, "Nèfle du Japon"
+	, "Séraphinite"
+	, "Caïmite"
+	, "Fèves"
+	, "Galène"
+	, "Célestine"
+	, "Hématite"
+	, "Mûre"
+	, "Charoïte"
+	, "Plaquebière"
+	, "Hypersthène"
+	, "Péridot"
+	, "Améthyste"
+	, "Nèfles"
+	, "Angélite"
+	, "Bois silicifié"
+	, "Magnétite"
+);
+
+std\sort(std\begin($l), std\end($l), std\make_locale("fr_FR.UTF-8"));
+
+foreach ($l as $item) {
+	std\cerr($item)(std\endl);
+}
+
+...
+
+```
+
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Iterators
+Abraxas implements four different types of iterators:
+Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
+Unlike the `C++ STL`, Abraxas `Iterators` implementation is not opaque to the `Algorithms` component.
+Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` member ; 
+where `first()` is the key or index (depends on the container category) and `second()` the value.
 
 ```php
 
@@ -74,57 +123,18 @@ if ($pos != std\end($v)) {
 	std\cout("\$v contains: 3")(std\endl);
 }
 
-$v  = std\make_vector(
-	  "Hémimorphite"
-	, "Calcédoine"
-	, "Pastèque"
-	, "Fève de Cacao"
-	, "Amétrine"
-	, "Pêche"
-	, "Amélanche"
-	, "Fruit-à-pain"
-	, "Pomélos"
-	, "Magnésite"
-	, "Nèfle du Japon"
-	, "Séraphinite"
-	, "Caïmite"
-	, "Fèves"
-	, "Galène"
-	, "Célestine"
-	, "Hématite"
-	, "Mûre"
-	, "Charoïte"
-	, "Plaquebière"
-	, "Hypersthène"
-	, "Péridot"
-	, "Améthyste"
-	, "Nèfles"
-	, "Angélite"
-	, "Bois silicifié"
-	, "Magnétite"
-);
-
-std\sort(std\begin($v), std\end($v), std\make_locale("fr_FR.UTF-8"));
-
 ...
 
 ```
 
-#### Iterators
-Abraxas implements four different types of iterators:
-Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
-Unlike the `C++ STL`, Abraxas `Iterators` implementation is not opaque to the `Algorithms` component.
-Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` member ; 
-where `first()` is the key or index (depends on the container category) and `second()` the value.
-
-#### Algorithms
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Algorithms
 A large number of algorithms have been already written, in the same way than `C++ STL`, it requires
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
-existing builtin functions (not always, depends on performances, zero-copying/COW and what can 
+existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
 this is transparent to the end-user).
 
-#### Functors
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Functional / Functors
 A mixture of existing features and overloads.
 ```php
 
@@ -176,7 +186,7 @@ function bind(callable $f___, ...$args___)
 
 ```
 
-#### Locale
+#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Locale
 A mixture of existing features and overloads, inspired by Boost.Locale.
 
 ### Requirements
