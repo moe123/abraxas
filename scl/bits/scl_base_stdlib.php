@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_string_base.php
+// scl_basis_stdlib.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -13,11 +13,6 @@
  *
  * @copyright  (C) Moe123. All rights reserved.
  */
-
-namespace
-{
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
-} /* EONS */
 
 namespace std
 {

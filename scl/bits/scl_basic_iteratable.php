@@ -16,9 +16,13 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_iterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_container_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_operator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_utility_traits.php";
+
+	
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_iterator.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
 } /* EONS */
