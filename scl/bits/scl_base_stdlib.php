@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basis_stdlib.php
+// scl_base_stdlib.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -66,11 +66,11 @@ namespace std
 		return $dest___;
 	}
 
-	function & memset(&$dest___, int $c, int $n___)
+	function & memset(&$dest___, int $c___, int $n___)
 	{
 		memize($dest___);
 		for ($i = 0; $i < $n___; $i++) {
-			$dest___[$i] = \chr($c);
+			$dest___[$i] = \chr($c___);
 		}
 		return $dest___;
 	}
@@ -140,8 +140,7 @@ namespace std
 	function utf8_is_valid(string $in___)
 	{
 		for ($i = 0 ; i < memlen($in___) ; $i++) {
-			if (utf8_glyph_len($in___[$i]) === 0
-			) {
+			if (utf8_glyph_len($in___[$i]) === 0) {
 				return false;
 			}
 		}

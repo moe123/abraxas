@@ -78,7 +78,7 @@ namespace std
 
 		function __construct($locale, int $collator_level = collator_level::none)
 		{
-			if ($locale instanceof \std\locale) {
+			if (\is_object($locale) && $locale instanceof \std\locale) {
 				$this->_M_locale_id = $locale->_M_id;
 			} else if (\is_string($locale)) {
 				$this->_M_locale_id = $locale;

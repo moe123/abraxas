@@ -16,7 +16,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_utility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_utility_traits.php";
 } /* EONS */
 
 namespace std
@@ -52,45 +52,45 @@ namespace std
 
 	function tuple_size(object $o___)
 	{
-		if ($obj instanceof \std\tuple) {
+		if ($o___ instanceof \std\tuple) {
 			return $o___->_M_size;
-		} else if ($obj instanceof \std\pair) {
+		} else if ($o___ instanceof \std\pair) {
 			return 2;
-		} else if ($obj instanceof \std\triad) {
+		} else if ($o___ instanceof \std\triad) {
 			return 3;
-		} else if ($obj instanceof \std\quad) {
+		} else if ($o___ instanceof \std\quad) {
 			return 4;
-		} else if ($obj instanceof \std\quint) {
+		} else if ($o___ instanceof \std\quint) {
 			return 5;
 		}
 	}
 
 	function get(int $i___, object $o___)
 	{
-		if ($obj instanceof \std\tuple) {
+		if ($o___ instanceof \std\tuple) {
 			if (isset($o___->_M_container[$i___])) {
 				return $o___->_M_container[$i___];
 			}
-		} else if ($obj instanceof \std\quint) {
-			return $i___ === 0 ? $obj->first : $i___ === 1 ? $obj->second : $i___ === 2 ? $obj->third : $i___ === 3 ? $obj->fourth : $obj->fifth;
-		} else if ($obj instanceof \std\quad) {
-			return $i___ === 0 ? $obj->first : $i___ === 1 ? $obj->second : $i___ === 2 ? $obj->third : $obj->fourth;
-		} else if ($obj instanceof \std\triad) {
-			return $i___ === 0 ? $obj->first : $i___ === 1 ? $obj->second : $obj->third;
-		} else if ($obj instanceof \std\pair) {
-			return $i___ === 0 ? $obj->first : $obj->second;
+		} else if ($o___ instanceof \std\quint) {
+			return $i___ === 0 ? $o___->first : $i___ === 1 ? $o___->second : $i___ === 2 ? $o___->third : $i___ === 3 ? $o___->fourth : $o___->fifth;
+		} else if ($o___ instanceof \std\quad) {
+			return $i___ === 0 ? $o___->first : $i___ === 1 ? $o___->second : $i___ === 2 ? $o___->third : $o___->fourth;
+		} else if ($o___ instanceof \std\triad) {
+			return $i___ === 0 ? $o___->first : $i___ === 1 ? $o___->second : $o___->third;
+		} else if ($o___ instanceof \std\pair) {
+			return $i___ === 0 ? $o___->first : $o___->second;
 		}
 		return null;
 	}
 
-	function make_collator(string $locale_id, int $collator_level = collator_level::none)
-	{ return new collator($locale_id, $collator_level); }
+	function make_collator(string $id___, int $lv___ = collator_level::none)
+	{ return new collator($id___, $lv___); }
 
-	function make_locale(string $locale_id, int $collator_level =  collator_level::none, int $caterory = locale_category::all)
-	{ return new locale($locale_id, $collator_level, $caterory); }
+	function make_locale(string $id___, int $lv___ =  collator_level::none, int $cat___ = locale_category::all)
+	{ return new locale($id___, $lv___, $cat___); }
 
-	function make_comparator(callable $f)
-	{ return new comparator($f); }
+	function make_comparator(callable $f___)
+	{ return new comparator($f___); }
 
 	function make_vector(...$args___)
 	{
@@ -124,17 +124,17 @@ namespace std
 		return new dict;
 	}
 
-	function make_pair($first, $second)
-	{ return new pair($first, $second); }
+	function make_pair($a1___, $a2___)
+	{ return new pair($a1___, $a2___); }
 
-	function make_triad($first, $second, $third)
-	{ return new triad($first, $second, $third); }
+	function make_triad($a1___, $a2___, $a3___)
+	{ return new triad($a1___, $a2___, $a3___); }
 
-	function make_quad($first, $second, $third, $fourth)
-	{ return new quad($first, $second, $third, $fourth); }
+	function make_quad($a1___, $a2___, $a3___, $a4___)
+	{ return new quad($a1___, $a2___, $a3___, $a4___); }
 
-	function make_quint($first, $second, $third, $fourth, $fifth)
-	{ return new quint($first, $second, $third, $fourth, $fifth); }
+	function make_quint($a1___, $a2___, $a3___, $a4___, $a5___)
+	{ return new quint($a1___, $a2___, $a3___, $a4___, $a5___); }
 } /* EONS */
 
 /* EOF */

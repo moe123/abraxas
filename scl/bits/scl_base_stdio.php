@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basis_stdio.php
+// scl_base_stdio.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,13 +16,13 @@
 
 namespace std
 {
-	const stdin  = \STDIN;
-	const stdout = \STDOUT;
-	const stderr = \STDERR;
+	const stdin    = \STDIN;
+	const stdout   = \STDOUT;
+	const stderr   = \STDERR;
 
-	const seek_set     = \SEEK_SET;
-	const seek_end     = \SEEK_END;
-	const seek_cur     = \SEEK_CUR;
+	const seek_set = \SEEK_SET;
+	const seek_end = \SEEK_END;
+	const seek_cur = \SEEK_CUR;
 
 	function fopen(string $f___ , string $m___)
 	{ return (($fp = \fopen($f___, $m___)) !== false) ? $fp : null; }

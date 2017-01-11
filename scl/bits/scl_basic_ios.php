@@ -16,8 +16,8 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_stdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basis_stdlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_stdio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_stdlib.php";
 } /* EONS */
 
 namespace std
