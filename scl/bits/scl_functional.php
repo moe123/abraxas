@@ -235,7 +235,7 @@ namespace std
 				return call_user_func_array($f___, $args___);
 			}
 			return $f___();
-		 };
+		};
 	}
 
 	function invoke(callable $f___, ...$args___)

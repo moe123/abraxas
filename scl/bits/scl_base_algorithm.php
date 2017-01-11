@@ -55,7 +55,7 @@ namespace std
 				_F_builtin_sort($first___->_M_ptr, $compare___);
 				$first___->_F_seek_end();
 				$last___->_F_seek_end();
-			} else if ($first___::container_category === basic_iteratable_tag::basic_forward_list) {
+			} else if ($first___->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
 				$slice = array_slice(
 					  $first___->_M_ptr->_F_dump()
 					, $first___->_M_offset
