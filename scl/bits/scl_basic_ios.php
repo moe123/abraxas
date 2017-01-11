@@ -74,7 +74,7 @@ namespace std
 		{ return $this->_M_sstate; }
 
 		function setstate(int $state___)
-		{ $this->clear($this->_M_sstate| $state___); }
+		{ $this->clear($this->_M_sstate|$state___); }
 
 		function clear(int $state___ = ios_base::goodbit)
 		{ $this->_M_sstate = $state___; }
