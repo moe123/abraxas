@@ -228,7 +228,7 @@ namespace std
 	trait _T_builtin_array_iterative_traits
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_sequential_adaptor($this->_M_container); }
+		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
 	}
 
 	trait _T_builtin_array_iteratable_traits
@@ -724,7 +724,7 @@ namespace std
 	trait _T_builtin_linked_list_iterative_traits
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_sequential_adaptor($this->_F_dump()); }
+		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
 	}
 
 	trait _T_builtin_linked_list_iteratable_traits
@@ -777,7 +777,7 @@ namespace std
 	trait _T_builtin_dict_iterative_traits
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_associative_adaptor($this->_M_container); }
+		{ return new _C_builtin_output_iterator_associative_adaptor($this); }
 	}
 
 	trait _T_builtin_dict_iteratable_traits
@@ -830,7 +830,7 @@ namespace std
 	trait _T_builtin_map_iterative_traits
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_sequential_adaptor($this->_M_container); }
+		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
 	}
 
 	trait _T_builtin_map_iteratable_traits
