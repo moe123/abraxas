@@ -18,9 +18,7 @@ namespace std
 {
 	class basic_forward_list implements
 		  \ArrayAccess
-		/*
 		, \IteratorAggregate
-		*/
 		, \JsonSerializable
 		, \Countable
 	{
@@ -30,6 +28,8 @@ namespace std
 		use _T_builtin_linked_list_int_operator_traits;
 		use _T_builtin_linked_list_serializable_traits;
 		use _T_builtin_linked_list_debug_traits;
+		use _T_builtin_linked_list_iteratable_traits;
+		use _T_builtin_linked_list_iterative_traits;
 		use _T_builtin_countable_traits;
 
 		function __toArray()

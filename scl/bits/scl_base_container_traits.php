@@ -16,6 +16,7 @@
 
 namespace std
 {
+/* ! - builtin_array */
 	trait _T_builtin_array_container_traits
 	{
 		var $_M_container = null;
@@ -150,75 +151,6 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_debug_traits
-	{
-		function __debugInfo()
-		{ return $this->_M_container; }
-	}
-
-	trait _T_builtin_array_serializable_traits
-	{
-		function jsonSerialize()
-		{ return $this->_M_container; }
-	}
-
-	trait _T_builtin_countable_traits
-	{
-		function count()
-		{ return $this->_M_size; }
-	}
-
-	trait _T_builtin_array_iterative_traits
-	{
-		function getIterator()
-		{ return new \ArrayIterator($this->_M_container); }
-	}
-
-	trait _T_builtin_array_iteratable_traits
-	{
-		function begin(int $offset___ = -1)
-		{
-			if ($offset___ < 0) {
-				$offset___ = 0;
-			}
-			return new forward_iterator($this, $offset___);
-		}
-
-		function end(int $offset___ = -1)
-		{
-			if ($offset___ < 0) {
-				$offset___ = $this->_M_size;
-			}
-			return new forward_iterator($this, $offset___);
-		}
-
-		function rbegin($offset___ = -1)
-		{
-			if ($offset___ < 0) {
-				$offset___ = $this->_M_size;
-			} else {
-				$offset___ = $this->_M_size - $offset___;
-			}
-			return new reverse_iterator($this, $offset___);
-		}
-
-		function rend($offset___ = -1)
-		{
-			if ($offset___ < 0) {
-				$offset___ = 0;
-			} else {
-				$offset___ = $this->_M_size - $offset___ - 1;
-			}
-			return new reverse_iterator($this, $offset___);
-		}
-
-		function iterator()
-		{ return new forward_iterator($this, 0); }
-
-		function reverse_iterator()
-		{ return new reverse_iterator($this, $this->_M_size); }
-	}
-
 	trait _T_builtin_array_conformity_traits
 	{
 		function _F_is_seq(array $container___, int $size___)
@@ -280,6 +212,77 @@ namespace std
 			);
 		}
 	}
+
+	trait _T_builtin_array_debug_traits
+	{
+		function __debugInfo()
+		{ return $this->_M_container; }
+	}
+
+	trait _T_builtin_array_serializable_traits
+	{
+		function jsonSerialize()
+		{ return $this->_M_container; }
+	}
+
+	trait _T_builtin_array_iterative_traits
+	{
+		function getIterator()
+		{ return new _C_builtin_output_iterator_sequential_adaptor($this->_M_container); }
+	}
+
+	trait _T_builtin_array_iteratable_traits
+	{
+		function begin(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			}
+			return new _C_forward_iterator_array($this, $offset___);
+		}
+
+		function end(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			}
+			return new _C_forward_iterator_array($this, $offset___);
+		}
+
+		function rbegin($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			} else {
+				$offset___ = $this->_M_size - $offset___;
+			}
+			return new _C_reverse_iterator_array($this, $offset___);
+		}
+
+		function rend($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			} else {
+				$offset___ = $this->_M_size - $offset___ - 1;
+			}
+			return new _C_reverse_iterator_array($this, $offset___);
+		}
+
+		function iterator()
+		{ return new _C_forward_iterator_array($this, 0); }
+
+		function reverse_iterator()
+		{ return new _C_reverse_iterator_array($this, $this->_M_size); }
+	}
+
+	trait _T_builtin_countable_traits
+	{
+		function count()
+		{ return $this->_M_size; }
+	}
+
+/* ! - linked_list */
 
 	class _C_builtin_list_node
 	{
@@ -721,7 +724,158 @@ namespace std
 	trait _T_builtin_linked_list_iterative_traits
 	{
 		function getIterator()
-		{ return new \ArrayIterator($this->_F_dump()); }
+		{ return new _C_builtin_output_iterator_sequential_adaptor($this->_F_dump()); }
+	}
+
+	trait _T_builtin_linked_list_iteratable_traits
+	{
+		function begin(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			}
+			return new _C_forward_iterator_linked_list($this, $offset___);
+		}
+
+		function end(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			}
+			return new _C_forward_iterator_linked_list($this, $offset___);
+		}
+
+		function rbegin($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			} else {
+				$offset___ = $this->_M_size - $offset___;
+			}
+			return new _C_reverse_iterator_linked_list($this, $offset___);
+		}
+
+		function rend($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			} else {
+				$offset___ = $this->_M_size - $offset___ - 1;
+			}
+			return new _C_reverse_iterator_linked_list($this, $offset___);
+		}
+
+		function iterator()
+		{ return new _C_forward_iterator_linked_list($this, 0); }
+
+		function reverse_iterator()
+		{ return new _C_reverse_iterator_linked_list($this, $this->_M_size); }
+	}
+
+/* ! - dict */
+
+	trait _T_builtin_dict_iterative_traits
+	{
+		function getIterator()
+		{ return new _C_builtin_output_iterator_associative_adaptor($this->_M_container); }
+	}
+
+	trait _T_builtin_dict_iteratable_traits
+	{
+		function begin(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			}
+			return new _C_forward_iterator_dict($this, $offset___);
+		}
+
+		function end(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			}
+			return new _C_forward_iterator_dict($this, $offset___);
+		}
+
+		function rbegin($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			} else {
+				$offset___ = $this->_M_size - $offset___;
+			}
+			return new _C_reverse_iterator_dict($this, $offset___);
+		}
+
+		function rend($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			} else {
+				$offset___ = $this->_M_size - $offset___ - 1;
+			}
+			return new _C_reverse_iterator_dict($this, $offset___);
+		}
+
+		function iterator()
+		{ return new _C_forward_iterator_dict($this, 0); }
+
+		function reverse_iterator()
+		{ return new _C_reverse_iterator_dict($this, $this->_M_size); }
+	}
+
+/* ! - map */
+
+	trait _T_builtin_map_iterative_traits
+	{
+		function getIterator()
+		{ return new _C_builtin_output_iterator_sequential_adaptor($this->_M_container); }
+	}
+
+	trait _T_builtin_map_iteratable_traits
+	{
+		function begin(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			}
+			return new _C_forward_iterator_map($this, $offset___);
+		}
+
+		function end(int $offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			}
+			return new _C_forward_iterator_map($this, $offset___);
+		}
+
+		function rbegin($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = $this->_M_size;
+			} else {
+				$offset___ = $this->_M_size - $offset___;
+			}
+			return new _C_reverse_iterator_map($this, $offset___);
+		}
+
+		function rend($offset___ = -1)
+		{
+			if ($offset___ < 0) {
+				$offset___ = 0;
+			} else {
+				$offset___ = $this->_M_size - $offset___ - 1;
+			}
+			return new _C_reverse_iterator_map($this, $offset___);
+		}
+
+		function iterator()
+		{ return new _C_forward_iterator_map($this, 0); }
+
+		function reverse_iterator()
+		{ return new _C_reverse_iterator_map($this, $this->_M_size); }
 	}
 } /* EONS */
 

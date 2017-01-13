@@ -30,31 +30,153 @@ namespace std
 	abstract class basic_iterator
 	{ const iterator_category = basic_iterator_tag::basic_iterator; }
 
-	abstract class insert_iterator extends basic_iterator
-	{ const iterator_category = basic_iterator_tag::insert_iterator; }
-
-	final class forward_iterator extends basic_iterator
+	abstract class forward_iterator extends basic_iterator
 	{
 		const iterator_category = basic_iterator_tag::forward_iterator;
+		
+		use _T_builtin_basic_iterator_traits;
+		use _T_builtin_forward_iterator_traits;
 
-		use basic_iterator_traits;
-		use forward_iterator_traits;
+		function first()
+		{ return $this->_F_first(); }
+
+		function second()
+		{ return $this->_F_second(); }
+
+		function & assign($v)
+		{
+			$this->_F_pos_assign($v);
+			return $this;
+		}
+
+		function & advance(int $d = 1)
+		{
+			$this->_F_advance($d);
+			return $this;
+		}
+
+		function & prev()
+		{
+			if ($this->_M_offset > 0) {
+				--$this->_M_offset;
+			}
+			return $this;
+		}
+
+		function & next()
+		{
+			return $this->_F_advance(1);
+			return $this;
+		}
 	}
 
-	final class reverse_iterator extends basic_iterator
+	final class _C_forward_iterator_array extends forward_iterator
+	{ use _T_builtin_forward_iterator_builtin_array_traits; }
+
+	final class _C_forward_iterator_linked_list extends forward_iterator
+	{ use _T_builtin_forward_iterator_linked_list_traits; }
+
+	final class _C_forward_iterator_dict extends forward_iterator
+	{ use _T_builtin_forward_iterator_dict_traits; }
+
+	final class _C_forward_iterator_map extends forward_iterator
+	{ use _T_builtin_forward_iterator_map_traits; }
+
+	abstract class insert_iterator extends basic_iterator
+	{
+		const iterator_category = basic_iterator_tag::insert_iterator;
+
+		function first()
+		{ return $this->_F_first(); }
+
+		function second()
+		{ return $this->_F_second(); }
+
+		function & assign($v)
+		{
+			$this->_F_pos_assign($v);
+			return $this;
+		}
+
+		function & advance(int $d = 1)
+		{
+			$this->_F_advance($d);
+			return $this;
+		}
+
+		function & prev()
+		{
+			if ($this->_M_offset > 0) {
+				--$this->_M_offset;
+			}
+			return $this;
+		}
+
+		function & next()
+		{
+			$this->advance(1);
+			return $this;	
+		}
+	}
+
+	abstract class reverse_iterator extends basic_iterator
 	{
 		const iterator_category = basic_iterator_tag::reverse_iterator;
 
-		use basic_iterator_traits;
-		use reverse_iterator_traits;
+		use _T_builtin_basic_iterator_traits;
+		use _T_builtin_reverse_iterator_traits;
+		
+		function first()
+		{ return $this->_F_first(); }
+
+		function second()
+		{ return $this->_F_second(); }
+		
+		function & assign($v)
+		{
+			$this->_F_pos_assign($v);
+			return $this;
+		}
+
+		function & advance(int $d = 1)
+		{
+			$this->_F_advance($d);
+			return $this;
+		}
+
+		function & prev()
+		{
+			if ($this->_M_offset < $this->_M_ptr->_M_size -1) {
+				++$this->_M_offset;
+			}
+			return $this;
+		}
+
+		function & next()
+		{
+			$this->_F_advance(1);
+			return $this;
+		}
 	}
+
+	final class _C_reverse_iterator_array extends forward_iterator
+	{ use _T_builtin_reverse_iterator_builtin_array_traits; }
+
+	final class _C_reverse_iterator_linked_list extends forward_iterator
+	{ use _T_builtin_reverse_iterator_linked_list_traits; }
+
+	final class _C_reverse_iterator_dict extends forward_iterator
+	{ use _T_builtin_reverse_iterator_dict_traits; }
+
+	final class _C_reverse_iterator_map extends forward_iterator
+	{ use _T_builtin_reverse_iterator_map_traits; }
 
 	final class front_insert_iterator extends insert_iterator
 	{
 		const iterator_category = basic_iterator_tag::front_insert_iterator;
 
 		use basic_iterator_traits;
-		use inserter_iterator_traits;
+		use _T_builtin_inserter_iterator_traits;
 	}
 
 	final class back_insert_iterator extends insert_iterator
@@ -62,7 +184,7 @@ namespace std
 		const iterator_category = basic_iterator_tag::back_insert_iterator;
 
 		use basic_iterator_traits;
-		use inserter_iterator_traits;
+		use _T_builtin_inserter_iterator_traits;
 	}
 
 	function back_inserter(basic_iteratable $iterable___)

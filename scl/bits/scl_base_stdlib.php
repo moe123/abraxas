@@ -174,6 +174,15 @@ namespace std
 			$in___ = memsub($in___, 3, memlen($in___));
 		}
 	}
+
+	function utf8_glyph_split(string $s___, int $l___ = 1)
+	{
+		$out = [];
+		preg_match_all("/./u", $s___, $out);
+		$arr = array_chunk($out[0], $l___);
+		$out = array_map('implode', $out);
+		return $out;
+	}
 } /* EONS */
 
 /* EOF */
