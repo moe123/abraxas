@@ -193,7 +193,7 @@ namespace std
 			if (\is_object($val___) && $val___ instanceof \std\pair) {
 				$this->_M_ptr->set_item($val___);
 			} else {
-				$this->_M_ptr->set(_F_first(), $val___);
+				$this->_M_ptr->set($this->_F_first(), $val___);
 				// _F_throw_builtin_error("Cannot assign value type error");
 			}
 		}
@@ -297,9 +297,9 @@ namespace std
 					}
 				} else {
 					if ($this->_M_ptr::container_category === basic_iteratable_tag::front_insert_iterator) {
-						_F_builtin_push_front($this->_M_ptr, $val___->second, _F_first());
+						_F_builtin_push_front($this->_M_ptr, $val___->second, $this->_F_first());
 					} else if ($this->_M_ptr::container_category === basic_iteratable_tag::back_insert_iterator) {
-						_F_builtin_push_back($this->_M_ptr, $val___->second, _F_first());
+						_F_builtin_push_back($this->_M_ptr, $val___->second, $this->_F_first());
 					}
 					// _F_throw_builtin_error("Cannot assign value type error");
 				}
@@ -447,7 +447,7 @@ namespace std
 			if (\is_object($val___) && $val___ instanceof \std\pair) {
 				$this->_M_ptr->set_item($val___);
 			} else {
-				$this->_M_ptr->set(_F_first(), $val___);
+				$this->_M_ptr->set($this->_F_first(), $val___);
 				// _F_throw_builtin_error("Cannot assign value type error");
 			}
 		}
