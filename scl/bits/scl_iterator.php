@@ -34,8 +34,8 @@ namespace std
 	{
 		const iterator_category = basic_iterator_tag::forward_iterator;
 		
-		use _T_builtin_basic_iterator_traits;
-		use _T_builtin_forward_iterator_traits;
+		use _T_basic_iterator_traits;
+		use _T_forward_iterator_traits;
 
 		function first()
 		{ return $this->_F_first(); }
@@ -71,16 +71,16 @@ namespace std
 	}
 
 	final class _C_forward_iterator_array extends forward_iterator
-	{ use _T_builtin_forward_iterator_builtin_array_traits; }
+	{ use _T_forward_iterator_builtin_array_traits; }
 
 	final class _C_forward_iterator_linked_list extends forward_iterator
-	{ use _T_builtin_forward_iterator_linked_list_traits; }
+	{ use _T_forward_iterator_linked_list_traits; }
 
 	final class _C_forward_iterator_dict extends forward_iterator
-	{ use _T_builtin_forward_iterator_dict_traits; }
+	{ use _T_forward_iterator_dict_traits; }
 
 	final class _C_forward_iterator_map extends forward_iterator
-	{ use _T_builtin_forward_iterator_map_traits; }
+	{ use _T_forward_iterator_map_traits; }
 
 	abstract class insert_iterator extends basic_iterator
 	{
@@ -123,8 +123,8 @@ namespace std
 	{
 		const iterator_category = basic_iterator_tag::reverse_iterator;
 
-		use _T_builtin_basic_iterator_traits;
-		use _T_builtin_reverse_iterator_traits;
+		use _T_basic_iterator_traits;
+		use _T_reverse_iterator_traits;
 		
 		function first()
 		{ return $this->_F_first(); }
@@ -160,31 +160,31 @@ namespace std
 	}
 
 	final class _C_reverse_iterator_array extends forward_iterator
-	{ use _T_builtin_reverse_iterator_builtin_array_traits; }
+	{ use _T_reverse_iterator_builtin_array_traits; }
 
 	final class _C_reverse_iterator_linked_list extends forward_iterator
-	{ use _T_builtin_reverse_iterator_linked_list_traits; }
+	{ use _T_reverse_iterator_linked_list_traits; }
 
 	final class _C_reverse_iterator_dict extends forward_iterator
-	{ use _T_builtin_reverse_iterator_dict_traits; }
+	{ use _T_reverse_iterator_dict_traits; }
 
 	final class _C_reverse_iterator_map extends forward_iterator
-	{ use _T_builtin_reverse_iterator_map_traits; }
+	{ use _T_reverse_iterator_map_traits; }
 
 	final class front_insert_iterator extends insert_iterator
 	{
 		const iterator_category = basic_iterator_tag::front_insert_iterator;
 
-		use basic_iterator_traits;
-		use _T_builtin_inserter_iterator_traits;
+		use _T_basic_iterator_traits;
+		use _T_inserter_iterator_traits;
 	}
 
 	final class back_insert_iterator extends insert_iterator
 	{
 		const iterator_category = basic_iterator_tag::back_insert_iterator;
 
-		use basic_iterator_traits;
-		use _T_builtin_inserter_iterator_traits;
+		use _T_basic_iterator_traits;
+		use _T_inserter_iterator_traits;
 	}
 
 	function back_inserter(basic_iteratable $iterable___)
