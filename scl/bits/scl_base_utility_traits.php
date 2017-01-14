@@ -17,15 +17,9 @@
 namespace
 {
 	if ((int)(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
-		if (PHP_INT_SIZE >= 8) {
-			define("PHP_FLOAT_EPSILON" , 2.220446e-16);
-			define("PHP_FLOAT_MIN"     , 2.225074e-308);
-			define("PHP_FLOAT_MAX"     , 1.797693e+308);
-		} else {
-			define("PHP_FLOAT_EPSILON" , 1.192093e-07);
-			define("PHP_FLOAT_MIN"     , 1.175494e-38);
-			define("PHP_FLOAT_MAX"     , 3.402823e+38);
-		}
+		define('PHP_FLOAT_EPSILON', 0.0000001);
+		define('PHP_FLOAT_MIN'    , (float)PHP_INT_MIN);
+		define('PHP_FLOAT_MAX'    , (float)PHP_INT_MAX);
 	}
 }
 
