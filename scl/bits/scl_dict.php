@@ -117,7 +117,7 @@ namespace std
 			return -1;
 		}
 
-		function index_of_value(string $val)
+		function first_index_of_value(string $val)
 		{
 			if ($this->_M_size > 0) {
 				$idx = 0;
