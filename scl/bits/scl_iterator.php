@@ -43,15 +43,15 @@ namespace std
 		function second()
 		{ return $this->_F_second(); }
 
-		function & assign($v)
+		function & assign($val___)
 		{
-			$this->_F_pos_assign($v);
+			$this->_F_pos_assign($v___);
 			return $this;
 		}
 
-		function & advance(int $d = 1)
+		function & advance(int $d___ = 1)
 		{
-			$this->_F_advance($d);
+			$this->_F_advance($d___);
 			return $this;
 		}
 
@@ -92,15 +92,15 @@ namespace std
 		function second()
 		{ return $this->_F_second(); }
 
-		function & assign($v)
+		function & assign($val___)
 		{
-			$this->_F_pos_assign($v);
+			$this->_F_pos_assign($val___);
 			return $this;
 		}
 
-		function & advance(int $d = 1)
+		function & advance(int $d___ = 1)
 		{
-			$this->_F_advance($d);
+			$this->_F_advance($d___);
 			return $this;
 		}
 
@@ -132,15 +132,15 @@ namespace std
 		function second()
 		{ return $this->_F_second(); }
 		
-		function & assign($v)
+		function & assign($val___)
 		{
-			$this->_F_pos_assign($v);
+			$this->_F_pos_assign($val___);
 			return $this;
 		}
 
-		function & advance(int $d = 1)
+		function & advance(int $d___ = 1)
 		{
-			$this->_F_advance($d);
+			$this->_F_advance($d___);
 			return $this;
 		}
 

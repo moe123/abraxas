@@ -57,7 +57,7 @@ namespace std
 			return $vec;
 		}
 
-		function get_index(int $index)
+		function get_item_at_index(int $index)
 		{
 			if ($this->_M_size > 0 && $index < $this->_M_size) {
 				$idx = 0;

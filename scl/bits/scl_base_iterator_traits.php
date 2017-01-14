@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_builtin_basic_iterator_traits
+	trait _T_basic_iterator_traits
 	{
 		var $_M_offset = 0;
 		var $_M_ptr = null;
@@ -25,7 +25,7 @@ namespace std
 	final class _C_builtin_output_iterator_sequential_adaptor
 		implements \Iterator
 	{
-		use _T_builtin_basic_iterator_traits;
+		use _T_basic_iterator_traits;
 
 		function __construct(basic_iteratable &$iterable___)
 		{
@@ -57,7 +57,7 @@ namespace std
 	final class _C_builtin_output_iterator_associative_adaptor
 		implements \Iterator
 	{
-		use _T_builtin_basic_iterator_traits;
+		use _T_basic_iterator_traits;
 
 		function __construct(basic_iteratable &$iterable___)
 		{
@@ -87,7 +87,7 @@ namespace std
 		{ return \key($this->_M_ptr->_M_container) !== null; }
 	}
 
-	trait _T_builtin_forward_iterator_traits
+	trait _T_forward_iterator_traits
 	{
 		function __construct(basic_iteratable &$iterable___, int $start___)
 		{
@@ -146,7 +146,7 @@ namespace std
 		{ return $this->_M_offset; }
 	}
 
-	trait _T_builtin_forward_iterator_array_traits
+	trait _T_forward_iterator_array_traits
 	{
 		function _F_pos_assign($val___)
 		{
@@ -166,34 +166,34 @@ namespace std
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 	}
 
-	trait _T_builtin_forward_iterator_linked_list_traits
+	trait _T_forward_iterator_linked_list_traits
 	{
 		function _F_pos_assign($val___)
 		{
 			if (!_F_builtin_offset_exists($this->_M_ptr, $this->_M_offset)) {
 				_F_throw_builtin_error("Cannot assign a value to a non existing offset error");
 			}
-			$this->_M_ptr->_M_container[$this->_M_offset] = $val___;
+			$this->_M_ptr->_F_replace_data_at($this->_M_offset, $val___);
 		}
 
 		function _F_this()
-		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
+		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 
 		function _F_first()
 		{ return $this->_M_offset; }
 
 		function _F_second()
-		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
+		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 	}
 
-	trait _T_builtin_forward_iterator_dict_traits
+	trait _T_forward_iterator_dict_traits
 	{
 		function _F_pos_assign($val___)
 		{
 			if (\is_object($val___) && $val___ instanceof \std\pair) {
 				$this->_M_ptr->set_item($val___);
 			} else {
-				$this->_M_ptr->set($this->_F_first(), $val___);
+				$this->_M_ptr->set($this->_M_ptr->get_index($this->_M_offset)->first, $val___);
 				// _F_throw_builtin_error("Cannot assign value type error");
 			}
 		}
@@ -208,7 +208,7 @@ namespace std
 		{ return $this->_M_ptr->get_index($this->_M_offset)->second; }
 	}
 
-	trait _T_builtin_forward_iterator_map_traits
+	trait _T_forward_iterator_map_traits
 	{
 		function _F_pos_assign($val___)
 		{
@@ -228,7 +228,7 @@ namespace std
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->second; }
 	}
 
-	trait _T_builtin_inserter_iterator_traits
+	trait _T_inserter_iterator_traits
 	{
 		function __construct(basic_iteratable &$iterable___)
 		{
@@ -297,9 +297,9 @@ namespace std
 					}
 				} else {
 					if ($this->_M_ptr::container_category === basic_iteratable_tag::front_insert_iterator) {
-						_F_builtin_push_front($this->_M_ptr, $val___->second, $this->_F_first());
+						_F_builtin_push_front($this->_M_ptr, $val___->second, $this->_M_ptr->get_index($this->_M_offset)->first);
 					} else if ($this->_M_ptr::container_category === basic_iteratable_tag::back_insert_iterator) {
-						_F_builtin_push_back($this->_M_ptr, $val___->second, $this->_F_first());
+						_F_builtin_push_back($this->_M_ptr, $val___->second, $this->_M_ptr->get_index($this->_M_offset)->first);
 					}
 					// _F_throw_builtin_error("Cannot assign value type error");
 				}
@@ -314,6 +314,8 @@ namespace std
 		{
 			if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
 				return $this->_M_ptr->get_index($this->_M_offset);
+			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+				return $this->_M_ptr->_F_get_at($this->_M_offset);
 			}
 			return $this->_M_ptr->_M_container[$this->_M_offset];
 		}
@@ -324,9 +326,9 @@ namespace std
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_map
 			) {
-				return $this->_F_this()->first;
+				return $this->_M_ptr->get_index($this->_M_offset)->first;
 			}
-			return $this->_F_offset();
+			return $this->_M_offset;
 		}
 
 		function _F_second()
@@ -335,13 +337,15 @@ namespace std
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_map
 			) {
-				return $this->_F_this()->second;
+				return $this->_M_ptr->get_index($this->_M_offset)->second;
+			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+				return $this->_M_ptr->_F_get_at($this->_M_offset);
 			}
-			return $this->_F_this();
+			return $this->_M_ptr->_M_container[$this->_M_offset];
 		}
 	}
 
-	trait _T_builtin_reverse_iterator_traits
+	trait _T_reverse_iterator_traits
 	{
 		function __construct(basic_iteratable &$iterable___, int $start___)
 		{
@@ -400,7 +404,7 @@ namespace std
 		{ return $this->_M_offset; }
 	}
 	
-	trait _T_builtin_reverse_iterator_array_traits
+	trait _T_reverse_iterator_array_traits
 	{
 		function _F_pos_assign($val___)
 		{
@@ -420,34 +424,34 @@ namespace std
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 	}
 
-	trait _T_builtin_reverse_iterator_linked_list_traits
+	trait _T_reverse_iterator_linked_list_traits
 	{
 		function _F_pos_assign($val___)
 		{
 			if (!_F_builtin_offset_exists($this->_M_ptr, $this->_M_offset)) {
 				_F_throw_builtin_error("Cannot assign a value to a non existing offset error");
 			}
-			$this->_M_ptr->_M_container[$this->_M_offset] = $val___;
+			$this->_M_ptr->_F_replace_data_at($this->_M_offset, $val___);
 		}
 
 		function _F_this()
-		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
+		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 
 		function _F_first()
 		{ return $this->_M_offset; }
 
 		function _F_second()
-		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
+		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 	}
 
-	trait _T_builtin_reverse_iterator_dict_traits
+	trait _T_reverse_iterator_dict_traits
 	{
 		function _F_pos_assign($val___)
 		{
 			if (\is_object($val___) && $val___ instanceof \std\pair) {
 				$this->_M_ptr->set_item($val___);
 			} else {
-				$this->_M_ptr->set($this->_F_first(), $val___);
+				$this->_M_ptr->set($this->_M_ptr->get_index($this->_M_offset)->first, $val___);
 				// _F_throw_builtin_error("Cannot assign value type error");
 			}
 		}
@@ -462,7 +466,7 @@ namespace std
 		{ return $this->_M_ptr->get_index($this->_M_offset)->second; }
 	}
 
-	trait _T_builtin_reverse_iterator_map_traits
+	trait _T_reverse_iterator_map_traits
 	{
 		function _F_pos_assign($val___)
 		{

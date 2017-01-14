@@ -35,31 +35,52 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_functional_traits
+	trait _T_builtin_mapreduce_traits
 	{
 		function & enumerate(\Closure $f___, bool $r___ = false)
 		{
 			if ($this->_M_size) {
-				$stop = false;
-				if ($r___ === true) {
-					for (\end($this->_M_container); ($key = \key($this->_M_container)) !== null; \prev($this->_M_container)) {
-						$val = \current($this->_M_container);
-						$f___($key, $val, $stop);
-						if ($stop) {
-							break;
+				if (self::container_category === basic_iteratable_tag::basic_forward_list) {
+					$stop = false;
+					if ($r___ === true) {
+						for($i = $self->_M_size - 1; $i >= 0; $i--) {
+							$val = $this->_F_get_at($this->_M_offset);
+							$f___($key, $val, $stop);
+							if ($stop) {
+								break;
+							}
+						}
+					} else {
+						for($i = 0; $i < $self->_M_size; $i++) {
+							$val = $this->_F_get_at($this->_M_offset);
+							$f___($key, $val, $stop);
+							if ($stop) {
+								break;
+							}
 						}
 					}
-					\reset($this->_M_container);
 				} else {
-					foreach ($this->_M_container as $key => &$val) {
-						$f___($key, $val, $stop);
-						if ($stop) {
-							break;
+					$stop = false;
+					if ($r___ === true) {
+						for (\end($this->_M_container); ($key = \key($this->_M_container)) !== null; \prev($this->_M_container)) {
+							$val = \current($this->_M_container);
+							$f___($key, $val, $stop);
+							if ($stop) {
+								break;
+							}
+						}
+						\reset($this->_M_container);
+					} else {
+						foreach ($this->_M_container as $key => &$val) {
+							$f___($key, $val, $stop);
+							if ($stop) {
+								break;
+							}
 						}
 					}
 				}
+				return $this;
 			}
-			return $this;
 		}
 
 		/**
@@ -133,6 +154,35 @@ namespace std
 		{
 			$self = new static();
 			if ($this->_M_size) {
+				if (self::container_category === basic_iteratable_tag::basic_forward_list) {
+					$self->_F_insert_last(
+						array_reduce(
+							  $this->_F_dump()
+							, $f___
+					));
+				} else {
+					$self->_M_container[] = array_reduce(
+						  $this->_M_container
+						, $f___
+					);
+					$self->_M_size = 1;
+				}
+			}
+			return $self;
+		}
+
+		/**
+		* object accumulate(\Closure $f___)
+		* @param function (mixed $left , mixed $right) -> mixed (func)
+		* @return object (new)
+		*/
+		function accumulate(\Closure $f___ = null)
+		{
+			$self = new static();
+			if ($this->_M_size) {
+				if (\is_null($f___)) {
+					$f___ = function($l, $r) { return $l + $r; };
+				}
 				if (self::container_category === basic_iteratable_tag::basic_forward_list) {
 					$self->_F_insert_last(
 						array_reduce(
