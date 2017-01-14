@@ -57,11 +57,41 @@ namespace std
 			return $vec;
 		}
 
-		function get_item_at_index(int $index)
+		function key_at(int $index)
 		{
 			if ($this->_M_size > 0 && $index < $this->_M_size) {
 				$idx = 0;
-				foreach ($this->_M_container as $k => $v) {
+				foreach ($this->_M_container as $k => &$v) {
+					if ($idx === $index) {
+						return $k;
+					}
+					++$idx;
+				}
+			}
+			_F_throw_out_of_range("Out of Range error");
+			return null;
+		}
+
+		function value_at(int $index)
+		{
+			if ($this->_M_size > 0 && $index < $this->_M_size) {
+				$idx = 0;
+				foreach ($this->_M_container as &$v) {
+					if ($idx === $index) {
+						return $v;
+					}
+					++$idx;
+				}
+			}
+			_F_throw_out_of_range("Out of Range error");
+			return null;
+		}
+
+		function item_at(int $index)
+		{
+			if ($this->_M_size > 0 && $index < $this->_M_size) {
+				$idx = 0;
+				foreach ($this->_M_container as $k => &$v) {
 					if ($idx === $index) {
 						return make_pair($k, $v);
 					}
@@ -72,7 +102,7 @@ namespace std
 			return null;
 		}
 
-		function key_index(string $key)
+		function index_of_key(string $key)
 		{
 			if ($this->_M_size > 0) {
 				$idx = 0;
@@ -87,7 +117,7 @@ namespace std
 			return -1;
 		}
 
-		function value_index(string $val)
+		function index_of_value(string $val)
 		{
 			if ($this->_M_size > 0) {
 				$idx = 0;
