@@ -774,7 +774,7 @@ namespace std
 	trait _T_builtin_linked_list_iterative_traits
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
+		{ return new _C_builtin_output_iterator_linked_list_adaptor($this); }
 	}
 
 	trait _T_builtin_linked_list_iteratable_traits

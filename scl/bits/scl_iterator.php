@@ -159,16 +159,16 @@ namespace std
 		}
 	}
 
-	final class _C_reverse_iterator_array extends forward_iterator
+	final class _C_reverse_iterator_array extends reverse_iterator
 	{ use _T_reverse_iterator_builtin_array_traits; }
 
-	final class _C_reverse_iterator_linked_list extends forward_iterator
+	final class _C_reverse_iterator_linked_list extends reverse_iterator
 	{ use _T_reverse_iterator_linked_list_traits; }
 
-	final class _C_reverse_iterator_dict extends forward_iterator
+	final class _C_reverse_iterator_dict extends reverse_iterator
 	{ use _T_reverse_iterator_dict_traits; }
 
-	final class _C_reverse_iterator_map extends forward_iterator
+	final class _C_reverse_iterator_map extends reverse_iterator
 	{ use _T_reverse_iterator_map_traits; }
 
 	final class front_insert_iterator extends insert_iterator

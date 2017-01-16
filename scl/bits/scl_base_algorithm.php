@@ -404,7 +404,7 @@ namespace std
 			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
 				return array_key_exists($c___->_M_container, $offset___);
 			} else {
-				if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
+				if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $c___->_M_size)) {
 					return true;
 				}
 			}
@@ -425,10 +425,10 @@ namespace std
 				}
 			} else {
 				if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
-					$a = \range(0, $this->_M_size -1);
+					$a = \range(0, $c1___->_M_size -1);
 					$c2___->_F_from_array($a, true);
 				} else {
-					$c2___->_M_container = \range(0, $this->_M_size -1);
+					$c2___->_M_container = \range(0, $c1___->_M_size -1);
 					$c2___->_M_size = $c1___->_M_size;
 				}
 			}
