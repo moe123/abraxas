@@ -98,7 +98,7 @@ namespace std
 		$largest = clone $first___;
 		$first___->_F_next();
 		for (; $first___ !== $last___; $first___->_F_next()) {
-			if ($comp($smallest->_F_this(), $first___->_F_this())) {
+			if ($comp($largest->_F_this(), $first___->_F_this())) {
 				$largest = clone $first___;
 			}
 		}
