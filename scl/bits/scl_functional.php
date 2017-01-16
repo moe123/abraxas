@@ -232,7 +232,8 @@ namespace std
 	{
 		return function () use ($f___, $args___) {
 			if (\is_array($args___) && \count($args___)) {
-				return call_user_func_array($f___, $args___);
+				return $f___(...$args___);
+				//return call_user_func_array($f___, $args___);
 			}
 			return $f___();
 		};
@@ -241,7 +242,8 @@ namespace std
 	function invoke(callable $f___, ...$args___)
 	{
 		if (\is_array($args___) && \count($args___)) {
-			return call_user_func_array($f___, $args___);
+			return $f___(...$args___);
+			//return call_user_func_array($f___, $args___);
 		}
 		return $f___();
 	}
