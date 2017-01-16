@@ -297,7 +297,7 @@ namespace std
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p1 = $binaryOperation1___;
-			$p1 = $binaryOperation2___;
+			$p2 = $binaryOperation2___;
 			if (\is_null($p1)) {
 				$p1 = function($l, $r) { return $l + $r; };
 			}
