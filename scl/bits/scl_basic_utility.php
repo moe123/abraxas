@@ -16,7 +16,22 @@
 
 namespace
 {
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_iterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_container_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_operator_traits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_utility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_algorithm.php";
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_ios.php";
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_iterator.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collation.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collator.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_algorithm.php";
 } /* EONS */
 
 namespace std

@@ -70,12 +70,12 @@ namespace std
 		if (\is_null($comp)) {
 			$comp = function($l, $r) { return $l < $r; };
 		}
-		if ($first___ === $last___) {
+		if ($first___ == $last___) {
 			return $last___;
 		}
 		$smallest = clone $first___;
 		$first___->_F_next();
-		for (; $first___ !== $last___; $first___->_F_next()) {
+		for (; $first___ != $last___; $first___->_F_next()) {
 			if ($comp($first___->_F_this(), $smallest->_F_this())) {
 				$smallest = clone $first___;
 			}
@@ -92,12 +92,12 @@ namespace std
 		if (\is_null($comp)) {
 			$comp = function($l, $r) { return $l < $r; };
 		}
-		if ($first___ === $last___) {
+		if ($first___ == $last___) {
 			return $last___;
 		}
 		$largest = clone $first___;
 		$first___->_F_next();
-		for (; $first___ !== $last___; $first___->_F_next()) {
+		for (; $first___ != $last___; $first___->_F_next()) {
 			if ($comp($largest->_F_this(), $first___->_F_this())) {
 				$largest = clone $first___;
 			}
@@ -110,7 +110,7 @@ namespace std
 		, forward_iterator $last1___
 		, forward_iterator $first2___
 	) {
-		while ($first1___ !== $last1___) {
+		while ($first1___ != $last1___) {
 			iter_swap($first1___, $first2___);
 			$first1___->_F_next();
 			$first2___->_F_next();
@@ -124,7 +124,7 @@ namespace std
 		, insert_iterator $out_first___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				$v = $first___->_F_this();
 				$out_first___->_F_pos_assign(\is_object($v) ? clone $v : $v);
 				$out_first___->_F_next();
@@ -143,7 +143,7 @@ namespace std
 		, callable $unaryPredicate___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				$v = $first___->_F_this();
 				if ($unaryPredicate___($v)) {
 					$out_first___->_F_pos_assign(\is_object($v) ? clone $v : $v);
@@ -175,7 +175,7 @@ namespace std
 
 	function fill(forward_iterator $first___, forward_iterator $last___, $val___)
 	{
-		while ($first___ !== $last___) {
+		while ($first___ != $last___) {
 			$first___->_F_pos_assign($val___);
 			$first___->_F_next();
 		}
@@ -184,7 +184,7 @@ namespace std
 	function reverse(basic_iterator $first___, basic_iterator $last___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___ && ($first___ !== $last___->_F_prev())) {
+			while ($first___ != $last___ && ($first___ != $last___->_F_prev())) {
 				iter_swap($first___, $last___);
 				$first___->_F_next();
 			}
@@ -193,16 +193,19 @@ namespace std
 		}
 	}
 
-	function unique(
+	function unique(basic_iteratable &$c___)
+	{ _F_builtin_unique($c___); }
+
+	function unique_r(
 		  forward_iterator $first___
 		, forward_iterator $last___
 	) {
-		if ($first___ === $last___) {
+		if ($first___ == $last___) {
 			return $last___;
 		}
 		$it = clone $first___;
-		while ($first___->_F_next() !== $last___) {
-			if (!($it->_F_this() === $first___->_F_this()) && $it->_F_next() !== $first___) {
+		while ($first___->_F_next() != $last___) {
+			if (!($it->_F_this() === $first___->_F_this()) && $it->_F_next() != $first___) {
 				$it->_F_pos_assign($first___->_F_this());
 			}
 		}
@@ -219,12 +222,12 @@ namespace std
 		if (\is_null($p)) {
 			$p = function($l, $r) { return $l === $r; };
 		}
-		if ($first___ === $last___) {
+		if ($first___ == $last___) {
 			return $last___;
 		}
 		$it = clone $first___;
-		while ($first___->_F_next() !== $last___) {
-			if (!$p($it->_F_this(), $first___->_F_this()) && $it->_F_next() !== $first___) {
+		while ($first___->_F_next() != $last___) {
+			if (!$p($it->_F_this(), $first___->_F_this()) && $it->_F_next() != $first___) {
 				$it->_F_pos_assign($first___->_F_this());
 			}
 		}
@@ -238,7 +241,7 @@ namespace std
 		, $init___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				$init___ = $init___ + $first___->_F_this();
 				$first___->_F_next();
 			}
@@ -259,7 +262,7 @@ namespace std
 			if (\is_null($p)) {
 				$p = function($l, $r) { return $l + $r; };
 			}
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				$init___ = $p($init___, $first___->_F_this());
 				$first___->_F_next();
 			}
@@ -276,7 +279,7 @@ namespace std
 		, $init___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first1___ !== $last1___) {
+			while ($first1___ != $last1___) {
 				$init___ = $init___ + ($first1___->_F_this() * $first2___->_F_this());
 				$first1___->_F_next();
 				$first2___->_F_next();
@@ -304,7 +307,7 @@ namespace std
 			if (\is_null($p2)) {
 				$p2 = function($l, $r) { return $l * $r; };
 			}
-			while ($first1___ !== $last1___) {
+			while ($first1___ != $last1___) {
 				$init___ = $p1($init___, $p2($first1___->_F_this(), $first2___->_F_this()));
 				$first1___->_F_next();
 				$first2___->_F_next();
@@ -318,7 +321,7 @@ namespace std
 	function & find(basic_iterator $first___, basic_iterator $last___, $val___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				if ($first___->_F_this() === $val___) {
 					return $first___;
 				}
@@ -333,7 +336,7 @@ namespace std
 	function & find_if(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				if ($unaryPredicate___($first___->_F_this())) {
 					return $first___;
 				}
@@ -348,7 +351,7 @@ namespace std
 	function & find_if_not(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				if (!$unaryPredicate___($first___->_F_this())) {
 					return $first___;
 				}
@@ -361,18 +364,18 @@ namespace std
 	}
 
 	function all_of(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
-	{ return find_if_not($first___, $last___, $unaryPredicate___) === $last___; }
+	{ return find_if_not($first___, $last___, $unaryPredicate___) == $last___; }
 
 	function any_of(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
-	{ return find_if($first___, $last___, $unaryPredicate___) !== $last___; }
+	{ return find_if($first___, $last___, $unaryPredicate___) != $last___; }
 
 	function none_of(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
-	{ return find_if($first___, $last___, $unaryPredicate___) === $last___; }
+	{ return find_if($first___, $last___, $unaryPredicate___) == $last___; }
 
 	function for_each(basic_iterator $first___, basic_iterator $last___, callable $unaryFunction___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				$unaryFunction___($first___->_F_this());
 				$first___->_F_next();
 			}
@@ -402,14 +405,14 @@ namespace std
 		if (\is_null($p)) {
 			$p = function($l, $r) { return $l === $r; };
 		}
-		while ($first1___ !== $last1___) {
+		while ($first1___ != $last1___) {
 			$it1 = clone $first1___;
 			$it2 = clone $first2___;
 			while (!$it1->last()) {
-					if ($it2 === $last2___) {
+					if ($it2 == $last2___) {
 						return $first1___;
 					}
-					if ($it1 === $last1___) {
+					if ($it1 == $last1___) {
 						return $last1___;
 					}
 					if (!$p($it1->_F_this(), $it2->_F_this())) {
@@ -434,7 +437,7 @@ namespace std
 		if (\is_null($p)) {
 			$p = function($l, $r) { return $l === $r; };
 		}
-		while ($first___ !== $last___) {
+		while ($first___ != $last___) {
 			if (!$p($first___->_F_this(), $val___)) {
 				continue;
 			}
@@ -446,7 +449,7 @@ namespace std
 					 return $it;
 				}
 				$first___->_F_next();
-				if ($first___ === $last___) {
+				if ($first___ == $last___) {
 					return $last___;
 				}
 				if (!$p($first___->_F_this(), $val___)) {
@@ -469,7 +472,7 @@ namespace std
 			if (\is_null($p)) {
 				$p = function($l, $r) { return $l === $r; };
 			}
-			while ($first1___ !== $last1___) {
+			while ($first1___ != $last1___) {
 				if (!$p($first1___->_F_this(), $first2___->_F_this())) {
 					return false;
 				}
@@ -487,7 +490,7 @@ namespace std
 	{
 		$ret = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				if ($first___->_F_this() === $val___) {
 					$ret++;
 				}
@@ -503,7 +506,7 @@ namespace std
 	{
 		$ret = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while ($first___ !== $last___) {
+			while ($first___ != $last___) {
 				if ($unaryPredicate___($first___->_F_offset(), $first___->_F_this())) {
 					$ret++;
 				}
@@ -531,7 +534,7 @@ namespace std
 			$first1___::iterator_category === $last1___::iterator_category &&
 			$first2___::iterator_category === $last2___::iterator_category
 		) {
-			while ($first1___ !== $last1___ && $first2___ !== $last2___) {
+			while ($first1___ != $last1___ && $first2___ != $last2___) {
 				if ($comp($first1___->_F_this(), $first2___->_F_this())) {
 						$first1___->_F_next();
 				} else {
@@ -555,9 +558,9 @@ namespace std
 		, $val___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);
-		if ($first___ !== $last___) {
+		if ($first___ != $last___) {
 			$it = clone $first___;
-			while ($it !== $last___) {
+			while ($it != $last___) {
 				$v = $it->_F_this();
 				if (!($v === $val___)) {
 					$first___->_F_pos_assign($v);
@@ -575,9 +578,9 @@ namespace std
 		, $unaryPredicate___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);
-		if ($first___ !== $last___) {
+		if ($first___ != $last___) {
 			$it = clone $first___;
-			while ($it !== $last___) {
+			while ($it != $last___) {
 				$v = $it->_F_this();
 				if (!$unaryPredicate___($v)) {
 					$first___->_F_pos_assign($v);
@@ -595,7 +598,7 @@ namespace std
 		, basic_iterator $out_first___
 		, callable $unaryOperation___
 	) {
-		while ($first___ !== $last___) {
+		while ($first___ != $last___) {
 			$v = $unaryOperation___($first___->_F_this());
 			$out_first___->_F_pos_assign($v);
 			$out_first___->_F_next();
@@ -611,7 +614,7 @@ namespace std
 		, basic_iterator $out_first___
 		, callable $binaryOperation___
 	) {
-		while ($first1___ !== $last1___) {
+		while ($first1___ != $last1___) {
 			$v = $binaryOperation___($first1___->_F_this(), $first2___->_F_this());
 			$out_first___->_F_pos_assign($v);
 			$out_first___->_F_next();
@@ -622,12 +625,15 @@ namespace std
 	}
 
 	function sort(
+		  basic_iteratable &$c___
+		, callable $compare___ = null
+	) { _F_builtin_sort($c___, $compare___); }
+
+	function sort_r(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $compare___ = null
-	) {
-		_F_builtin_sort_r($first___, $last___, $compare___);
-	}
+	) { _F_builtin_sort_r($first___, $last___, $compare___); }
 } /* EONS */
 
 /* EOF */

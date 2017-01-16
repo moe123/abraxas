@@ -22,7 +22,9 @@ namespace
 
 namespace std
 {
-	const endl  = char_utils::eol;
+	const endl       = char_utils::eol;
+	const space      = char_utils::sp;
+	const tabulation = char_utils::ht;
 
 	abstract class ios_base
 	{

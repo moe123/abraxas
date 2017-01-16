@@ -20,6 +20,7 @@ namespace std
 	{
 		const eol = \PHP_EOL;
 
+		const sp = " ";
 		const vt = "\v";
 		const ff = "\f";
 		const ht = "\t";

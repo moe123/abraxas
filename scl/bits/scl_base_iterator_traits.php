@@ -188,13 +188,13 @@ namespace std
 			$this->_M_ptr->_M_container[$this->_M_offset] = $val___;
 		}
 
-		function _F_this()
+		function & _F_this()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 
-		function _F_first()
+		function & _F_first()
 		{ return $this->_M_offset; }
 
-		function _F_second()
+		function & _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 	}
 
@@ -211,7 +211,7 @@ namespace std
 		function _F_this()
 		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 
-		function _F_first()
+		function & _F_first()
 		{ return $this->_M_offset; }
 
 		function _F_second()
@@ -250,13 +250,13 @@ namespace std
 			$this->_M_ptr->_M_container[$this->_M_offset] = $val___;
 		}
 
-		function _F_this()
+		function & _F_this()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 
-		function _F_first()
+		function & _F_first()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->first; }
 
-		function _F_second()
+		function & _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->second; }
 	}
 

@@ -74,7 +74,7 @@ $l  = std\make_seq_list(
 	, "Magnétite"
 );
 
-std\sort(std\begin($l), std\end($l), std\make_locale("fr_FR.UTF-8"));
+std\sort_r(std\begin($l), std\end($l), std\make_locale("fr_FR.UTF-8"));
 
 foreach ($l as $item) {
 	std\cerr($item)(std\endl);
@@ -122,6 +122,17 @@ $pos = std\find(std\begin_p($it), std\end($v), 3);
 if ($pos != std\end($v)) {
 	std\cout("\$v contains: 3")(std\endl);
 }
+
+...
+
+$v = std\make_vector(1, 2, 3, 1, 2, 3, 3, 4, 5, 4, 5, 6, 7);
+std\sort_r($v->begin(), $v->end());
+// [ 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 7 ]
+$last = std\unique_r($v->begin(), $v->end());
+// [ 1, 2, 3, 4, 5, 6, 7, x, x, x, x, x, x ]
+$v->erase_r($last, $v->end());
+std\cout($v)(std\endl);
+// [ 1, 2, 3, 4, 5, 6, 7 ]
 
 ...
 
