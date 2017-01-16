@@ -125,7 +125,7 @@ namespace std
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ !== $last___) {
-				$v = $first1___->_F_this();
+				$v = $first___->_F_this();
 				$out_first___->_F_pos_assign(\is_object($v) ? clone $v : $v);
 				$out_first___->_F_next();
 				$first___->_F_next();
@@ -144,7 +144,7 @@ namespace std
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ !== $last___) {
-				$v = $first1___->_F_this();
+				$v = $first___->_F_this();
 				if ($unaryPredicate___($v)) {
 					$out_first___->_F_pos_assign(\is_object($v) ? clone $v : $v);
 					$out_first___->_F_next();
@@ -164,7 +164,8 @@ namespace std
 	) {
 		$i = 0;
 		while ($i < $count___) {
-			$out_first___->_F_pos_assign($first1___->_F_this());
+			$v = $first___->_F_this();
+			$out_first___->_F_pos_assign(\is_object($v) ? clone $v : $v);
 			$out_first___->_F_next();
 			$first___->_F_next();
 			++$i;
