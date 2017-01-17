@@ -87,7 +87,7 @@ foreach ($l as $item) {
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Iterators
 Abraxas implements four different types of iterators:
 Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
-Unlike the `C++ STL`, Abraxas `Iterators` implementation is not opaque to the `Algorithms` component.
+Unlike the `C++ STL`, Abraxas `Iterators` implementation is not fully opaque to the `Algorithms` component.
 Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` member ; 
 where `first()` is the key or index (depends on the container category) and `second()` the value.
 
@@ -98,7 +98,7 @@ $v  = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
 $it = $v->rbegin();
 
 while ($it != $v->rend()) {
-	std\cout($it->second())(" ");
+	std\cout($it->second())(std\space);
 	$it->advance(2);
 }
 
@@ -109,7 +109,7 @@ std\cout(std\endl);
 $it = std\begin($v, 1);
 
 while ($it != std\end($v)) {
-	std\cout($it->second())(" ");
+	std\cout($it->second())(std\tabulation);
 	$it->next();
 }
 
@@ -126,11 +126,15 @@ if ($pos != std\end($v)) {
 ...
 
 $v = std\make_vector(1, 2, 3, 1, 2, 3, 3, 4, 5, 4, 5, 6, 7);
+
 std\sort_r($v->begin(), $v->end());
 // [ 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 7 ]
+
 $last = std\unique_r($v->begin(), $v->end());
 // [ 1, 2, 3, 4, 5, 6, 7, x, x, x, x, x, x ]
+
 $v->erase_r($last, $v->end());
+
 std\cout($v)(std\endl);
 // [ 1, 2, 3, 4, 5, 6, 7 ]
 

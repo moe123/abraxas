@@ -37,6 +37,30 @@ namespace std
 	define('BUILTIN_SINT_LOWEST'  , -PHP_INT_MAX);
 	define('BUILTIN_SINT_MIN'     , PHP_INT_MIN);
 
+	function _F_builtin_deep_copy($v___)
+	{
+		if (\is_resource($v___) || !\is_object($v___)) {
+			return $v___;
+		}
+		if (\is_array($v___)) {
+			$a = [];
+			foreach ($v___ as $k => $v) {
+				$a[$k] = $this->_F_deep_copy($v);
+			}
+			return $a;
+		}
+		return clone $v___;
+	}
+
+	trait _T_deep_copy_traits
+	{
+		function __clone() {
+			foreach($this as $k => $v) {
+				$this->{$k} = _F_builtin_deep_copy($v);
+			}
+		}
+	}
+
 	trait _T_multi_construct_traits
 	{
 		function _F_multi_construct($argc___, $argv___)
