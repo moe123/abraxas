@@ -24,6 +24,7 @@ namespace std
 {
 	const endl       = char_utils::eol;
 	const space      = char_utils::sp;
+	const tab        = char_utils::ht;
 	const tabulation = char_utils::ht;
 
 	abstract class ios_base

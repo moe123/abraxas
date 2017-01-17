@@ -109,7 +109,7 @@ std\cout(std\endl);
 $it = std\begin($v, 1);
 
 while ($it != std\end($v)) {
-	std\cout($it->second())(std\tabulation);
+	std\cout($it->second())(std\tab);
 	$it->next();
 }
 
