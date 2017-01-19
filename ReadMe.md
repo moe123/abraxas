@@ -148,6 +148,43 @@ a certain type of iterator. The design is an hybrid one, tacking advantages of
 existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
 this is transparent to the end-user).
+```php
+...
+function set_intersection(
+	  basic_iterator $first1___
+	, basic_iterator $last1___
+	, basic_iterator $first2___
+	, basic_iterator $last2___
+	, insert_iterator $out_first___
+	, callable $compare___ = null
+) {
+	$comp = $compare___;
+	if (\is_null($comp)) {
+		$comp = function($l, $r) { return $l < $r; };
+	}
+	if (
+		$first1___::iterator_category === $last1___::iterator_category &&
+		$first2___::iterator_category === $last2___::iterator_category
+	) {
+		while ($first1___ != $last1___ && $first2___ != $last2___) {
+			if ($comp($first1___->_F_this(), $first2___->_F_this())) {
+					$first1___->_F_next();
+			} else {
+				if (!$comp($first2___->_F_this(), $first1___->_F_this())) {
+						$out_first___->_F_pos_assign($first1___->_F_this());
+						$out_first___->_F_next();
+						$first1___->_F_next();
+				}
+				$first2___->_F_next();
+			}
+		}
+	} else {
+		_F_throw_invalid_argument("Invalid type error");
+	}
+	return $out_first___;
+}
+...
+```
 
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Functional / Functors
 A mixture of existing features and overloads.
