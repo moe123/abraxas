@@ -210,15 +210,19 @@ namespace std
 		return $out_first___;
 	}
 
-	function _F_builtin_unique(basic_iteratable &$c___)
+	function _F_builtin_unique(basic_iteratable &$c___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 1) {
 			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
 				$a = array_unique($c___->_F_dump(), SORT_REGULAR);
 				$c___->_F_from_array($a, true);
 			} else {
-				$c___->_M_container = array_unique($c___->_M_container, SORT_REGULAR);
-				$c___->_M_size = \count($c___->_M_container);
+				if (\is_null($binaryPredicate___)) {
+					$c___->_M_container = array_unique($c___->_M_container, SORT_REGULAR);
+					$c___->_M_size = \count($c___->_M_container);
+				} else {
+					_F_builtin_unique_b($c___, $binaryPredicate___);
+				}
 			}
 		}
 	}
@@ -226,10 +230,6 @@ namespace std
 	function _F_builtin_unique_b(basic_iteratable &$c___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 1) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
-				// TODO
-				return;
-			}
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
 				$p = function(&$l, &$r) { return $l === $r; };
@@ -265,8 +265,12 @@ namespace std
 
 	function _F_builtin_insert(basic_iteratable &$c___, int $pos___, $val___)
 	{
-		array_splice($c___->_M_container, $position, 0, $val___);
-		$c___->_M_size = \count($c___->_M_container);
+		if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			$c___->_F_insert_at_index($pos___, $val___);
+		} else {
+			array_splice($c___->_M_container, $position, 0, $val___);
+			$c___->_M_size = \count($c___->_M_container);
+		}
 	}
 
 	function _F_builtin_slice(basic_iteratable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
@@ -398,14 +402,44 @@ namespace std
 		}
 	}
 	
-	function _F_builtin_offset_exists(basic_iteratable &$c___, $offset___)
+	function _F_builtin_offset_exists(basic_iteratable &$c___, $offset___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
-				return array_key_exists($c___->_M_container, $offset___);
+				if (\is_null($binaryPredicate___)) {
+					return array_key_exists($c___->_M_container, $offset___);
+				} else {
+					foreach ($c___->_M_container as $k => $v) {
+						if ($binaryPredicate___($k, $offset___)) {
+							return true;
+						}
+					}
+				}
 			} else {
 				if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $c___->_M_size)) {
 					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	function _F_builtin_value_exists(basic_iteratable &$c___, $val___, callable $binaryPredicate___ = null)
+	{
+		if ($c___->_M_size > 0) {
+			$p = $binaryPredicate___;
+			if ($c___::container_category === basic_iteratable_tag::basic_set) {
+				if (\is_null($p)) {
+					$p = $c___->_M_predicate;
+				}
+			}
+			if (\is_null($p)) {
+				return in_array($c___->_M_container, $val___);
+			} else {
+				foreach ($c___->_M_container as $k => $v) {
+					if ($p($v, $val___)) {
+						return true;
+					}
 				}
 			}
 		}
@@ -518,12 +552,12 @@ namespace std
 	function _F_builtin_remove_last(basic_iteratable &$c___, $val___)
 	{ _F_builtin_remove_last_n($c___, $val___, 1); }
 
-	function _F_builtin_remove_if(basic_iteratable &$c___, callable $unaryPredicate)
+	function _F_builtin_remove_if(basic_iteratable &$c___, callable $unaryPredicate___)
 	{
 		if ($c___->_M_size > 0) {
 			$idx = [];
 			for ($i = 0; $i < $c___->_M_size; $i++) {
-				if ($unaryPredicate($c___->_M_container[$i])) {
+				if ($unaryPredicate___($c___->_M_container[$i])) {
 					$idx[] = $i;
 				}
 			}

@@ -42,7 +42,7 @@ namespace std
 		function offsetUnset($offset___)
 		{
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				array_splice($this->_M_container, $offset___, 1);
+				_F_builtin_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			}
 		}
@@ -81,24 +81,24 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_int_operator_unique_traits
+	trait _T_builtin_set_int_operator_unique_traits
 	{
 		function offsetSet($offset___, $val___)
 		{
 			if (\is_null($offset___)) {
-				if (!\in_array($val___, $this->_M_container)) {
+				if (!_F_builtin_value_exists($this, $val___)) {
 					$this->_M_container[] = $val___;
 					++$this->_M_size;
 				}
 			} else if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				if (!\in_array($val___, $this->_M_container)) {
+				if (!_F_builtin_value_exists($this, $val___)) {
 					$this->_M_container[$offset___] = $val___;
 				} else {
 					--$this->_M_size;
 					unset($this->_M_container[$offset___]);
 				}
 			} else {
-				if (!\in_array($val___, $this->_M_container)) {
+				if (!_F_builtin_value_exists($this, $val___)) {
 					$this->_M_container[] = $val___;
 					++$this->_M_size;
 				}
@@ -116,7 +116,7 @@ namespace std
 		function offsetUnset($offset___)
 		{
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				array_splice($this->_M_container, $offset___, 1);
+				_F_builtin_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			}
 		}

@@ -149,7 +149,7 @@ namespace std
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->push_back($first->second());
+					$this->push_back($first->_F_this());
 					$first->next();
 				}
 			} else {
@@ -185,7 +185,7 @@ namespace std
 			if ($first::iterator_category === $last::iterator_category) {
 				$index = $pos->_F_pos();
 				while ($first != $last) {
-					$this->insert($index, $first->second());
+					$this->insert($index, $first->_F_this());
 					$first->next();
 				}
 			} else {

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_vector.php
+// scl_set.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,7 +16,7 @@
 
 namespace std
 {
-	final class vector extends basic_vector
+	final class set extends basic_set
 	{
 		use _T_multi_construct_traits;
 
@@ -26,61 +26,27 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_vector_1(array $list_initializer)
+		function _F_set_1(callable $binaryPredicate)
 		{
+			if($binaryPredicate() !== not_callable) {
+				$this->_M_predicate = $binaryPredicate;
+			}
+		}
+
+		function _F_set_2(callable $binaryPredicate, array $list_initializer)
+		{
+			if($binaryPredicate() !== not_callable) {
+				$this->_M_predicate = $binaryPredicate;
+			}
 			foreach ($list_initializer as &$val) {
-				$this->push_back($val);
+				$this->insert($val);
 			}
 		}
 
-		function _F_vector_2(basic_iterator $first, basic_iterator $last)
-		{ $this->assign_r($first, $last); }
-
-		function front()
+		function & insert($val)
 		{
-			if ($this->_M_size) {
-				return $this->_M_container[0];
-			}
-			_F_throw_out_of_range("Out of Range error");
-			return null;
-		}
-
-		function back()
-		{
-			if ($this->_M_size) {
-				return $this->_M_container[$this->_M_size - 1];
-			}
-			_F_throw_out_of_range("Out of Range error");
-			return null;
-		}
-
-		function at(int $index)
-		{
-			if ($index >= 0 && $index < $this->_M_size) {
-				return $this->_M_container[$index];
-			}
-			_F_throw_out_of_range("Out of Range error");
-			return null;
-		}
-
-		function & push_back($val)
-		{
-			_F_builtin_push_back($this, $val);
-			return $this;
-		}
-
-		function & pop_back()
-		{
-			_F_builtin_pop_back($this);
-			return $this;
-		}
-
-		function & insert(int $index, $val)
-		{
-			if ($index >= 0 && $index < $this->_M_size) {
-				_F_builtin_insert($this, $index, $val);
-			} else {
-				_F_throw_out_of_range("Out of Range error");
+			if (!_F_builtin_value_exists($this, $val)) {
+				_F_builtin_push_front($this, $val);
 			}
 			return $this;
 		}
@@ -89,7 +55,7 @@ namespace std
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->insert($first->_F_pos(), $first->_F_this());
+					$this->insert($first->_F_this());
 					$first->next();
 				}
 			} else {
@@ -98,22 +64,25 @@ namespace std
 			return $this;
 		}
 
-		function & swap(vector &$vec)
+		function & swap(set &$set)
 		{
 			$c = $this->_M_container;
+			$p = $this->_M_predicate;
 			$sz = $this->_M_size;
-			$this->_M_container = $vec->_M_container;
-			$this->_M_size = $vec->_M_size;
-			$vec->_M_container = $c;
-			$vec->_M_size = $sz;
+			$this->_M_container = $set->_M_container;
+			$this->_M_predicate = $set->_M_predicate;
+			$this->_M_size = $set->_M_size;
+			$set->_M_container = $c;
+			$set->_M_predicate = $p;
+			$set->_M_size = $sz;
 			return $this;
 		}
 
-		function & assign(vector &$vec)
+		function & assign(set &$set)
 		{
 			_F_builtin_clear_all($this);
-			foreach ($vec->_M_container as &$val) {
-				$this->push_back($val);
+			foreach ($set->_M_container as &$val) {
+				$this->insert($val);
 			}
 			return $this;
 		}
@@ -125,10 +94,10 @@ namespace std
 			return $this;
 		}
 
-		function & merge(vector &$vec)
+		function & merge(set &$set)
 		{
-			foreach ($vec->_M_container as &$val) {
-				$this->push_back($val);
+			foreach ($set->_M_container as &$val) {
+				$this->insert($val);
 			}
 			return $this;
 		}
@@ -137,7 +106,7 @@ namespace std
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->push_back($first->_F_this());
+					$this->insert($first->_F_this());
 					$first->next();
 				}
 			} else {

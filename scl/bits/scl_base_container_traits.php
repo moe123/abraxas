@@ -35,6 +35,25 @@ namespace std
 		}
 	}
 
+	trait _T_builtin_set_container_traits
+	{
+		var $_M_container = null;
+		var $_M_predicate = null;
+		var $_M_size = -1;
+
+		function __construct()
+		{
+			$this->_M_size = 0;
+			$this->_M_container = [];
+		}
+
+		function __destruct()
+		{
+			$this->_M_size = 0;
+			$this->_M_container = null;
+		}
+	}
+
 	trait _T_builtin_mapreduce_traits
 	{
 		function & enumerate(\Closure $f___, bool $r___ = false)

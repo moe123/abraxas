@@ -35,6 +35,11 @@ namespace std
 		}
 	} /* EOC */
 
+	const not_callable = "std<not a callable>";
+
+	function null_callable()
+	{ return function(...$args) { return not_callable; }; }
+
 	function greater(callable $f___ = null)
 	{
 		return function () use ($f___) {
@@ -112,36 +117,6 @@ namespace std
 				return $f___(func_get_arg(0), func_get_arg(1));
 			}
 			return func_get_arg(0) !== func_get_arg(1);
-		};
-	}
-
-	function & assign_to(callable $f___ = null)
-	{
-		return function & () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			$l = &func_get_arg(0);
-			$l = func_get_arg(1);
-			return $l;
-		};
-	}
-
-	function & copy_to(callable $f___ = null)
-	{
-		return function & () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			$l = &func_get_arg(0);
-			$r = func_get_arg(1);
-
-			if (\is_object($r___)) {
-				$l = clone $r;
-			} else {
-				$l = $r;
-			}
-			return $l;
 		};
 	}
 

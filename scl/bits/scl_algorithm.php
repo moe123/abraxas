@@ -197,8 +197,8 @@ namespace std
 		}
 	}
 
-	function unique(basic_iteratable &$c___)
-	{ _F_builtin_unique($c___); }
+	function unique(basic_iteratable &$c___, callable $binaryPredicate___ = null)
+	{ _F_builtin_unique($c___, $binaryPredicate___); }
 
 	function unique_r(
 		  forward_iterator $first___

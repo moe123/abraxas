@@ -69,6 +69,44 @@ namespace std
 			return null;
 		}
 
+		function & insert(int $index, $val)
+		{
+			$this->_F_insert_at_index($index, $val);
+			return $this;
+		}
+
+		function & insert_r(basic_iterator $first, basic_iterator $last)
+		{
+			if ($first::iterator_category === $last::iterator_category) {
+				while ($first != $last) {
+					$this->insert($first->_F_pos(), $first->_F_this());
+					$first->next();
+				}
+			} else {
+				_F_throw_invalid_argument("Invalid type error");
+			}
+			return $this;
+		}
+
+		function & insert_after(int $index, $val)
+		{
+			$this->_F_insert_after_index($index, $val);
+			return $this;
+		}
+		
+		function & insert_after_r(basic_iterator $first, basic_iterator $last)
+		{
+			if ($first::iterator_category === $last::iterator_category) {
+				while ($first != $last) {
+					$this->insert_after($first->_F_pos(), $first->_F_this());
+					$first->next();
+				}
+			} else {
+				_F_throw_invalid_argument("Invalid type error");
+			}
+			return $this;
+		}
+
 		function & swap(forward_list &$fwdl)
 		{
 			$this->_F_swap($fwdl);

@@ -25,7 +25,7 @@ namespace std
 		const container_category = basic_iteratable_tag::basic_set;
 
 		use _T_builtin_array_container_traits;
-		use _T_builtin_array_int_operator_unique_traits;
+		use _T_builtin_set_int_operator_unique_traits;
 		use _T_builtin_mapreduce_traits;
 		use _T_builtin_array_debug_traits;
 		use _T_builtin_array_serializable_traits;

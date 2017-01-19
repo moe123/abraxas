@@ -31,7 +31,12 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collation.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collator.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_functional.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_algorithm.php";
+
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_set.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_set.php";
 } /* EONS */
 
 namespace std
@@ -114,6 +119,19 @@ namespace std
 		}
 		return new vector;
 	}
+
+	function make_set(callable $binaryPredicate___, ...$args___)
+	{
+		if (\is_array($args___) && \count($args___)) {
+			return new set($binaryPredicate___, $args___);
+		}
+		if($binaryPredicate() !== not_callable) {
+			return new set($binaryPredicate___);
+		}
+		return new set;
+	}
+
+	make_set(null_callable(), 1, 2, 3, 4, 5, 6);
 
 	function make_seq_list(...$args___)
 	{
