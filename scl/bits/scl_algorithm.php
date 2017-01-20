@@ -185,6 +185,31 @@ namespace std
 		}
 	}
 
+	function iota(
+		  forward_iterator $first___
+		, forward_iterator $last___
+		, $val___
+	) {
+		while ($first___ != $last___) {
+			$first___->_F_pos_assign($val___);
+			$first___->_F_next();
+			++$val___;
+		}
+	}
+
+	function iota_f(
+		  forward_iterator $first___
+		, forward_iterator $last___
+		, $val___
+		, callable $incrementOperation___
+	) {
+		while ($first___ != $last___) {
+			$first___->_F_pos_assign($val___);
+			$first___->_F_next();
+			$incrementOperation___($val___);
+		}
+	}
+
 	function reverse(basic_iterator $first___, basic_iterator $last___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
