@@ -1,6 +1,19 @@
 # Abraxas
 A digression to the world of scripting languages and PHP.
 
+<sub><sup>Perhaps one of the most significant advances made by Arabic mathematics began at this time 
+with the work of al-Khwarizmi, namely the beginnings of algebra. It is important to 
+understand just how significant this new idea was. It was a revolutionary move away from 
+the Greek concept of mathematics which was essentially geometry. Algebra was a unifying 
+theory which allowed rational numbers, irrational numbers, geometrical magnitudes, etc., 
+to all be treated as "algebraic objects". It gave mathematics a whole new development path 
+so much broader in concept to that which had existed before, and provided a vehicle for 
+future development of the subject. Another important aspect of the introduction of 
+algebraic ideas was that it allowed mathematics to be applied to itself in a way which had 
+not happened before.</sup></sub>
+
+<sub><sup>-- The MacTutor History of Mathematics archive --</sup></sub>
+
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
 and the `C++ STL`. Providing the same five main components: `Algorithms`, `Containers`, `Functional`, `Iterators` and `Locale`.
