@@ -18,6 +18,7 @@ namespace std
 {
 	abstract class basic_tuple extends basic_iteratable implements
 		  \ArrayAccess
+		, \IteratorAggregate
 		, \JsonSerializable
 		, \Countable
 	{
@@ -27,6 +28,8 @@ namespace std
 		use _T_builtin_array_immutable_int_operator_traits;
 		use _T_builtin_array_debug_traits;
 		use _T_builtin_array_serializable_traits;
+		use _T_builtin_array_iterative_traits;
+		use _T_builtin_array_iteratable_traits;
 		use _T_builtin_countable_traits;
 
 		function __toArray()

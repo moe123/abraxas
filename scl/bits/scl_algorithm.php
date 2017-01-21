@@ -23,12 +23,91 @@ namespace std
 		$v2___ = $v;
 	}
 
+	function & clamp(
+		  &$v___
+		, &$lo___
+		, &$hi___
+		, callable $compare___ = null
+	) {
+		$comp = $compare___;
+		if (\is_null($comp)) {
+			$comp = function(&$l, &$r) { return $l < $r; };
+		}
+		return $comp($v___, $lo___) ? $lo___ : $comp($hi___, $v___) ? $hi___ : $v___;
+	}
+
 	function iter_swap(forward_iterator $it1___, forward_iterator $it2___)
 	{
 		$v1 = $it1___->_F_this();
 		$v2 = $it2___->_F_this();
 		$it1___->_F_pos_assign($v2);
 		$it2___->_F_pos_assign($v1);
+	}
+
+	function lower_bound(
+			  forward_iterator $first___
+			, forward_iterator $last___
+			, $val___
+			, callable $compare___ = null
+	) {
+		$cnt = distance($first___, $last___);
+		if ($cnt > 0) {
+			$step  = 1;
+			$comp = $compare___;
+			if (\is_null($comp)) {
+				$comp = function($l, &$r) { return $l < $r; };
+			}
+			while ($cnt > 0) {
+				$it = clone $first___; 
+				$step = (int)($cnt / 2);
+				if ($step < 1) {
+					_F_throw_out_of_range("Out of Range error");
+					return $first___;
+				}
+				$it->_F_advance($step);
+				if ($comp($it->_F_this(), $val___)) {
+						$it->_F_next();
+						$first___ = clone $it;
+						$cnt -= $step + 1;
+				} else {
+					$cnt = $step;
+				}
+			}
+		}
+		return $first___;
+	}
+
+	function upper_bound(
+			  forward_iterator $first___
+			, forward_iterator $last___
+			, $val___
+			, callable $compare___ = null
+	) {
+		$cnt = distance($first___, $last___);
+		if ($cnt > 0) {
+			$step  = 1;
+			$comp = $compare___;
+			if (\is_null($comp)) {
+				$comp = function(&$l, $r) { return $l < $r; };
+			}
+			while ($cnt > 0) {
+				$it = clone $first___; 
+				$step = (int)($cnt / 2);
+				if ($step < 1) {
+					_F_throw_out_of_range("Out of Range error");
+					return $first___;
+				}
+				$it->_F_advance($step);
+				if (!$comp($val___, $it->_F_this())) {
+						$it->_F_next();
+						$first___ = clone $it;
+						$cnt -= $step + 1;
+				} else {
+					$cnt = $step;
+				}
+			}
+		}
+		return $first___;
 	}
 
 	function min(
@@ -53,7 +132,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function($l, $r) { return $l < $r; };
+			$comp = function(&$l, &$r) { return $l < $r; };
 		}
 		if ($comp($v1___, $v2___)) {
 			return make_pair($v2___, $v1___);
@@ -206,11 +285,14 @@ namespace std
 		while ($first___ != $last___) {
 			$first___->_F_pos_assign($val___);
 			$first___->_F_next();
-			$incrementOperation___($val___);
+			$val___ = $incrementOperation___($val___);
 		}
 	}
 
-	function reverse(basic_iterator $first___, basic_iterator $last___)
+	function reverse(basic_iteratable &$c___)
+	{ _F_builtin_reverse($c___); }
+
+	function reverse_r(basic_iterator $first___, basic_iterator $last___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___ && ($first___ != $last___->_F_prev())) {
@@ -383,6 +465,34 @@ namespace std
 			while ($first___ != $last___) {
 				if (!$unaryPredicate___($first___->_F_this())) {
 					return $first___;
+				}
+				$first___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $last___;
+	}
+
+	function find_first_of(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, forward_iterator $s_first___
+		, forward_iterator $s_last___
+		, callable $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function($l, $r) { return $l === $r; };
+			}
+			while ($first___ != $last___) {
+				$it = clone $s_first___;
+				while ($it != $s_last___) {
+					if ($p($first___->_F_this(), $it->_F_this())) {
+						return $first___;
+					}
+					$it->_F_next();
 				}
 				$first___->_F_next();
 			}

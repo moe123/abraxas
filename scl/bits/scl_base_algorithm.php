@@ -277,26 +277,44 @@ namespace std
 	{
 		if ($c___->_M_size > 0) {
 			$slice = null;
-			if ($len___ === numeric_limits_int::max) {
-				$slice = array_slice($c___->_M_container, $pos___);
+			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+				if ($len___ === numeric_limits_int::max) {
+					$slice = array_slice($c___->_F_dump(), $pos___);
+				} else {
+					$slice = array_slice($c___->_F_dump(), $pos___, $len___);
+				}
+				$c___->_F_from_array($slice, true);
 			} else {
-				$slice = array_slice($c___->_M_container, $pos___, $len___);
+				if ($len___ === numeric_limits_int::max) {
+					$slice = array_slice($c___->_M_container, $pos___);
+				} else {
+					$slice = array_slice($c___->_M_container, $pos___, $len___);
+				}
+				$c___->_M_container = $slice;
+				$c___->_M_size = \count($c___->_M_container);
 			}
-			$c___->_M_container = $slice;
-			$c___->_M_size = \count($c___->_M_container);
 		}
 	}
 
 	function _F_builtin_splice(basic_iteratable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
 	{
 		if ($c___->_M_size > 0) {
-			$slice = null;
-			if ($len___ === numeric_limits_int::max) {
-				$slice = array_splice($c___->_M_container, $pos___);
+			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+				$a = $c___->_F_dump();
+				if ($len___ === numeric_limits_int::max) {
+					array_splice($a, $pos___);
+				} else {
+					array_splice($a, $pos___, $len___);
+				}
+				$c___->_F_from_array($a, true);
 			} else {
-				$slice = array_splice($c___->_M_container, $pos___, $len___);
+				if ($len___ === numeric_limits_int::max) {
+					array_splice($c___->_M_container, $pos___);
+				} else {
+					array_splice($c___->_M_container, $pos___, $len___);
+				}
+				$c___->_M_size = \count($c___->_M_container);
 			}
-			$c___->_M_size = \count($c___->_M_container);
 		}
 	}
 
@@ -306,7 +324,7 @@ namespace std
 	) {
 		$sz = \count($a___);
 		if ($sz > 1) {
-			$mid = $sz / 2;
+			$mid = (int)($sz / 2);
 			$a_1 = array_slice($a___, 0, $mid);
 			$a_2 = array_slice($a___, $mid);
 
@@ -434,11 +452,19 @@ namespace std
 				}
 			}
 			if (\is_null($p)) {
-				return in_array($c___->_M_container, $val___);
+				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+					return $c___->_F_find_data($val___) > 0 ? true : false;
+				} else {
+					return in_array($c___->_M_container, $val___);
+				}
 			} else {
-				foreach ($c___->_M_container as $k => $v) {
-					if ($p($v, $val___)) {
-						return true;
+				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+					return $c___->_F_index_of_data($val___, $p) != -1 ? true : false;
+				} else {
+					foreach ($c___->_M_container as $k => $v) {
+						if ($p($v, $val___)) {
+							return true;
+						}
 					}
 				}
 			}
@@ -474,10 +500,10 @@ namespace std
 		if ($c1___->_M_size > 0) {
 			if ($c1___::container_category === basic_iteratable_tag::basic_forward_list) {
 				if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
-					$a = array_keys($c1___->_F_dump());
+					$a = array_values($c1___->_F_dump());
 					$c2___->_F_from_array($a, true);
 				} else {
-					$c2___->_M_container = array_keys($c1___->_F_dump());
+					$c2___->_M_container = array_values($c1___->_F_dump());
 					$c2___->_M_size = $c1___->_M_size;
 				}
 			} else {
