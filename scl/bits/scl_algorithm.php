@@ -31,7 +31,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function(&$l, &$r) { return $l < $r; };
+			$comp = function (&$l, &$r) { return $l < $r; };
 		}
 		return $comp($v___, $lo___) ? $lo___ : $comp($hi___, $v___) ? $hi___ : $v___;
 	}
@@ -55,7 +55,7 @@ namespace std
 			$step  = 1;
 			$comp = $compare___;
 			if (\is_null($comp)) {
-				$comp = function($l, &$r) { return $l < $r; };
+				$comp = function ($l, &$r) { return $l < $r; };
 			}
 			while ($cnt > 0) {
 				$it = clone $first___; 
@@ -88,7 +88,7 @@ namespace std
 			$step  = 1;
 			$comp = $compare___;
 			if (\is_null($comp)) {
-				$comp = function(&$l, $r) { return $l < $r; };
+				$comp = function (&$l, $r) { return $l < $r; };
 			}
 			while ($cnt > 0) {
 				$it = clone $first___; 
@@ -117,7 +117,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function($l, $r) { return $l < $r; };
+			$comp = function ($l, $r) { return $l < $r; };
 		}
 		if ($comp($v2___, $v1___)) {
 			return $v2___;
@@ -132,7 +132,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function(&$l, &$r) { return $l < $r; };
+			$comp = function (&$l, &$r) { return $l < $r; };
 		}
 		if ($comp($v1___, $v2___)) {
 			return make_pair($v2___, $v1___);
@@ -147,7 +147,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function($l, $r) { return $l < $r; };
+			$comp = function ($l, $r) { return $l < $r; };
 		}
 		if ($first___ == $last___) {
 			return $last___;
@@ -169,7 +169,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function($l, $r) { return $l < $r; };
+			$comp = function ($l, $r) { return $l < $r; };
 		}
 		if ($first___ == $last___) {
 			return $last___;
@@ -264,6 +264,73 @@ namespace std
 		}
 	}
 
+	function fill_n(forward_iterator $first___, int $count___, $val___)
+	{
+		for ($i = 0; $i < $count___; $i++) {
+			$first___->_F_pos_assign($val___);
+			$first___->_F_next();
+		}
+		return $first___;
+	}
+
+	function generate(
+		  forward_iterator $first___
+		, forward_iterator $last___
+		, callable $generator___
+	) {
+		while ($first___ != $last___) {
+			$first___->_F_pos_assign($generator___());
+			$first___->_F_next();
+		}
+	}
+
+	function place_fill(
+		  insert_iterator $out___
+		, int $count___
+		, $val___
+	) {
+		for ($i = 0; $i < $count___; $i++) {
+			$out___->_F_pos_assign($val___);
+			$out___->_F_next();
+		}
+	}
+
+	function place_generate(
+		  insert_iterator $out___
+		, int $count___
+		, callable $generator___
+	) {
+		for ($i = 0; $i < $count___; $i++) {
+			$out___->_F_pos_assign($generator___());
+			$out___->_F_next();
+		}
+	}
+
+	function place_iota(
+		  insert_iterator $out___
+		, int $count___
+		, $val___
+	) {
+		for ($i = 0; $i < $count___; $i++) {
+			$out___->_F_pos_assign($val___);
+			$out___->_F_next();
+			++$val___;
+		}
+	}
+
+	function place_iota_f(
+		  insert_iterator $out___
+		, int $count___
+		, $val___
+		, callable $nextOperation___
+	) {
+		for ($i = 0; $i < $count___; $i++) {
+			$out___->_F_pos_assign($val___);
+			$out___->_F_next();
+			$val___ = $nextOperation___($val___);
+		}
+	}
+
 	function iota(
 		  forward_iterator $first___
 		, forward_iterator $last___
@@ -280,12 +347,12 @@ namespace std
 		  forward_iterator $first___
 		, forward_iterator $last___
 		, $val___
-		, callable $incrementOperation___
+		, callable $nextOperation___
 	) {
 		while ($first___ != $last___) {
 			$first___->_F_pos_assign($val___);
 			$first___->_F_next();
-			$val___ = $incrementOperation___($val___);
+			$val___ = $nextOperation___($val___);
 		}
 	}
 
@@ -331,7 +398,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function($l, $r) { return $l === $r; };
+			$p = function ($l, $r) { return $l === $r; };
 		}
 		if ($first___ == $last___) {
 			return $last___;
@@ -371,7 +438,7 @@ namespace std
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryOperation___;
 			if (\is_null($p)) {
-				$p = function($l, $r) { return $l + $r; };
+				$p = function ($l, $r) { return $l + $r; };
 			}
 			while ($first___ != $last___) {
 				$init___ = $p($init___, $first___->_F_this());
@@ -413,10 +480,10 @@ namespace std
 			$p1 = $binaryOperation1___;
 			$p2 = $binaryOperation2___;
 			if (\is_null($p1)) {
-				$p1 = function($l, $r) { return $l + $r; };
+				$p1 = function ($l, $r) { return $l + $r; };
 			}
 			if (\is_null($p2)) {
-				$p2 = function($l, $r) { return $l * $r; };
+				$p2 = function ($l, $r) { return $l * $r; };
 			}
 			while ($first1___ != $last1___) {
 				$init___ = $p1($init___, $p2($first1___->_F_this(), $first2___->_F_this()));
@@ -484,7 +551,7 @@ namespace std
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function($l, $r) { return $l === $r; };
+				$p = function ($l, $r) { return $l === $r; };
 			}
 			while ($first___ != $last___) {
 				$it = clone $s_first___;
@@ -542,7 +609,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function($l, $r) { return $l === $r; };
+			$p = function ($l, $r) { return $l === $r; };
 		}
 		while ($first1___ != $last1___) {
 			$it1 = clone $first1___;
@@ -574,7 +641,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function($l, $r) { return $l === $r; };
+			$p = function ($l, $r) { return $l === $r; };
 		}
 		while ($first___ != $last___) {
 			if (!$p($first___->_F_this(), $val___)) {
@@ -609,7 +676,7 @@ namespace std
 		if ($first1___::iterator_category === $last1___::iterator_category) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function($l, $r) { return $l === $r; };
+				$p = function ($l, $r) { return $l === $r; };
 			}
 			while ($first1___ != $last1___) {
 				if (!$p($first1___->_F_this(), $first2___->_F_this())) {
@@ -667,7 +734,7 @@ namespace std
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
-			$comp = function($l, $r) { return $l < $r; };
+			$comp = function ($l, $r) { return $l < $r; };
 		}
 		if (
 			$first1___::iterator_category === $last1___::iterator_category &&
@@ -689,6 +756,38 @@ namespace std
 			_F_throw_invalid_argument("Invalid type error");
 		}
 		return $out_first___;
+	}
+
+	function replace(
+		  forward_iterator $first___
+		, forward_iterator $last___
+		, $old_value___
+		, $new_value___
+	) {
+		if ($first___ != $last___) {
+			while ($first___ != $last___) {
+				if ($first___->_F_this() === $old_value___) {
+					$first___->_F_pos_assign($new_value);
+				}
+				$first___->_F_next();
+			}
+		}
+	}
+
+	function replace_if(
+		  forward_iterator $first___
+		, forward_iterator $last___
+		, callable $unaryPredicate___
+		, $new_value___
+	) {
+		if ($first___ != $last___) {
+			while ($first___ != $last___) {
+				if ($unaryPredicate___($first___->_F_this())) {
+					$first___->_F_pos_assign($new_value);
+				}
+				$first___->_F_next();
+			}
+		}
 	}
 
 	function remove(
@@ -714,7 +813,7 @@ namespace std
 	function remove_if(
 		  forward_iterator $first___
 		, forward_iterator $last___
-		, $unaryPredicate___
+		, callable $unaryPredicate___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);
 		if ($first___ != $last___) {

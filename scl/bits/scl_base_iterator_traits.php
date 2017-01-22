@@ -153,11 +153,19 @@ namespace std
 			return $this;
 		}
 
-		function & _F_seek_begin()
-		{ return $this->_F_seek(0); }
+		function & _F_seek_begin(int $offset___ = -1)
+		{
+			$this->_F_seek($offset___ < 0 ? 0 : $offset___);
+			return $this;
+		}
 
-		function & _F_seek_end()
-		{ return $this->_F_seek($this->_M_ptr->_M_size); }
+		function & _F_seek_end(int $offset___ = -1)
+		{
+			$this->_F_seek(
+				$offset___ < 0 ? $this->_M_ptr->_M_size : $this->_M_ptr->_M_size - $offset___
+			);
+			return $this;
+		}
 
 		function & _F_next()
 		{
@@ -294,11 +302,19 @@ namespace std
 			return $this;
 		}
 
-		function & _F_seek_begin()
-		{ return $this->_F_seek(0); }
+		function & _F_seek_begin(int $offset___ = -1)
+		{
+			$this->_F_seek($offset___ < 0 ? 0 : $offset___);
+			return $this;
+		}
 
-		function & _F_seek_end()
-		{ return $this->_F_seek($this->_M_ptr->_M_size); }
+		function & _F_seek_end(int $offset___ = -1)
+		{
+			$this->_F_seek(
+				$offset___ < 0 ? $this->_M_ptr->_M_size : $this->_M_ptr->_M_size - $offset___
+			);
+			return $this;
+		}
 
 		function & _F_next()
 		{
@@ -423,11 +439,20 @@ namespace std
 			return $this;
 		}
 
-		function & _F_seek_begin()
-		{ return $this->_F_seek($this->_M_ptr->_M_size -1); }
+		function & _F_seek_begin(int $offset___ = -1)
+		{
+			$this->_F_seek($offset___ < 0 
+				? ($this->_M_ptr->_M_size -1) : ($this->_M_ptr->_M_size -1) - $offset___);
+			return $this;
+		}
 
-		function & _F_seek_end()
-		{ return $this->_F_seek(-1); }
+		function & _F_seek_end(int $offset___ = -1)
+		{
+			$this->_F_seek(
+				$offset___ < 0 ? -1 : $offset___
+			);
+			return $this;
+		}
 
 		function _F_is_last()
 		{ return $this->_M_offset < 0; }

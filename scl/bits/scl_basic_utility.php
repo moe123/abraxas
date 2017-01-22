@@ -70,6 +70,17 @@ namespace std
 		return $v___;
 	}
 
+	function rand(int $min = 0, int $max = 0)
+	{
+		if ($min < 0) {
+			$min = 0;
+		}
+		if (!$max) {
+			 $max = mt_getrandmax();
+		}
+		return mt_rand($min, $max);
+	}
+
 	function tuple_size(object $o___)
 	{
 		if ($o___ instanceof \std\tuple) {

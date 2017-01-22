@@ -233,17 +233,17 @@ namespace std
 	function rend(basic_iteratable &$iterable___, $offset___ = -1)
 	{ return $iterable___->rend($offset___); }
 
-	function & begin_p(forward_iterator $it___)
-	{ return $it___->_F_seek_begin(); }
+	function & begin_p(forward_iterator $it___, $offset___ = -1)
+	{ return $it___->_F_seek_begin($offset___); }
 
-	function & end_p(forward_iterator $it___)
-	{ return $it___->_F_seek_end(); }
+	function & end_p(forward_iterator $it___, $offset___ = -1)
+	{ return $it___->_F_seek_end($offset___); }
 
-	function & rbegin_p(reverse_iterator $it___)
-	{ return $it___->_F_seek_begin(); }
+	function & rbegin_p(reverse_iterator $it___, $offset___ = -1)
+	{ return $it___->_F_seek_begin($offset___); }
 
-	function & rend_p(reverse_iterator $it___)
-	{ return $it___->_F_seek_end(); }
+	function & rend_p(reverse_iterator $it___, $offset___ = -1)
+	{ return $it___->_F_seek_end($offset___); }
 } /* EONS */
 
 /* EOF */
