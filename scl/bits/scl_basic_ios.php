@@ -62,16 +62,16 @@ namespace std
 		{ return $this->_M_locale; }
 
 		function good()
-		{ return $this->_M_sstate === 0; }
+		{ return $this->_M_sstate == 0; }
 
 		function eof()
-		{ return ($this->_M_sstate & ios_base::eofbit) !== 0; }
+		{ return ($this->_M_sstate & ios_base::eofbit) != 0; }
 
 		function fail()
-		{ return ($this->_M_sstate & (ios_base::badbit|ios_base::failbit)) !== 0; }
+		{ return ($this->_M_sstate & (ios_base::badbit|ios_base::failbit)) != 0; }
 
 		function bad()
-		{ return ($this->_M_sstate & ios_base::badbit) !== 0; }
+		{ return ($this->_M_sstate & ios_base::badbit) != 0; }
 
 		function rdstate()
 		{ return $this->_M_sstate; }

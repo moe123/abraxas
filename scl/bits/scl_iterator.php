@@ -171,7 +171,7 @@ namespace std
 	final class _C_reverse_iterator_map extends reverse_iterator
 	{ use _T_reverse_iterator_map_traits; }
 
-	final class front_insert_iterator extends insert_iterator
+	final class _C_front_insert_iterator extends insert_iterator
 	{
 		const iterator_category = basic_iterator_tag::front_insert_iterator;
 
@@ -179,7 +179,7 @@ namespace std
 		use _T_inserter_iterator_traits;
 	}
 
-	final class back_insert_iterator extends insert_iterator
+	final class _C_back_insert_iterator extends insert_iterator
 	{
 		const iterator_category = basic_iterator_tag::back_insert_iterator;
 
@@ -188,10 +188,10 @@ namespace std
 	}
 
 	function back_inserter(basic_iteratable $iterable___)
-	{ return new back_insert_iterator($iterable___); }
+	{ return new _C_back_insert_iterator($iterable___); }
 
 	function front_inserter(basic_iteratable $iterable___)
-	{ return new front_insert_iterator($iterable___); }
+	{ return new _C_front_insert_iterator($iterable___); }
 
 	function distance(basic_iterator $first___, basic_iterator $last___)
 	{

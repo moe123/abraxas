@@ -232,7 +232,7 @@ namespace std
 		if ($c___->_M_size > 1) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function(&$l, &$r) { return $l === $r; };
+				$p = function(&$l, &$r) { return $l == $r; };
 			}
 			$o = [];
 			$c = \count($c___->_M_container);
@@ -366,12 +366,15 @@ namespace std
 			if (\is_null($key)) {
 				if ($c___->_M_size > 0) {
 					$c___->_M_size = array_unshift($c___->_M_container, $val___);
+				} else {
+					$c___->_M_container[] = $val___;
+					++$c___->_M_size;
 				}
 			} else {
 				if ($c___->_M_size > 0) {
-					$c___->_M_container = array($key => $val___) + $c___->_M_container;
+					$c___->_M_container = [ $key => $val___ ] + $c___->_M_container;
 				} else {
-					$c___->_M_container = array($key => $val___);
+					$c___->_M_container = [ $key => $val___ ];
 				}
 				++$c___->_M_size;
 			}
@@ -387,9 +390,9 @@ namespace std
 				$c___->_M_container[$c___->_M_size] = $val___;
 			} else {
 				if ($c___->_M_size > 0) {
-					$c___->_M_container = $c___->_M_container + array($key => $val___);
+					$c___->_M_container = $c___->_M_container + [ $key => $val___ ];
 				} else {
-					$c___->_M_container = array($key => $val___);
+					$c___->_M_container = [ $key => $val___ ];
 				}
 			}
 			++$c___->_M_size;
@@ -446,16 +449,18 @@ namespace std
 	{
 		if ($c___->_M_size > 0) {
 			$p = $binaryPredicate___;
-			if ($c___::container_category === basic_iteratable_tag::basic_set) {
-				if (\is_null($p)) {
-					$p = $c___->_M_predicate;
-				}
-			}
 			if (\is_null($p)) {
 				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
 					return $c___->_F_find_data($val___) > 0 ? true : false;
 				} else {
-					return in_array($c___->_M_container, $val___);
+					/*
+					foreach ($c___->_M_container as $k => $v) {
+						if ($v == $val__) {
+							return true;
+						}
+					}
+					*/
+					return \in_array($c___->_M_container, $val___);
 				}
 			} else {
 				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
@@ -521,7 +526,7 @@ namespace std
 			} else {
 				$idx = [];
 				for ($i = 0; $i < $c___->_M_size; $i++) {
-					if ($c___->_M_container[$i] === $val___) {
+					if ($c___->_M_container[$i] == $val___) {
 						$idx[] = $i;
 					}
 				}
@@ -538,7 +543,7 @@ namespace std
 			$idx = [];
 			$j = 0;
 			for ($i = 0; $i < $c___->_M_size; $i++) {
-				if ($c___->_M_container[$i] === $val___) {
+				if ($c___->_M_container[$i] == $val___) {
 					$idx[] = $i;
 					++$j;
 				}
@@ -561,7 +566,7 @@ namespace std
 			$idx = [];
 			$j = 0;
 			for ($i = $c___->_M_size - 1; $i >= 0; $i--) {
-				if ($c___->_M_container[$i] === $val___) {
+				if ($c___->_M_container[$i] == $val___) {
 					$idx[] = $i;
 					++$j;
 				}

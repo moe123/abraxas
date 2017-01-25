@@ -35,7 +35,7 @@ namespace std
 	{ return \is_object($v__); }
 
 	function is_callable($v__)
-	{ return \is_callable($v__); }
+	{ return \is_callable($v__) && ($v__() != not_callable); }
 
 	function is_scalar($v__)
 	{ return \is_scalar($v__); }
@@ -49,6 +49,29 @@ namespace std
 	function is_compound($v__)
 	{ return \is_resource($v__) || is_function($v__) || \is_object($v__) || \is_callable($v__); }
 
+	function is_tuple($v__)
+	{
+		return (\is_object($v__) && (
+				$v__ instanceof \std\tuple
+			|| $v__ instanceof \std\pair
+			|| $v__ instanceof \std\triad
+			|| $v__ instanceof \std\quad
+			|| $v__ instanceof \std\quint
+		));
+	}
+	
+	function is_countable($v__)
+	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \Countable)); }
+
+	function is_iteratable($v__)
+	{ return (\is_object($v__) && ($v__ instanceof \std\basic_iteratable)); }
+
+	function is_same($l, $r) {
+		if (\is_resource($l) && \is_resource($r)) {
+			return \get_resource_type($l) == \get_resource_type($r);
+		}
+		return \gettype($l) == \gettype($r);
+	}
 } /* EONS */
 
 /* EOF */

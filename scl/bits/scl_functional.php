@@ -43,20 +43,50 @@ namespace std
 	function greater(callable $f___ = null)
 	{
 		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
 			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
+				return $f___($l, $r);
 			}
-			return func_get_arg(0) > func_get_arg(1);
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r) > 0;
+			}
+			return $l > $r;
 		};
 	}
 
 	function less(callable $f___ = null)
 	{
 		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
+			if (!\is_null($f___)) {
+				return $f___($l, $r);
+			}
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r) < 0;
+			}
+			return $l < $r;
+		};
+	}
+
+	function multiplies(callable $f___ = null)
+	{
+		return function () use ($f___) {
 			if (!\is_null($f___)) {
 				return $f___(func_get_arg(0), func_get_arg(1));
 			}
-			return func_get_arg(0) < func_get_arg(1);
+			return func_get_arg(0) * func_get_arg(1);
+		};
+	}
+
+	function divides(callable $f___ = null)
+	{
+		return function () use ($f___) {
+			if (!\is_null($f___)) {
+				return $f___(func_get_arg(0), func_get_arg(1));
+			}
+			return func_get_arg(0) / func_get_arg(1);
 		};
 	}
 
@@ -83,40 +113,114 @@ namespace std
 	function equal_to(callable $f___ = null)
 	{
 		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
 			if (!\is_null($f___)) {
 				return $f___(func_get_arg(0), func_get_arg(1));
 			}
-			return func_get_arg(0) === func_get_arg(1);
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r) == 0;
+			}
+			return $l == $r;
 		};
 	}
 
 	function greater_equal(callable $f___ = null)
 	{
 		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
 			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
+				return $f___($l, $r);
 			}
-			return func_get_arg(0) >= func_get_arg(1);
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r) >= 0;
+			}
+			return $l >= $r;
 		};
 	}
 
 	function less_equal(callable $f___ = null)
 	{
 		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
 			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
+				return $f___($l, $r);
 			}
-			return func_get_arg(0) <= func_get_arg(1);
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r) <= 0;
+			}
+			return $l <= $r;
 		};
 	}
 
 	function not_equal_to(callable $f___ = null)
 	{
 		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
+			if (!\is_null($f___)) {
+				return $f___($l, $r);
+			}
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r) != 0;
+			}
+			return $l != $r;
+		};
+	}
+
+	function logical_cmp(callable $f___ = null)
+	{
+		return function () use ($f___) {
+			$l = func_get_arg(0);
+			$r = func_get_arg(0);
+			if (!\is_null($f___)) {
+				return $f___($l, $r);
+			}
+			if (\is_string($l) || \is_string($r)) {
+				return \strcmp((string)$l, (string)$r);
+			}
+			if ($l < $r) {
+				return comparison_result::ascending;
+			}
+			if ($l > $r) {
+				return comparison_result::descending;
+			}
+			if ($l == $r) {
+				return comparison_result::same;
+			}
+			return comparison_result::same;
+		};
+	}
+
+	function logical_and(callable $f___ = null)
+	{
+		return function () use ($f___) {
 			if (!\is_null($f___)) {
 				return $f___(func_get_arg(0), func_get_arg(1));
 			}
-			return func_get_arg(0) !== func_get_arg(1);
+			return func_get_arg(0) && func_get_arg(1);
+		};
+	}
+
+	function logical_or(callable $f___ = null)
+	{
+		return function () use ($f___) {
+			if (!\is_null($f___)) {
+				return $f___(func_get_arg(0), func_get_arg(1));
+			}
+			return func_get_arg(0) || func_get_arg(1);
+		};
+	}
+
+	function logical_not(callable $f___ = null)
+	{
+		return function () use ($f___) {
+			if (!\is_null($f___)) {
+				return $f___(func_get_arg(0));
+			}
+			return !(func_get_arg(0));
 		};
 	}
 

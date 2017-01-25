@@ -338,22 +338,22 @@ namespace std
 		{
 			if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
 				if (\is_object($val___) && $val___ instanceof \std\pair) {
-					if ($this->_M_ptr::container_category === basic_iteratable_tag::front_insert_iterator) {
+					if (self::iterator_category === basic_iterator_tag::front_insert_iterator) {
 						_F_builtin_push_front($this->_M_ptr, $val___->second, $val___->first);
-					} else if ($this->_M_ptr::container_category === basic_iteratable_tag::back_insert_iterator) {
+					} else if (self::iterator_category === basic_iterator_tag::back_insert_iterator) {
 						_F_builtin_push_back($this->_M_ptr, $val___->second, $val___->first);
 					}
 				} else {
-					if ($this->_M_ptr::container_category === basic_iteratable_tag::front_insert_iterator) {
+					if (self::iterator_category === basic_iterator_tag::front_insert_iterator) {
 						_F_builtin_push_front($this->_M_ptr, $val___->second, $this->_M_ptr->item_at($this->_M_offset)->first);
-					} else if ($this->_M_ptr::container_category === basic_iteratable_tag::back_insert_iterator) {
+					} else if (self::iterator_category === basic_iterator_tag::back_insert_iterator) {
 						_F_builtin_push_back($this->_M_ptr, $val___->second, $this->_M_ptr->item_at($this->_M_offset)->first);
 					}
 					// _F_throw_builtin_error("Cannot assign value type error");
 				}
-			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::front_insert_iterator) {
+			} else if (self::iterator_category === basic_iterator_tag::front_insert_iterator) {
 				_F_builtin_push_front($this->_M_ptr, $val___);
-			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::back_insert_iterator) {
+			} else if (self::iterator_category === basic_iterator_tag::back_insert_iterator) {
 				_F_builtin_push_back($this->_M_ptr, $val___);
 			}
 		}

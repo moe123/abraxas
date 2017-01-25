@@ -38,7 +38,6 @@ namespace std
 	trait _T_builtin_set_container_traits
 	{
 		var $_M_container = null;
-		var $_M_predicate = null;
 		var $_M_size = -1;
 
 		function __construct()
@@ -437,7 +436,7 @@ namespace std
 		{
 			if ($this->_M_size) {
 				$c = $this->_M_f_node;
-				while ($c->_M_data !== $p___) {
+				while ($c->_M_data != $p___) {
 					$c = $c->_M_next;
 					if ($c === null) {
 						return false;
@@ -446,7 +445,7 @@ namespace std
 				$n = new _C_builtin_list_node;
 				$n->_M_data = $d___;
 
-				if ($c === $this->_M_l_node) {
+				if ($c == $this->_M_l_node) {
 					$n->_M_next = null;
 					$this->_M_l_node = $n;
 				} else {
@@ -492,7 +491,7 @@ namespace std
 				$n = new _C_builtin_list_node;
 				$n->_M_data = $d___;
 
-				if ($c === $this->_M_l_node) {
+				if ($c == $this->_M_l_node) {
 					$n->_M_next = null;
 					$this->_M_l_node = $n;
 				} else {
@@ -585,7 +584,7 @@ namespace std
 				$c = $this->_M_f_node;
 				while ($c !== null) {
 					$c = $c->_M_next;
-					if ($c->_M_data === $p___) {
+					if ($c->_M_data == $p___) {
 						++$cnt;
 					}
 				}
@@ -596,8 +595,8 @@ namespace std
 		function _F_index_of_data(&$p___, callable $f___ = null)
 		{
 			$f = $f___;
-			if ($f___ === null) {
-				$f = function(&$l, &$r) { return $l === $r; };
+			if ($f___ == null) {
+				$f = function(&$l, &$r) { return $l == $r; };
 			}
 
 			$r = -1;
@@ -639,18 +638,18 @@ namespace std
 		{
 			if ($this->_M_size) {
 				$c = $this->_M_f_node;
-				while ($c->_M_data !== $p___) {
+				while ($c->_M_data != $p___) {
 					$c = $c->_M_next;
 					if ($c === null) {
 						return $c;
 					}
 				}
-				if ($c === $this->_M_f_node) {
+				if ($c == $this->_M_f_node) {
 					$this->_M_f_node = $c->_M_next;
 				} else {
 					$c->_M_prev->_M_next = $c->_M_next;
 				}
-				if ($c === $this->_M_l_node) {
+				if ($c == $this->_M_l_node) {
 					$this->_M_l_node = $c->_M_prev;
 				} else {
 					$c->_M_next->_M_prev = $c->_M_prev;
@@ -685,12 +684,12 @@ namespace std
 					}
 					++$i;
 				}
-				if ($c === $this->_M_f_node) {
+				if ($c == $this->_M_f_node) {
 					$this->_M_f_node = $c->_M_next;
 				} else {
 					$c->_M_prev->_M_next = $c->_M_next;
 				}
-				if ($c === $this->_M_l_node) {
+				if ($c == $this->_M_l_node) {
 					$this->_M_l_node = $c->_M_prev;
 				} else {
 					$c->_M_next->_M_prev = $c->_M_prev;

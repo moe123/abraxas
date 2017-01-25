@@ -38,7 +38,7 @@ namespace std
 
 	function memize(&$in___)
 	{
-		if (\gettype($in___) !== 'array') {
+		if (\gettype($in___) != 'array') {
 			\settype($in___, 'string');
 			$i = 0;
 			while (isset($in___[$i])) { ++$i; }

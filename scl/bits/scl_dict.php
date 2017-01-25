@@ -122,7 +122,7 @@ namespace std
 			if ($this->_M_size > 0) {
 				$idx = 0;
 				foreach ($this->_M_container as $k => &$v) {
-					if ($val === $v) {
+					if ($val == $v) {
 						return $idx;
 					}
 					++$idx;

@@ -26,22 +26,15 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_set_1(callable $binaryPredicate)
+		function _F_set_1(array $list_initializer)
 		{
-			if($binaryPredicate() !== not_callable) {
-				$this->_M_predicate = $binaryPredicate;
-			}
-		}
-
-		function _F_set_2(callable $binaryPredicate, array $list_initializer)
-		{
-			if($binaryPredicate() !== not_callable) {
-				$this->_M_predicate = $binaryPredicate;
-			}
 			foreach ($list_initializer as &$val) {
 				$this->insert($val);
 			}
 		}
+
+		function _F_set_2(basic_iterator $first, basic_iterator $last)
+		{ $this->assign_r($first, $last); }
 
 		function & insert($val)
 		{
@@ -67,13 +60,10 @@ namespace std
 		function & swap(set &$set)
 		{
 			$c = $this->_M_container;
-			$p = $this->_M_predicate;
 			$sz = $this->_M_size;
 			$this->_M_container = $set->_M_container;
-			$this->_M_predicate = $set->_M_predicate;
 			$this->_M_size = $set->_M_size;
 			$set->_M_container = $c;
-			$set->_M_predicate = $p;
 			$set->_M_size = $sz;
 			return $this;
 		}

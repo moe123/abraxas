@@ -200,60 +200,77 @@ namespace std
 	function copy(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, insert_iterator $out_first___
+		, insert_iterator $out___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				$out_first___->_F_pos_assign(
+				$out___->_F_pos_assign(
 					_F_builtin_deep_copy($first___->_F_this())
 				);
-				$out_first___->_F_next();
+				$out___->_F_next();
 				$first___->_F_next();
 			}
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $out_first___;
+		return $out___;
 	}
 
 	function copy_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, insert_iterator $out_first___
+		, insert_iterator $out___
 		, callable $unaryPredicate___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
 				$v = $first___->_F_this();
 				if ($unaryPredicate___($v)) {
-					$out_first___->_F_pos_assign(
+					$out___->_F_pos_assign(
 						_F_builtin_deep_copy($v)
 					);
-					$out_first___->_F_next();
+					$out___->_F_next();
 				}
 				$first___->_F_next();
 			}
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $out_first___;
+		return $out___;
 	}
 
 	function copy_n(
 		  basic_iterator $first___
 		, int $count___
-		, insert_iterator $out_first___
+		, insert_iterator $out___
 	) {
 		$i = 0;
 		while ($i < $count___) {
-			$out_first___->_F_pos_assign(
+			$out___->_F_pos_assign(
 				_F_builtin_deep_copy($first___->_F_this())
 			);
-			$out_first___->_F_next();
+			$out___->_F_next();
 			$first___->_F_next();
 			++$i;
 		}
-		return $out_first___;
+		return $out___;
+	}
+
+	function copy_backward(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $out_last___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			while ($first___ != $last___) {
+				$out_last___->_F_pos_assign($last___->_F_this());
+				$last___->_F_prev();
+				$out_last___->_F_prev();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $out_last___;
 	}
 
 	function fill(forward_iterator $first___, forward_iterator $last___, $val___)
@@ -284,7 +301,18 @@ namespace std
 		}
 	}
 
-	function place_fill(
+	function generate_n(
+		  forward_iterator $first___
+		, int $count___
+		, callable $generator___
+	) {
+		for ($i = 0; $i < $count___; $i++) {
+			$first___->_F_pos_assign($generator___());
+			$first___->_F_next();
+		}
+	}
+
+	function place_fill_n(
 		  insert_iterator $out___
 		, int $count___
 		, $val___
@@ -295,7 +323,7 @@ namespace std
 		}
 	}
 
-	function place_generate(
+	function place_generate_n(
 		  insert_iterator $out___
 		, int $count___
 		, callable $generator___
@@ -356,6 +384,42 @@ namespace std
 		}
 	}
 
+	function merge_r(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, basic_iterator $last2___
+		, insert_iterator $out___
+		, callable $compare___ = null
+	) {
+		if (
+			$first1___::iterator_category === $last1___::iterator_category &&
+			$first2___::iterator_category === $last2___::iterator_category
+		) {
+			$comp = $compare___;
+			if (\is_null($comp)) {
+				$comp = function ($l, $r) { return $l < $r; };
+			}
+			while ($first1___ != $last1___) {
+				if ($first2___ == $last2___) {
+					return copy($first1___, $last1___, $out___);
+				}
+				if ($comp($first2___->_F_this(), $first1___->_F_this())) {
+					$out___->_F_pos_assign($first2___->_F_this());
+					$first2___->_F_next();
+				} else {
+					$out___->_F_pos_assign($first1___->_F_this());
+					$first1___->_F_next();
+				}
+				$out___->_F_next();
+			}
+			return copy($first2___, $last2___, $out___);
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
 	function reverse(basic_iteratable &$c___)
 	{ _F_builtin_reverse($c___); }
 
@@ -383,7 +447,7 @@ namespace std
 		}
 		$it = clone $first___;
 		while ($first___->_F_next() != $last___) {
-			if (!($it->_F_this() === $first___->_F_this()) && $it->_F_next() != $first___) {
+			if (!($it->_F_this() == $first___->_F_this()) && $it->_F_next() != $first___) {
 				$it->_F_pos_assign($first___->_F_this());
 			}
 		}
@@ -398,7 +462,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function ($l, $r) { return $l === $r; };
+			$p = function ($l, $r) { return $l == $r; };
 		}
 		if ($first___ == $last___) {
 			return $last___;
@@ -438,7 +502,7 @@ namespace std
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryOperation___;
 			if (\is_null($p)) {
-				$p = function ($l, $r) { return $l + $r; };
+				$p = function (&$l, $r) { return $l + $r; };
 			}
 			while ($first___ != $last___) {
 				$init___ = $p($init___, $first___->_F_this());
@@ -500,7 +564,7 @@ namespace std
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				if ($first___->_F_this() === $val___) {
+				if ($first___->_F_this() == $val___) {
 					return $first___;
 				}
 				$first___->_F_next();
@@ -551,7 +615,7 @@ namespace std
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function ($l, $r) { return $l === $r; };
+				$p = function ($l, $r) { return $l == $r; };
 			}
 			while ($first___ != $last___) {
 				$it = clone $s_first___;
@@ -561,6 +625,57 @@ namespace std
 					}
 					$it->_F_next();
 				}
+				$first___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $last___;
+	}
+
+	function adjacent_find(
+		  forward_iterator $first___
+		, forward_iterator $last___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			if ($first___ == $last___) {
+				return $last___;
+			}
+			$next = clone $first___;
+			$next->_F_next();
+			while ($next != $last___) {
+				if ($first___->_F_this() == $next->_F_this()) {
+					return $first___;
+				}
+				$next->_F_next();
+				$first___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $last___;
+	}
+
+	function adjacent_find_b(
+		  forward_iterator $first___
+		, forward_iterator $last___
+		, callable $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, $r) { return $l == $r; };
+			}
+			if ($first___ == $last___) {
+				return $last___;
+			}
+			$next = clone $first___;
+			$next->_F_next();
+			while ($next != $last___) {
+				if ($p($first___->_F_this(), $next->_F_this())) {
+					return $first___;
+				}
+				$next->_F_next();
 				$first___->_F_next();
 			}
 		} else {
@@ -609,7 +724,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function ($l, $r) { return $l === $r; };
+			$p = function ($l, $r) { return $l == $r; };
 		}
 		while ($first1___ != $last1___) {
 			$it1 = clone $first1___;
@@ -641,7 +756,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function ($l, $r) { return $l === $r; };
+			$p = function ($l, $r) { return $l == $r; };
 		}
 		while ($first___ != $last___) {
 			if (!$p($first___->_F_this(), $val___)) {
@@ -676,7 +791,7 @@ namespace std
 		if ($first1___::iterator_category === $last1___::iterator_category) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function ($l, $r) { return $l === $r; };
+				$p = function ($l, $r) { return $l == $r; };
 			}
 			while ($first1___ != $last1___) {
 				if (!$p($first1___->_F_this(), $first2___->_F_this())) {
@@ -697,7 +812,7 @@ namespace std
 		$ret = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				if ($first___->_F_this() === $val___) {
+				if ($first___->_F_this() == $val___) {
 					$ret++;
 				}
 				$first___->_F_next();
@@ -729,7 +844,7 @@ namespace std
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $last2___
-		, insert_iterator $out_first___
+		, insert_iterator $out___
 		, callable $compare___ = null
 	) {
 		$comp = $compare___;
@@ -745,8 +860,8 @@ namespace std
 						$first1___->_F_next();
 				} else {
 					if (!$comp($first2___->_F_this(), $first1___->_F_this())) {
-							$out_first___->_F_pos_assign($first1___->_F_this());
-							$out_first___->_F_next();
+							$out___->_F_pos_assign($first1___->_F_this());
+							$out___->_F_next();
 							$first1___->_F_next();
 					}
 					$first2___->_F_next();
@@ -755,7 +870,7 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $out_first___;
+		return $out___;
 	}
 
 	function replace(
@@ -766,7 +881,7 @@ namespace std
 	) {
 		if ($first___ != $last___) {
 			while ($first___ != $last___) {
-				if ($first___->_F_this() === $old_value___) {
+				if ($first___->_F_this() == $old_value___) {
 					$first___->_F_pos_assign($new_value);
 				}
 				$first___->_F_next();
@@ -800,7 +915,7 @@ namespace std
 			$it = clone $first___;
 			while ($it != $last___) {
 				$v = $it->_F_this();
-				if (!($v === $val___)) {
+				if (!($v == $val___)) {
 					$first___->_F_pos_assign($v);
 					$first___->_F_next();
 				}
@@ -833,33 +948,33 @@ namespace std
 	function transform(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, basic_iterator $out_first___
+		, basic_iterator $out___
 		, callable $unaryOperation___
 	) {
 		while ($first___ != $last___) {
 			$v = $unaryOperation___($first___->_F_this());
-			$out_first___->_F_pos_assign($v);
-			$out_first___->_F_next();
+			$out___->_F_pos_assign($v);
+			$out___->_F_next();
 			$first___->_F_next();
 		}
-		return $out_first___;
+		return $out___;
 	}
 
 	function transform_b(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
-		, basic_iterator $out_first___
+		, basic_iterator $out___
 		, callable $binaryOperation___
 	) {
 		while ($first1___ != $last1___) {
 			$v = $binaryOperation___($first1___->_F_this(), $first2___->_F_this());
-			$out_first___->_F_pos_assign($v);
-			$out_first___->_F_next();
+			$out___->_F_pos_assign($v);
+			$out___->_F_next();
 			$first1___->_F_next();
 			$first2___->_F_next();
 		}
-		return $out_first___;
+		return $out___;
 	}
 
 	function sort(

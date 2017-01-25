@@ -50,50 +50,80 @@ namespace std
 
 	function sizeof($in___)
 	{
-		if (is_array($in___)) {
+		if (\is_array($in___)) {
 			return \count($in___);
+		} else if (is_iteratable($in___)) {
+			return $in___->_M_size;
+		} else if (is_tupple($in___)) {
+			return tuple_size($in___);
 		} else if (\is_string($in___)) {
 			return \strlen($in___);
 		} else if (\is_float($in___)) {
-			return numeric_limits_float\size;
+			return numeric_limits_float::size;
 		} else if (\is_int($in___)) {
-			return numeric_limits_int\size;
+			return numeric_limits_int::size;
 		}
-		return 0;
+		return -1;
+	}
+
+	function typeof($in___)
+	{
+		if (\is_resource($in___)) {
+			return \get_resource_type($l) == \get_resource_type($r);
+		}
+		if (\is_object($in___)) {
+			return get_class($in___);
+		}
+		return \gettype($in___);
 	}
 
 	function hash($v___)
 	{
-		if (!\is_resource($v___)) {
+		if (!\is_object($v___) || !\is_array($v___)) {
 			return \sha1(\serialize($v___));
 		}
-		return $v___;
+		if (\is_resource($v___)) {
+			return \sha1(print_r($v___, true));
+		}
+		return \sha1((string)$v___);
 	}
 
-	function rand(int $min = 0, int $max = 0)
+	function random(int $min = 0, int $max = 0)
 	{
+		if (!$max) {
+			 return mt_rand();
+		}
 		if ($min < 0) {
 			$min = 0;
-		}
-		if (!$max) {
-			 $max = mt_getrandmax();
 		}
 		return mt_rand($min, $max);
 	}
 
-	function tuple_size(object $o___)
+	function urandom(int $min = 0, int $max = 0)
 	{
-		if ($o___ instanceof \std\tuple) {
-			return $o___->_M_size;
-		} else if ($o___ instanceof \std\pair) {
-			return 2;
-		} else if ($o___ instanceof \std\triad) {
-			return 3;
-		} else if ($o___ instanceof \std\quad) {
-			return 4;
-		} else if ($o___ instanceof \std\quint) {
-			return 5;
+		if ($min === 0 && $max === 0) {
+			$min = PHP_INT_MIN;
+			$max = PHP_INT_MAX;
 		}
+		return random_int($min, $max);
+	}
+
+	function tuple_size(object $v___)
+	{
+		if (\is_object($in___)) {
+			if ($o___ instanceof \std\tuple) {
+				return $o___->_M_size;
+			} else if ($o___ instanceof \std\pair) {
+				return 2;
+			} else if ($o___ instanceof \std\triad) {
+				return 3;
+			} else if ($o___ instanceof \std\quad) {
+				return 4;
+			} else if ($o___ instanceof \std\quint) {
+				return 5;
+			}
+		}
+		return -1;
 	}
 
 	function get(int $i___, object $o___)
@@ -131,13 +161,10 @@ namespace std
 		return new vector;
 	}
 
-	function make_set(callable $binaryPredicate___, ...$args___)
+	function make_set(...$args___)
 	{
 		if (\is_array($args___) && \count($args___)) {
-			return new set($binaryPredicate___, $args___);
-		}
-		if($binaryPredicate() !== not_callable) {
-			return new set($binaryPredicate___);
+			return new set($args___);
 		}
 		return new set;
 	}

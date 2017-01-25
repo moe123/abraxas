@@ -97,6 +97,14 @@ foreach ($l as $item) {
 
 ...
 
+$v = std\make_vector();
+std\place_generate_n(
+	  std\back_inserter($v)
+	, 10 
+	, function () { return std\urandom(0, 200); }
+);
+std\cout($v);
+
 ```
 
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Iterators
