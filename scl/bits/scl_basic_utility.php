@@ -101,7 +101,7 @@ namespace std
 	function hash($v___)
 	{
 		return function () use ($v___) {
-			if (!\is_object($v___) || !\is_array($v___)) {
+			if (\is_object($v___) || \is_array($v___)) {
 				return \sha1(\serialize($v___));
 			}
 			if (\is_resource($v___)) {
@@ -194,44 +194,19 @@ namespace std
 	{ return new comparator($f___); }
 
 	function make_vector(...$args___)
-	{
-		if (\is_array($args___) && \count($args___)) {
-			return new vector($args___);
-		}
-		return new vector;
-	}
+	{ return new vector($args___); }
 
 	function make_set(...$args___)
-	{
-		if (\is_array($args___) && \count($args___)) {
-			return new set($args___);
-		}
-		return new set;
-	}
+	{ return new set($args___); }
 
 	function make_seq_list(...$args___)
-	{
-		if (\is_array($args___) && \count($args___)) {
-			return new seq_list($args___);
-		}
-		return new seq_list;
-	}
+	{ return new seq_list($args___); }
 
 	function make_tuple(...$args___)
-	{
-		if (\is_array($args___) && \count($args___)) {
-			return new tuple($args___);
-		}
-		return new tuple;
-	}
+	{ return new tuple($args___); }
 
 	function make_dict(...$args___)
-	{
-		if (\is_array($args___) && \count($args___)) {
-			return new dict($args___);
-		}
-		return new dict;
-	}
+	{ return new dict($args___); }
 
 	function make_pair($a1___, $a2___)
 	{ return new pair($a1___, $a2___); }
