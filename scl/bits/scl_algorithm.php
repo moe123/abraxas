@@ -36,7 +36,7 @@ namespace std
 		return $comp($v___, $lo___) ? $lo___ : $comp($hi___, $v___) ? $hi___ : $v___;
 	}
 
-	function iter_swap(forward_iterator $it1___, forward_iterator $it2___)
+	function iter_swap(basic_iterator $it1___, basic_iterator $it2___)
 	{
 		$v1 = $it1___->_F_this();
 		$v2 = $it2___->_F_this();
@@ -45,8 +45,8 @@ namespace std
 	}
 
 	function lower_bound(
-			  forward_iterator $first___
-			, forward_iterator $last___
+			  basic_iterator $first___
+			, basic_iterator $last___
 			, $val___
 			, callable $compare___ = null
 	) {
@@ -78,8 +78,8 @@ namespace std
 	}
 
 	function upper_bound(
-			  forward_iterator $first___
-			, forward_iterator $last___
+			  basic_iterator $first___
+			, basic_iterator $last___
 			, $val___
 			, callable $compare___ = null
 	) {
@@ -141,8 +141,8 @@ namespace std
 	}
 
 	function min_element(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $compare___ = null
 	) {
 		$comp = $compare___;
@@ -163,8 +163,8 @@ namespace std
 	}
 
 	function max_element(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $compare___ = null
 	) {
 		$comp = $compare___;
@@ -185,9 +185,9 @@ namespace std
 	}
 
 	function swap_ranges(
-		  forward_iterator $first1___
-		, forward_iterator $last1___
-		, forward_iterator $first2___
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
 	) {
 		while ($first1___ != $last1___) {
 			iter_swap($first1___, $first2___);
@@ -273,7 +273,7 @@ namespace std
 		return $out_last___;
 	}
 
-	function fill(forward_iterator $first___, forward_iterator $last___, $val___)
+	function fill(basic_iterator $first___, basic_iterator $last___, $val___)
 	{
 		while ($first___ != $last___) {
 			$first___->_F_pos_assign($val___);
@@ -281,7 +281,7 @@ namespace std
 		}
 	}
 
-	function fill_n(forward_iterator $first___, int $count___, $val___)
+	function fill_n(basic_iterator $first___, int $count___, $val___)
 	{
 		for ($i = 0; $i < $count___; $i++) {
 			$first___->_F_pos_assign($val___);
@@ -291,8 +291,8 @@ namespace std
 	}
 
 	function generate(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $generator___
 	) {
 		while ($first___ != $last___) {
@@ -302,7 +302,7 @@ namespace std
 	}
 
 	function generate_n(
-		  forward_iterator $first___
+		  basic_iterator $first___
 		, int $count___
 		, callable $generator___
 	) {
@@ -360,8 +360,8 @@ namespace std
 	}
 
 	function iota(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, $val___
 	) {
 		while ($first___ != $last___) {
@@ -372,8 +372,8 @@ namespace std
 	}
 
 	function iota_f(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, $val___
 		, callable $nextOperation___
 	) {
@@ -439,8 +439,8 @@ namespace std
 	{ _F_builtin_unique($c___, $binaryPredicate___); }
 
 	function unique_r(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 	) {
 		if ($first___ == $last___) {
 			return $last___;
@@ -456,8 +456,8 @@ namespace std
 	}
 	
 	function unique_b(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
@@ -520,7 +520,7 @@ namespace std
 		, basic_iterator $first2___
 		, $init___
 	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
+		if ($first1___::iterator_category === $last1___::iterator_category) {
 			while ($first1___ != $last1___) {
 				$init___ = $init___ + ($first1___->_F_this() * $first2___->_F_this());
 				$first1___->_F_next();
@@ -540,7 +540,7 @@ namespace std
 		, callable $binaryOperation1___ = null
 		, callable $binaryOperation2___ = null
 	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
+		if ($first1___::iterator_category === $last1___::iterator_category) {
 			$p1 = $binaryOperation1___;
 			$p2 = $binaryOperation2___;
 			if (\is_null($p1)) {
@@ -608,8 +608,8 @@ namespace std
 	function find_first_of(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, forward_iterator $s_first___
-		, forward_iterator $s_last___
+		, basic_iterator $s_first___
+		, basic_iterator $s_last___
 		, callable $binaryPredicate___ = null
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
@@ -634,8 +634,8 @@ namespace std
 	}
 
 	function adjacent_find(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			if ($first___ == $last___) {
@@ -657,8 +657,8 @@ namespace std
 	}
 
 	function adjacent_find_b(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $binaryPredicate___ = null
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
@@ -716,10 +716,10 @@ namespace std
 	}
 
 	function search(
-		  forward_iterator $first1___
-		, forward_iterator $last1___
-		, forward_iterator $first2___
-		, forward_iterator $last2___
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, basic_iterator $last2___
 		, callable $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
@@ -729,7 +729,7 @@ namespace std
 		while ($first1___ != $last1___) {
 			$it1 = clone $first1___;
 			$it2 = clone $first2___;
-			while (!$it1->last()) {
+			while (!$it1->_F_is_last()) {
 					if ($it2 == $last2___) {
 						return $first1___;
 					}
@@ -748,8 +748,8 @@ namespace std
 	}
 
 	function search_n(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, int $count___
 		, $val___
 		, callable $binaryPredicate___ = null
@@ -874,8 +874,8 @@ namespace std
 	}
 
 	function replace(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, $old_value___
 		, $new_value___
 	) {
@@ -890,8 +890,8 @@ namespace std
 	}
 
 	function replace_if(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $unaryPredicate___
 		, $new_value___
 	) {
@@ -906,8 +906,8 @@ namespace std
 	}
 
 	function remove(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, $val___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);
@@ -926,8 +926,8 @@ namespace std
 	}
 
 	function remove_if(
-		  forward_iterator $first___
-		, forward_iterator $last___
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable $unaryPredicate___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);

@@ -945,6 +945,46 @@ namespace std
 		function reverse_iterator()
 		{ return new _C_reverse_iterator_map($this, $this->_M_size); }
 	}
+
+	trait _T_builtin_tuple_utils_traits
+	{
+		function _F_expandv(array &$dest___, &$v___, &$sz___)
+		{
+			if ($v___ instanceof \std\tuple) {
+				foreach ($v___->_M_container as $v) {
+					_F_expandv($dest___, $v, $sz___);
+				}
+			} else if ($v___ instanceof \std\quint) {
+				_F_expandv($dest___, $v___->first, $sz___);
+				_F_expandv($dest___, $v___->second, $sz___);
+				_F_expandv($dest___, $v___->third, $sz___);
+				_F_expandv($dest___, $v___->fourth, $sz___);
+				_F_expandv($dest___, $v___->fifth, $sz___);
+			} else if ($v___ instanceof \std\quad) {
+				_F_expandv($dest___, $v___->first, $sz___);
+				_F_expandv($dest___, $v___->second, $sz___);
+				_F_expandv($dest___, $v___->third, $sz___);
+				_F_expandv($dest___, $v___->fourth, $sz___);
+			} else if ($v___ instanceof \std\triad) {
+				_F_expandv($dest___, $v___->first, $sz___);
+				_F_expandv($dest___, $v___->second, $sz___);
+				_F_expandv($dest___, $v___->third, $sz___);
+			} else if ($v___ instanceof \std\pair) {
+				_F_expandv($dest___, $v___->first, $sz___);
+				_F_expandv($dest___, $v___->second, $sz___);
+			} else {
+				$dest___[] = $v___;
+				++$sz___;
+			}
+		}
+
+		function _F_unpackv(array &$args___)
+		{
+			foreach ($args___ as &$v) {
+				_F_expandv($this->_M_container, $v, $this->_M_size);
+			}
+		}
+	}
 } /* EONS */
 
 /* EOF */

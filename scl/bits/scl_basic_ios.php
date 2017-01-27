@@ -258,7 +258,7 @@ namespace std
 	function & cerr($d___)
 	{
 		static $os = null;
-		if (\is_null($s)) {
+		if (\is_null($os)) {
 			$os = new _C_ostream_cerr;
 		}
 		$os = $os($d___);

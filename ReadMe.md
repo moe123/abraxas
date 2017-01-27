@@ -97,12 +97,19 @@ foreach ($l as $item) {
 
 ...
 
-$v = std\make_vector();
+$v = std\make_vector(0, 1 ,2);
+std\place_generate_n(
+	  std\front_inserter($v)
+	, 5 
+	, function () { return std\urandom(100,200); }
+);
+
 std\place_generate_n(
 	  std\back_inserter($v)
-	, 10 
-	, function () { return std\urandom(0, 200); }
+	, 5 
+	, function () { return std\urandom(300,500); }
 );
+
 std\cout($v);
 
 ```
@@ -215,47 +222,29 @@ A mixture of existing features and overloads.
 
 ...
 
-function not1(callable $f___)
-{
-	return function () use ($f___) {
-		return !$f___(func_get_arg(0));
-	};
+function fn(int $one, string $two, float $three, int $foor) { 
+	std\cerr(
+		  $one 
+		. std\endl
+		. $two
+		. std\endl
+		. $three
+		. std\endl
+		. $foor
+		. std\endl
+	);
 }
 
-function not2(callable $f___)
-{
-	return function () use ($f___) {
-		return !$f___(func_get_arg(0), func_get_arg(1));
-	};
-}
+$fn = std\bind(
+	std\bond1('fn')
+	, std\placeholders::_1
+	, "hello"
+	, std\placeholders::_3
+	, -123
+);
 
-function not_fn(callable $f___)
-{
-	return function () use ($f___) {
-		return !call_user_func_array($f___, func_get_args());
-	};
-}
-
-function invoke(callable $f___, ...$args___)
-{
-	if (\is_array($args___) && \count($args___)) {
-		return call_user_func_array($f___, $args___);
-	}
-	return $f___();
-}
-
-function bond($cls___, string $f___)
-{ return [$cls___, $f___]; }
-
-function bind(callable $f___, ...$args___)
-{
-	return function () use ($f___, $args___) {
-		if (\is_array($args___) && \count($args___)) {
-			return call_user_func_array($f___, $args___);
-		}
-		return $f___();
-	 };
-}
+std\invoke($fn, 1, 0.8);
+std\invoke($fn, 4, -0.1333);
 
 ...
 

@@ -19,6 +19,7 @@ namespace std
 	final class tuple extends basic_tuple
 	{
 		use _T_multi_construct_traits;
+		use _T_builtin_tuple_utils_traits;
 
 		function __construct()
 		{
@@ -29,31 +30,17 @@ namespace std
 		function _F_tuple_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
-				if ($obj instanceof \std\quint) {
-					$this->_M_container[] = $obj->first;
-					$this->_M_container[] = $obj->second;
-					$this->_M_container[] = $obj->third;
-					$this->_M_container[] = $obj->fourth;
-					$this->_M_container[] = $obj->fifth;
-					$tuple->_M_size += 5;
-				} else if ($obj instanceof \std\quad) {
-					$this->_M_container[] = $obj->first;
-					$this->_M_container[] = $obj->second;
-					$this->_M_container[] = $obj->third;
-					$this->_M_container[] = $obj->fourth;
-					$tuple->_M_size += 4;
-				} else if ($obj instanceof \std\triad) {
-					$this->_M_container[] = $obj->first;
-					$this->_M_container[] = $obj->second;
-					$this->_M_container[] = $obj->third;
-					$tuple->_M_size += 3;
-				} else if ($obj instanceof \std\pair) {
-					$this->_M_container[] = $obj->first;
-					$this->_M_container[] = $obj->second;
-					$tuple->_M_size += 2;
-				} else {
-					$this->_M_container[] = $val;
-					++$tuple->_M_size;
+				_F_builtin_push_back($this->_M_container, $val);
+			}
+		}
+
+		function _F_tuple_2(array $list_initializer, bool $concat)
+		{
+			if ($concat === true) {
+				$this->_F_unpackv($list_initializer);
+			} else {
+				foreach ($list_initializer as &$val) {
+					_F_builtin_push_back($this->_M_container, $val);
 				}
 			}
 		}

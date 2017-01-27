@@ -33,10 +33,6 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_locale.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_functional.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_algorithm.php";
-
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_set.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_set.php";
 } /* EONS */
 
 namespace std
@@ -46,7 +42,32 @@ namespace std
 		const same       = 0;
 		const ascending  = -1;
 		const descending = 1;
-	}
+	} /* EOC */
+
+	final class comparator
+	{
+		var $_M_f;
+
+		function __invoke($l, $r)
+		{ return $this->_M_f($l, $r); }
+
+		function __construct(callable $f)
+		{ $this->_M_f = $f; }
+
+		function & swap(comparator &$comparator)
+		{
+			$f = $this->_M_f;
+			$this->_M_f = $comparator->_M_f;
+			$comparator->_M_f = $f;
+			return $this;
+		}
+	} /* EOC */
+
+	const not_callable = "std<not a callable>";
+
+	/*! callable */
+	function null_callable()
+	{ return function(...$args) { return not_callable; }; }
 
 	function sizeof($in___)
 	{
@@ -54,8 +75,8 @@ namespace std
 			return \count($in___);
 		} else if (is_iteratable($in___)) {
 			return $in___->_M_size;
-		} else if (is_tupple($in___)) {
-			return tuple_size($in___);
+		} else if (is_tuple($in___)()) {
+			return tuple_size($in___)();
 		} else if (\is_string($in___)) {
 			return \strlen($in___);
 		} else if (\is_float($in___)) {
@@ -79,69 +100,88 @@ namespace std
 
 	function hash($v___)
 	{
-		if (!\is_object($v___) || !\is_array($v___)) {
-			return \sha1(\serialize($v___));
-		}
-		if (\is_resource($v___)) {
-			return \sha1(print_r($v___, true));
-		}
-		return \sha1((string)$v___);
+		return function () use ($v___) {
+			if (!\is_object($v___) || !\is_array($v___)) {
+				return \sha1(\serialize($v___));
+			}
+			if (\is_resource($v___)) {
+				return \sha1(print_r($v___, true));
+			}
+			return \sha1((string)$v___);
+		};
 	}
 
-	function random(int $min = 0, int $max = 0)
+	/*! callable */
+	function random(int $min___ = 0, int $max___ = 0)
 	{
-		if (!$max) {
-			 return mt_rand();
-		}
-		if ($min < 0) {
-			$min = 0;
-		}
-		return mt_rand($min, $max);
+		return function () use ($min___, $max___) {
+			if (!$max___) {
+				return \mt_rand();
+			}
+			if ($min___ < 0) {
+				$min___ = 0;
+			}
+			return \mt_rand($min___, $max___);
+		};
 	}
 
-	function urandom(int $min = 0, int $max = 0)
+	/*! callable */
+	function urandom(int $min___ = 0, int $max___ = 0)
 	{
-		if ($min === 0 && $max === 0) {
-			$min = PHP_INT_MIN;
-			$max = PHP_INT_MAX;
-		}
-		return random_int($min, $max);
+		return function () use ($min___, $max___) {
+			if ($min___ === 0 && $max___ === 0) {
+				$min___ = PHP_INT_MIN;
+				$max___ = PHP_INT_MAX;
+			}
+			return \random_int($min___, $max___);
+		};
 	}
 
 	function tuple_size(object $v___)
 	{
-		if (\is_object($in___)) {
-			if ($o___ instanceof \std\tuple) {
-				return $o___->_M_size;
-			} else if ($o___ instanceof \std\pair) {
+		if (\is_object($v___)) {
+			if ($v___ instanceof \std\tuple) {
+				return $v___->_M_size;
+			} else if ($v___ instanceof \std\pair) {
 				return 2;
-			} else if ($o___ instanceof \std\triad) {
+			} else if ($v___ instanceof \std\triad) {
 				return 3;
-			} else if ($o___ instanceof \std\quad) {
+			} else if ($v___ instanceof \std\quad) {
 				return 4;
-			} else if ($o___ instanceof \std\quint) {
+			} else if ($v___ instanceof \std\quint) {
 				return 5;
 			}
 		}
 		return -1;
 	}
 
-	function get(int $i___, object $o___)
+	function get(int $i___, $v___)
 	{
-		if ($o___ instanceof \std\tuple) {
-			if (isset($o___->_M_container[$i___])) {
-				return $o___->_M_container[$i___];
+		if ($v___ instanceof \std\tuple) {
+			if ($v___->_M_size && $i___ < $v___->_M_size) {
+				return $v___->_M_container[$i___];
 			}
-		} else if ($o___ instanceof \std\quint) {
-			return $i___ === 0 ? $o___->first : $i___ === 1 ? $o___->second : $i___ === 2 ? $o___->third : $i___ === 3 ? $o___->fourth : $o___->fifth;
-		} else if ($o___ instanceof \std\quad) {
-			return $i___ === 0 ? $o___->first : $i___ === 1 ? $o___->second : $i___ === 2 ? $o___->third : $o___->fourth;
-		} else if ($o___ instanceof \std\triad) {
-			return $i___ === 0 ? $o___->first : $i___ === 1 ? $o___->second : $o___->third;
-		} else if ($o___ instanceof \std\pair) {
-			return $i___ === 0 ? $o___->first : $o___->second;
+		} else if ($v___ instanceof \std\quint) {
+			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $i___ === 2 ? $v___->third : $i___ === 3 ? $v___->fourth : $v___->fifth;
+		} else if ($v___ instanceof \std\quad) {
+			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $i___ === 2 ? $v___->third : $v___->fourth;
+		} else if ($v___ instanceof \std\triad) {
+			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $v___->third;
+		} else if ($v___ instanceof \std\pair) {
+			return $i___ === 0 ? $v___->first : $v___->second;
 		}
 		return null;
+	}
+
+	function apply(callable $f___, tuple $tuple)
+	{ return call_user_func_array($f___, $tuple->_M_container); }
+
+	function tuple_cat(...$args___)
+	{
+		if (\is_array($args___) && \count($args___)) {
+			return new tuple($args___, true);
+		}
+		return new tuple;
 	}
 
 	function make_collator(string $id___, int $lv___ = collator_level::none)
@@ -168,8 +208,6 @@ namespace std
 		}
 		return new set;
 	}
-
-	make_set(null_callable(), 1, 2, 3, 4, 5, 6);
 
 	function make_seq_list(...$args___)
 	{

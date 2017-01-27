@@ -16,6 +16,9 @@
 
 namespace std
 {
+	\ini_set('log_errors', 1);
+	\ini_set('display_errors', 0);
+
 	trait _T_builtin_exception_traits 
 	{ function what() { return $this->getMessage(); } }
 
@@ -23,6 +26,9 @@ namespace std
 	{ use _T_builtin_exception_traits; }
 
 	class builtin_error extends \Error
+	{ use _T_builtin_exception_traits; }
+
+	class builtin_type_error extends \TypeError
 	{ use _T_builtin_exception_traits; }
 
 	class runtime_error extends \Exception
@@ -51,6 +57,9 @@ namespace std
 
 	function _F_throw_builtin_error(string $what)
 	{ throw new builtin_error($what); }
+
+	function _F_throw_builtin_type_error(string $what)
+	{ throw new builtin_type_error($what); }
 
 	function _F_throw_logic_error(string $what)
 	{ throw new logic_error($what); }
