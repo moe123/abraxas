@@ -69,6 +69,8 @@ namespace
 	std\invoke($fn, 16, 0.8);
 	std\invoke($fn, 4, 0);
 
+	std\cerr(std\EPROCLIM);
+
 } /* EONS */
 
 /* EOF */

@@ -104,11 +104,11 @@ namespace std
 	function stdcerr($in___)
 	{ return (($n = \fwrite(\STDERR, $in___)) !== false) ? $n : -1; }
 
-	function stdcout_fmt($in___, ...$args___)
-	{ return (($n = \fwrite(\STDOUT, \vsprintf($in___, $args___))) !== false) ? $n : -1; }
+	function stdcout_fmt($fmt___, ...$args___)
+	{ return (($n = \fwrite(\STDOUT, \vsprintf($fmt___, $args___))) !== false) ? $n : -1; }
 
-	function stdcerr_fmt($in___, ...$args___)
-	{ return (($n = \fwrite(\STDERR, \vsprintf($in___, $args___))) !== false) ? $n : -1; }
+	function stdcerr_fmt($fmt___, ...$args___)
+	{ return (($n = \fwrite(\STDERR, \vsprintf($fmt___, $args___))) !== false) ? $n : -1; }
 
 	function putc(int $ch___, $h___)
 	{ return (\fwrite($h___, \chr($ch___)) !== false) ? $ch___ : -1; }
