@@ -48,9 +48,90 @@ namespace std
 		const badbit  = 1 << 0;
 		const failbit = 1 << 1;
 		const eofbit  = 1 << 2;
+
+		/* fmtflags */
+		const nomask      = 0;
+		const alpha       = 1 << 1;
+		const dec         = 1 << 4;
+		const hex         = 1 << 6;
+		const oct         = 1 << 7;
+		const fixed       = 1 << 8;
+		const scientific  = 1 << 9;
+
+		var $_M_fmtflags = ios_base::nomask;
+
+		function & _F_put(&$v___) 
+		{
+			if ($this->_M_fmtflags != ios_base::nomask && (\is_float($v___) || \is_integer($v___) || \is_bool($v___))) {
+				if (\is_bool($v___) && (($this->_M_fmtflags & ios_base::alpha) != 0)) {
+					$v___ = $v___ ? 'true' : 'false';
+				} else if (\is_bool($v___)) {
+					$v___ = $v___ ? 1 : 0;
+				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::scientific) != 0)) {
+					$numfmt = \numfmt_create('en_US', \NumberFormatter::SCIENTIFIC);
+					$v___ = \numfmt_format($numfmt, $v___);
+				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::fixed) != 0)) {
+					$numfmt = \numfmt_create('en_US', \NumberFormatter::DECIMAL);
+					\numfmt_set_attribute($numfmt, \NumberFormatter::MIN_FRACTION_DIGITS, 20);
+					$v___ = \numfmt_format($numfmt, $v___);
+				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::hex) != 0)) {
+					$v___ = "0x" . \bin2hex(\pack('f', $v___));
+				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::hex) != 0)) {
+					$v___ = "0x" . \dechex($v___);
+				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::oct) != 0)) {
+					$v___ = \decoct($v___);
+				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::alpha) != 0)) {
+					$v___ = \chr($v___);
+				}
+			} else if (\is_bool($v___)) {
+				$v___ = $v___ ? 1 : 0;
+			}
+			return $v___;
+		}
+
+		function flags(int $fl___ = ios_base::nomask)
+		{
+			if ($fl___ == ios_base::nomask) {
+				return $this->_M_fmtflags;
+			}
+			$fl = $this->_M_fmtflags;
+			$this->_M_fmtflags = $fl___;
+			return $fl;
+		}
+
+		function setf(int $fl___, int $mask___ = ios_base::nomask)
+		{
+			if ($mask___ == ios_base::nomask) {
+				$fl = $this->_M_fmtflags;
+				$this->_M_fmtflags |= $fl___;
+				return $fl;
+			}
+			$fl = $this->_M_fmtflags;
+			$this->unsetf($mask___);
+			$this->_M_fmtflags |= $fl___ & $mask___;
+			return $fl;
+		}
+
+		function unsetf(int $mask___)
+		{
+			$this->_M_fmtflags &= ~$mask___;
+			return $this->_M_fmtflags;
+		}
+
+		function & _F_setf(int $fl___)
+		{
+			$this->setf($fl___);
+			return $this;
+		}
+
+		function & _F_clf()
+		{
+			$this->_M_fmtflags = ios_base::nomask;
+			return $this;
+		}
 	} /* EOC */
 
-	abstract class basic_ios
+	abstract class basic_ios extends ios_base
 	{
 		var $_M_locale = null;
 		var $_M_sstate = ios_base::goodbit;
@@ -94,7 +175,7 @@ namespace std
 			return $this;
 		}
 
-		function & read(&$d___, int $c___)
+		function & read(&$d___, int $c___ = -1)
 		{
 			if ($c___ > 0) {
 				$d___ = \fread($this->_M_handle_g, $d___, $c___);
@@ -113,7 +194,7 @@ namespace std
 			return $this;
 		}
 
-		function & get(&$d___, int $c___)
+		function & get(&$d___, int $c___ = -1)
 		{
 			if ($c___ > 0) {
 				$d___ = \fgets($this->_M_handle_g, $c___);
@@ -170,19 +251,16 @@ namespace std
 		var $_M_handle_p;
 		var $_M_count_p = 0;
 
-		function __invoke($d___, int $c___ = -1)
-		{
-			$this->write($d___, $c___);
-			return $this;
-		}
+		function __invoke($d___, int $fl___ = ios_base::nomask)
+		{ return $this->_F_setf($fl___)->write($d___)->_F_clf(); }
 
-		function & write($d___, int $c___)
+		function & write($d___, int $c___ = -1)
 		{
 			$r = false;
 			if ($c___ > 0) {
-				$r = \fwrite($this->_M_handle_p, $d___, $c___);
+				$r = \fwrite($this->_M_handle_p, $this->_F_put($d___), $c___);
 			} else {
-				$r = \fwrite($this->_M_handle_p, $d___);
+				$r = \fwrite($this->_M_handle_p, $this->_F_put($d___));
 			}
 			if ($r === false) {
 				$this->setstate(ios_base::badbit|ios_base::failbit);
@@ -235,33 +313,39 @@ namespace std
 		{ $this->_M_handle_p = \STDERR; }
 	} /* EOC */
 
-	function & cin(&$d___)
+	function & cin(&$d___ = null)
 	{
 		static $is = null;
 		if (\is_null($is)) {
 			$is = new _C_ostream_cin;
 		}
-		$is = $is($d___);
+		if (!\is_null($d___)) {
+			$is = $is($d___);
+		}
 		return $is;
 	}
 
-	function & cout($d___)
+	function & cout($d___ = null, int $fl___ = ios_base::nomask)
 	{
 		static $os = null;
 		if (\is_null($os)) {
 			$os = new _C_ostream_cout;
 		}
-		$os = $os($d___);
+		if (!\is_null($d___)) {
+			$os = $os($d___, $fl___);
+		}
 		return $os;
 	}
 
-	function & cerr($d___)
+	function & cerr($d___ = null, int $fl___ = ios_base::nomask)
 	{
 		static $os = null;
 		if (\is_null($os)) {
 			$os = new _C_ostream_cerr;
 		}
-		$os = $os($d___);
+		if (!\is_null($d___)) {
+			$os = $os($d___, $fl___);
+		}
 		return $os;
 	}
 } /* EONS */

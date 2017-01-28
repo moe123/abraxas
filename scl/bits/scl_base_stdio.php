@@ -122,7 +122,7 @@ namespace std
 	function fprintln($h___, string $fmt___, ...$args___)
 	{ return \vfprintf($h___, $fmt___ . \PHP_EOL, $args___); }
 
-	function printf($h___, string $fmt___, ...$args___)
+	function printf(string $fmt___, ...$args___)
 	{ return \vfprintf(\STDOUT, $fmt___, $args___); }
 
 	function fprintf($h___, string $fmt___, ...$args___)

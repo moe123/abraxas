@@ -50,17 +50,12 @@ namespace
 
 	std\cout($v);
 
-	function fn(int $one, string $two, float $three, int $foor) { 
-		std\cerr(
-			  $one 
-			. std\endl
-			. $two
-			. std\endl
-			. $three
-			. std\endl
-			. $foor
-			. std\endl
-		);
+	function fn(int $one, string $two, bool $three, int $four) { 
+		std\cerr($one, std\ios_base::hex)(std\endl)
+			($two)(std\endl)
+				($three, std\ios_base::alpha)(std\endl)
+				($three)(std\endl)
+					($four, std\ios_base::fixed)(std\endl);
 	}
 
 	$fn = std\bind(
@@ -68,11 +63,11 @@ namespace
 		, std\placeholders::_1
 		, "hello"
 		, std\placeholders::_3
-		, -123
+		, 0.00000099988888888
 	);
 
-	std\invoke($fn, 1, 0.8);
-	std\invoke($fn, 4, -0.1333);
+	std\invoke($fn, 16, 0.8);
+	std\invoke($fn, 4, 0);
 
 } /* EONS */
 

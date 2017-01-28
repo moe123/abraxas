@@ -23,7 +23,7 @@ and the `C++ STL`. Providing the same five main components: `Algorithms`, `Conta
 
 ```php
 
-$buf;
+$buf = "";
 
 while (std\stdcin($buf)) {
 	std\stdcout($buf);
@@ -222,7 +222,7 @@ A mixture of existing features and overloads.
 
 ...
 
-function fn(int $one, string $two, float $three, int $foor) { 
+function fn(int $one, string $two, float $three, int $four) { 
 	std\cerr(
 		  $one 
 		. std\endl
@@ -230,7 +230,7 @@ function fn(int $one, string $two, float $three, int $foor) {
 		. std\endl
 		. $three
 		. std\endl
-		. $foor
+		. $four
 		. std\endl
 	);
 }

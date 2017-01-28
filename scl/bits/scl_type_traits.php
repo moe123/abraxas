@@ -44,7 +44,7 @@ namespace std
 	{ return (\is_string($v__) && \function_exists($v__)) || (\is_object($v__) && ($v__ instanceof Closure)); }
 
 	function is_arithmetic($v__)
-	{ return \is_float($v__) || \is_integer($v__); }
+	{ return \is_float($v__) || \is_integer($v__) || \is_bool($v__); }
 
 	function is_compound($v__)
 	{ return \is_resource($v__) || is_function($v__) || \is_object($v__) || \is_callable($v__); }
