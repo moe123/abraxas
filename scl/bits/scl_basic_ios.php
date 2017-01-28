@@ -310,7 +310,7 @@ namespace std
 				$this->setstate(ios_base::badbit|ios_base::failbit);
 				$this->_M_count_p = 0;
 			} else {
-				$this->_M_count_p = memlen($r);
+				$this->_M_count_p = $r;
 			}
 			return $this;
 		}
@@ -339,11 +339,20 @@ namespace std
 
 	class basic_istringstream extends basic_istream
 	{
-		function __construct()
-		{ $this->_M_handle_g = \tmpfile(); }
+		function __construct(string &$buf)
+		{
+			$this->_M_handle_g = \tmpfile();
+			$r = \fwrite($this->_M_handle_g, $buf);
+			if ($r === false) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+			}
+		}
 
 		function __destruct()
 		{ \fclose($this->_M_handle_g); }
+
+		function str()
+		{ return \stream_get_contents($this->_M_handle_g); }
 
 		function swap(basic_istringstream &$iss)
 		{
@@ -366,6 +375,9 @@ namespace std
 			$this->write($ch___);
 			return $this;
 		}
+
+		function str()
+		{ return \stream_get_contents($this->_M_handle_p); }
 
 		function swap(basic_ostringstream &$oss)
 		{
