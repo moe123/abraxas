@@ -62,8 +62,8 @@ namespace std
 
 	abstract class basic_ios
 	{
-		var $_M_locale = null;
-		var $_M_sstate = ios_base::goodbit;
+		var $_M_locale   = null;
+		var $_M_sstate   = ios_base::goodbit;
 		var $_M_fmtflags = ios_base::nomask;
 
 		function & _F_put(&$v___) 
@@ -166,8 +166,8 @@ namespace std
 
 	abstract class basic_istream extends basic_ios
 	{
-		var $_M_handle_g;
-		var $_M_count_g = 0;
+		var $_M_handle_g = null;
+		var $_M_count_g  = 0;
 
 		function __invoke(&$d___, int $c___ = -1)
 		{
@@ -289,12 +289,19 @@ namespace std
 
 		function gcount()
 		{ return $this->_M_count_g; }
+
+		function swap(basic_istream &$iss___)
+		{
+			$h = $this->_M_handle_g;
+			$this->_M_handle_g = $iss___->_M_handle_g;
+			$iss___->_M_handle_g = $h;
+		}
 	} /* EOC */
 
 	abstract class basic_ostream extends basic_ios
 	{
-		var $_M_handle_p;
-		var $_M_count_p = 0;
+		var $_M_handle_p = null;
+		var $_M_count_p  = 0;
 
 		function __invoke($d___, int $fls___ = ios_base::nomask)
 		{ return $this->fmtflags_assign($fls___)->write($d___)->fmtflags_clear(); }
@@ -315,6 +322,12 @@ namespace std
 			}
 			return $this;
 		}
+
+		function & put($ch___)
+		{
+			$this->write($ch___);
+			return $this;
+		}
 		
 		function & flush()
 		{
@@ -333,60 +346,207 @@ namespace std
 			}
 			return $r;
 		}
+
+		function & seekp(int $off___, int $seekdir___ = ios_base::beg)
+		{
+			$this->clear(ios_base::goodbit);
+			if (-1 == \fseek($this->_M_handle_p, $off___, $seekdir___)) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+			}
+			if (\feof($this->_M_handle_p)) {
+				$this->clear(ios_base::eofbit);
+			}
+			return $this;
+		}
 		
 		function pcount()
 		{ return $this->_M_count_p ; }
+
+		function swap(basic_ostream &$oss___)
+		{
+			$h = $this->_M_handle_p;
+			$this->_M_handle_p = $oss___->_M_handle_p;
+			$oss___->_M_handle_p = $h;
+		}
 	} /* EOC */
 
 	class basic_istringstream extends basic_istream
 	{
 		function __construct(string &$buf)
 		{
-			$this->_M_handle_g = \tmpfile();
-			$r = \fwrite($this->_M_handle_g, $buf);
-			if ($r === false) {
+			$this->_M_handle_g = \fopen('php://memory', 'wb+');
+			if ($this->_M_handle_g === false) {
 				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_handle_g = null;
+			} else {
+				$r = \fwrite($this->_M_handle_g, $buf);
+				if ($r === false) {
+					$this->setstate(ios_base::badbit|ios_base::failbit);
+				}
 			}
 		}
 
 		function __destruct()
-		{ \fclose($this->_M_handle_g); }
+		{
+			if ($this->_M_handle_g !== null) {
+				\fclose($this->_M_handle_g);
+			}
+		}
 
-		function str()
-		{ return \stream_get_contents($this->_M_handle_g); }
+		function & str()
+		{
+			$str = "";
+			$off = \ftell($this->_M_handle_g);
+			if ($off === false) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$off = -1;
+			} else {
+				if (-1 == \fseek($this->_M_handle_g, 0, \SEEK_SET)) {
+					$this->setstate(ios_base::badbit|ios_base::failbit);
+				} else {
+					$str = \stream_get_contents($this->_M_handle_g);
+					if ($str === false) {
+						$str = "";
+						$this->_M_count_g = 0;
+					} else {
+						$this->_M_count_g = memlen($str);
+					}
+					if (-1 == \fseek($this->_M_handle_g, $off, \SEEK_CUR)) {
+						$this->setstate(ios_base::badbit|ios_base::failbit);
+					}
+					if (\feof($this->_M_handle_g)) {
+						$this->clear(ios_base::eofbit);
+					}
+				}
+			}
+			return $str;
+		}
 
-		function swap(basic_istringstream &$iss)
+		function swap(basic_istringstream &$iss___)
 		{
 			$h = $this->_M_handle_g;
-			$this->_M_handle_g = $iss->_M_handle_g;
-			$iss->_M_handle_g = $h;
+			$this->_M_handle_g = $iss___->_M_handle_g;
+			$iss___->_M_handle_g = $h;
 		}
-	}
+	} /* EOC */
 
 	class basic_ostringstream extends basic_ostream
 	{
 		function __construct()
-		{ $this->_M_handle_p = \tmpfile(); }
+		{
+			$this->_M_handle_p = \fopen('php://memory', 'wb+');
+			if ($this->_M_handle_p === false) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_handle_p = null;
+			}
+		}
 
 		function __destruct()
-		{ \fclose($this->_M_handle_p); }
-
-		function & put($ch___)
 		{
-			$this->write($ch___);
-			return $this;
+			if ($this->_M_handle_p !== null) {
+				\fclose($this->_M_handle_p);
+			}
 		}
 
-		function str()
-		{ return \stream_get_contents($this->_M_handle_p); }
+		function & str()
+		{
+			$str = "";
+			$off = \ftell($this->_M_handle_g);
+			if ($off === false) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$off = -1;
+			} else {
+				if (-1 == \fseek($this->_M_handle_p, 0, \SEEK_SET)) {
+					$this->setstate(ios_base::badbit|ios_base::failbit);
+				} else {
+					$str = \stream_get_contents($this->_M_handle_p);
+					if ($str === false) {
+						$str = "";
+					}
+					if (-1 == \fseek($this->_M_handle_p, $off, \SEEK_CUR)) {
+						$this->setstate(ios_base::badbit|ios_base::failbit);
+					}
+					if (\feof($this->_M_handle_p)) {
+						$this->clear(ios_base::eofbit);
+					}
+				}
+			}
+			return $str;
+		}
 
-		function swap(basic_ostringstream &$oss)
+		function swap(basic_ostringstream &$oss___)
 		{
 			$h = $this->_M_handle_p;
-			$this->_M_handle_p = $oss->_M_handle_p;
-			$oss->_M_handle_p = $h;
+			$this->_M_handle_p = $oss___->_M_handle_p;
+			$oss___->_M_handle_p = $h;
 		}
-	}
+	} /* EOC */
+
+	class basic_ifstream extends basic_istream
+	{
+		function _F_strmode(int $m___)
+		{
+			$mode = 'r';
+			if (($m___ & ios_base::in) != 0) {
+				$mode = 'r';
+			}
+			/*
+			if (($m___ & ios_base::out) != 0 || ($m___ & ios_base::out|ios_base::trunc) != 0) {
+				$mode = 'w';
+			}
+			if (($m___ & ios_base::out|ios_base::trunc) != 0) {
+				$mode = 'w';
+			}
+			if (($m___ & ios_base::out|ios_base::app) != 0) {
+				$mode = 'a';
+			}
+			if (($m___ & ios_base::in|ios_base::out|ios_base::app) != 0) {
+				$mode = 'a+';
+			}
+			if (($m___ & ios_base::in|ios_base::out) != 0) {
+				$mode = 'r+';
+			}
+			if (($m___ & ios_base::in|ios_base::out|ios_base::trunc) != 0) {
+				$mode = 'w+';
+			}
+			*/
+			if (($m___ & ios_base::bin) != 0) {
+				$mode = 'b' . $mode;
+			}
+			return $mode;
+		}
+
+		function open(string $filen___, int $m___ = ios_base::in)
+		{
+			$this->_M_handle_g = \fopen($filen___, $this->_F_strmode($m___));
+			if ($this->_M_handle_g === false) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_handle_g = null;
+			} else {
+				if (($m___ & ios_base::ate) != 0) {
+					if (-1 == \fseek($this->_M_handle_g, $off___, $seekdir___)) {
+						$this->setstate(ios_base::badbit|ios_base::failbit);
+						\fclose($this->_M_handle_g);
+						$this->_M_handle_g = null;
+					}
+					if ($this->_M_handle_g !== null && \feof($this->_M_handle_g)) {
+						$this->clear(ios_base::eofbit);
+					}
+				}
+			}
+		}
+
+		function is_open()
+		{ return $this->_M_handle_g !== null; }
+
+		function close()
+		{
+			if ($this->_M_handle_g !== null) {
+				\fclose($this->_M_handle_g);
+				$this->_M_handle_g = null;
+			}
+		}
+	} /* EOC */
 
 	class _C_ostream_cin extends basic_istream
 	{

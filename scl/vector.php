@@ -18,13 +18,6 @@ declare(strict_types=1);
 
 namespace
 {
-	
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_base_iterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_iterator.php";
-}
-
-namespace
-{
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_iteratable.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_vector.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_vector.php";
@@ -70,6 +63,9 @@ namespace
 	std\invoke($fn, 4, 0);
 
 	std\cerr(std\EPROCLIM);
+
+	//\ini_set('log_errors', "1");
+	//\ini_set('display_errors', "1");
 
 } /* EONS */
 
