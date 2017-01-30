@@ -101,13 +101,13 @@ $v = std\make_vector(0, 1 ,2);
 std\place_generate_n(
 	  std\front_inserter($v)
 	, 5 
-	, std\urandom(100,200)
+	, std\urandom(100, 200)
 );
 
 std\place_generate_n(
 	  std\back_inserter($v)
 	, 5 
-	, std\urandom(300,500)
+	, std\urandom(300, 500)
 );
 
 std\cout($v);

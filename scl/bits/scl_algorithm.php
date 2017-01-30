@@ -263,7 +263,9 @@ namespace std
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				$out_last___->_F_pos_assign($last___->_F_this());
+				$out_last___->_F_pos_assign(
+					_F_builtin_deep_copy($last___->_F_this())
+				);
 				$last___->_F_prev();
 				$out_last___->_F_prev();
 			}
