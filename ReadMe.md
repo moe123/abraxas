@@ -260,108 +260,110 @@ PHP7 built with:
 
 # eof
 
-[algorithm.php](./scl/algorithm.php)
+[bits/scl_algorithm](./scl/bits/scl_algorithm.php)
 
-[bits/scl_algorithm.php](./scl/bits/scl_algorithm.php)
+[bits/scl_base_algorithm](./scl/bits/scl_base_algorithm.php)
 
-[bits/scl_base_algorithm.php](./scl/bits/scl_base_algorithm.php)
+[bits/scl_base_container_traits](./scl/bits/scl_base_container_traits.php)
 
-[bits/scl_base_container_traits.php](./scl/bits/scl_base_container_traits.php)
+[bits/scl_base_endian](./scl/bits/scl_base_endian.php)
 
-[bits/scl_base_endian.php](./scl/bits/scl_base_endian.php)
+[bits/scl_base_errno](./scl/bits/scl_base_errno.php)
 
-[bits/scl_base_errno.php](./scl/bits/scl_base_errno.php)
+[bits/scl_base_iterator_traits](./scl/bits/scl_base_iterator_traits.php)
 
-[bits/scl_base_iterator_traits.php](./scl/bits/scl_base_iterator_traits.php)
+[bits/scl_base_operator_traits](./scl/bits/scl_base_operator_traits.php)
 
-[bits/scl_base_operator_traits.php](./scl/bits/scl_base_operator_traits.php)
+[bits/scl_base_stdio](./scl/bits/scl_base_stdio.php)
 
-[bits/scl_base_stdio.php](./scl/bits/scl_base_stdio.php)
+[bits/scl_base_stdlib](./scl/bits/scl_base_stdlib.php)
 
-[bits/scl_base_stdlib.php](./scl/bits/scl_base_stdlib.php)
+[bits/scl_base_utility_traits](./scl/bits/scl_base_utility_traits.php)
 
-[bits/scl_base_utility_traits.php](./scl/bits/scl_base_utility_traits.php)
+[bits/scl_basic_dict](./scl/bits/scl_basic_dict.php)
 
-[bits/scl_basic_dict.php](./scl/bits/scl_basic_dict.php)
+[bits/scl_basic_exception](./scl/bits/scl_basic_exception.php)
 
-[bits/scl_basic_exception.php](./scl/bits/scl_basic_exception.php)
+[bits/scl_basic_forward_list](./scl/bits/scl_basic_forward_list.php)
 
-[bits/scl_basic_forward_list.php](./scl/bits/scl_basic_forward_list.php)
+[bits/scl_basic_ios](./scl/bits/scl_basic_ios.php)
 
-[bits/scl_basic_ios.php](./scl/bits/scl_basic_ios.php)
+[bits/scl_basic_iteratable](./scl/bits/scl_basic_iteratable.php)
 
-[bits/scl_basic_iteratable.php](./scl/bits/scl_basic_iteratable.php)
+[bits/scl_basic_map](./scl/bits/scl_basic_map.php)
 
-[bits/scl_basic_map.php](./scl/bits/scl_basic_map.php)
+[bits/scl_basic_seq_list](./scl/bits/scl_basic_seq_list.php)
 
-[bits/scl_basic_seq_list.php](./scl/bits/scl_basic_seq_list.php)
+[bits/scl_basic_set](./scl/bits/scl_basic_set.php)
 
-[bits/scl_basic_set.php](./scl/bits/scl_basic_set.php)
+[bits/scl_basic_tuple](./scl/bits/scl_basic_tuple.php)
 
-[bits/scl_basic_tuple.php](./scl/bits/scl_basic_tuple.php)
+[bits/scl_basic_utility](./scl/bits/scl_basic_utility.php)
 
-[bits/scl_basic_utility.php](./scl/bits/scl_basic_utility.php)
+[bits/scl_basic_vector](./scl/bits/scl_basic_vector.php)
 
-[bits/scl_basic_vector.php](./scl/bits/scl_basic_vector.php)
+[bits/scl_collation](./scl/bits/scl_collation.php)
 
-[bits/scl_collation.php](./scl/bits/scl_collation.php)
+[bits/scl_collator](./scl/bits/scl_collator.php)
 
-[bits/scl_collator.php](./scl/bits/scl_collator.php)
+[bits/scl_dict](./scl/bits/scl_dict.php)
 
-[bits/scl_dict.php](./scl/bits/scl_dict.php)
+[bits/scl_forward_list](./scl/bits/scl_forward_list.php)
 
-[bits/scl_forward_list.php](./scl/bits/scl_forward_list.php)
+[bits/scl_functional](./scl/bits/scl_functional.php)
 
-[bits/scl_functional.php](./scl/bits/scl_functional.php)
+[bits/scl_iostream](./scl/bits/scl_iostream.php)
 
-[bits/scl_iostream.php](./scl/bits/scl_iostream.php)
+[bits/scl_iterator](./scl/bits/scl_iterator.php)
 
-[bits/scl_iterator.php](./scl/bits/scl_iterator.php)
+[bits/scl_locale](./scl/bits/scl_locale.php)
 
-[bits/scl_locale.php](./scl/bits/scl_locale.php)
+[bits/scl_numeric_limits](./scl/bits/scl_numeric_limits.php)
 
-[bits/scl_numeric_limits.php](./scl/bits/scl_numeric_limits.php)
+[bits/scl_pair](./scl/bits/scl_pair.php)
 
-[bits/scl_pair.php](./scl/bits/scl_pair.php)
+[bits/scl_quad](./scl/bits/scl_quad.php)
 
-[bits/scl_quad.php](./scl/bits/scl_quad.php)
+[bits/scl_quint](./scl/bits/scl_quint.php)
 
-[bits/scl_quint.php](./scl/bits/scl_quint.php)
+[bits/scl_seq_list](./scl/bits/scl_seq_list.php)
 
-[bits/scl_seq_list.php](./scl/bits/scl_seq_list.php)
+[bits/scl_set](./scl/bits/scl_set.php)
 
-[bits/scl_set.php](./scl/bits/scl_set.php)
+[bits/scl_triad](./scl/bits/scl_triad.php)
 
-[bits/scl_triad.php](./scl/bits/scl_triad.php)
+[bits/scl_tuple](./scl/bits/scl_tuple.php)
 
-[bits/scl_tuple.php](./scl/bits/scl_tuple.php)
+[bits/scl_type_traits](./scl/bits/scl_type_traits.php)
 
-[bits/scl_type_traits.php](./scl/bits/scl_type_traits.php)
+[bits/scl_u8string](./scl/bits/scl_u8string.php)
 
-[bits/scl_u8string.php](./scl/bits/scl_u8string.php)
+[bits/scl_vector](./scl/bits/scl_vector.php)
 
-[bits/scl_vector.php](./scl/bits/scl_vector.php)
+[algorithm](./scl/algorithm.php)
 
-[dict.php](./scl/dict.php)
+[dict](./scl/dict.php)
 
-[exception.php](./scl/exception.php)
+[exception](./scl/exception.php)
 
-[forward_list.php](./scl/forward_list.php)
+[forward_list](./scl/forward_list.php)
 
-[functional.php](./scl/functional.php)
+[functional](./scl/functional.php)
 
-[iostream.php](./scl/iostream.php)
+[iostream](./scl/iostream.php)
 
-[iterator.php](./scl/iterator.php)
+[iterator](./scl/iterator.php)
 
-[locale.php](./scl/locale.php)
+[locale](./scl/locale.php)
 
-[numeric_limits.php](./scl/numeric_limits.php)
+[numeric_limits](./scl/numeric_limits.php)
 
-[seq_list.php](./scl/seq_list.php)
+[seq_list](./scl/seq_list.php)
 
-[set.php](./scl/set.php)
+[set](./scl/set.php)
 
-[tuple.php](./scl/tuple.php)
+[tuple](./scl/tuple.php)
 
-[vector.php](./scl/vector.php)
+[vector](./scl/vector.php)
+
+#
