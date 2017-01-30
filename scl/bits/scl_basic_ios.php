@@ -292,9 +292,23 @@ namespace std
 
 		function swap(basic_istream &$iss___)
 		{
+			$l = $this->_M_locale;
+			$s = $this->_M_sstate;
+			$f = $this->_M_fmtflags;
 			$h = $this->_M_handle_g;
+			$c = $this->_M_count_g;
+
+			$this->_M_locale = $iss___->_M_locale;
+			$this->_M_sstate = $iss___->_M_sstate;
+			$this->_M_fmtflags = $iss___->_M_fmtflags;
 			$this->_M_handle_g = $iss___->_M_handle_g;
+			$this->_M_count_g = $iss___->_M_count_g;
+
+			$iss___->_M_locale = $l;
+			$iss___->_M_sstate = $s;
+			$iss___->_M_fmtflags = $f;
 			$iss___->_M_handle_g = $h;
+			$iss___->_M_count_g = $c;
 		}
 	} /* EOC */
 
@@ -308,6 +322,12 @@ namespace std
 
 		function & write($d___, int $c___ = -1)
 		{
+			if ($this->_M_handle_p === null) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_count_p = 0;
+				return $this;
+			}
+
 			$r = false;
 			if ($c___ > 0) {
 				$r = \fwrite($this->_M_handle_p, $this->_F_put($d___), $c___);
@@ -331,6 +351,12 @@ namespace std
 		
 		function & flush()
 		{
+			if ($this->_M_handle_p === null) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_count_p = 0;
+				return $this;
+			}
+
 			if (\fflush($this->_M_handle_p) === false) {
 				$this->setstate(ios_base::badbit);
 				$this->_M_count_p = 0;
@@ -340,6 +366,12 @@ namespace std
 
 		function tellp()
 		{
+			if ($this->_M_handle_p === null) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_count_p = 0;
+				return -1;
+			}
+
 			$r = \ftell($this->_M_handle_p);
 			if ($r === false) {
 				$r = -1;
@@ -349,6 +381,12 @@ namespace std
 
 		function & seekp(int $off___, int $seekdir___ = ios_base::beg)
 		{
+			if ($this->_M_handle_p === null) {
+				$this->setstate(ios_base::badbit|ios_base::failbit);
+				$this->_M_count_p = 0;
+				return $this;
+			}
+
 			$this->clear(ios_base::goodbit);
 			if (-1 == \fseek($this->_M_handle_p, $off___, $seekdir___)) {
 				$this->setstate(ios_base::badbit|ios_base::failbit);
@@ -364,9 +402,23 @@ namespace std
 
 		function swap(basic_ostream &$oss___)
 		{
+			$l = $this->_M_locale;
+			$s = $this->_M_sstate;
+			$f = $this->_M_fmtflags;
 			$h = $this->_M_handle_p;
+			$c = $this->_M_count_p;
+
+			$this->_M_locale = $oss___->_M_locale;
+			$this->_M_sstate = $oss___->_M_sstate;
+			$this->_M_fmtflags = $oss___->_M_fmtflags;
 			$this->_M_handle_p = $oss___->_M_handle_p;
+			$this->_M_count_p = $oss___->_M_count_p;
+
+			$oss___->_M_locale = $l;
+			$oss___->_M_sstate = $s;
+			$oss___->_M_fmtflags = $f;
 			$oss___->_M_handle_p = $h;
+			$oss___->_M_count_p = $c;
 		}
 	} /* EOC */
 
@@ -421,13 +473,6 @@ namespace std
 			}
 			return $str;
 		}
-
-		function swap(basic_istringstream &$iss___)
-		{
-			$h = $this->_M_handle_g;
-			$this->_M_handle_g = $iss___->_M_handle_g;
-			$iss___->_M_handle_g = $h;
-		}
 	} /* EOC */
 
 	class basic_ostringstream extends basic_ostream
@@ -473,47 +518,73 @@ namespace std
 			}
 			return $str;
 		}
-
-		function swap(basic_ostringstream &$oss___)
-		{
-			$h = $this->_M_handle_p;
-			$this->_M_handle_p = $oss___->_M_handle_p;
-			$oss___->_M_handle_p = $h;
-		}
 	} /* EOC */
 
 	class basic_ifstream extends basic_istream
 	{
 		function _F_strmode(int $m___)
 		{
-			$mode = 'r';
+			$r = '';
+			$w = '';
+			$a = '';
 			if (($m___ & ios_base::in) != 0) {
-				$mode = 'r';
+				$r = 'r';
 			}
+
 			/*
-			if (($m___ & ios_base::out) != 0 || ($m___ & ios_base::out|ios_base::trunc) != 0) {
-				$mode = 'w';
+			if (($m___ & ios_base::in|ios_base::out) != 0) {
+				$r = 'r+';
+			}
+			
+			if (($m___ & ios_base::out) != 0 ) {
+				$w = 'w';
 			}
 			if (($m___ & ios_base::out|ios_base::trunc) != 0) {
-				$mode = 'w';
+				$w = 'w';
 			}
+
+			if (($m___ & ios_base::in|ios_base::out|ios_base::trunc) != 0) {
+				$w = 'w+';
+			}
+
 			if (($m___ & ios_base::out|ios_base::app) != 0) {
-				$mode = 'a';
+				$a = 'a';
 			}
 			if (($m___ & ios_base::in|ios_base::out|ios_base::app) != 0) {
-				$mode = 'a+';
-			}
-			if (($m___ & ios_base::in|ios_base::out) != 0) {
-				$mode = 'r+';
-			}
-			if (($m___ & ios_base::in|ios_base::out|ios_base::trunc) != 0) {
-				$mode = 'w+';
+				$a = 'a+';
 			}
 			*/
+			$mode .= $r . $w . $a;
+
 			if (($m___ & ios_base::bin) != 0) {
-				$mode = 'b' . $mode;
+				$mode .= 'b';
 			}
 			return $mode;
+		}
+
+		function _F_get_mode($h___)
+		{
+			if ($this->_M_handle_g !== null && \is_resource($h___)) {
+				return \stream_get_meta_data($this->_M_handle_g)['mode'];
+			}
+			return '';
+		}
+
+		function _F_set_handle($h___)
+		{
+			if (\is_resource($h___)) {
+				$mode = $this->_F_get_mode($this->_M_handle_g);
+				if ($mode == 'rb' || $mode == 'r') {
+					$this->_M_handle_g = $h___;
+				}
+			}
+		}
+
+		function __destruct()
+		{
+			if ($this->_M_handle_p !== null) {
+				\fclose($this->_M_handle_p);
+			}
 		}
 
 		function open(string $filen___, int $m___ = ios_base::in)

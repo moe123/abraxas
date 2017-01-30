@@ -67,6 +67,28 @@ namespace
 	//\ini_set('log_errors', "1");
 	//\ini_set('display_errors', "1");
 
+	$f1 = fopen('php://memory', 'w+');
+	fwrite($f1, 'foo1');
+	fwrite($f1, 'bar1');
+
+	$f2 = fopen('php://memory', 'w+');
+	fwrite($f2, 'foo2');
+	fwrite($f2, 'bar2');
+	
+	rewind($f1);
+	$contents = stream_get_contents($f1);	
+	print_r(stream_get_meta_data($f1));
+	print_r(get_resource_type($f1));
+	echo "\n" . $contents . "\n";
+	fclose($f1);
+
+	rewind($f2);
+	$contents = stream_get_contents($f2);
+	print_r(stream_get_meta_data($f2));
+	print_r(get_resource_type($f2));
+	echo "\n" . $contents . "\n";
+	fclose($f2);
+
 } /* EONS */
 
 /* EOF */
