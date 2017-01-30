@@ -181,7 +181,7 @@ namespace std
 
 		function & sort(callable $compare = null)
 		{
-			if ($this->_M_size > 2) {
+			if ($this->_M_size) {
 				_F_builtin_sort($this, $compare);
 			}
 			return $this;

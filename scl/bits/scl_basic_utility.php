@@ -59,6 +59,7 @@ namespace std
 			$f = $this->_M_f;
 			$this->_M_f = $comparator->_M_f;
 			$comparator->_M_f = $f;
+
 			return $this;
 		}
 	} /* EOC */

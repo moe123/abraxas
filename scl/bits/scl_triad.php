@@ -46,12 +46,15 @@ namespace std
 			$first = $this->first;
 			$second = $this->second;
 			$third = $this->third;
+
 			$this->first = $triad->first;
 			$this->second = $triad->second;
 			$this->third = $triad->third;
+
 			$triad->first = $first;
 			$triad->second = $second;
 			$triad->third = $third;
+
 			return $this;
 		}
 	} /* EOC */

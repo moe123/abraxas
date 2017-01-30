@@ -54,16 +54,19 @@ namespace std
 			$third = $this->third;
 			$fourth = $this->fourth;
 			$fifth = $this->fifth;
+
 			$this->first = $quint->first;
 			$this->second = $quint->second;
 			$this->third = $quint->third;
 			$this->fourth = $quint->fourth;
 			$this->fifth = $quint->fifth;
+
 			$quint->first = $first;
 			$quint->second = $second;
 			$quint->third = $third;
 			$quint->fourth = $fourth;
 			$quint->fifth = $fifth;
+
 			return $this;
 		}
 	} /* EOC */

@@ -61,10 +61,13 @@ namespace std
 		{
 			$c = $this->_M_container;
 			$sz = $this->_M_size;
+
 			$this->_M_container = $set->_M_container;
 			$this->_M_size = $set->_M_size;
+
 			$set->_M_container = $c;
 			$set->_M_size = $sz;
+
 			return $this;
 		}
 

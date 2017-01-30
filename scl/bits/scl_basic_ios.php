@@ -290,7 +290,7 @@ namespace std
 		function gcount()
 		{ return $this->_M_count_g; }
 
-		function swap(basic_istream &$iss___)
+		function & swap(basic_istream &$iss___)
 		{
 			$l = $this->_M_locale;
 			$s = $this->_M_sstate;
@@ -309,6 +309,8 @@ namespace std
 			$iss___->_M_fmtflags = $f;
 			$iss___->_M_handle_g = $h;
 			$iss___->_M_count_g = $c;
+
+			return $this;
 		}
 	} /* EOC */
 
@@ -400,7 +402,7 @@ namespace std
 		function pcount()
 		{ return $this->_M_count_p ; }
 
-		function swap(basic_ostream &$oss___)
+		function & swap(basic_ostream &$oss___)
 		{
 			$l = $this->_M_locale;
 			$s = $this->_M_sstate;
@@ -419,6 +421,8 @@ namespace std
 			$oss___->_M_fmtflags = $f;
 			$oss___->_M_handle_p = $h;
 			$oss___->_M_count_p = $c;
+
+			return $this;
 		}
 	} /* EOC */
 

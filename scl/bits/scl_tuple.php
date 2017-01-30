@@ -49,10 +49,13 @@ namespace std
 		{
 			$c = $this->_M_container;
 			$sz = $this->_M_size;
+
 			$this->_M_container = $tuple->_M_container;
 			$this->_M_size = $tuple->_M_size;
+
 			$tuple->_M_container = $c;
 			$tuple->_M_size = $sz;
+
 			return $this;
 		}
 	} /* EOC */

@@ -50,14 +50,17 @@ namespace std
 			$second = $this->second;
 			$third = $this->third;
 			$fourth = $this->fourth;
+
 			$this->first = $quad->first;
 			$this->second = $quad->second;
 			$this->third = $quad->third;
 			$this->fourth = $quad->fourth;
+
 			$quad->first = $first;
 			$quad->second = $second;
 			$quad->third = $third;
 			$quad->fourth = $fourth;
+
 			return $this;
 		}
 	} /* EOC */

@@ -42,10 +42,13 @@ namespace std
 		{
 			$first = $this->first;
 			$second = $this->second;
+
 			$this->first = $pair->first;
 			$this->second = $pair->second;
+
 			$pair->first = $first;
 			$pair->second = $second;
+
 			return $this;
 		}
 	} /* EOC */
