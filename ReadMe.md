@@ -2,7 +2,7 @@
 A digression to the world of scripting languages and PHP.
 
 <sub><sup>Perhaps one of the most significant advances made by Arabic mathematics began at this time 
-with the work of al-Khwarizmi, namely the beginnings of algebra (1). It is important to 
+with the work of al-Khwarizmi (1), namely the beginnings of algebra (2). It is important to 
 understand just how significant this new idea was. It was a revolutionary move away from 
 the Greek concept of mathematics which was essentially geometry. Algebra was a unifying 
 theory which allowed rational numbers, irrational numbers, geometrical magnitudes, etc., 
@@ -14,7 +14,10 @@ not happened before.</sup></sub>
 
 <sub><sup>-- The MacTutor History of Mathematics archive --</sup></sub>
 
-<sub><sup>1 - </sup></sub><sub><sup>الجبر</sup></sub><sub><sup> : Al-kitāb al-mukhtaṣar fī ḥisāb al-ğabr wa’l-muqābala</sup></sub>
+<sub><sup>1 - </sup></sub><sub><sup> In the twelfth century, Latin translations of his work on the Indian numerals introduced the decimal positional number system to the Western world. @see Liber Abaci ; Leonardo of Pisa, Fibonacci.</sup></sub>
+
+<sub><sup>2 - </sup></sub><sub><sup>الجبر</sup></sub><sub><sup> : Al-kitāb al-mukhtaṣar fī ḥisāb al-ğabr wa’l-muqābala</sup></sub>
+
 
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
