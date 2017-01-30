@@ -322,15 +322,26 @@ namespace std
 
 	abstract class placeholders
 	{
-		const _1 = "^std@_0";
-		const _2 = "^std@_1";
-		const _3 = "^std@_2";
-		const _4 = "^std@_3";
-		const _5 = "^std@_4";
-		const _6 = "^std@_5";
-		const _7 = "^std@_6";
-		const _8 = "^std@_7";
-		const _9 = "^std@_8";
+		const _1  = "^std@_0";
+		const _2  = "^std@_1";
+		const _3  = "^std@_2";
+		const _4  = "^std@_3";
+		const _5  = "^std@_4";
+		const _6  = "^std@_5";
+		const _7  = "^std@_6";
+		const _8  = "^std@_7";
+		const _9  = "^std@_8";
+		const _10 = "^std@_9";
+		const _11 = "^std@_10";
+		const _12 = "^std@_11";
+		const _13 = "^std@_12";
+		const _14 = "^std@_13";
+		const _15 = "^std@_14";
+		const _16 = "^std@_15";
+		const _17 = "^std@_16";
+		const _18 = "^std@_17";
+		const _19 = "^std@_18";
+		const _20 = "^std@_19";
 	};
 
 	function bond1(string $fn___)
