@@ -239,7 +239,7 @@ function fn(int $one, string $two, float $three, int $four) {
 }
 
 $fn = std\bind(
-	std\bond1('fn')
+	  std\bond1('fn')
 	, std\placeholders::_1
 	, "hello"
 	, std\placeholders::_3
