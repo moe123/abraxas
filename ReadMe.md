@@ -47,7 +47,6 @@ std\fprintln(std\stderr, "%s %s %s", "Hello", "World", "!");
 while (!std\cin($buf)->eof()) {
 	std\cout($buf);
 }
-
 ...
 ```
 
