@@ -16,13 +16,13 @@
 
 namespace std
 {
-	abstract class basic_seq_list extends basic_iteratable implements
+	abstract class basic_seqlist extends basic_iteratable implements
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable
 		, \Countable
 	{
-		const container_category = basic_iteratable_tag::basic_seq_list;
+		const container_category = basic_iteratable_tag::basic_seqlist;
 
 		use _T_builtin_array_container_traits;
 		use _T_builtin_array_int_operator_traits;

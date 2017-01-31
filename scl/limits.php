@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// numeric_limits.php
+// limits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

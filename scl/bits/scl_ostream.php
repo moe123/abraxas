@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_u8string.php
+// scl_ostream.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -14,13 +14,10 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_base_stdlib.php";
-} /* EONS */
-
 namespace std
 {
+	final class ostream extends basic_ostream
+	{ /* NOP */ } /* EOC */
 } /* EONS */
 
 /* EOF */

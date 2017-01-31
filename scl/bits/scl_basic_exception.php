@@ -17,7 +17,13 @@
 namespace std
 {
 	trait _T_builtin_exception_traits 
-	{ function what() { return $this->getMessage(); } }
+	{
+		function what() { return $this->getMessage(); }
+		
+		function rethrow() {
+			throw new static($this->getMessage());
+		}
+	}
 
 	class basic_exception extends \Exception
 	{ use _T_builtin_exception_traits; }

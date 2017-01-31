@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// seq_list.php
+// seqlist.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -17,8 +17,8 @@
 namespace
 {
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_iteratable.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_seq_list.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_seq_list.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_seqlist.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_seqlist.php";
 } /* EONS */
 
 /* EOF */

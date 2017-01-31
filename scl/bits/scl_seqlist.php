@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_seq_list.php
+// scl_seqlist.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,7 +16,7 @@
 
 namespace std
 {
-	final class seq_list extends basic_seq_list
+	final class seqlist extends basic_seqlist
 	{
 		use _T_multi_construct_traits;
 

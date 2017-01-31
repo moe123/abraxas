@@ -14,27 +14,6 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_iterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_container_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_operator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_utility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_algorithm.php";
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_ios.php";
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_iterator.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collation.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collator.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_locale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_functional.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_algorithm.php";
-} /* EONS */
-
 namespace std
 {
 	abstract class comparison_result
@@ -185,6 +164,33 @@ namespace std
 		return new tuple;
 	}
 
+	function make_timespec(int $sec___, int $nsec___)
+	{ return new timespec($sec___, $nsec___); }
+
+	function make_tm(
+			  int $tm_sec___
+			, int $tm_min___
+			, int $tm_hour___
+			, int $tm_mday___
+			, int $tm_mon___
+			, int $tm_year___
+			, int $tm_wday___
+			, int $tm_yday___
+			, int $tm_isdst___
+		) {
+			return new tm(
+				  $tm_sec___
+				, $tm_min___
+				, $tm_hour___
+				, $tm_mday___
+				, $tm_mon___
+				, $tm_year___
+				, $tm_wday___
+				, $tm_yday___
+				, $tm_isdst___
+			);
+		}
+
 	function make_collator(string $id___, int $lv___ = collator_level::none)
 	{ return new collator($id___, $lv___); }
 
@@ -200,8 +206,8 @@ namespace std
 	function make_set(...$args___)
 	{ return new set($args___); }
 
-	function make_seq_list(...$args___)
-	{ return new seq_list($args___); }
+	function make_seqlist(...$args___)
+	{ return new seqlist($args___); }
 
 	function make_tuple(...$args___)
 	{ return new tuple($args___); }
