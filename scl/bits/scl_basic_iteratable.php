@@ -51,7 +51,7 @@ namespace std
 
 	abstract class basic_iteratable
 	{
-		const container_category = base_basic_iteratable_tag::basic_iteratable;
+		const container_category = basic_iteratable_tag::basic_iteratable;
 	} /* EOC */
 } /* EONS */
 
