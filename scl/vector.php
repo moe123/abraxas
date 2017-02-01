@@ -22,12 +22,21 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_vector.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_vector.php";
 
-	$delay = std\make_timespec(1, 50000000);
+	$delay = std\make_timespec(0, 50000000);
 	
 	print_r(std\nanosleep($delay));
+	print_r(std\endl);
+	print_r(std\tzset());
+	print_r(std\endl);
+	print_r(std\gmtime(std\time()));
+	print_r(std\endl);
+	print_r(std\localtime(std\time()));
+	print_r(std\endl);
 
-	function foo()
+	function trap()
 	{ std\assert(3 == 2); }
+	// trap();
+	std\assert(2 == 2);
 
 	$v = std\make_vector(0, 1 ,2);
 	std\place_fill_n(
@@ -35,10 +44,6 @@ namespace
 		, 5
 		, 8
 	);
-
-	foo();
-
-	std\assert(2 == 2);
 
 	std\place_generate_n(
 		  std\front_inserter($v)

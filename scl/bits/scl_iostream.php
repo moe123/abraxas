@@ -16,9 +16,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_base_errno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_base_stdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_base_stdlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cunistd.php";
 
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_ios.php";
 

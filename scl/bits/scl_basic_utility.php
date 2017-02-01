@@ -164,19 +164,22 @@ namespace std
 		return new tuple;
 	}
 
-	function make_timespec(int $sec___, int $nsec___)
+	function make_timespec(int $sec___ = 0, int $nsec___ = 0)
 	{ return new timespec($sec___, $nsec___); }
 
+	function make_timeval(int $sec___ = 0, int $usec___ = 0)
+	{ return new timeval($sec___, $usec___); }
+
 	function make_tm(
-			  int $tm_sec___
-			, int $tm_min___
-			, int $tm_hour___
-			, int $tm_mday___
-			, int $tm_mon___
-			, int $tm_year___
-			, int $tm_wday___
-			, int $tm_yday___
-			, int $tm_isdst___
+			  int $tm_sec___   = 0
+			, int $tm_min___   = 0
+			, int $tm_hour___  = 0
+			, int $tm_mday___  = 0
+			, int $tm_mon___   = 0
+			, int $tm_year___  = 0
+			, int $tm_wday___  = 0
+			, int $tm_yday___  = 0
+			, int $tm_isdst___ = 0
 		) {
 			return new tm(
 				  $tm_sec___
