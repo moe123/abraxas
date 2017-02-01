@@ -89,6 +89,105 @@ namespace std
 		}
 	} /* EOC */
 
+	function _F_tzsys_1()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
+			if (false !== ($tz = @\readlink("/etc/localtime"))) {
+				if (false !== ($tz = @\substr($tz, 20))) {
+					return $tz;
+				}
+			}
+		} else {
+			return _F_tzsys_2();
+		}
+		seterrno(EINVAL);
+		return _F_tzsys_2();
+	}
+
+	function _F_tzsys_2()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
+			$cmd = "tzutil /g";
+		} else {
+			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
+		}
+		if (false !== ($tz = \exec($cmd))) {
+			return $tz;
+		}
+		seterrno(EINVAL);
+		return _F_tzsys_3();
+	}
+
+	function _F_tzsys_3()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
+			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
+				$l = \timezone_abbreviations_list();
+				foreach($l as $k => $v) {
+					if (\strtolower($k) == \strtolower($tz)) {
+						$tz = $v[0]["timezone_id"];
+						return $tz;
+					}
+				}
+			}
+		}
+		seterrno(EINVAL);
+		return _F_tzsys_4();
+	}
+
+	function _F_tzsys_4()
+	{
+		if (false !== ($tz = @\getenv("TZ"))) {
+			return $tz;
+		}
+		seterrno(EINVAL);
+		return "UTC";
+	}
+
+	function tzsys()
+	{ return _F_tzsys_1(); }
+
+	function tzname()
+	{ return  @\date_default_timezone_get(); }
+	
+	function tzoffset()
+	{
+		$tz = new \DateTimeZone(@\date_default_timezone_get());
+		$tm = new \DateTime("now", $tz);
+		return $tz->getOffset($tm);
+	}
+
+	function tzdaylight()
+	{
+		$tz = new \DateTimeZone(@\date_default_timezone_get());
+		$tm = new \DateTime("now", $tz);
+		$ts = $tz->getTransitions();
+		$st = $tm->format('U');
+		foreach ($ts as $k => &$v) {
+			if ($v["ts"] > $st) {
+				return $ts[($k -1)]['isdst'] ? 1 : 0;
+			}
+		}
+		seterrno(EINVAL);
+		return 0;
+	}
+
+	function tzset()
+	{
+		$tz = @\date_default_timezone_get();
+		if ($tz == "UTC") {
+			$tz = tzsys();
+			if (!@\date_default_timezone_set($tz)) {
+				$tz = "UTC";
+				!@\date_default_timezone_set($tz);
+			}
+		}
+		return $tz;
+	}
+
+	function tzsetwall()
+	{ return tzset(); }
+
 	function time(int &$tloc___ = null)
 	{
 		$t = \time();
@@ -101,9 +200,9 @@ namespace std
 	function strftime(string &$dest___, string $fmt___, tm &$tm___)
 	{
 		if ($tm___->_M_gmt) {
-			$dest___ = strftime($fmt___, timegm($tm___));
+			$dest___ = @\strftime($fmt___, timegm($tm___));
 		} else {
-			$dest___ = strftime($fmt___, timelocale($tm___));
+			$dest___ = @\strftime($fmt___, timelocale($tm___));
 		}
 		return memlen($dest___);
 	}
@@ -116,9 +215,9 @@ namespace std
 		}
 		\setlocale(\LC_TIME, $locid___);
 		if ($tm___->_M_gmt) {
-			$dest___ = strftime($fmt___, timegm($tm___));
+			$dest___ = @\strftime($fmt___, timegm($tm___));
 		} else {
-			$dest___ = strftime($fmt___, timelocale($tm___));
+			$dest___ = @\strftime($fmt___, timelocale($tm___));
 		}
 		\setlocale(\LC_TIME, $l);
 		return $dest___;
@@ -127,11 +226,16 @@ namespace std
 	function gettimeofday(timeval &$tv, timezone &$tz = null)
 	{
 		$r = \gettimeofday();
-		$tv->tv_sec  = $r["sec"];
-		$tv->tv_usec = $r["usec"];
-		if (!\is_null($tz)) {
-			$tz->tz_minuteswest = $r["minuteswest"];
-			$tz->tz_dsttime     = $r["dsttime"];
+		if (\is_array($r)) {
+			$tv->tv_sec  = $r["sec"];
+			$tv->tv_usec = $r["usec"];
+			if (!\is_null($tz)) {
+				$tz->tz_minuteswest = $r["minuteswest"];
+				$tz->tz_dsttime     = $r["dsttime"];
+			}
+		} else {
+			seterrno(EFAULT);
+			return -1;
 		}
 		return 0;
 	}
@@ -237,74 +341,6 @@ namespace std
 			, $tm___->tm_year + 1900
 			, $tm___->tm_isdst
 		);
-	}
-
-	function tzsys_1()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
-			if (false !== ($tz = @\readlink("/etc/localtime"))) {
-				if (false !== ($tz = @\substr($tz, 20))) {
-					return $tz;
-				}
-			}
-		}
-		return tzsys_2();
-	}
-
-	function tzsys_2()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
-			$cmp = "tzutil /g";
-		} else {
-			$cmp = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
-		}
-		if (false !== ($tz = \exec($cmp))) {
-			return $tz;
-		}
-		return tzsys_3();
-	}
-
-	function tzsys_3()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
-			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
-				$l = \timezone_abbreviations_list();
-				foreach($l as $k => $v) {
-					if (\strtolower($k) == \strtolower($tz)) {
-						$tz = $v[0]["timezone_id"];
-						return $tz;
-					}
-				}
-			}
-		}
-		return tzsys_4();
-	}
-
-	function tzsys_4()
-	{
-		if (false !== ($tz = @\getenv("TZ"))) {
-			return $tz;
-		}
-		return "UTC";
-	}
-
-	function tzsys()
-	{ return tzsys_1(); }
-
-	function tzname()
-	{ return  @\date_default_timezone_get(); }
-
-	function tzset()
-	{
-		$tz = @\date_default_timezone_get();
-		if ($tz == "UTC") {
-			$tz = tzsys();
-			if (!@\date_default_timezone_set($tz)) {
-				$tz = "UTC";
-				!@\date_default_timezone_set($tz);
-			}
-		}
-		return $tz;
 	}
 
 	function nanosleep(timespec &$req___, timespec &$rem___ = null)
