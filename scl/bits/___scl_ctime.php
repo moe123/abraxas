@@ -16,6 +16,134 @@
 
 namespace std
 {
+	/* TODO MORE */
+	const _T_zonetab = [
+		[ "offset" => (-1 * 60)         , "stdzone" => "MET" , "dlzone" => "MET DST" ], /* Middle European */
+		[ "offset" => (-2 * 60)         , "stdzone" => "EET" , "dlzone" => "EET DST" ], /* Eastern European */
+		[ "offset" => ((3 * 60) + 30)   , "stdzone" => "NST" , "dlzone" => "NST"     ], /* New Found Land */
+		[ "offset" => (4 * 60)          , "stdzone" => "AST" , "dlzone" => "ADT"     ], /* Atlantic */
+		[ "offset" => (5 * 60)          , "stdzone" => "EST" , "dlzone" => "EDT"     ], /* Eastern */
+		[ "offset" => (6 * 60)          , "stdzone" => "CST" , "dlzone" => "CDT"     ], /* Central */
+		[ "offset" => (7 * 60)          , "stdzone" => "MST" , "dlzone" => "MDT"     ], /* Mountain */
+		[ "offset" => (8 * 60)          , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
+		[ "offset" => (8 * 60)          , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
+		[ "offset" => (9 * 60)          , "stdzone" => "YST" , "dlzone" => "YDT"     ], /* Yukon */
+		[ "offset" => (10 * 60)         , "stdzone" => "HST" , "dlzone" => "HDT"     ], /* Hawaiian */
+		[ "offset" => (0 * 60)          , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
+		[ "offset" => (-10 * 60)        , "stdzone" => "EST" , "dlzone" => "EST"     ], /* Aust: Eastern */
+		[ "offset" => ((-10 * 60) + 30) , "stdzone" => "CST" , "dlzone" => "CST"     ], /* Aust: Central */
+		[ "offset" => (-8 * 60)         , "stdzone" => "WST" , "dlzone" => null      ], /* Aust: Western */
+		[ "offset" => (-12 * 60)        , "stdzone" => "NZST", "dlzone" => "NZST"    ], /* New Zealand */
+		[ "offset" => (-12 * 60)        , "stdzone" => "JST" , "dlzone" => null      ], /* Japanese */
+	];
+
+	function _F_tztab(int $zone___, int $dst___)
+	{
+		$zsec =  $zone___ * 60;
+		$z = @\date_default_timezone_get();
+		$l = \timezone_abbreviations_list();
+		if (\strpos($z, "/") === false) {
+			$z = \strtolower($z);
+			if (isset($l[$z])) {
+				foreach($l[$z] as &$v) {
+					if ($zsec == $v['offset']) {
+						if (intval($v['dst']) == $dst___) {
+							return \strtoupper($l[$z]);
+						}
+					}
+				}
+				unset($v);
+			}
+		}
+
+		foreach($l as $k => $v) {
+			foreach($v as &$vv) {
+				if ($zsec == $vv['offset']) {
+					if (intval($vv['dst']) == $dst___) {
+						return \strtoupper($k);
+					}
+				}
+			}
+			unset($vv);
+		}
+
+		foreach (_T_zonetab as $v) {
+			if ($v["offset"] ==  $zone___) {
+				if ($dst___ && !\is_null($v["dlzone"])) {
+					return $v["dlzone"];
+				}
+				if (!$dst___ && !\is_null($v["stdzone"])) {
+					return $v["stdzone"];
+				}
+			}
+		}
+		$sign = "-";
+		if ($zone___ < 0) {
+			$zone___ = -$zone___;
+			$sign = "+";
+		}
+		seterrno(EINVAL);
+		return \sprintf("GMT%s%d:%02d", $sign, $zone___ / 60, $zone___ % 60);
+	}
+
+	function _F_tzsys_1()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
+			if (false !== ($tz = @\readlink("/etc/localtime"))) {
+				if (false !== ($tz = @\substr($tz, 20))) {
+					return $tz;
+				}
+			}
+		} else {
+			return _F_tzsys_2();
+		}
+		seterrno(EINVAL);
+		return _F_tzsys_2();
+	}
+
+	function _F_tzsys_2()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
+			$cmd = "tzutil /g";
+		} else {
+			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
+		}
+		if (false !== ($tz = \exec($cmd))) {
+			return $tz;
+		}
+		seterrno(EINVAL);
+		return _F_tzsys_3();
+	}
+
+	function _F_tzsys_3()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
+			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
+				$l = \timezone_abbreviations_list();
+				foreach($l as $k => $v) {
+					if (\strtolower($k) == \strtolower($tz)) {
+						$tz = $v[0]["timezone_id"];
+						return $tz;
+					}
+				}
+			}
+		}
+		seterrno(EINVAL);
+		return _F_tzsys_4();
+	}
+
+	function _F_tzsys_4()
+	{
+		if (false !== ($tz = @\getenv("TZNAME"))) {
+			return $tz;
+		}
+		if (false !== ($tz = @\getenv("TZ"))) {
+			return $tz;
+		}
+		seterrno(EINVAL);
+		return "UTC";
+	}
+
 	final class timespec
 	{
 		var $tv_sec;  /* seconds */
@@ -89,61 +217,6 @@ namespace std
 		}
 	} /* EOC */
 
-	function _F_tzsys_1()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
-			if (false !== ($tz = @\readlink("/etc/localtime"))) {
-				if (false !== ($tz = @\substr($tz, 20))) {
-					return $tz;
-				}
-			}
-		} else {
-			return _F_tzsys_2();
-		}
-		seterrno(EINVAL);
-		return _F_tzsys_2();
-	}
-
-	function _F_tzsys_2()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
-			$cmd = "tzutil /g";
-		} else {
-			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
-		}
-		if (false !== ($tz = \exec($cmd))) {
-			return $tz;
-		}
-		seterrno(EINVAL);
-		return _F_tzsys_3();
-	}
-
-	function _F_tzsys_3()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
-			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
-				$l = \timezone_abbreviations_list();
-				foreach($l as $k => $v) {
-					if (\strtolower($k) == \strtolower($tz)) {
-						$tz = $v[0]["timezone_id"];
-						return $tz;
-					}
-				}
-			}
-		}
-		seterrno(EINVAL);
-		return _F_tzsys_4();
-	}
-
-	function _F_tzsys_4()
-	{
-		if (false !== ($tz = @\getenv("TZ"))) {
-			return $tz;
-		}
-		seterrno(EINVAL);
-		return "UTC";
-	}
-
 	function tzsys()
 	{ return _F_tzsys_1(); }
 
@@ -187,6 +260,9 @@ namespace std
 
 	function tzsetwall()
 	{ return tzset(); }
+
+	function timezone(int $zone___, int $dst___)
+	{ return _F_tztab($zone___, $dst___); }
 
 	function time(int &$tloc___ = null)
 	{
