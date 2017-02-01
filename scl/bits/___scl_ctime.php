@@ -129,7 +129,7 @@ namespace std
 		$r = \gettimeofday();
 		$tv->tv_sec  = $r["sec"];
 		$tv->tv_usec = $r["usec"];
-		if (\is_null($tz)) {
+		if (!\is_null($tz)) {
 			$tz->tz_minuteswest = $r["minuteswest"];
 			$tz->tz_dsttime     = $r["dsttime"];
 		}

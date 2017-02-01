@@ -16,26 +16,6 @@
 
 namespace std
 {
-	abstract class char_utils
-	{
-		const eol = \PHP_EOL;
-
-		const sp = " ";
-		const vt = "\v";
-		const ff = "\f";
-		const ht = "\t";
-		const lf = "\n";
-		const cr = "\r";
-		const crlf = "\r\n";
-		const lfcr = "\n\r";
-		
-		static function to_int($c___)
-		{ return \ord($c___); }
-		
-		static function to_char($i___)
-		{ return \chr($i___); }
-	} /* EOC */
-
 	function memize(&$in___)
 	{
 		if (\gettype($in___) != 'array') {
