@@ -41,7 +41,7 @@ namespace std
 
 	function _F_tztab(int $zone___, int $dst___)
 	{
-	foreach (_T_zonetab as &$v) {
+		foreach (_T_zonetab as &$v) {
 			if ($v["offset"] ==  $zone___) {
 				if ($dst___ && !\is_null($v["dlzone"])) {
 					return $v["dlzone"];
