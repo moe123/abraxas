@@ -232,7 +232,7 @@ namespace std
 		if ($c___->_M_size > 1) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function(&$l, &$r) { return $l === $r; };
+				$p = function(&$l, &$r) { return $l == $r; };
 			}
 			$o = [];
 			$c = \count($c___->_M_container);

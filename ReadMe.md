@@ -53,8 +53,8 @@ while (!std\cin($buf)->eof()) {
 
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
-measures and designs such as adding more comparator callbacks in the `Algorithms` component. However, by default, we compare 
-on type and value, hence re-introducing type safety on any internal structures.
+measures and designs such as adding more comparator callbacks in the `Algorithms` component.
+We try as much as we can to re-introduce type safety on any internal structures.
 
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Containers
 It contains sequence containers and associative containers and maybe in the future public 
@@ -118,11 +118,9 @@ std\cout($v);
 ```
 
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Iterators
-Abraxas implements four different types of iterators:
-Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
-Unlike the `C++ STL`, Abraxas `Iterators` implementation is not fully opaque to the `Algorithms` component.
-Abraxas takes advantage of the internal container structure. All `Iterators` have a `first()` and `second()` member ; 
-where `first()` is the key or index (depends on the container category) and `second()` the value.
+Abraxas implements four different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
+Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component.
+`Iterators` have a `first()` and `second()` member ; here `first()` is the key or index (depends on the container category) and `second()` the value.
 
 ```php
 
