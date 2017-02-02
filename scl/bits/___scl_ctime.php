@@ -20,26 +20,39 @@ namespace std
 	const _T_zonetab = [
 		[ "offset" => (-1 * 60)         , "stdzone" => "MET" , "dlzone" => "MET DST" ], /* Middle European */
 		[ "offset" => (-2 * 60)         , "stdzone" => "EET" , "dlzone" => "EET DST" ], /* Eastern European */
-		[ "offset" => ((3 * 60) + 30)   , "stdzone" => "NST" , "dlzone" => "NST"     ], /* New Found Land */
+		[ "offset" => (0 * 60)          , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
+		[ "offset" => ((3 * 60) + 30)   , "stdzone" => "NST" , "dlzone" => "NST"     ], /* Newfoundland */
 		[ "offset" => (4 * 60)          , "stdzone" => "AST" , "dlzone" => "ADT"     ], /* Atlantic */
 		[ "offset" => (5 * 60)          , "stdzone" => "EST" , "dlzone" => "EDT"     ], /* Eastern */
 		[ "offset" => (6 * 60)          , "stdzone" => "CST" , "dlzone" => "CDT"     ], /* Central */
 		[ "offset" => (7 * 60)          , "stdzone" => "MST" , "dlzone" => "MDT"     ], /* Mountain */
 		[ "offset" => (8 * 60)          , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
-		[ "offset" => (8 * 60)          , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
+		[ "offset" => (9 * 60)          , "stdzone" => "AKST", "dlzone" => "AKDT"    ], /* Alaska */
 		[ "offset" => (9 * 60)          , "stdzone" => "YST" , "dlzone" => "YDT"     ], /* Yukon */
 		[ "offset" => (10 * 60)         , "stdzone" => "HST" , "dlzone" => "HDT"     ], /* Hawaiian */
-		[ "offset" => (0 * 60)          , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
+		[ "offset" => (11 * 60)         , "stdzone" => "SST" , "dlzone" =>  null     ], /* Samoa */
+		[ "offset" => (12 * 60)         , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
 		[ "offset" => (-10 * 60)        , "stdzone" => "EST" , "dlzone" => "EST"     ], /* Aust: Eastern */
 		[ "offset" => ((-10 * 60) + 30) , "stdzone" => "CST" , "dlzone" => "CST"     ], /* Aust: Central */
-		[ "offset" => (-8 * 60)         , "stdzone" => "WST" , "dlzone" => null      ], /* Aust: Western */
+		[ "offset" => (-8 * 60)         , "stdzone" => "WST" , "dlzone" =>  null     ], /* Aust: Western */
 		[ "offset" => (-12 * 60)        , "stdzone" => "NZST", "dlzone" => "NZST"    ], /* New Zealand */
-		[ "offset" => (-12 * 60)        , "stdzone" => "JST" , "dlzone" => null      ], /* Japanese */
+		[ "offset" => (-12 * 60)        , "stdzone" => "JST" , "dlzone" =>  null     ]  /* Japanese */
 	];
 
 	function _F_tztab(int $zone___, int $dst___)
 	{
-		$zsec =  $zone___ * 60;
+	foreach (_T_zonetab as &$v) {
+			if ($v["offset"] ==  $zone___) {
+				if ($dst___ && !\is_null($v["dlzone"])) {
+					return $v["dlzone"];
+				}
+				if (!$dst___ && !\is_null($v["stdzone"])) {
+					return $v["stdzone"];
+				}
+			}
+		}
+
+		$zsec =  $zone___ * -60;
 		$z = @\date_default_timezone_get();
 		$l = \timezone_abbreviations_list();
 		if (\strpos($z, "/") === false) {
@@ -67,16 +80,6 @@ namespace std
 			unset($vv);
 		}
 
-		foreach (_T_zonetab as $v) {
-			if ($v["offset"] ==  $zone___) {
-				if ($dst___ && !\is_null($v["dlzone"])) {
-					return $v["dlzone"];
-				}
-				if (!$dst___ && !\is_null($v["stdzone"])) {
-					return $v["stdzone"];
-				}
-			}
-		}
 		$sign = "-";
 		if ($zone___ < 0) {
 			$zone___ = -$zone___;
@@ -86,6 +89,8 @@ namespace std
 		return \sprintf("GMT%s%d:%02d", $sign, $zone___ / 60, $zone___ % 60);
 	}
 
+	echo _F_tztab(8 * 60, 1);
+	exit();
 	function _F_tzsys_1()
 	{
 		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
