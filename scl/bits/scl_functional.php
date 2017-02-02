@@ -373,7 +373,7 @@ namespace std
 	}
 
 	function invoke(callable $f___, ...$args___)
-	{ return $f___(...$args___); }
+	{ return invoke_v($f___, $args___); }
 
 	function invoke_v(callable $f___, array &$args___) 
 	{

@@ -17,7 +17,7 @@
 namespace std
 {
 	/* TODO MORE */
-	const _T_zonetab = [
+	const _S_builtin_zonetab = [
 		[ "offset" => (-1 * 60)         , "stdzone" => "MET" , "dlzone" => "MET DST" ], /* Middle European */
 		[ "offset" => (-2 * 60)         , "stdzone" => "EET" , "dlzone" => "EET DST" ], /* Eastern European */
 		[ "offset" => (0 * 60)          , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
@@ -39,9 +39,9 @@ namespace std
 		[ "offset" => (-12 * 60)        , "stdzone" => "JST" , "dlzone" =>  null     ]  /* Japanese */
 	];
 
-	function _F_tztab(int $zone___, int $dst___)
+	function _F_builtin_tztab(int $zone___, int $dst___)
 	{
-		foreach (_T_zonetab as &$v) {
+		foreach (_S_builtin_zonetab as &$v) {
 			if ($v["offset"] ==  $zone___) {
 				if ($dst___ && !\is_null($v["dlzone"])) {
 					return $v["dlzone"];
@@ -51,7 +51,7 @@ namespace std
 				}
 			}
 		}
-
+		/*
 		$zsec =  $zone___ * -60;
 		$z = @\date_default_timezone_get();
 		$l = \timezone_abbreviations_list();
@@ -79,7 +79,7 @@ namespace std
 			}
 			unset($vv);
 		}
-
+		*/
 		$sign = "-";
 		if ($zone___ < 0) {
 			$zone___ = -$zone___;
@@ -89,9 +89,7 @@ namespace std
 		return \sprintf("GMT%s%d:%02d", $sign, $zone___ / 60, $zone___ % 60);
 	}
 
-	echo _F_tztab(8 * 60, 1);
-	exit();
-	function _F_tzsys_1()
+	function _F_builtin_tzsys_1()
 	{
 		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
 			if (false !== ($tz = @\readlink("/etc/localtime"))) {
@@ -100,13 +98,13 @@ namespace std
 				}
 			}
 		} else {
-			return _F_tzsys_2();
+			return _F_builtin_tzsys_2();
 		}
 		seterrno(EINVAL);
-		return _F_tzsys_2();
+		return _F_builtin_tzsys_2();
 	}
 
-	function _F_tzsys_2()
+	function _F_builtin_tzsys_2()
 	{
 		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
 			$cmd = "tzutil /g";
@@ -117,10 +115,10 @@ namespace std
 			return $tz;
 		}
 		seterrno(EINVAL);
-		return _F_tzsys_3();
+		return _F_builtin_tzsys_3();
 	}
 
-	function _F_tzsys_3()
+	function _F_builtin_tzsys_3()
 	{
 		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
 			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
@@ -134,10 +132,10 @@ namespace std
 			}
 		}
 		seterrno(EINVAL);
-		return _F_tzsys_4();
+		return _F_builtin_tzsys_4();
 	}
 
-	function _F_tzsys_4()
+	function _F_builtin_tzsys_4()
 	{
 		if (false !== ($tz = @\getenv("TZNAME"))) {
 			return $tz;
@@ -223,7 +221,7 @@ namespace std
 	} /* EOC */
 
 	function tzsys()
-	{ return _F_tzsys_1(); }
+	{ return _F_builtin_tzsys_1(); }
 
 	function tzname()
 	{ return  @\date_default_timezone_get(); }
@@ -267,7 +265,7 @@ namespace std
 	{ return tzset(); }
 
 	function timezone(int $zone___, int $dst___)
-	{ return _F_tztab($zone___, $dst___); }
+	{ return _F_builtin_tztab($zone___, $dst___); }
 
 	function time(int &$tloc___ = null)
 	{
