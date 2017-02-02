@@ -177,7 +177,7 @@ namespace std
 		, insert_iterator $out_first___
 	) {
 		if ($c1___->_M_size && $c2___->_M_size) {
-						$c1 = null;
+			$c1 = null;
 			$c2 = null;
 			if ($c1___::container_category === basic_iteratable_tag::basic_forward_list) {
 				$c1 = $c1___->_F_dump();
@@ -232,7 +232,7 @@ namespace std
 		if ($c___->_M_size > 1) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				$p = function(&$l, &$r) { return $l == $r; };
+				$p = function(&$l, &$r) { return $l === $r; };
 			}
 			$o = [];
 			$c = \count($c___->_M_container);
