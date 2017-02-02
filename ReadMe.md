@@ -120,7 +120,7 @@ std\cout($v);
 #### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Iterators
 Abraxas implements four different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
 Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component.
-`Iterators` have a `first()` and `second()` member ; here `first()` is the key or index (depends on the container category) and `second()` the value.
+`Iterators` have a `first()` and `second()` member ; where `first()` is the key or index (depends on the container category) and `second()` the value.
 
 ```php
 
