@@ -102,15 +102,6 @@ namespace std
 		return $s1___;
 	}
 
-	function sprintf(string &$dest___, string $fmt___, ...$args___)
-	{
-		if (false !== ($dest___ = \vsprintf($fmt___, $args___))) {
-			return memlen($dest___);
-		}
-		$dest___ = null;
-		return -1;
-	}
-
 	function utf8_glyph_len($c___)
 	{
 		$cp = \ord($c___);

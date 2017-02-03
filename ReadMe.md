@@ -19,7 +19,7 @@ not happened before.</sup></sub>
 <sub><sup>2 - </sup></sub><sub><sup>الجبر</sup></sub><sub><sup> : Al-kitāb al-mukhtaṣar fī ḥisāb al-ğabr wa’l-muqābala</sup></sub>
 
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Brief
+#### [*] Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
 and the `C++ STL`. Providing the same five main components: `Algorithms`, `Containers`, `Functional`, `Iterators` and `Locale`.
 (I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
@@ -51,12 +51,12 @@ while (!std\cin($buf)->eof()) {
 ...
 ```
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Caveats
+#### [*] Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
 measures and designs such as adding more comparator callbacks in the `Algorithms` component.
 We try as much as we can to re-introduce type safety on any internal structures.
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Containers
+#### [*] Containers
 It contains sequence containers and associative containers and maybe in the future public 
 container adaptors: `forward_list`, `tuple`, `seq_list`, `vector`, `map`, `dict`, `set` are almost done.
 
@@ -117,10 +117,10 @@ std\cout($v);
 
 ```
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Iterators
+#### [*] Iterators
 Abraxas implements four different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
 Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component.
-`Iterators` have a `first()` and `second()` member ; where `first()` is the key or index (depends on the container category) and `second()` the value.
+`Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
 
 ```php
 
@@ -173,7 +173,7 @@ std\cout($v)(std\endl);
 
 ```
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Algorithms
+#### [*] Algorithms
 A large number of algorithms have been already written, in the same way than `C++ STL`, it requires
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
 existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
@@ -217,7 +217,7 @@ function set_intersection(
 ...
 ```
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Functional / Functors
+#### [*] Functional / Functors
 A mixture of existing features and overloads.
 ```php
 
@@ -251,7 +251,7 @@ std\invoke($fn, 4, -0.1333);
 
 ```
 
-#### ![#f03c15](http://placehold.it/8/f03c15/000000?text=+) Locale
+#### [*] Locale
 A mixture of existing features and overloads, inspired by Boost.Locale.
 
 ### Requirements
