@@ -22,6 +22,7 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstdio.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_ctime.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstdlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cxlocale.php";
 } /* EONS */
 
 namespace std

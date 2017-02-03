@@ -272,17 +272,14 @@ namespace std
 
 	function strftime_l(string &$dest___, string $fmt___, tm &$tm___, string $locid___)
 	{
-		$l = \setlocale(\LC_TIME, "");
-		if (\strlen($l) < 1) {
-			$l = "C";
-		}
-		\setlocale(\LC_TIME, $locid___);
+		$xloc = newlocale(xlocale_mask::time, $locid___);
+		uselocale($xloc);
 		if ($tm___->_M_gmt) {
 			$dest___ = @\strftime($fmt___, timegm($tm___));
 		} else {
 			$dest___ = @\strftime($fmt___, timelocale($tm___));
 		}
-		\setlocale(\LC_TIME, $l);
+		freelocale($xloc);
 		return $dest___;
 	}
 
