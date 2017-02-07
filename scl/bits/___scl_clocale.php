@@ -108,7 +108,7 @@ namespace std
 
 	final class locale_t
 	{
-		var $u_mask = locale_category::all;
+		var $u_mask = xlocale_mask::all;
 		var $u_data = [];
 	}
 
