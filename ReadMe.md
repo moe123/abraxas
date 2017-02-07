@@ -118,9 +118,10 @@ std\cout($v);
 ```
 
 #### [*] Iterators
-Abraxas implements four different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and Front-Inserter.
-Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component.
-`Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
+Abraxas implements four different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and 
+Front-Inserter. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. 
+`Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container 
+category) and `second()` the value.
 
 ```php
 
@@ -163,7 +164,11 @@ A large number of algorithms have been already written, in the same way than `C+
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
 existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
-this is transparent to the end-user).
+this is transparent to the end-user). Unlike the `C++ STL`, for convenience, (as everything is handled 
+at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
+or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
+(however, for well-known reasons, reusing `Inserters` is placed in the `undefined behavior` category ¯\_(ツ)_/¯ ).
+
 ```php
 ...
 // unique_r
@@ -181,8 +186,9 @@ $v->erase_r($last, $v->end());
 std\cout($v)(std\endl);
 // [ 1, 2, 3, 4, 5, 6, 7 ]
 
-// rotate_copy
 ...
+
+// rotate_copy
 
 $sv = std\make_vector(1, 2, 3, 4, 5);
 $pv = std\find($sv->begin(), $sv->end(), 3);
