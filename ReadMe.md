@@ -164,7 +164,9 @@ A large number of algorithms have been already written, in the same way than `C+
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
 existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
-this is transparent to the end-user). Unlike the `C++ STL`, for convenience, (as everything is handled 
+this is transparent to the end-user).
+
+It should be noted that unlike the `C++ STL`, for convenience, (as everything is handled 
 at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
 or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
 (however, for well-known reasons, reusing `Inserters` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
