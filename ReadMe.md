@@ -271,13 +271,14 @@ PHP7 built with:
 
 ##### Suitable syscalls
 > [___scl_cerrno](./scl/bits/___scl_cerrno.php)<br>
+> [___scl_clocale](./scl/bits/___scl_clocale.php)<br>
 > [___scl_csignal](./scl/bits/___scl_csignal.php)<br>
 > [___scl_cstdio](./scl/bits/___scl_cstdio.php)<br>
 > [___scl_cstdlib](./scl/bits/___scl_cstdlib.php)<br>
 > [___scl_cstring](./scl/bits/___scl_cstring.php)<br>
 > [___scl_ctime](./scl/bits/___scl_ctime.php)<br>
 > [___scl_cunistd](./scl/bits/___scl_cunistd.php)<br>
-> [___scl_cxlocale](./scl/bits/___scl_cxlocale.php)<br>
+> [___scl_cutsname](./scl/bits/___scl_cutsname.php)<br>
 
 ##### Basic implementation
 > [scl_basic_dict](./scl/bits/scl_basic_dict.php)<br>

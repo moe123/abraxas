@@ -29,8 +29,8 @@ namespace std
 	const flock_nb = \LOCK_NB;
 	const flock_un = \LOCK_UN;
 
-	function fopen(string $filen___ , string $m___)
-	{ return (($fp = @\fopen($filen___, $m___)) !== false) ? $fp : null; }
+	function fopen(string $fname___ , string $m___)
+	{ return (($fp = @\fopen($fname___, $m___)) !== false) ? $fp : null; }
 
 	function fclose($fp___)
 	{ return @\fclose($fp___) === true ? 0 : -1; }

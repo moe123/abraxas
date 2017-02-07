@@ -485,7 +485,7 @@ namespace std
 					} else {
 						$this->_M_count_g = memlen($str);
 					}
-					if (-1 == \fseek($this->_M_handle_g, $off, \SEEK_CUR)) {
+					if (-1 == \fseek($this->_M_handle_g, $off, \SEEK_SET)) {
 						$this->setstate(ios_base::badbit|ios_base::failbit);
 					}
 					if (\feof($this->_M_handle_g)) {
@@ -530,7 +530,7 @@ namespace std
 					if ($str === false) {
 						$str = "";
 					}
-					if (-1 == \fseek($this->_M_handle_p, $off, \SEEK_CUR)) {
+					if (-1 == \fseek($this->_M_handle_p, $off, \SEEK_SET)) {
 						$this->setstate(ios_base::badbit|ios_base::failbit);
 					}
 					if (\feof($this->_M_handle_p)) {
@@ -609,9 +609,9 @@ namespace std
 			}
 		}
 
-		function open(string $filen___, int $m___ = ios_base::in)
+		function open(string $fname___, int $m___ = ios_base::in)
 		{
-			$this->_M_handle_g = \fopen($filen___, $this->_F_strmode($m___));
+			$this->_M_handle_g = \fopen($fname___, $this->_F_strmode($m___));
 			if ($this->_M_handle_g === false) {
 				$this->setstate(ios_base::badbit|ios_base::failbit);
 				$this->_M_handle_g = null;

@@ -22,13 +22,74 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstdio.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_ctime.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstdlib.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cxlocale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_clocale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cutsname.php";
 } /* EONS */
 
 namespace std
 {
-	function _exit(int $status)
+	function xexit(int $status = 0)
 	{ exit($status); }
+
+	function xmillisleep(int $n___)
+	{
+		if (true !== \time_nanosleep(0, $n___ * 1000 * 1000)) {
+			seterrno(EINTR);
+			return -1;
+		}
+		return 0;
+	}
+
+	function xmicrosleep(int $n___)
+	{
+		if (true !== \time_nanosleep(0, $n___ * 1000)) {
+			seterrno(EINTR);
+			return -1;
+		}
+		return 0;
+	}
+
+	function xnanosleep(int $n___)
+	{
+		if (true !== \time_nanosleep(0, $n___)) {
+			seterrno(EINTR);
+			return -1;
+		}
+		return 0;
+	}
+
+	function gethostname(string &$dest___, int $destsz___ = -1)
+	{
+		if (false !== ($dest___ = @\gethostname())) {
+			return 0;
+		}
+		$dest___ = null;
+		seterrno(EFAULT);
+		return -1;
+	}
+
+	function getdomainname(string &$dest___, int $destsz___ = -1)
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
+			$cmd = "wmic computersystem get domain";
+		} else {
+			$cmd = "`which domainname`";
+		}
+		if (false !== ($dest___ = \exec($cmd))) {
+			if (memlen($dest___) < 1) {
+				if (false !== ($dest___ = @\gethostname())) {
+					return 0;
+				}
+				$dest___ = null;
+				seterrno(EFAULT);
+				return -1;
+			}
+			return 0;
+		}
+		$dest___ = null;
+		seterrno(EFAULT);
+		return -1;
+	}
 
 	function usleep(int $usecs___)
 	{
@@ -39,13 +100,97 @@ namespace std
 		return 0;
 	}
 
-	function unlink(string $filen___)
+	function unlink(string $fname___)
 	{
-		if (true !== \unlink($filen___)) {
+		if (true !== @\unlink($fname___)) {
 			seterrno(EINTR);
 			return -1;
 		}
 		return 0;
+	}
+
+	function readlink(string $fpath___, string &$dest___, int $destsz___ = -1)
+	{
+		if (\is_link($fpath___ )) {
+			if (false !== ($dest___ = @\readlink($fpath___))) {
+				return memlen($dest___);
+			}
+			seterrno(EIO);
+		} else {
+			seterrno(EINVAL);
+		}
+		$dest___ = null;
+		return -1;
+	}
+
+	function link(string $path___, string $link___)
+	{
+		if (@\link($path___, $link___)) {
+			return 0;
+		}
+		seterrno(EFAULT);
+		return -1;
+	}
+
+	function symlink(string $path___, string $link___)
+	{
+		if (@\symlink($path___, $link___)) {
+			return 0;
+		}
+		seterrno(EFAULT);
+		return -1;
+	}
+
+	function fftruncate($fp___, int $len___)
+	{
+		if (\is_resource($fp___)) {
+			if (false !== ($off = \ftell($fp___))) {
+				if (true !== @\ftruncate($fp___, $len___)) {
+					seterrno(EACCES);
+					\fseek($fp___, $off, \SEEK_CUR);
+					return -1;
+				}
+				\fseek($fp___, $off, \SEEK_CUR);
+			} else {
+				seterrno(EFAULT);
+				return -1;
+			}
+		} else {
+			seterrno(EBADF);
+			return -1;
+		}
+		return 0;
+	}
+
+	function ffsynk($fp___)
+	{
+		if(@\fflush($fp___)) {
+			return 0;
+		}
+		seterrno(EINVAL);
+		return -1;
+	}
+
+	function synk()
+	{
+		@\fflush(\STDOUT);
+		@\fflush(\STDERR);
+		@\fflush(\STDIN);
+	}
+
+	function truncate(string $fpath___, int $len___)
+	{
+		if (false !== ($fp = @\fopen($fpath___, 'r+'))) {
+			if (true !== @\ftruncate($fp___, $len___)) {
+				seterrno(EACCES);
+				@\fclose($fp);
+				return -1;
+			}
+			@\fclose($fp);
+			return 0;
+		}
+		seterrno(EINVAL);
+		return -1;
 	}
 
 	function getpid()

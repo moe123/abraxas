@@ -32,18 +32,18 @@ namespace std
 		[ "offset" => ((3 * 60) + 30)  , "stdzone" => "IRST", "dlzone" => "IRDT"    ], /* Iran */
 		[ "offset" => (2 * 60)         , "stdzone" => "EET" , "dlzone" => "EET DST" ], /* Eastern European */
 		[ "offset" => (1 * 60)         , "stdzone" => "MET" , "dlzone" => "MET DST" ], /* Middle European */
-		[ "offset" => (0 * 60)          , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
-		[ "offset" => ((-3 * 60) + 30)   , "stdzone" => "NST" , "dlzone" => "NST"     ], /* Newfoundland */
-		[ "offset" => (-4 * 60)          , "stdzone" => "AST" , "dlzone" => "ADT"     ], /* Atlantic */
-		[ "offset" => (-5 * 60)          , "stdzone" => "EST" , "dlzone" => "EDT"     ], /* Eastern */
-		[ "offset" => (-6 * 60)          , "stdzone" => "CST" , "dlzone" => "CDT"     ], /* Central */
-		[ "offset" => (-7 * 60)          , "stdzone" => "MST" , "dlzone" => "MDT"     ], /* Mountain */
-		[ "offset" => (-8 * 60)          , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
-		[ "offset" => (-9 * 60)          , "stdzone" => "AKST", "dlzone" => "AKDT"    ], /* Alaska */
-		[ "offset" => (-9 * 60)          , "stdzone" => "YST" , "dlzone" => "YDT"     ], /* Yukon */
-		[ "offset" => (-10 * 60)         , "stdzone" => "HST" , "dlzone" => "HDT"     ], /* Hawaiian */
-		[ "offset" => (-11 * 60)         , "stdzone" => "SST" , "dlzone" =>  null     ], /* Samoa */
-		[ "offset" => (-12 * 60)         , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
+		[ "offset" => (0 * 60)         , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
+		[ "offset" => ((-3 * 60) + 30) , "stdzone" => "NST" , "dlzone" => "NST"     ], /* Newfoundland */
+		[ "offset" => (-4 * 60)        , "stdzone" => "AST" , "dlzone" => "ADT"     ], /* Atlantic */
+		[ "offset" => (-5 * 60)        , "stdzone" => "EST" , "dlzone" => "EDT"     ], /* Eastern */
+		[ "offset" => (-6 * 60)        , "stdzone" => "CST" , "dlzone" => "CDT"     ], /* Central */
+		[ "offset" => (-7 * 60)        , "stdzone" => "MST" , "dlzone" => "MDT"     ], /* Mountain */
+		[ "offset" => (-8 * 60)        , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
+		[ "offset" => (-9 * 60)        , "stdzone" => "AKST", "dlzone" => "AKDT"    ], /* Alaska */
+		[ "offset" => (-9 * 60)        , "stdzone" => "YST" , "dlzone" => "YDT"     ], /* Yukon */
+		[ "offset" => (-10 * 60)       , "stdzone" => "HST" , "dlzone" => "HDT"     ], /* Hawaiian */
+		[ "offset" => (-11 * 60)       , "stdzone" => "SST" , "dlzone" =>  null     ], /* Samoa */
+		[ "offset" => (-12 * 60)       , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
 	];
 
 	function _F_builtin_tztab(int $zone___, int $dst___)
@@ -138,7 +138,7 @@ namespace std
 
 		function __construct(int $sec___, int $nsec___)
 		{
-			$this->tv_sec = $sec___;
+			$this->tv_sec  = $sec___;
 			$this->tv_nsec = $nsec___;
 		}
 	} /* EOC */
@@ -150,7 +150,7 @@ namespace std
 
 		function __construct(int $sec___, int $usec___)
 		{
-			$this->tv_sec = $sec___;
+			$this->tv_sec  = $sec___;
 			$this->tv_usec = $usec___;
 		}
 	} /* EOC */
@@ -163,7 +163,7 @@ namespace std
 		function __construct(int $mws___, int $dsttm___)
 		{
 			$this->tz_minuteswest = $mws___;
-			$this->tz_dsttime = $dsttm___;
+			$this->tz_dsttime     = $dsttm___;
 		}
 	} /* EOC */
 

@@ -14,11 +14,6 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cunistd.php";
-} /* EONS */
-
 namespace std
 {
 } /* EONS */

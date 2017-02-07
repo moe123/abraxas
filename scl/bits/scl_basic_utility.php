@@ -164,6 +164,64 @@ namespace std
 		return new tuple;
 	}
 
+	function make_lconv(
+		  string $decimal_point___ = ""
+		, string $thousands_sep___ = ""
+		, $grouping___ = []
+		, string $int_curr_symbol___ = ""
+		, string $currency_symbol___ = ""
+		, string $mon_decimal_point___ = ""
+		, string $mon_thousands_sep___ = ""
+		, $mon_grouping___ = []
+		, string $positive_sign___ = ""
+		, string $negative_sign___ = ""
+		, int $int_frac_digits___ = 0
+		, int $frac_digits___ = 0
+		, int $p_cs_precedes___ = 0
+		, int $p_sep_by_space___ = 0
+		, int $n_cs_precedes___ = 0
+		, int $n_sep_by_space___ = 0
+		, int $p_sign_posn___ = 0
+		, int $n_sign_posn___ = 0
+	) {
+		return new lconv(
+			  $decimal_point___
+			, $thousands_sep___
+			, $grouping___
+			, $int_curr_symbol___
+			, $currency_symbol___
+			, $mon_decimal_point___
+			, $mon_thousands_sep___
+			, $mon_grouping___
+			, $positive_sign___
+			, $negative_sign___
+			, $int_frac_digits___
+			, $frac_digits___
+			, $p_cs_precedes___
+			, $p_sep_by_space___
+			, $n_cs_precedes___
+			, $n_sep_by_space___
+			, $p_sign_posn___
+			, $n_sign_posn___
+		);
+	}
+
+	function make_utsname(
+		  $sysname___ = ""
+		, $nodename___ = ""
+		, $release___ = ""
+		, $version___ = ""
+		, $machine___ = ""
+	) {
+		return new utsname(
+			  $sysname___
+			, $nodename___
+			, $release___
+			, $version___
+			, $machine___
+		);
+	}
+
 	function make_timespec(int $sec___ = 0, int $nsec___ = 0)
 	{ return new timespec($sec___, $nsec___); }
 

@@ -16,10 +16,8 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cunistd.php";
-
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_ios.php";
-
+	
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collation.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_collator.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_locale.php";

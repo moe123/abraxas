@@ -16,17 +16,6 @@
 
 namespace std
 {
-	abstract class locale_category
-	{
-		const collate  = \LC_COLLATE;
-		const ctype    = \LC_CTYPE;
-		const monetary = \LC_MONETARY;
-		const numeric  = \LC_NUMERIC;
-		const time     = \LC_TIME;
-		const messages = \LC_MESSAGES;
-		const all      = \LC_ALL;
-	} /* EOC */
-
 	final class locale
 	{
 		use _T_multi_construct_traits;
@@ -172,7 +161,7 @@ namespace std
 		}
 	} /* EOC */
 
-	function setlocale(int $caterory, string $locale_id, int $collator_level =  collator_level::none)
+	function set_locale(int $caterory, string $locale_id, int $collator_level =  collator_level::none)
 	{
 		return locale::set_global(
 			make_locale(
@@ -183,7 +172,7 @@ namespace std
 		);
 	}
 
-	function getlocale()
+	function get_locale()
 	{ return locale::get_global(); }
 } /* EONS */
 
