@@ -54,7 +54,7 @@ while (!std\cin($buf)->eof()) {
 #### [*] Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
 measures and designs such as adding more comparator callbacks in the `Algorithms` component.
-We try as much as we can to re-introduce type safety on any internal structures.
+We try as much as we can to re-introduce type safety on any internal structures (∩｀-´)⊃━☆ﾟ.*･｡ﾟ.
 
 #### [*] Containers
 It contains sequence containers and associative containers and maybe in the future public 
