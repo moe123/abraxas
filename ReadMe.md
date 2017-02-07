@@ -167,7 +167,7 @@ be done in the most elegant way. The author choices control entirely the outcome
 this is transparent to the end-user). Unlike the `C++ STL`, for convenience, (as everything is handled 
 at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
 or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
-(however, for well-known reasons, reusing `Inserters` is placed in the `undefined behavior` category ¯\_(ツ)_/¯ ).
+(however, for well-known reasons, reusing `Inserters` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
 
 ```php
 ...
