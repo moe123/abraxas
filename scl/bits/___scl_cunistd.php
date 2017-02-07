@@ -164,7 +164,7 @@ namespace std
 
 	function ffsynk($fp___)
 	{
-		if(@\fflush($fp___)) {
+		if (@\fflush($fp___)) {
 			return 0;
 		}
 		seterrno(EINVAL);

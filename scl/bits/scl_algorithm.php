@@ -110,6 +110,53 @@ namespace std
 		return $first___;
 	}
 
+	function rotate(basic_iterator $first___, basic_iterator $n_first___, basic_iterator $last___)
+	{
+		if ($first___ == $n_first___) {
+			return $last___;
+		}
+		if ($n_first___ == $last___) {
+			return $first___;
+		}
+
+		$next = clone $n_first___;
+		while ($next != $last___) {
+			iter_swap($first___, $next);
+			$first___->_F_next();
+			$next->_F_next();
+			if ($first___ == $n_first___) {
+				$n_first___ = clone $next;
+			}
+		}
+
+		$ret = clone $first___;
+		$next = clone $n_first___;
+		while ($next != $last___) {
+			iter_swap($first___, $next);
+			$first___->_F_next();
+			$next->_F_next();
+			if ($first___ == $n_first___) {
+				$n_first___ = clone $next;
+			} else if($next == $last___) {
+				$next = clone $n_first___;
+			}
+		}
+		return $ret;
+	}
+
+	function rotate_copy(
+		  basic_iterator $first___
+		, basic_iterator $n_first___
+		, basic_iterator $last___
+		, insert_iterator $d_out_first___
+	) {
+		return copy(
+			  $first___
+			, clone $n_first___
+			, copy($n_first___, $last___, $d_out_first___)
+		);
+	}
+
 	function min(
 		  &$v1___
 		, &$v2___

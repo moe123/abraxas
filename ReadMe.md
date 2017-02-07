@@ -181,39 +181,22 @@ be done in the most elegant way. The author choices control entirely the outcome
 this is transparent to the end-user).
 ```php
 ...
-function set_intersection(
-	  basic_iterator $first1___
-	, basic_iterator $last1___
-	, basic_iterator $first2___
-	, basic_iterator $last2___
-	, insert_iterator $out_first___
-	, callable $compare___ = null
-) {
-	$comp = $compare___;
-	if (\is_null($comp)) {
-		$comp = function($l, $r) { return $l < $r; };
-	}
-	if (
-		$first1___::iterator_category === $last1___::iterator_category &&
-		$first2___::iterator_category === $last2___::iterator_category
-	) {
-		while ($first1___ != $last1___ && $first2___ != $last2___) {
-			if ($comp($first1___->_F_this(), $first2___->_F_this())) {
-					$first1___->_F_next();
-			} else {
-				if (!$comp($first2___->_F_this(), $first1___->_F_this())) {
-						$out_first___->_F_pos_assign($first1___->_F_this());
-						$out_first___->_F_next();
-						$first1___->_F_next();
-				}
-				$first2___->_F_next();
-			}
-		}
-	} else {
-		_F_throw_invalid_argument("Invalid type error");
-	}
-	return $out_first___;
-}
+
+$sv = std\make_vector(1, 2, 3, 4, 5);
+$pv = std\find($sv->begin(), $sv->end(), 3);
+// pv offset 2
+
+$dv = std\make_vector();
+std\rotate_copy(
+	  $sv->begin()
+	, $pv
+	, $sv->end()
+	, std\back_inserter($dv)
+);
+
+std\cout($dv)(std\endl);
+// [ 3 4 5 1 2 ]
+
 ...
 ```
 

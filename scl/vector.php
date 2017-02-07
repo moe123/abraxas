@@ -38,7 +38,7 @@ namespace
 	// trap();
 	std\assert(2 == 2);
 
-	$v = std\make_vector(0, 1 ,2);
+	$v = std\make_vector(0, 1 , 2);
 	std\place_fill_n(
 		  std\front_inserter($v)
 		, 5
@@ -104,6 +104,17 @@ namespace
 	print_r(get_resource_type($f2));
 	echo "\n" . $contents . "\n";
 	fclose($f2);
+
+	$sv = std\make_vector(1, 2, 3, 4, 5);
+	$pv = std\find($sv->begin(), $sv->end(), 3);
+	$dv = std\make_vector();
+	std\rotate_copy(
+		  $sv->begin()
+		, $pv
+		, $sv->end()
+		, std\back_inserter($dv)
+	);
+	std\cout($dv)(std\endl);
 
 } /* EONS */
 
