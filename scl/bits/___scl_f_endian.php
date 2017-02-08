@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_base_endian.php
+// ___scl_f_endian.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

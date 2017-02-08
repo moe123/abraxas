@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_base_iterator_traits.php
+// ___scl_f_iterator_traits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

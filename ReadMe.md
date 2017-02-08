@@ -104,13 +104,13 @@ $v = std\make_vector(0, 1 ,2);
 std\place_generate_n(
 	  std\front_inserter($v)
 	, 5 
-	, std\urandom(100, 200)
+	, std\random_int_generator(100, 200)
 );
 
 std\place_generate_n(
 	  std\back_inserter($v)
 	, 5 
-	, std\urandom(300, 500)
+	, std\random_real_generator(-0.5, 0.7)
 );
 
 std\cout($v);
@@ -255,23 +255,23 @@ PHP7 built with:
 ### Files
 
 ##### Base container and API bindings
-> [___scl_base_algorithm](./scl/bits/___scl_base_algorithm.php)<br>
-> [___scl_base_container_traits](./scl/bits/___scl_base_container_traits.php)<br>
-> [___scl_base_endian](./scl/bits/___scl_base_endian.php)<br>
-> [___scl_base_iterator_traits](./scl/bits/___scl_base_iterator_traits.php)<br>
-> [___scl_base_operator_traits](./scl/bits/___scl_base_operator_traits.php)<br>
-> [___scl_base_utility_traits](./scl/bits/___scl_base_utility_traits.php)<br>
+> [___scl_f_algorithm](./scl/bits/___scl_f_algorithm.php)<br>
+> [___scl_f_container_traits](./scl/bits/___scl_f_container_traits.php)<br>
+> [___scl_f_endian](./scl/bits/___scl_f_endian.php)<br>
+> [___scl_f_iterator_traits](./scl/bits/___scl_f_iterator_traits.php)<br>
+> [___scl_f_operator_traits](./scl/bits/___scl_f_operator_traits.php)<br>
+> [___scl_f_utility_traits](./scl/bits/___scl_f_utility_traits.php)<br>
 
 ##### Suitable syscalls
-> [___scl_cerrno](./scl/bits/___scl_cerrno.php)<br>
-> [___scl_clocale](./scl/bits/___scl_clocale.php)<br>
-> [___scl_csignal](./scl/bits/___scl_csignal.php)<br>
-> [___scl_cstdio](./scl/bits/___scl_cstdio.php)<br>
-> [___scl_cstdlib](./scl/bits/___scl_cstdlib.php)<br>
-> [___scl_cstring](./scl/bits/___scl_cstring.php)<br>
-> [___scl_ctime](./scl/bits/___scl_ctime.php)<br>
-> [___scl_cunistd](./scl/bits/___scl_cunistd.php)<br>
-> [___scl_cutsname](./scl/bits/___scl_cutsname.php)<br>
+> [___scl_c_errno](./scl/bits/___scl_c_errno.php)<br>
+> [___scl_c_locale](./scl/bits/___scl_c_locale.php)<br>
+> [___scl_c_signal](./scl/bits/___scl_c_signal.php)<br>
+> [___scl_c_stdio](./scl/bits/___scl_c_stdio.php)<br>
+> [___scl_c_stdlib](./scl/bits/___scl_c_stdlib.php)<br>
+> [___scl_c_string](./scl/bits/___scl_c_string.php)<br>
+> [___scl_c_time](./scl/bits/___scl_c_time.php)<br>
+> [___scl_c_unistd](./scl/bits/___scl_c_unistd.php)<br>
+> [___scl_c_utsname](./scl/bits/___scl_c_utsname.php)<br>
 
 ##### Basic implementation
 > [scl_basic_dict](./scl/bits/scl_basic_dict.php)<br>

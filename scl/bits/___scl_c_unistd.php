@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_cunistd.php
+// ___scl_c_unistd.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,14 +16,14 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cerrno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_csignal.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstring.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_ctime.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cstdlib.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_clocale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_cutsname.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_errno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_signal.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_string.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_stdio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_time.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_stdlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_utsname.php";
 } /* EONS */
 
 namespace std

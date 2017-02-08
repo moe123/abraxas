@@ -91,29 +91,56 @@ namespace std
 		};
 	}
 
+	function random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
+	{
+		if ($seed___ != 0) {
+			\mt_srand($seed);
+		} else {
+			\mt_srand();
+		}
+		if (!$max___) {
+			return \mt_rand();
+		}
+		if ($min___ < 0) {
+			$min___ = 0;
+		}
+		if ($max___ > \mt_getrandmax()) {
+			$max___ = \mt_getrandmax();
+		}
+		if ($max___ < $min___) {
+			_F_throw_invalid_argument("Invalid argument error");
+		}
+		return @\mt_rand($min___, $max___);
+	}
+
+	function random_real(float $min___ = 0.0, float $max___ = 1.0, int $seed___ = 0)
+	{ return $min___ + (\mt_rand() / \mt_getrandmax()) * ($max___ - $min___); }
+
+	function urandom(int $min___ = 0, int $max___ = 0)
+	{
+		if ($min___ === 0 && $max___ === 0) {
+			$min___ = numeric_limits_int::min;
+			$max___ = numeric_limits_int::max;
+		}
+		return \random_int($min___, $max___);
+	}
+
+	function urandom_real(float $min___ = 0.0, float $max___ = 1.0)
+	{ return $min___ + (\random_int(0, numeric_limits_int::max) / numeric_limits_int::max) * ($max___ - $min___); }
+
 	/*! callable */
-	function random(int $min___ = 0, int $max___ = 0)
+	function random_int_generator(int $min___ = 0, int $max___ = 0)
 	{
 		return function () use ($min___, $max___) {
-			if (!$max___) {
-				return \mt_rand();
-			}
-			if ($min___ < 0) {
-				$min___ = 0;
-			}
-			return \mt_rand($min___, $max___);
+			return urandom($min___, $max___);
 		};
 	}
 
 	/*! callable */
-	function urandom(int $min___ = 0, int $max___ = 0)
+	function random_real_generator(float $min___ = 0.0, float $max___ = 1.0)
 	{
 		return function () use ($min___, $max___) {
-			if ($min___ === 0 && $max___ === 0) {
-				$min___ = PHP_INT_MIN;
-				$max___ = PHP_INT_MAX;
-			}
-			return \random_int($min___, $max___);
+			return urandom_real($min___, $max___);
 		};
 	}
 
@@ -260,6 +287,9 @@ namespace std
 
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
+
+	function make_uniform_int_distribution(int $a, int $b)
+	{ return new uniform_int_distribution($a, $b); }
 
 	function make_vector(...$args___)
 	{ return new vector($args___); }

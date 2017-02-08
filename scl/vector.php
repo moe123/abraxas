@@ -47,17 +47,25 @@ namespace
 
 	std\place_generate_n(
 		  std\front_inserter($v)
-		, 5 
-		, std\urandom(100,200)
+		, 5
+		, std\random_int_generator(100, 200)
 	);
 
 	std\place_generate_n(
 		  std\back_inserter($v)
-		, 5 
-		, std\urandom(300,500)
+		, 5
+		, std\random_int_generator(-300, 500)
+	);
+
+	std\place_generate_n(
+		  std\back_inserter($v)
+		, 8
+		, std\random_real_generator(-1.2, 1.3)
 	);
 
 	std\cout($v);
+
+	std\abort();
 
 	function fn(int $one, string $two, bool $three, int $four) { 
 		std\cerr($one, std\ios_base::hex)(std\endl)

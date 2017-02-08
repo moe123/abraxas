@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_cerrno.php
+// ___scl_c_errno.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
