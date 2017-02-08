@@ -110,7 +110,7 @@ namespace std
 		if ($max___ < $min___) {
 			_F_throw_invalid_argument("Invalid argument error");
 		}
-		return @\mt_rand($min___, $max___);
+		return \mt_rand($min___, $max___);
 	}
 
 	function random_real(float $min___ = 0.0, float $max___ = 1.0, int $seed___ = 0)

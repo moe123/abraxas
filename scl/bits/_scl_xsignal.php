@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_c_signal.php
+// _scl_xsignal.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -78,9 +78,9 @@ namespace std
 		if ($pid___ == getpid()) {
 			signal($sig___);
 		} else if (function_exists('\posix_kill')) {
-			@\posix_kill($pid___, $sig___);
+			\posix_kill($pid___, $sig___);
 		} else {
-			@\exec("`which kill` -" . $sig___ . " " . $pid___);
+			\exec("`which kill` -" . $sig___ . " " . $pid___);
 		}
 	}
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_c_locale.php
+// _scl_xlocale.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -183,7 +183,7 @@ namespace std
 
 	function localeconv()
 	{
-		$lc = @\localeconv();
+		$lc = \localeconv();
 		return new lconv(
 			  $lc["decimal_point"]
 			, $lc["thousands_sep"]
@@ -215,7 +215,7 @@ namespace std
 	}
 
 	function & setlocale(int $cat___, string $locid___) {
-		if (false === ($loc = @\setlocale($cat___, $locid___))) {
+		if (false === ($loc = \setlocale($cat___, $locid___))) {
 			$loc = null;
 		}
 		return $loc;

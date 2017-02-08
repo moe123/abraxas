@@ -56,7 +56,7 @@ namespace std
 		function to_string()
 		{
 			if ($this->_M_size) {
-				return @json_encode(
+				return \json_encode(
 						  $this->_M_container
 						, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES
 				);

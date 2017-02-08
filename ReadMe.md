@@ -255,23 +255,23 @@ PHP7 built with:
 ### Files
 
 ##### Suitable syscalls
-> [___scl_c_errno](./scl/bits/sys/___scl_c_errno.php)<br>
-> [___scl_c_locale](./scl/bits/sys/___scl_c_locale.php)<br>
-> [___scl_c_signal](./scl/bits/sys/___scl_c_signal.php)<br>
-> [___scl_c_stdio](./scl/bits/sys/___scl_c_stdio.php)<br>
-> [___scl_c_stdlib](./scl/bits/sys/___scl_c_stdlib.php)<br>
-> [___scl_c_string](./scl/bits/sys/___scl_c_string.php)<br>
-> [___scl_c_time](./scl/bits/sys/___scl_c_time.php)<br>
-> [___scl_c_unistd](./scl/bits/sys/___scl_c_unistd.php)<br>
-> [___scl_c_utsname](./scl/bits/sys/___scl_c_utsname.php)<br>
+> [_scl_xerrno](./scl/bits/_scl_xerrno.php)<br>
+> [_scl_xlocale](./scl/bits/_scl_xlocale.php)<br>
+> [_scl_xsignal](./scl/bits/_scl_xsignal.php)<br>
+> [_scl_xstdio](./scl/bits/_scl_xstdio.php)<br>
+> [_scl_xstdlib](./scl/bits/_scl_xstdlib.php)<br>
+> [_scl_xstring](./scl/bits/_scl_xstring.php)<br>
+> [_scl_xtime](./scl/bits/_scl_xtime.php)<br>
+> [_scl_xunistd](./scl/bits/_scl_xunistd.php)<br>
+> [_scl_xutsname](./scl/bits/_scl_xutsname.php)<br>
 
 ##### Base container and API bindings
-> [___scl_f_algorithm](./scl/bits/sys/___scl_f_algorithm.php)<br>
-> [___scl_f_container_traits](./scl/bits/sys/___scl_f_container_traits.php)<br>
-> [___scl_f_endian](./scl/bits/sys/___scl_f_endian.php)<br>
-> [___scl_f_iterator_traits](./scl/bits/sys/___scl_f_iterator_traits.php)<br>
-> [___scl_f_operator_traits](./scl/bits/sys/___scl_f_operator_traits.php)<br>
-> [___scl_f_utility_traits](./scl/bits/sys/___scl_f_utility_traits.php)<br>
+> [_scl_xalgorithm](./scl/bits/_scl_xalgorithm.php)<br>
+> [_scl_xcontainer_traits](./scl/bits/_scl_xcontainer_traits.php)<br>
+> [_scl_xendian](./scl/bits/_scl_xendian.php)<br>
+> [_scl_xiterator_traits](./scl/bits/_scl_xiterator_traits.php)<br>
+> [_scl_xoperator_traits](./scl/bits/_scl_xoperator_traits.php)<br>
+> [_scl_xutility_traits](./scl/bits/_scl_xutility_traits.php)<br>
 
 ##### Basic implementation
 > [scl_basic_dict](./scl/bits/scl_basic_dict.php)<br>

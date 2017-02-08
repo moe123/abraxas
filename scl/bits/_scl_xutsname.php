@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_c_utsname.php
+// _scl_xutsname.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -41,11 +41,11 @@ namespace std
 
 	function uname(utsname &$n___)
 	{
-		$n___->sysname  = @\php_uname('s');
-		$n___->nodename = @\php_uname('n');
-		$n___->release  = @\php_uname('r');
-		$n___->version  = @\php_uname('v');
-		$n___->machine  = @\php_uname('m');
+		$n___->sysname  = \php_uname('s');
+		$n___->nodename = \php_uname('n');
+		$n___->release  = \php_uname('r');
+		$n___->version  = \php_uname('v');
+		$n___->machine  = \php_uname('m');
 		return 0;
 	}
 } /* EONS */

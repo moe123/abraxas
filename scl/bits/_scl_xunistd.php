@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_c_unistd.php
+// _scl_xunistd.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,14 +16,14 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_errno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_signal.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_string.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_stdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_time.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_stdlib.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_locale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_utsname.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xerrno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xsignal.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstring.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xtime.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xlocale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutsname.php";
 } /* EONS */
 
 namespace std
@@ -60,7 +60,7 @@ namespace std
 
 	function gethostname(string &$dest___, int $destsz___ = -1)
 	{
-		if (false !== ($dest___ = @\gethostname())) {
+		if (false !== ($dest___ = \gethostname())) {
 			return 0;
 		}
 		$dest___ = null;
@@ -77,7 +77,7 @@ namespace std
 		}
 		if (false !== ($dest___ = \exec($cmd))) {
 			if (memlen($dest___) < 1) {
-				if (false !== ($dest___ = @\gethostname())) {
+				if (false !== ($dest___ = \gethostname())) {
 					return 0;
 				}
 				$dest___ = null;
@@ -102,7 +102,7 @@ namespace std
 
 	function unlink(string $fname___)
 	{
-		if (true !== @\unlink($fname___)) {
+		if (true !== \unlink($fname___)) {
 			seterrno(EINTR);
 			return -1;
 		}
@@ -112,7 +112,7 @@ namespace std
 	function readlink(string $fpath___, string &$dest___, int $destsz___ = -1)
 	{
 		if (\is_link($fpath___ )) {
-			if (false !== ($dest___ = @\readlink($fpath___))) {
+			if (false !== ($dest___ = \readlink($fpath___))) {
 				return memlen($dest___);
 			}
 			seterrno(EIO);
@@ -125,7 +125,7 @@ namespace std
 
 	function link(string $path___, string $link___)
 	{
-		if (@\link($path___, $link___)) {
+		if (\link($path___, $link___)) {
 			return 0;
 		}
 		seterrno(EFAULT);
@@ -134,7 +134,7 @@ namespace std
 
 	function symlink(string $path___, string $link___)
 	{
-		if (@\symlink($path___, $link___)) {
+		if (\symlink($path___, $link___)) {
 			return 0;
 		}
 		seterrno(EFAULT);
@@ -145,7 +145,7 @@ namespace std
 	{
 		if (\is_resource($fp___)) {
 			if (false !== ($off = \ftell($fp___))) {
-				if (true !== @\ftruncate($fp___, $len___)) {
+				if (true !== \ftruncate($fp___, $len___)) {
 					seterrno(EACCES);
 					\fseek($fp___, $off, \SEEK_CUR);
 					return -1;
@@ -164,7 +164,7 @@ namespace std
 
 	function ffsynk($fp___)
 	{
-		if (@\fflush($fp___)) {
+		if (\fflush($fp___)) {
 			return 0;
 		}
 		seterrno(EINVAL);
@@ -173,20 +173,20 @@ namespace std
 
 	function synk()
 	{
-		@\fflush(\STDOUT);
-		@\fflush(\STDERR);
-		@\fflush(\STDIN);
+		\fflush(\STDOUT);
+		\fflush(\STDERR);
+		\fflush(\STDIN);
 	}
 
 	function truncate(string $fpath___, int $len___)
 	{
-		if (false !== ($fp = @\fopen($fpath___, 'r+'))) {
-			if (true !== @\ftruncate($fp___, $len___)) {
+		if (false !== ($fp = \fopen($fpath___, 'r+'))) {
+			if (true !== \ftruncate($fp___, $len___)) {
 				seterrno(EACCES);
-				@\fclose($fp);
+				\fclose($fp);
 				return -1;
 			}
-			@\fclose($fp);
+			\fclose($fp);
 			return 0;
 		}
 		seterrno(EINVAL);

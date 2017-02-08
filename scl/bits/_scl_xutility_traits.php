@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_f_utility_traits.php
+// _scl_xutility_traits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -70,9 +70,9 @@ namespace std
 				$n = $r->getShortName();
 				$ln = $r->getName();
 				unset($r);
-				if (@method_exists($this, $ctor = "_F_" . $n . "_" . $argc___)) {
+				if (\method_exists($this, $ctor = "_F_" . $n . "_" . $argc___)) {
 					try {
-						@call_user_func_array(array($this, $ctor), $argv___);
+						\call_user_func_array(array($this, $ctor), $argv___);
 					} catch(\Throwable $ex) {
 						_F_throw_builtin_error(
 							"No matching constructor for initialization of '"

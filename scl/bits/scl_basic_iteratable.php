@@ -16,11 +16,11 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_f_iterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_f_container_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_f_operator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_f_utility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_f_algorithm.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xiterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xcontainer_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xoperator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xalgorithm.php";
 
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_utility.php";

@@ -16,7 +16,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_unistd.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
 } /* EONS */
 
 namespace std
@@ -25,12 +25,13 @@ namespace std
 	{
 		const eol = \PHP_EOL;
 
-		const sp = " ";
-		const vt = "\v";
-		const ff = "\f";
-		const ht = "\t";
-		const lf = "\n";
-		const cr = "\r";
+		const sp   = " ";
+		const vt   = "\v";
+		const ff   = "\f";
+		const ht   = "\t";
+		const lf   = "\n";
+		const cr   = "\r";
+		const nbsp = "&nbsp;";
 		const crlf = "\r\n";
 		const lfcr = "\n\r";
 		
@@ -41,10 +42,13 @@ namespace std
 		{ return \chr($i___); }
 	} /* EOC */
 
-	const endl       = char_utils::eol;
-	const space      = char_utils::sp;
-	const tab        = char_utils::ht;
-	const tabulation = char_utils::ht;
+	const endl        = char_utils::eol;
+	const endline     = char_utils::eol;
+	const blank       = char_utils::sp;
+	const space       = char_utils::sp;
+	const unbreakable = char_utils::nbsp;
+	const tab         = char_utils::ht;
+	const tabulation  = char_utils::ht;
 
 	abstract class ios_base
 	{
@@ -77,6 +81,9 @@ namespace std
 		const fixed       = 1 << 8;
 		const scientific  = 1 << 9;
 	} /* EOC */
+
+	abstract class ios extends ios_base
+	{ /* NOP */ } /* EOC */
 
 	abstract class basic_ios
 	{

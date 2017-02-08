@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// ___scl_c_time.php
+// _scl_xtime.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -46,6 +46,14 @@ namespace std
 		[ "offset" => (-12 * 60)       , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
 	];
 
+	function _F_builtin_defective()
+	{
+		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
+			return true;
+		}
+		return false;
+	}
+
 	function _F_builtin_tztab(int $zone___, int $dst___)
 	{
 		foreach (_S_builtin_zonetab as &$v) {
@@ -79,9 +87,9 @@ namespace std
 
 	function _F_builtin_tzsys_1()
 	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
-			if (false !== ($tz = @\readlink("/etc/localtime"))) {
-				if (false !== ($tz = @\substr($tz, 20))) {
+		if (!_F_builtin_defective()) {
+			if (false !== ($tz = \readlink("/etc/localtime"))) {
+				if (false !== ($tz = \substr($tz, 20))) {
 					return $tz;
 				}
 			}
@@ -94,7 +102,7 @@ namespace std
 
 	function _F_builtin_tzsys_2()
 	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
+		if (_F_builtin_defective()) {
 			$cmd = "tzutil /g";
 		} else {
 			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
@@ -108,7 +116,7 @@ namespace std
 
 	function _F_builtin_tzsys_3()
 	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) != "WIN") {
+		if (!_F_builtin_defective()) {
 			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
 				if (false !== ($tz != \timezone_name_from_abbr($tz))) {
 					return $tz;
@@ -121,10 +129,10 @@ namespace std
 
 	function _F_builtin_tzsys_4()
 	{
-		if (false !== ($tz = @\getenv("TZNAME"))) {
+		if (false !== ($tz = \getenv("TZNAME"))) {
 			return $tz;
 		}
-		if (false !== ($tz = @\getenv("TZ"))) {
+		if (false !== ($tz = \getenv("TZ"))) {
 			return $tz;
 		}
 		seterrno(EINVAL);
@@ -208,18 +216,18 @@ namespace std
 	{ return _F_builtin_tzsys_1(); }
 
 	function tzname()
-	{ return  @\date_default_timezone_get(); }
+	{ return  \date_default_timezone_get(); }
 	
 	function tzoffset()
 	{
-		$tz = new \DateTimeZone(@\date_default_timezone_get());
+		$tz = new \DateTimeZone(\date_default_timezone_get());
 		$tm = new \DateTime("now", $tz);
 		return $tz->getOffset($tm);
 	}
 
 	function tzdaylight()
 	{
-		$tz = new \DateTimeZone(@\date_default_timezone_get());
+		$tz = new \DateTimeZone(\date_default_timezone_get());
 		$tm = new \DateTime("now", $tz);
 		$ts = $tz->getTransitions();
 		$st = $tm->format('U');
@@ -234,12 +242,12 @@ namespace std
 
 	function tzset()
 	{
-		$tz = @\date_default_timezone_get();
+		$tz = \date_default_timezone_get();
 		if ($tz == "GMT") {
 			$tz = tzsys();
-			if (!@\date_default_timezone_set($tz)) {
+			if (!\date_default_timezone_set($tz)) {
 				$tz = "GMT";
-				!@\date_default_timezone_set($tz);
+				!\date_default_timezone_set($tz);
 			}
 		}
 		return $tz;
@@ -263,9 +271,9 @@ namespace std
 	function strftime(string &$dest___, string $fmt___, tm &$tm___)
 	{
 		if ($tm___->_M_gmt) {
-			$dest___ = @\strftime($fmt___, timegm($tm___));
+			$dest___ = \strftime($fmt___, timegm($tm___));
 		} else {
-			$dest___ = @\strftime($fmt___, timelocale($tm___));
+			$dest___ = \strftime($fmt___, timelocale($tm___));
 		}
 		return memlen($dest___);
 	}
@@ -275,9 +283,9 @@ namespace std
 		$xloc = newlocale(xlocale_mask::time, $locid___);
 		uselocale($xloc);
 		if ($tm___->_M_gmt) {
-			$dest___ = @\strftime($fmt___, timegm($tm___));
+			$dest___ = \strftime($fmt___, timegm($tm___));
 		} else {
-			$dest___ = @\strftime($fmt___, timelocale($tm___));
+			$dest___ = \strftime($fmt___, timelocale($tm___));
 		}
 		freelocale($xloc);
 		return $dest___;
