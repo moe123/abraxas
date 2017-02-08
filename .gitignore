@@ -38,58 +38,58 @@ Thumbs.db
 
 # Android Studio #
 ##################
-build
-build/
-obj
-libs
-jniLibs
-*/build
-*/obj
-*/libs
-*/jniLibs
-*/build/*
-*/obj/*
-*/libs/*
-*/jniLibs/*
-.gradle
-.idea
-.gradle/*
-.idea/*
-*/.gradle/*
-*/.idea/*
+# build
+# build/
+# obj
+# libs
+# jniLibs
+# */build
+# */obj
+# */libs
+# */jniLibs
+# */build/*
+# */obj/*
+# */libs/*
+# */jniLibs/*
+# .gradle
+# .idea
+# .gradle/*
+# .idea/*
+# */.gradle/*
+# */.idea/*
 
 # Matlab and Octave #
 #####################
-*.asv
-*.m~
-*.mex*
-slprj/
-codegen/
-*@CodeGen/*
-*/FORCES/newOutput.m
-examples/matlab/*
-octave-workspace
+# *.asv
+# *.m~
+# *.mex*
+# slprj/
+# codegen/
+# *@CodeGen/*
+# */FORCES/newOutput.m
+# examples/matlab/*
+# octave-workspace
 
 # Apple Xcode #
 ###############
-build
-build/
-DerivedData
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
+# build
+# build/
+# DerivedData
+# *.pbxuser
+# !default.pbxuser
+# *.mode1v3
+# !default.mode1v3
+# *.mode2v3
+# !default.mode2v3
+# *.perspectivev3
+# !default.perspectivev3
+# xcuserdata
 
 # Arduino Project #
 ###################
-*build-*
-*~
-build-tmp/
+# *build-*
+# *~
+# build-tmp/
 
 # ModelSim #
 ############
@@ -114,38 +114,38 @@ build-tmp/
 
 # Quartus #
 ###########
-*_generation_script*
-*_inst.vhd
-*.bak
-*.cmp
-*.done
-*.eqn
-*.hex
-*.html
-*.jdi
-*.jpg
-*.mif
-*.pin
-*.pof
-*.ptf.*
-*.qar
-*.qarlog
-*.qws
-*.rpt
-*.smsg
-*.sof
-*.sopc_builder
-*.summary
-*.tcl
-*~
-*example*
-*sopc_*
-*.sdc
-*/db/
-*/incremental_db/
-*/simulation/
-*/timing/
-*/testbench/
-*/*_sim/
+# *_generation_script*
+# *_inst.vhd
+# *.bak
+# *.cmp
+# *.done
+# *.eqn
+# *.hex
+# *.html
+# *.jdi
+# *.jpg
+# *.mif
+# *.pin
+# *.pof
+# *.ptf.*
+# *.qar
+# *.qarlog
+# *.qws
+# *.rpt
+# *.smsg
+# *.sof
+# *.sopc_builder
+# *.summary
+# *.tcl
+# *~
+# *example*
+# *sopc_*
+# *.sdc
+# */db/
+# */incremental_db/
+# */simulation/
+# */timing/
+# */testbench/
+# */*_sim/
 
 # EOF
