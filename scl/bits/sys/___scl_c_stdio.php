@@ -24,10 +24,10 @@ namespace std
 	const seek_end = \SEEK_END;
 	const seek_cur = \SEEK_CUR;
 
-	const flock_sh = \LOCK_SH;
-	const flock_ex = \LOCK_EX;
-	const flock_nb = \LOCK_NB;
-	const flock_un = \LOCK_UN;
+	const lock_sh = \LOCK_SH;
+	const lock_ex = \LOCK_EX;
+	const lock_nb = \LOCK_NB;
+	const lock_un = \LOCK_UN;
 
 	function fopen(string $fname___ , string $m___)
 	{ return (($fp = @\fopen($fname___, $m___)) !== false) ? $fp : null; }
