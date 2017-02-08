@@ -16,14 +16,14 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_errno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_signal.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_string.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_stdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_time.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_stdlib.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_locale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "___scl_c_utsname.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_errno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_signal.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_string.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_stdio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_time.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_stdlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "sys" . DIRECTORY_SEPARATOR . "___scl_c_utsname.php";
 } /* EONS */
 
 namespace std
