@@ -87,6 +87,7 @@ namespace std
 	{
 		if ($tzabbr___ != "GMT" && $tzabbr___ != "UTC") {
 			if (false !== ($tz = \timezone_name_from_abbr($tzabbr___))) {
+				seterrno(NOERR);
 				return $tz;
 			}
 		}
@@ -98,6 +99,7 @@ namespace std
 		if (!_F_builtin_os_windows()) {
 			if (false !== ($tz = \readlink("/etc/localtime"))) {
 				if (false !== ($tz = \substr($tz, 20))) {
+					seterrno(NOERR);
 					return $tz;
 				}
 			}
@@ -116,6 +118,7 @@ namespace std
 			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
 		}
 		if (false !== ($tz = \exec($cmd))) {
+			seterrno(NOERR);
 			return $tz;
 		}
 		seterrno(EINVAL);
@@ -127,6 +130,7 @@ namespace std
 		if (!_F_builtin_os_windows()) {
 			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
 				if (false !== ($tz != \timezone_name_from_abbr($tz))) {
+					seterrno(NOERR);
 					return $tz;
 				}
 			}
@@ -138,9 +142,11 @@ namespace std
 	function _F_builtin_tzsys_4()
 	{
 		if (false !== ($tz = \getenv("TZNAME"))) {
+			seterrno(NOERR);
 			return $tz;
 		}
 		if (false !== ($tz = \getenv("TZ"))) {
+			seterrno(NOERR);
 			return $tz;
 		}
 		seterrno(EINVAL);

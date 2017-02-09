@@ -262,6 +262,7 @@ PHP7 built with:
 > [_scl_xstdlib](./scl/bits/_scl_xstdlib.php)<br>
 > [_scl_xstring](./scl/bits/_scl_xstring.php)<br>
 > [_scl_xtime](./scl/bits/_scl_xtime.php)<br>
+> [_scl_xtimezone](./scl/bits/_scl_xtimezone.php)<br>
 > [_scl_xunistd](./scl/bits/_scl_xunistd.php)<br>
 > [_scl_xutsname](./scl/bits/_scl_xutsname.php)<br>
 
