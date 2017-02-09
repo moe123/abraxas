@@ -178,7 +178,7 @@ namespace std
 	function tzset()
 	{
 		$tz = \date_default_timezone_get();
-		if ($tz == "GMT") {
+		if ($tz == "GMT" || $tz == "UTC") {
 			$tz = tzsys();
 			if (!\date_default_timezone_set($tz)) {
 				$tz = "GMT";

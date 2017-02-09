@@ -16,6 +16,26 @@
 
 namespace std
 {
+	final class timeb
+	{
+		var $time;     /* seconds since the Epoch */
+		var $millitm;  /* milliseconds since the Epoch */
+		var $timezone; /* minutes west of Greenwich */
+		var $dstflag;  /* non-zero if DST in effect */
+
+		function __construct(
+			  int $time___
+			, int $millitm___
+			, int $timezone___
+			, int $dstflag___
+		) {
+			$this->time     = $time___;
+			$this->millitm  = $millitm___;
+			$this->timezone = $timezone___;
+			$this->dstflag  = $dstflag___;
+		}
+	} /* EOC */
+
 	final class timespec
 	{
 		var $tv_sec;  /* seconds */
@@ -149,14 +169,14 @@ namespace std
 			if ($buflen) {
 				$pt = \strptime($buf___, $fmt___);
 				if ($pt !== false) {
-					$res___->tm_sec   = $pt["tm_sec"];
-					$res___->tm_min   = $pt["tm_min"];
-					$res___->tm_hour  = $pt["tm_hour"];
-					$res___->tm_mday  = $pt["tm_mday"];
-					$res___->tm_mon   = $pt["tm_mon"];
-					$res___->tm_year  = $pt["tm_year"];
-					$res___->tm_wday  = $pt["tm_wday"];
-					$res___->tm_yday  = $pt["tm_yday"];
+					$res___->tm_sec   = \intval($pt["tm_sec"]);
+					$res___->tm_min   = \intval($pt["tm_min"]);
+					$res___->tm_hour  = \intval($pt["tm_hour"]);
+					$res___->tm_mday  = \intval($pt["tm_mday"]);
+					$res___->tm_mon   = \intval($pt["tm_mon"]);
+					$res___->tm_year  = \intval($pt["tm_year"]);
+					$res___->tm_wday  = \intval($pt["tm_wday"]);
+					$res___->tm_yday  = \intval($pt["tm_yday"]);
 					$res___->tm_isdst = -1;
 					$res___->_M_gmt = -1;
 					return $buf___[$buflen -1];
@@ -175,14 +195,14 @@ namespace std
 				$pt = \strptime($buf___, $fmt___);
 				_F_builtin_unsetlocale($xloc___);
 				if ($lt !== false) {
-					$res___->tm_sec   = $pt["tm_sec"];
-					$res___->tm_min   = $pt["tm_min"];
-					$res___->tm_hour  = $pt["tm_hour"];
-					$res___->tm_mday  = $pt["tm_mday"];
-					$res___->tm_mon   = $pt["tm_mon"];
-					$res___->tm_year  = $pt["tm_year"];
-					$res___->tm_wday  = $pt["tm_wday"];
-					$res___->tm_yday  = $pt["tm_yday"];
+					$res___->tm_sec   = \intval($pt["tm_sec"]);
+					$res___->tm_min   = \intval($pt["tm_min"]);
+					$res___->tm_hour  = \intval($pt["tm_hour"]);
+					$res___->tm_mday  = \intval($pt["tm_mday"]);
+					$res___->tm_mon   = \intval($pt["tm_mon"]);
+					$res___->tm_year  = \intval($pt["tm_year"]);
+					$res___->tm_wday  = \intval($pt["tm_wday"]);
+					$res___->tm_yday  = \intval($pt["tm_yday"]);
 					$res___->tm_isdst = -1;
 					$res___->_M_gmt = -1;
 					return $buf___[$buflen -1];
@@ -192,15 +212,30 @@ namespace std
 		return null;
 	}
 
+	function ftime(timeb &$tb)
+	{
+		$r = \gettimeofday();
+		if (\is_array($r)) {
+			$tb->time     = \intval($r["sec"]);
+			$tb->millitm  = \intval($r["usec"] / 1000);
+			$tb->timezone = \intval($r["minuteswest"]);
+			$tb->dstflag  = \intval($r["dsttime"]);
+		} else {
+			seterrno(EFAULT);
+			return -1;
+		}
+		return 0;
+	}
+
 	function gettimeofday(timeval &$tv, timezone &$tz = null)
 	{
 		$r = \gettimeofday();
 		if (\is_array($r)) {
-			$tv->tv_sec  = $r["sec"];
-			$tv->tv_usec = $r["usec"];
+			$tv->tv_sec  = \intval($r["sec"]);
+			$tv->tv_usec = \intval($r["usec"]);
 			if (!\is_null($tz)) {
-				$tz->tz_minuteswest = $r["minuteswest"];
-				$tz->tz_dsttime     = $r["dsttime"];
+				$tz->tz_minuteswest = \intval($r["minuteswest"]);
+				$tz->tz_dsttime     = \intval($r["dsttime"]);
 			}
 		} else {
 			seterrno(EFAULT);
@@ -213,30 +248,30 @@ namespace std
 	{
 		$lt = \localtime($time___, true);
 		return new tm(
-			  $lt["tm_sec"]
-			, $lt["tm_min"]
-			, $lt["tm_hour"]
-			, $lt["tm_mday"]
-			, $lt["tm_mon"]
-			, $lt["tm_year"]
-			, $lt["tm_wday"]
-			, $lt["tm_yday"]
-			, $lt["tm_isdst"]
+			  \intval($lt["tm_sec"])
+			, \intval($lt["tm_min"])
+			, \intval($lt["tm_hour"])
+			, \intval($lt["tm_mday"])
+			, \intval($lt["tm_mon"])
+			, \intval($lt["tm_year"])
+			, \intval($lt["tm_wday"])
+			, \intval($lt["tm_yday"])
+			, \intval($lt["tm_isdst"])
 		);
 	}
 
 	function & localtime_r(int $time___, tm &$res___)
 	{
 		$lt = \localtime($time___, true);
-		$res___->tm_sec   = $lt["tm_sec"];
-		$res___->tm_min   = $lt["tm_min"];
-		$res___->tm_hour  = $lt["tm_hour"];
-		$res___->tm_mday  = $lt["tm_mday"];
-		$res___->tm_mon   = $lt["tm_mon"];
-		$res___->tm_year  = $lt["tm_year"];
-		$res___->tm_wday  = $lt["tm_wday"];
-		$res___->tm_yday  = $lt["tm_yday"];
-		$res___->tm_isdst = $lt["tm_isdst"];
+		$res___->tm_sec   = \intval($lt["tm_sec"]);
+		$res___->tm_min   = \intval($lt["tm_min"]);
+		$res___->tm_hour  = \intval($lt["tm_hour"]);
+		$res___->tm_mday  = \intval($lt["tm_mday"]);
+		$res___->tm_mon   = \intval($lt["tm_mon"]);
+		$res___->tm_year  = \intval($lt["tm_year"]);
+		$res___->tm_wday  = \intval($lt["tm_wday"]);
+		$res___->tm_yday  = \intval($lt["tm_yday"]);
+		$res___->tm_isdst = \intval($lt["tm_isdst"]);
 		return $res___;
 	}
 
@@ -312,7 +347,7 @@ namespace std
 	}
 
 	function difftime(int $time1___, int $time0___)
-	{ return time1 - time0; }
+	{ return \doubleval(time1 - time0); }
 
 	function asctime(tm &$tm___)
 	{
@@ -345,8 +380,8 @@ namespace std
 			}
 			if (\is_array($r)) {
 				if (!\is_null($rem___)) {
-					$rem___->tv_sec  = $r["seconds"];
-					$rem___->tv_nsec = $r["nanoseconds"];
+					$rem___->tv_sec  = \intval($r["seconds"]);
+					$rem___->tv_nsec = \intval($r["nanoseconds"]);
 				}
 				seterrno(EINTR);
 				return -1;

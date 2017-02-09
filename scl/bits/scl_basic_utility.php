@@ -249,35 +249,49 @@ namespace std
 		);
 	}
 
+	function make_timeb(
+		  int $time___ = 0
+		, int $millitm___ = 0
+		, int $timezone___ = 0
+		, int $dstflag___ = 0
+	) {
+		return new timeb(
+			  $time___
+			, $millitm___
+			, $timezone___
+			, $dstflag___
+		);
+	}
+
+	function make_tm(
+		  int $tm_sec___   = 0
+		, int $tm_min___   = 0
+		, int $tm_hour___  = 0
+		, int $tm_mday___  = 0
+		, int $tm_mon___   = 0
+		, int $tm_year___  = 0
+		, int $tm_wday___  = 0
+		, int $tm_yday___  = 0
+		, int $tm_isdst___ = 0
+	) {
+		return new tm(
+			  $tm_sec___
+			, $tm_min___
+			, $tm_hour___
+			, $tm_mday___
+			, $tm_mon___
+			, $tm_year___
+			, $tm_wday___
+			, $tm_yday___
+			, $tm_isdst___
+		);
+	}
+
 	function make_timespec(int $sec___ = 0, int $nsec___ = 0)
 	{ return new timespec($sec___, $nsec___); }
 
 	function make_timeval(int $sec___ = 0, int $usec___ = 0)
 	{ return new timeval($sec___, $usec___); }
-
-	function make_tm(
-			  int $tm_sec___   = 0
-			, int $tm_min___   = 0
-			, int $tm_hour___  = 0
-			, int $tm_mday___  = 0
-			, int $tm_mon___   = 0
-			, int $tm_year___  = 0
-			, int $tm_wday___  = 0
-			, int $tm_yday___  = 0
-			, int $tm_isdst___ = 0
-		) {
-			return new tm(
-				  $tm_sec___
-				, $tm_min___
-				, $tm_hour___
-				, $tm_mday___
-				, $tm_mon___
-				, $tm_year___
-				, $tm_wday___
-				, $tm_yday___
-				, $tm_isdst___
-			);
-		}
 
 	function make_collator(string $id___, int $lv___ = collator_level::none)
 	{ return new collator($id___, $lv___); }

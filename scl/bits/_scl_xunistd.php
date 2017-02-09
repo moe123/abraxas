@@ -20,8 +20,8 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xsignal.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstring.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xtimezone.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xtime.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xtimezone.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdlib.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xlocale.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutsname.php";
