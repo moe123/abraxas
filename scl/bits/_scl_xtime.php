@@ -16,129 +16,6 @@
 
 namespace std
 {
-	const _S_builtin_zonetab = [
-		[ "offset" => (12 * 60)        , "stdzone" => "NZST", "dlzone" => "NZDT"    ], /* New Zealand */
-		[ "offset" => (10 * 60)        , "stdzone" => "AEST", "dlzone" => "AEDT"    ], /* Aust: Eastern */
-		[ "offset" => ((9 * 60) + 30)  , "stdzone" => "ACST", "dlzone" => "ACDT"    ], /* Aust: Central */
-		[ "offset" => (9 * 60)         , "stdzone" => "JST" , "dlzone" =>  null     ], /* Japan */
-		[ "offset" => (8 * 60)         , "stdzone" => "AWST", "dlzone" => "AWDT"    ], /* Aust: Western */
-		[ "offset" => (8 * 60)         , "stdzone" => "ULAT", "dlzone" => "ULAST"   ], /* Ulaanbaatar */
-		[ "offset" => (7 * 60)         , "stdzone" => "HOVT", "dlzone" => "HOVST"   ], /* Khovd */
-		[ "offset" => ((6 * 60) + 30)  , "stdzone" => "MMT" , "dlzone" =>  null     ], /* Myanmar */
-		[ "offset" => (6 * 60)         , "stdzone" => "OMST", "dlzone" =>  null     ], /* Omsk */
-		[ "offset" => ((5 * 60) + 45)  , "stdzone" => "NPT" , "dlzone" =>  null     ], /* Nepal */
-		[ "offset" => ((5 * 60) + 30)  , "stdzone" => "IST" , "dlzone" =>  null     ], /* Indian */
-		[ "offset" => (5 * 60)         , "stdzone" => "ORAT", "dlzone" =>  null     ], /* Oral */
-		[ "offset" => ((3 * 60) + 30)  , "stdzone" => "IRST", "dlzone" => "IRDT"    ], /* Iran */
-		[ "offset" => (2 * 60)         , "stdzone" => "EET" , "dlzone" => "EET DST" ], /* Eastern European */
-		[ "offset" => (1 * 60)         , "stdzone" => "MET" , "dlzone" => "MET DST" ], /* Middle European */
-		[ "offset" => (0 * 60)         , "stdzone" => "WET" , "dlzone" => "WET DST" ], /* Western European */
-		[ "offset" => ((-3 * 60) + 30) , "stdzone" => "NST" , "dlzone" => "NST"     ], /* Newfoundland */
-		[ "offset" => (-4 * 60)        , "stdzone" => "AST" , "dlzone" => "ADT"     ], /* Atlantic */
-		[ "offset" => (-5 * 60)        , "stdzone" => "EST" , "dlzone" => "EDT"     ], /* Eastern */
-		[ "offset" => (-6 * 60)        , "stdzone" => "CST" , "dlzone" => "CDT"     ], /* Central */
-		[ "offset" => (-7 * 60)        , "stdzone" => "MST" , "dlzone" => "MDT"     ], /* Mountain */
-		[ "offset" => (-8 * 60)        , "stdzone" => "PST" , "dlzone" => "PDT"     ], /* Pacific */
-		[ "offset" => (-9 * 60)        , "stdzone" => "AKST", "dlzone" => "AKDT"    ], /* Alaska */
-		[ "offset" => (-9 * 60)        , "stdzone" => "YST" , "dlzone" => "YDT"     ], /* Yukon */
-		[ "offset" => (-10 * 60)       , "stdzone" => "HST" , "dlzone" => "HDT"     ], /* Hawaiian */
-		[ "offset" => (-11 * 60)       , "stdzone" => "SST" , "dlzone" =>  null     ], /* Samoa */
-		[ "offset" => (-12 * 60)       , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
-	];
-
-	function _F_builtin_defective()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
-			return true;
-		}
-		return false;
-	}
-
-	function _F_builtin_tztab(int $zone___, int $dst___)
-	{
-		foreach (_S_builtin_zonetab as &$v) {
-			if ($v["offset"] ==  -($zone___)) {
-				if ($dst___ && !\is_null($v["dlzone"])) {
-					return $v["dlzone"];
-				}
-				if (!$dst___ && !\is_null($v["stdzone"])) {
-					return $v["stdzone"];
-				}
-			}
-		}
-		$sign = "-";
-		if ($zone___ < 0) {
-			$zone___ = -$zone___;
-			$sign = "+";
-		}
-		seterrno(EINVAL);
-		return \sprintf("GMT%s%d:%02d", $sign, $zone___ / 60, $zone___ % 60);
-	}
-
-	function _F_builtin_tzname(string $tzabbr___)
-	{
-		if ($tzabbr___ != "GMT" && $tzabbr___ != "UTC") {
-			if (false !== ($tz = \timezone_name_from_abbr($tzabbr___))) {
-				return $tz;
-			}
-		}
-		return "Europe/London";
-	}
-
-	function _F_builtin_tzsys_1()
-	{
-		if (!_F_builtin_defective()) {
-			if (false !== ($tz = \readlink("/etc/localtime"))) {
-				if (false !== ($tz = \substr($tz, 20))) {
-					return $tz;
-				}
-			}
-		} else {
-			return _F_builtin_tzsys_2();
-		}
-		seterrno(EINVAL);
-		return _F_builtin_tzsys_2();
-	}
-
-	function _F_builtin_tzsys_2()
-	{
-		if (_F_builtin_defective()) {
-			$cmd = "tzutil /g";
-		} else {
-			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
-		}
-		if (false !== ($tz = \exec($cmd))) {
-			return $tz;
-		}
-		seterrno(EINVAL);
-		return _F_builtin_tzsys_3();
-	}
-
-	function _F_builtin_tzsys_3()
-	{
-		if (!_F_builtin_defective()) {
-			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
-				if (false !== ($tz != \timezone_name_from_abbr($tz))) {
-					return $tz;
-				}
-			}
-		}
-		seterrno(EINVAL);
-		return _F_builtin_tzsys_4();
-	}
-
-	function _F_builtin_tzsys_4()
-	{
-		if (false !== ($tz = \getenv("TZNAME"))) {
-			return $tz;
-		}
-		if (false !== ($tz = \getenv("TZ"))) {
-			return $tz;
-		}
-		seterrno(EINVAL);
-		return _F_builtin_tzname("GMT");
-	}
-
 	final class timespec
 	{
 		var $tv_sec;  /* seconds */
@@ -179,15 +56,15 @@ namespace std
 	{
 		var $_M_gmt = 0;
 
-		var $tm_sec;   /* seconds after the minute 0-61  */
-		var $tm_min;   /* minutes after the hour 0-59  */
-		var $tm_hour;  /* hours since midnight 0-23  */
-		var $tm_mday;  /* day of the month 1-31  */
-		var $tm_mon;   /* months since January 0-11  */
-		var $tm_year;  /* years since 1900 */
-		var $tm_wday;  /* days since Sunday 0-6 */
-		var $tm_yday;  /* days since January 1	0-365 */
-		var $tm_isdst; /* Daylight Saving Time flag */
+		var $tm_sec;        /* seconds after the minute 0-61  */
+		var $tm_min;        /* minutes after the hour 0-59  */
+		var $tm_hour;       /* hours since midnight 0-23  */
+		var $tm_mday;       /* day of the month 1-31  */
+		var $tm_mon;        /* months since January 0-11  */
+		var $tm_year;       /* years since 1900 */
+		var $tm_wday;       /* days since Sunday 0-6 */
+		var $tm_yday;       /* days since January 1	0-365 */
+		var $tm_isdst = -1; /* Daylight Saving Time flag */
 
 		function __construct(
 			  int $tm_sec___
@@ -212,53 +89,6 @@ namespace std
 		}
 	} /* EOC */
 
-	function tzsys()
-	{ return _F_builtin_tzsys_1(); }
-
-	function tzname()
-	{ return  \date_default_timezone_get(); }
-	
-	function tzoffset()
-	{
-		$tz = new \DateTimeZone(\date_default_timezone_get());
-		$tm = new \DateTime("now", $tz);
-		return $tz->getOffset($tm);
-	}
-
-	function tzdaylight()
-	{
-		$tz = new \DateTimeZone(\date_default_timezone_get());
-		$tm = new \DateTime("now", $tz);
-		$ts = $tz->getTransitions();
-		$st = $tm->format('U');
-		foreach ($ts as $k => &$v) {
-			if ($v["ts"] > $st) {
-				return $ts[($k -1)]['isdst'] ? 1 : 0;
-			}
-		}
-		seterrno(EINVAL);
-		return 0;
-	}
-
-	function tzset()
-	{
-		$tz = \date_default_timezone_get();
-		if ($tz == "GMT") {
-			$tz = tzsys();
-			if (!\date_default_timezone_set($tz)) {
-				$tz = "GMT";
-				!\date_default_timezone_set($tz);
-			}
-		}
-		return $tz;
-	}
-
-	function tzsetwall()
-	{ return tzset(); }
-
-	function timezone(int $zone___, int $dst___)
-	{ return _F_builtin_tztab($zone___, $dst___); }
-
 	function time(int &$tloc___ = null)
 	{
 		$t = \time();
@@ -270,6 +100,28 @@ namespace std
 
 	function strftime(string &$dest___, string $fmt___, tm &$tm___)
 	{
+		if (_F_builtin_os_darwin()) {
+			if (false !== ($pos = \strpos($fmt___, "%P"))) {
+				$i = 0;
+				while (isset($fmt___[$i])) {
+					if (
+							$i == 0
+						&& $fmt___[$i] == "%"
+						&& $fmt___[$i + 1] == "P"
+					) {
+						$fmt___[$i + 1] = "p";
+					} else if (
+							isset($fmt___[$i + 1])
+						&& $fmt___[$i] == "%"
+						&& $fmt___[$i + 1] == "P"
+						&& $fmt___[$i - 1] != "%"
+					) {
+						$fmt___[$i + 1] = "p";
+					}
+					++$i;
+				}
+			}
+		}
 		if ($tm___->_M_gmt) {
 			$dest___ = \strftime($fmt___, timegm($tm___));
 		} else {
@@ -278,17 +130,66 @@ namespace std
 		return memlen($dest___);
 	}
 
-	function strftime_l(string &$dest___, string $fmt___, tm &$tm___, string $locid___)
+	function strftime_l(string &$dest___, string $fmt___, tm &$tm___, locale_t &$xloc___)
 	{
-		$xloc = newlocale(xlocale_mask::time, $locid___);
 		uselocale($xloc);
 		if ($tm___->_M_gmt) {
 			$dest___ = \strftime($fmt___, timegm($tm___));
 		} else {
 			$dest___ = \strftime($fmt___, timelocale($tm___));
 		}
-		freelocale($xloc);
+		_F_builtin_unsetlocale($xloc___);
 		return $dest___;
+	}
+
+	function strptime(string $buf___, string $fmt___, tm &$res___)
+	{
+		if (!_F_builtin_os_windows()) {
+			$buflen = \strlen($buf___);
+			if ($buflen) {
+				$pt = \strptime($buf___, $fmt___);
+				if ($pt !== false) {
+					$res___->tm_sec   = $pt["tm_sec"];
+					$res___->tm_min   = $pt["tm_min"];
+					$res___->tm_hour  = $pt["tm_hour"];
+					$res___->tm_mday  = $pt["tm_mday"];
+					$res___->tm_mon   = $pt["tm_mon"];
+					$res___->tm_year  = $pt["tm_year"];
+					$res___->tm_wday  = $pt["tm_wday"];
+					$res___->tm_yday  = $pt["tm_yday"];
+					$res___->tm_isdst = -1;
+					$res___->_M_gmt = -1;
+					return $buf___[$buflen -1];
+				}
+			}
+		}
+		return null;
+	}
+
+	function strptime_l(string $buf___, string $fmt___, tm &$res___, locale_t &$xloc___)
+	{
+		if (!_F_builtin_os_windows()) {
+			$buflen = \strlen($buf___);
+			if ($buflen) {
+				uselocale($xloc___);
+				$pt = \strptime($buf___, $fmt___);
+				_F_builtin_unsetlocale($xloc___);
+				if ($lt !== false) {
+					$res___->tm_sec   = $pt["tm_sec"];
+					$res___->tm_min   = $pt["tm_min"];
+					$res___->tm_hour  = $pt["tm_hour"];
+					$res___->tm_mday  = $pt["tm_mday"];
+					$res___->tm_mon   = $pt["tm_mon"];
+					$res___->tm_year  = $pt["tm_year"];
+					$res___->tm_wday  = $pt["tm_wday"];
+					$res___->tm_yday  = $pt["tm_yday"];
+					$res___->tm_isdst = -1;
+					$res___->_M_gmt = -1;
+					return $buf___[$buflen -1];
+				}
+			}
+		}
+		return null;
 	}
 
 	function gettimeofday(timeval &$tv, timezone &$tz = null)
@@ -407,8 +308,27 @@ namespace std
 			, $tm___->tm_mon + 1
 			, $tm___->tm_mday
 			, $tm___->tm_year + 1900
-			, $tm___->tm_isdst
 		);
+	}
+
+	function difftime(int $time1___, int $time0___)
+	{ return time1 - time0; }
+
+	function asctime(tm &$tm___)
+	{
+		$dest = "";
+		if (!strftime($dest, "%a %b %H:%M:%S %Y", $tm___)) {
+			return null;
+		}
+		return $dest;
+	}
+
+	function asctime_r(tm &$tm___, string &$dest___)
+	{
+		if (!strftime($dest___, "%a %b %H:%M:%S %Y", $tm___)) {
+			return null;
+		}
+		return $dest___;
 	}
 
 	function nanosleep(timespec &$req___, timespec &$rem___ = null)

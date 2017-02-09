@@ -22,6 +22,43 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_vector.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_vector.php";
 
+	$buf = "";
+	$tm0 = std\gmtime(std\time());
+	if (std\strftime($buf, "%d.%m.%Y.%z", $tm0)) {
+		print_r($tm0);
+		$tm1 = std\make_tm();
+		if (null != std\strptime($buf, "%d.%m.%Y.%z", $tm1)) {
+			print_r($tm1);
+		}
+	}
+
+
+	std\abort();
+
+	$fmt___ = "%P %P %P %%P %P %";
+	$i = 0;
+	while (isset($fmt___[$i])) {
+		if (
+			   $i == 0
+			&& $fmt___[$i] == "%"
+			&& $fmt___[$i + 1] == "P"
+		) {
+			$fmt___[$i + 1] = "p";
+		} else if (
+			   isset($fmt___[$i + 1])
+			&& $fmt___[$i] == "%"
+			&& $fmt___[$i + 1] == "P"
+			&& $fmt___[$i - 1] != "%"
+		) {
+			$fmt___[$i + 1] = "p";
+		}
+		++$i;
+	}
+	print_r("\n");
+	print_r($fmt___ . "\n");
+
+	std\abort();
+
 	$delay = std\make_timespec(0, 50000000);
 	
 	print_r(std\nanosleep($delay));
@@ -123,7 +160,6 @@ namespace
 		, std\back_inserter($dv)
 	);
 	std\cout($dv)(std\endl);
-
 } /* EONS */
 
 /* EOF */
