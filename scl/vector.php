@@ -24,6 +24,7 @@ namespace
 
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "irange.php";
 
+	std\cout(std\xnanoseconds())(std\endl);
 	foreach (std\xrange_n(1, 3) as $i) {
 		std\cout($i)(std\tab);
 	}
@@ -51,6 +52,8 @@ namespace
 	foreach ($rg as $i) {
 		std\cout($i)(std\tab);
 	}
+	std\cout(std\endl);
+	std\cout(std\xnanoseconds())(std\endl);
 
 	std\abort();
 

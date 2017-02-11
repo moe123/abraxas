@@ -347,7 +347,15 @@ namespace std
 	}
 
 	function difftime(int $time1___, int $time0___)
-	{ return \doubleval(time1 - time0); }
+	{
+		if (_F_builtin_os_64bit()) {
+			return time1 - time0;
+		}
+		return (float)time1 - (float)time0;
+	}
+
+	function difftime_real(float $time1___, float $time0___)
+	{ return time1 - time0; }
 
 	function asctime(tm &$tm___)
 	{

@@ -66,6 +66,36 @@ namespace std
 		return 0;
 	}
 
+	function xmilliseconds()
+	{
+		if (_F_builtin_os_64bit()) {
+			$tm = \explode(' ', \microtime());
+			return ((int)$tm[1]) * 1000 + ((int)\round($tm[0] * 1000));
+		}
+		$tm = \explode(' ', \microtime());
+		return \sprintf('%d%03d', $tm[1], $tm[0] * 1000);
+	}
+
+	function xmicroseconds()
+	{
+		if (_F_builtin_os_64bit()) {
+			$tm = \explode(' ', \microtime());
+			return ((int)$tm[1]) * 1000000 + ((int)\round($tm[0] * 1000000));
+		}
+		$tm = \explode(' ', \microtime());
+		return \sprintf('%d%06d', $tm[1], $tm[0] * 1000000);
+	}
+
+	function xnanoseconds()
+	{
+		if (_F_builtin_os_64bit()) {
+			$tm = \explode(' ', \microtime());
+			return ((int)$tm[1]) * 1000000000 + ((int)\round($tm[0] * 1000000000));
+		}
+		$tm = \explode(' ', \microtime());
+		return \sprintf('%d%09d', $tm[1], $tm[0] * 1000000000);
+	}
+
 	function gethostname(string &$dest___, int $destsz___ = -1)
 	{
 		if (false !== ($dest___ = \gethostname())) {
