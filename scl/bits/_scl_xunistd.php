@@ -37,7 +37,7 @@ namespace
 namespace std
 {
 	function xexit(int $status = 0)
-	{ exit($status); }
+	{ stop($status); }
 
 	function xmillisleep(int $n___)
 	{
