@@ -1001,8 +1001,9 @@ namespace std
 		, callable $unaryOperation___
 	) {
 		while ($first___ != $last___) {
-			$v = $unaryOperation___($first___->_F_this());
-			$out___->_F_pos_assign($v);
+			$out___->_F_pos_assign(
+				$unaryOperation___($first___->_F_this())
+			);
 			$out___->_F_next();
 			$first___->_F_next();
 		}
@@ -1017,13 +1018,27 @@ namespace std
 		, callable $binaryOperation___
 	) {
 		while ($first1___ != $last1___) {
-			$v = $binaryOperation___($first1___->_F_this(), $first2___->_F_this());
-			$out___->_F_pos_assign($v);
+			$out___->_F_pos_assign(
+				$binaryOperation___($first1___->_F_this(), $first2___->_F_this())
+			);
 			$out___->_F_next();
 			$first1___->_F_next();
 			$first2___->_F_next();
 		}
 		return $out___;
+	}
+
+	function transform_s(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, insert_iterator $out___
+		, callable $unaryOperation___
+	) {
+		while ($first1___ != $last1___) {
+			$c = $unaryOperation___($first1___->_F_this());
+			copy($c->begin(), $c->end(), $out___);
+			$first1___->_F_next();
+		}
 	}
 
 	function sort(

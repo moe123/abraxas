@@ -46,22 +46,6 @@ namespace std
 		[ "offset" => (-12 * 60)       , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
 	];
 
-	function _F_builtin_os_windows()
-	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
-			return true;
-		}
-		return false;
-	}
-
-	function _F_builtin_os_darwin()
-	{
-		if (\strtoupper(\PHP_OS) == "DARWIN") {
-			return true;
-		}
-		return false;
-	}
-
 	function _F_builtin_tztab(int $zone___, int $dst___)
 	{
 		foreach (_S_builtin_zonetab as &$v) {

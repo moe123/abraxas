@@ -17,6 +17,7 @@
 namespace
 {
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xerrno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xostype.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xsignal.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstring.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdio.php";
@@ -77,7 +78,7 @@ namespace std
 
 	function getdomainname(string &$dest___, int $destsz___ = -1)
 	{
-		if (\strtoupper(\substr(\PHP_OS, 0, 3)) == "WIN") {
+		if (_F_builtin_os_windows()) {
 			$cmd = "wmic computersystem get domain";
 		} else {
 			$cmd = "`which domainname`";
