@@ -239,7 +239,7 @@ namespace std
 				  "\is_int"
 				, array_keys($container___)
 				)
-			) === array(true);
+			) === [ true ];
 		}
 
 		function _F_has_string_keys(array $container___, int $size___)
@@ -252,7 +252,7 @@ namespace std
 				  "\is_string"
 				, array_keys($container___)
 				)
-			) === array(true);
+			) === [ true ];
 		}
 
 		function _F_has_object_keys(array $container___, int $size___)

@@ -26,10 +26,8 @@ namespace std
 
 		use _T_builtin_array_container_traits;
 		use _T_builtin_array_int_operator_traits;
-		use _T_builtin_mapreduce_traits;
 		use _T_builtin_array_debug_traits;
 		use _T_builtin_array_serializable_traits;
-		use _T_builtin_array_conformity_traits;
 		use _T_builtin_array_iterative_traits;
 		use _T_builtin_array_iteratable_traits;
 		use _T_builtin_countable_traits;

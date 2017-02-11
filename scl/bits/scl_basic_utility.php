@@ -50,6 +50,7 @@ namespace std
 	function null_callable()
 	{ return function(...$args) { return not_callable; }; }
 
+	/* Returns integers from start to stop [inclusive] */
 	function xrange_n($start___, $stop___, int $step___ = 1) 
 	{
 		if (!$step___) {
@@ -64,6 +65,7 @@ namespace std
 		}
 	}
 
+	/* Returns integers from start to stop [exclusive] */
 	function xrange_p(int $start___, int $stop___ = null, int $step___ = 1) 
 	{
 		if (!$step___) {
@@ -78,6 +80,7 @@ namespace std
 		}
 	}
 
+	/* Returns N integers from pos */
 	function xrange_l(int $pos___ , int $len___ = null, int $step___ = 1) 
 	{
 		if (!$step___) {
@@ -187,7 +190,7 @@ namespace std
 		};
 	}
 
-	function tuple_size(object $v___)
+	function tuple_size($v___)
 	{
 		if (\is_object($v___)) {
 			if ($v___ instanceof \std\tuple) {
@@ -207,17 +210,17 @@ namespace std
 
 	function get(int $i___, $v___)
 	{
-		if ($v___ instanceof \std\tuple) {
+		if (\is_object($v___) && $v___ instanceof \std\tuple) {
 			if ($v___->_M_size && $i___ < $v___->_M_size) {
 				return $v___->_M_container[$i___];
 			}
-		} else if ($v___ instanceof \std\quint) {
+		} else if (\is_object($v___) && $v___ instanceof \std\quint) {
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $i___ === 2 ? $v___->third : $i___ === 3 ? $v___->fourth : $v___->fifth;
-		} else if ($v___ instanceof \std\quad) {
+		} else if (\is_object($v___) && $v___ instanceof \std\quad) {
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $i___ === 2 ? $v___->third : $v___->fourth;
-		} else if ($v___ instanceof \std\triad) {
+		} else if (\is_object($v___) && $v___ instanceof \std\triad) {
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $v___->third;
-		} else if ($v___ instanceof \std\pair) {
+		} else if (\is_object($v___) && $v___ instanceof \std\pair) {
 			return $i___ === 0 ? $v___->first : $v___->second;
 		}
 		return null;
@@ -345,12 +348,12 @@ namespace std
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
 
-	function make_irange(int $pos___ , int $len___ = null, int $step___ = 1)
+	function make_irange(int $a___ , int $b___ = null, int $s___ = 1)
 	{
-		if (\is_null($len___)) {
-			return new irange($pos___);
+		if (\is_null($a___)) {
+			return new irange($a___);
 		}
-		return new irange($pos___, $len___, $step___);
+		return new irange($a___, $b___, $s___);
 	}
 
 	function make_vector(...$args___)

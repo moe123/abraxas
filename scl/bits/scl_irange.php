@@ -18,17 +18,36 @@ namespace std
 {
 	final class irange extends basic_irange
 	{
-		function __construct(int $pos___ , int $len___ = null, int $step___ = 1)
-		{
+		use _T_multi_construct_traits;
+
+		function __construct()
+		{ 
 			parent::__construct();
+			$this->_F_multi_construct(func_num_args(), func_get_args());
+		}
+
+		function _F_irange_1(int $len___)
+		{
+			for ($i = 0; $i < $len___; $i++) {
+				$this->_M_container[] = $i;
+				++$this->_M_size;
+			}
+		}
+
+		function _F_irange_2(int $pos___, int $len___)
+		{
+			for ($i = $pos___; $i < $len___ + $pos___; $i++) {
+				$this->_M_container[] = $i;
+				++$this->_M_size;
+			}
+		}
+
+		function _F_irange_3(int $pos___, int $len___, int $step___)
+		{
 			if (!$step___) {
 				$step___ = 1;
 			}
-			if (is_null($len___)) {
-				$len___ = $pos___;
-				$pos___ = 0;
-			}
-			for ($i = $pos___; $i < $len___ + $pos___; $i += $step___) {
+			for ($i = $pos___; $i < $len___ + $pos___; $i++) {
 				$this->_M_container[] = $i;
 				++$this->_M_size;
 			}
