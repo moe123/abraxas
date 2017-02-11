@@ -342,7 +342,7 @@ namespace std
 	function make_collator(string $id___, int $lv___ = collator_level::none)
 	{ return new collator($id___, $lv___); }
 
-	function make_locale(string $id___, int $lv___ =  collator_level::none, int $cat___ = locale_category::all)
+	function make_locale(string $id___, int $lv___ = collator_level::none, int $cat___ = locale_category::all)
 	{ return new locale($id___, $lv___, $cat___); }
 
 	function make_comparator(callable $f___)
