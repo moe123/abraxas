@@ -22,6 +22,38 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_vector.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_vector.php";
 
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "irange.php";
+
+	foreach (std\xrange_n(1, 3) as $i) {
+		std\cout($i)(std\tab);
+	}
+	std\cout(std\endl);
+
+	foreach (std\xrange_p(5, 9) as $i) {
+		std\cout($i)(std\tab);
+	}
+	std\cout(std\endl);
+	
+	foreach (std\xrange_l(8, 3) as $i) {
+		std\cout($i)(std\tab);
+	}
+	std\cout(std\endl);
+
+	$rg = std\make_irange(8, 3);
+	$it = $rg->rbegin();
+
+	while ($it != $rg->rend()) {
+		std\cout($it->second())(std\tab);
+		$it->next();
+	}
+	std\cout(std\endl);
+
+	foreach ($rg as $i) {
+		std\cout($i)(std\tab);
+	}
+
+	std\abort();
+
 	$tb = std\make_timeb();
 	var_dump(std\tzset());
 	std\ftime($tb);
@@ -47,11 +79,11 @@ namespace
 	var_dump(std\localtime(std\time()));
 	var_dump(std\endl);
 
-	std\abort();
+	// std\abort();
 
 	function trap()
 	{ std\assert(3 == 2); }
-	trap();
+	// trap();
 	std\assert(2 == 2);
 
 	$v = std\make_vector(0, 1 , 2);

@@ -518,20 +518,44 @@ namespace std
 		}
 	}
 
+	function _F_builtin_reindex(basic_iteratable &$c___)
+	{
+		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			_F_throw_invalid_argument("Invalid type error");
+		} else {
+			if ($c___::container_category !== basic_iteratable_tag::basic_forward_list) {
+				$c___->_M_container = array_values($c___->_M_container);
+			}
+		}
+	}
+
 	function _F_builtin_remove(basic_iteratable &$c___, $val___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
 				$c___->_F_del_all_data($val___);
 			} else {
-				$idx = [];
-				for ($i = 0; $i < $c___->_M_size; $i++) {
-					if ($c___->_M_container[$i] == $val___) {
-						$idx[] = $i;
+				if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+					$keys = [];
+					foreach ($c___->_M_container as $k => &$v) {
+						if ($v == $val___) {
+							$keys[] = $k;
+						}
 					}
-				}
-				foreach ($idx as &$v) {
-					_F_builtin_splice($c___, $v, 1);
+					unset($v);
+					foreach ($keys as &$v) {
+						unset($c___->_M_container[$v]);
+					}
+				} else {
+					$idx = [];
+					for ($i = 0; $i < $c___->_M_size; $i++) {
+						if ($c___->_M_container[$i] == $val___) {
+							$idx[] = $i;
+						}
+					}
+					foreach ($idx as &$v) {
+						_F_builtin_splice($c___, $v, 1);
+					}
 				}
 			}
 		}
@@ -540,19 +564,37 @@ namespace std
 	function _F_builtin_remove_first_n(basic_iteratable &$c___, $val___, $n___)
 	{
 		if ($c___->_M_size > 0) {
-			$idx = [];
-			$j = 0;
-			for ($i = 0; $i < $c___->_M_size; $i++) {
-				if ($c___->_M_container[$i] == $val___) {
-					$idx[] = $i;
-					++$j;
+			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+				$keys = [];
+				$j = 0;
+				foreach ($c___->_M_container as $k => &$v) {
+					if ($v == $val___) {
+						$keys[] = $k;
+						++$j;
+					}
+					if ($j >= $n___) {
+						break;
+					}
 				}
-				if ($j >= $n___) {
-					break;
+				unset($v);
+				foreach ($keys as &$v) {
+					unset($c___->_M_container[$v]);
 				}
-			}
-			foreach ($idx as &$v) {
-				_F_builtin_splice($c___, $v, 1);
+			} else {
+				$idx = [];
+				$j = 0;
+				for ($i = 0; $i < $c___->_M_size; $i++) {
+					if ($c___->_M_container[$i] == $val___) {
+						$idx[] = $i;
+						++$j;
+					}
+					if ($j >= $n___) {
+						break;
+					}
+				}
+				foreach ($idx as &$v) {
+					_F_builtin_splice($c___, $v, 1);
+				}
 			}
 		}
 	}
@@ -563,19 +605,23 @@ namespace std
 	function _F_builtin_remove_last_n(basic_iteratable &$c___, $val___, $n___)
 	{
 		if ($c___->_M_size > 0) {
-			$idx = [];
-			$j = 0;
-			for ($i = $c___->_M_size - 1; $i >= 0; $i--) {
-				if ($c___->_M_container[$i] == $val___) {
-					$idx[] = $i;
-					++$j;
+			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+				_F_throw_invalid_argument("Invalid type error");
+			} else {
+				$idx = [];
+				$j = 0;
+				for ($i = $c___->_M_size - 1; $i >= 0; $i--) {
+					if ($c___->_M_container[$i] == $val___) {
+						$idx[] = $i;
+						++$j;
+					}
+					if ($j >= $n___) {
+						break;
+					}
 				}
-				if ($j >= $n___) {
-					break;
+				foreach ($idx as &$v) {
+					_F_builtin_splice($c___, $v, 1);
 				}
-			}
-			foreach ($idx as &$v) {
-				_F_builtin_splice($c___, $v, 1);
 			}
 		}
 	}
@@ -586,14 +632,18 @@ namespace std
 	function _F_builtin_remove_if(basic_iteratable &$c___, callable $unaryPredicate___)
 	{
 		if ($c___->_M_size > 0) {
-			$idx = [];
-			for ($i = 0; $i < $c___->_M_size; $i++) {
-				if ($unaryPredicate___($c___->_M_container[$i])) {
-					$idx[] = $i;
+			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+				_F_throw_invalid_argument("Invalid type error");
+			} else {
+				$idx = [];
+				for ($i = 0; $i < $c___->_M_size; $i++) {
+					if ($unaryPredicate___($c___->_M_container[$i])) {
+						$idx[] = $i;
+					}
 				}
-			}
-			foreach ($idx as &$v) {
-				_F_builtin_splice($c___, $v, 1);
+				foreach ($idx as &$v) {
+					_F_builtin_splice($c___, $v, 1);
+				}
 			}
 		}
 	}

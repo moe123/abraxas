@@ -155,6 +155,38 @@ if ($pos != std\end($v)) {
 	std\cout("\$v contains: 3")(std\endl);
 }
 
+// range & fast enumeration integration
+...
+
+foreach (std\xrange_n(1, 3) as $i) {
+	std\cout($i)(std\tab);
+}
+std\cout(std\endl);
+
+foreach (std\xrange_p(5, 9) as $i) {
+	std\cout($i)(std\tab);
+}
+std\cout(std\endl);
+
+foreach (std\xrange_l(8, 3) as $i) {
+	std\cout($i)(std\tab);
+}
+std\cout(std\endl);
+
+$rg = std\make_irange(8, 3);
+$it = $rg->rbegin();
+
+while ($it != $rg->rend()) {
+	std\cout($it->second())(std\tab);
+	$it->next();
+}
+std\cout(std\endl);
+
+foreach ($rg as $i) {
+	std\cout($i)(std\tab);
+}
+std\cout(std\endl);
+
 ...
 
 ```

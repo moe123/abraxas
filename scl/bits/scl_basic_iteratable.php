@@ -36,9 +36,10 @@ namespace std
 	{
 		const basic_iteratable   = 0;
 		const basic_forward_list = 3;
-		const basic_seqlist     = 1;
+		const basic_seqlist      = 1;
 		const basic_vector       = 1;
 		const basic_set          = 1;
+		const basic_irange       = 1;
 		const basic_map          = 5;
 		const basic_dict         = 9;
 	}

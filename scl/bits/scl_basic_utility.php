@@ -43,11 +43,54 @@ namespace std
 		}
 	} /* EOC */
 
-	const not_callable = "std<not a callable>";
+	const not_callable = "^std@nil_callable";
+	const nil_callable = '\std\null_callable';
 
 	/*! callable */
 	function null_callable()
 	{ return function(...$args) { return not_callable; }; }
+
+	function xrange_n($start___, $stop___, int $step___ = 1) 
+	{
+		if (!$step___) {
+			$step___ = 1;
+		}
+		if (is_null($stop___)) {
+			$stop___ = $start___;
+			$start___ = 0;
+		}
+		for ($i = $start___; $i <= $stop___; $i += $step___) {
+			yield $i;
+		}
+	}
+
+	function xrange_p(int $start___, int $stop___ = null, int $step___ = 1) 
+	{
+		if (!$step___) {
+			$step___ = 1;
+		}
+		if (is_null($stop___)) {
+			$stop___ = $start___;
+			$start___ = 0;
+		}
+		for ($i = $start___; $i < $stop___; $i += $step___) {
+			yield $i;
+		}
+	}
+
+	function xrange_l(int $pos___ , int $len___ = null, int $step___ = 1) 
+	{
+		if (!$step___) {
+			$step___ = 1;
+		}
+		if (is_null($len___)) {
+			$len___ = $pos___;
+			$pos___ = 0;
+		}
+		for ($i = $pos___; $i < $len___ + $pos___; $i += $step___) {
+			yield $i;
+		}
+	}
 
 	function sizeof($in___)
 	{
@@ -302,8 +345,13 @@ namespace std
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
 
-	function make_uniform_int_distribution(int $a, int $b)
-	{ return new uniform_int_distribution($a, $b); }
+	function make_irange(int $pos___ , int $len___ = null, int $step___ = 1)
+	{
+		if (\is_null($len___)) {
+			return new irange($pos___);
+		}
+		return new irange($pos___, $len___, $step___);
+	}
 
 	function make_vector(...$args___)
 	{ return new vector($args___); }
