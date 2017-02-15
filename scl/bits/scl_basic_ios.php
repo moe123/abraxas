@@ -16,7 +16,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
 } /* EONS */
 
 namespace std
@@ -104,6 +104,10 @@ namespace std
 				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::fixed) != 0)) {
 					$numfmt = \numfmt_create('en_US', \NumberFormatter::DECIMAL);
 					\numfmt_set_attribute($numfmt, \NumberFormatter::MIN_FRACTION_DIGITS, 20);
+					$v___ = \numfmt_format($numfmt, $v___);
+				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::fixed) == 0)) {
+					$numfmt = \numfmt_create('en_US', \NumberFormatter::DECIMAL);
+					\numfmt_set_attribute($numfmt, \NumberFormatter::MAX_FRACTION_DIGITS, 20);
 					$v___ = \numfmt_format($numfmt, $v___);
 				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::hex) != 0)) {
 					$v___ = "0x" . \bin2hex(\pack('f', $v___));

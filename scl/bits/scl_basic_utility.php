@@ -14,6 +14,21 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
+namespace
+{
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xiterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xcontainer_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xoperator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xalgorithm.php";
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
+} /* EONS */
+
 namespace std
 {
 	abstract class comparison_result
@@ -43,12 +58,10 @@ namespace std
 		}
 	} /* EOC */
 
-	const not_callable = "^std@nil_callable";
-	const nil_callable = '\std\null_callable';
+	function _F_null_callable()
+	{ return function(...$args) { return "^std@nil_callable"; }; }
 
-	/*! callable */
-	function null_callable()
-	{ return function(...$args) { return not_callable; }; }
+	const null_callable = '\std\_F_null_callable';
 
 	/* Returns integers from start to stop [inclusive] */
 	function xrange_n($start___, $stop___, int $step___ = 1) 
@@ -81,17 +94,24 @@ namespace std
 	}
 
 	/* Returns N integers from pos */
-	function xrange_l(int $pos___ , int $len___ = null, int $step___ = 1) 
+	function xrange(int $pos___ , int $len___ = null, int $step___ = 1) 
 	{
-		if (!$step___) {
+		if ($step___ == 0) {
 			$step___ = 1;
 		}
 		if (is_null($len___)) {
 			$len___ = $pos___;
 			$pos___ = 0;
 		}
-		for ($i = $pos___; $i < $len___ + $pos___; $i += $step___) {
-			yield $i;
+		if ($step___ < 0) {
+			$step___ = -$step___;
+			for ($i = ($pos___ + $len___- 1); $i > (($pos___ + $len___- 1) - $len___); $i -= $step___) {
+				yield $i;
+			}
+		} else {
+			for ($i = $pos___; $i < $pos___ + $len___; $i += $step___) {
+				yield $i;
+			}
 		}
 	}
 
@@ -347,6 +367,9 @@ namespace std
 
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
+
+	function make_ratio(int $num___, int $den___)
+	{ return new ratio($num___, $den___); }
 
 	function make_irange(int $a___ , int $b___ = null, int $s___ = 1)
 	{

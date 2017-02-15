@@ -16,6 +16,87 @@
 
 namespace std
 {
+	function xformat(string $fmt___, ...$args___)
+	{
+		return xformat_message($fmt___, ...$args___);
+		/*
+		$fmt___ = preg_replace_callback('#\{(?!\{)\}(?!\})#', function($r) {
+			static $idx = 0;
+			return '{'.($idx++).'}';
+		}, $fmt___);
+
+		return \str_replace(
+			array_map(
+				function (&$k) { return '{'.$k.'}'; }
+				, array_keys($args___)
+			)
+			, array_map(
+				function ($v_) {
+					if (\is_float($v_)) {
+						$numfmt = \numfmt_create(\setlocale(\LC_NUMERIC, ""), \NumberFormatter::DECIMAL);
+						\numfmt_set_attribute($numfmt, \NumberFormatter::MAX_FRACTION_DIGITS, 20);
+						if (false !== ($r = \numfmt_format($numfmt, $v_))) {
+							return $r;
+						}
+					} if (\is_object($v_)) {
+						return (string)$v_;
+					}
+					return $v_;
+				}
+				, array_values($args___)
+			)
+			, $fmt___
+		);
+		*/
+	}
+
+	function xformat_l(locale_t $xloc__, string $fmt___, ...$args___)
+	{
+		return xformat_message_l($xloc__, $fmt___, ...$args___);
+
+		/*
+		$fmt___ = preg_replace_callback('#\{(?!\{)\}(?!\})#', function($r) {
+			static $idx = 0;
+			return '{'.($idx++).'}';
+		}, $fmt___);
+
+		return \str_replace(
+			array_map(
+				function (&$k) { return '{'.$k.'}'; }
+				, array_keys($args___)
+			)
+			, array_map(
+				function ($v_) {
+					if (\is_float($v_)) {
+						$numfmt = \numfmt_create($xloc___->u_data[0]["^std@_u_nid"], \NumberFormatter::DECIMAL);
+						\numfmt_set_attribute($numfmt, \NumberFormatter::MAX_FRACTION_DIGITS, 20);
+						if (false !== ($r = \numfmt_format($numfmt, $v_))) {
+							return $r;
+						}
+					} if (\is_object($v_)) {
+						return (string)$v_;
+					}
+					return $v_;
+				}
+				, array_values($args___)
+			)
+			, $fmt___
+		);
+		*/
+	}
+
+	function xformatln(string $fmt___, ...$args___)
+	{ return xformat_message($fmt___ . \PHP_EOL, ...$args___); }
+
+	function xformatln_l(locale_t $xloc__, string $fmt___, ...$args___)
+	{ return xformat_message_l($xloc__, $fmt___ . \PHP_EOL, ...$args___); }
+
+	function xformat_message($fmt___, ...$args___)
+	{ return \msgfmt_format_message(\setlocale(\LC_ALL, ""), $fmt___, $args___); }
+
+	function xformat_message_l(locale_t $xloc__, $fmt___, ...$args___)
+	{ return \msgfmt_format_message($xloc___->u_data[0]["^std@_u_nid"], $fmt___, $args___); }
+
 	function memize(&$in___)
 	{
 		if (\gettype($in___) != 'array') {
@@ -100,6 +181,53 @@ namespace std
 			$s1___ .= $s2___[$i];
 		}
 		return $s1___;
+	}
+
+	function strtol(string $str, &$endptr = null, int $base = 10)
+	{
+		if ($base > 36 || $base < 2) {
+			return 0;
+		}
+		$r = \intval($str, $base);
+		if (!\is_null($endptr)) {
+			if (false !== ($span = \strpos($str, (string)\abs($r)))) {
+				$span += \strlen((string)\abs($r));
+				$endptr = \substr($str, $span, \strlen($str) - $span);
+			}
+		}
+		return $r;
+	}
+
+	function strtoul(string $str, &$endptr = null, int $base = 10)
+	{
+		$r = strtol($str, $endptr, $base);
+		return $r >= 0 ? $r : numeric_limit::max;
+	}
+
+	function strtod(string $str, &$endptr = null)
+	{
+		if ($base > 36 || $base < 2) {
+			return 0;
+		}
+		$r = \floatval($str);
+		if (!\is_null($endptr)) {
+			if (false !== ($span = \strpos($str, (string)\abs($r)))) {
+				$span += \strlen((string)\abs($r));
+				$endptr = \substr($str, $span, \strlen($str) - $span);
+			}
+		}
+		return $r;
+	}
+
+	function strcoll(string $s1___, string $s2___)
+	{ return \strcoll($s1___, $s2___); }
+
+	function strcoll_l(string $s1___, string $s2___, locale_t $xloc___)	
+	{
+		uselocale($xloc);
+		$r = \strcoll($s1___, $s2___);
+		_F_builtin_unsetlocale($xloc___);
+		return $r;
 	}
 
 	function utf8_glyph_len($c___)

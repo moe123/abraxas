@@ -155,25 +155,21 @@ if ($pos != std\end($v)) {
 	std\cout("\$v contains: 3")(std\endl);
 }
 
-// range & fast enumeration integration
 ...
 
-foreach (std\xrange_n(1, 3) as $i) {
+// range & fast enumeration integration
+
+foreach (std\xrange(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
 
-foreach (std\xrange_p(5, 9) as $i) {
+foreach (std\xrange(8, 10, -2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
 
-foreach (std\xrange_l(8, 3) as $i) {
-	std\cout($i)(std\tab);
-}
-std\cout(std\endl);
-
-$rg = std\make_irange(8, 3);
+$rg = std\make_irange(8, 10, 2);
 $it = $rg->rbegin();
 
 while ($it != $rg->rend()) {
@@ -182,10 +178,15 @@ while ($it != $rg->rend()) {
 }
 std\cout(std\endl);
 
-foreach ($rg as $i) {
+foreach (std\make_irange(8, 10, -2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
+
+// 8       10      12      14      16
+// 17      15      13      11      9
+// 16      14      12      10      8
+// 17      15      13      11      9
 
 ...
 
@@ -329,6 +330,7 @@ PHP7 built with:
 > [scl_iostream](./scl/bits/scl_iostream.php)<br>
 > [scl_istream](./scl/bits/scl_istream.php)<br>
 > [scl_iterator](./scl/bits/scl_iterator.php)<br>
+> [scl_locale](./scl/bits/scl_locale.php)<br>
 > [scl_locale](./scl/bits/scl_locale.php)<br>
 > [scl_numeric_limits](./scl/bits/scl_numeric_limits.php)<br>
 > [scl_ostream](./scl/bits/scl_ostream.php)<br>

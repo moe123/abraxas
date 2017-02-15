@@ -16,6 +16,19 @@
 
 namespace std
 {
+	const greater       = '\std\greater';
+	const less          = '\std\less';
+	const multiplies    = '\std\multiplies';
+	const divides       = '\std\divides';
+	const modulus       = '\std\modulus';
+	const negate        = '\std\negate';
+	const minus         = '\std\minus';
+	const plus          = '\std\plus';
+	const equal_to      = '\std\equal_to';
+	const greater_equal = '\std\greater_equal';
+	const less_equal    = '\std\less_equal';
+	const not_equal_to  = '\std\not_equal_to';
+
 	/*! callable */
 	function greater(callable $f___ = null)
 	{
@@ -31,7 +44,7 @@ namespace std
 			return $l > $r;
 		};
 	}
-
+	
 	/*! callable */
 	function less(callable $f___ = null)
 	{

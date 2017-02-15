@@ -20,10 +20,20 @@ namespace std
 	{ return \is_null($v__); }
 
 	function is_integral($v__)
-	{ return \is_integer($v__); }
+	{
+		if (\is_object($v__) && ($v__ instanceof \std\basic_ratio)) {
+			return (($v__->num() % $v__->$den()) === 0);
+		}
+		return \is_integer($v__);
+	}
 
 	function is_floating_point($v__)
-	{ return \is_float($v__); }
+	{
+		if (\is_object($v__) && ($v__ instanceof \std\basic_ratio)) {
+			return (($v__->num() % $v__->$den()) !== 0);
+		}
+		return \is_float($v__);
+	}
 
 	function is_array($v__)
 	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \std\basic_iteratable)); }
@@ -35,7 +45,12 @@ namespace std
 	{ return \is_object($v__); }
 
 	function is_callable($v__)
-	{ return \is_callable($v__) && ($v__() != not_callable); }
+	{
+		if (\is_string($v__) && $v__ == null_callable) {
+			return false;
+		}
+		return \is_callable($v__);
+	}
 
 	function is_scalar($v__)
 	{ return \is_scalar($v__); }

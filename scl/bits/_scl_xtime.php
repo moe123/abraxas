@@ -150,7 +150,7 @@ namespace std
 		return memlen($dest___);
 	}
 
-	function strftime_l(string &$dest___, string $fmt___, tm &$tm___, locale_t &$xloc___)
+	function strftime_l(string &$dest___, string $fmt___, tm &$tm___, locale_t $xloc___)
 	{
 		uselocale($xloc);
 		if ($tm___->_M_gmt) {
@@ -186,7 +186,7 @@ namespace std
 		return null;
 	}
 
-	function strptime_l(string $buf___, string $fmt___, tm &$res___, locale_t &$xloc___)
+	function strptime_l(string $buf___, string $fmt___, tm &$res___, locale_t $xloc___)
 	{
 		if (!_F_builtin_os_windows()) {
 			$buflen = \strlen($buf___);

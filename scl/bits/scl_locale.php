@@ -16,6 +16,15 @@
 
 namespace std
 {
+	abstract class local_info
+	{
+		const language    = 0;
+		const description = 1;
+		const region      = 2;
+		const script      = 3;
+		const variant     = 4;
+	} /* EOC */
+
 	final class locale
 	{
 		use _T_multi_construct_traits;
@@ -139,6 +148,29 @@ namespace std
 
 		function & collator()
 		{ return $this->_M_collator; }
+
+		function info(int $local_info)
+		{
+			$info = null;
+			switch ($local_info) {
+				case local_info::language:
+					$info = \Locale::getDisplayLanguage($this->_M_id, $this->_M_name);
+				break;
+				case local_info::description:
+					$info = \Locale::getDisplayName($this->_M_id, $this->_M_name);
+				break;
+				case local_info::region:
+					$info = \Locale::getDisplayRegion($this->_M_id, $this->_M_name);
+				break;
+				case local_info::script:
+					$info = \Locale::getDisplayScript($this->_M_id, $this->_M_name);
+				break;
+				case local_info::variant:
+					$info = \Locale::getDisplayVariant($this->_M_id, $this->_M_name);
+				break;
+			}
+			return $info;
+		}
 
 		function & swap(locale &$locale)
 		{

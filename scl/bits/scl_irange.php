@@ -44,12 +44,20 @@ namespace std
 
 		function _F_irange_3(int $pos___, int $len___, int $step___)
 		{
-			if (!$step___) {
+			if ($step___ == 0) {
 				$step___ = 1;
 			}
-			for ($i = $pos___; $i < $len___ + $pos___; $i++) {
-				$this->_M_container[] = $i;
-				++$this->_M_size;
+			if ($step___ < 0) {
+				$step___ = -$step___;
+				for ($i = ($pos___ + $len___- 1); $i > (($pos___ + $len___- 1) - $len___); $i -= $step___) {
+					$this->_M_container[] = $i;
+					++$this->_M_size;
+				}
+			} else {
+				for ($i = $pos___; $i < $len___ + $pos___; $i += $step___) {
+					$this->_M_container[] = $i;
+					++$this->_M_size;
+				}
 			}
 		}
 

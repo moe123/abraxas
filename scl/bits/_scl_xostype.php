@@ -17,10 +17,10 @@
 namespace std
 {
 	function _F_builtin_os_windows()
-	{ return (int)\strtolower(\substr(\PHP_OS, 0, 3)) == "win"; }
+	{ return (int)(\strtolower(\substr(\PHP_OS, 0, 3)) == "win"); }
 
 	function _F_builtin_os_darwin()
-	{ return (int)\strtolower(\PHP_OS) == "darwin"; }
+	{ return (int)(\strtolower(\PHP_OS) == "darwin"); }
 
 	function _F_builtin_os_bsd()
 	{
@@ -31,19 +31,19 @@ namespace std
 	}
 
 	function _F_builtin_os_solaris()
-	{ return (int)\strtolower(\PHP_OS) == "SunOS"; }
+	{ return (int)(\strtolower(\PHP_OS) == "SunOS"); }
 
 	function _F_builtin_os_linux()
-	{ return (int)\strtolower(\PHP_OS) == "linux"; }
+	{ return (int)(\strtolower(\PHP_OS) == "linux"); }
 
 	function _F_builtin_os_minix()
-	{ return (int)\strtolower(\PHP_OS) == "minix"; }
+	{ return (int)(\strtolower(\PHP_OS) == "minix"); }
 
 	function _F_builtin_os_qnx()
-	{ return (int)\strtolower(\PHP_OS) == "qnx"; }
+	{ return (int)(\strtolower(\PHP_OS) == "qnx"); }
 
 	function _F_builtin_os_unix()
-	{ return (int)\strtolower(\PHP_OS) == "unix"; }
+	{ return (int)(\strtolower(\PHP_OS) == "unix"); }
 
 	function _F_builtin_os_nix()
 	{
@@ -59,10 +59,10 @@ namespace std
 	}
 
 	function _F_builtin_os_32bit()
-	{ return (int)\PHP_INT_SIZE == 4; }
+	{ return (int)(\PHP_INT_SIZE == 4); }
 
 	function _F_builtin_os_64bit()
-	{ return (int)\PHP_INT_SIZE >= 8; }
+	{ return (int)(\PHP_INT_SIZE >= 8); }
 } /* EONS */
 
 /* EOF */

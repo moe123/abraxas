@@ -21,7 +21,7 @@ namespace
 		define('PHP_FLOAT_MIN'    , (float)PHP_INT_MIN);
 		define('PHP_FLOAT_MAX'    , (float)PHP_INT_MAX);
 	}
-}
+} /* EONS */
 
 namespace std
 {
@@ -51,6 +51,9 @@ namespace std
 		}
 		return clone $v___;
 	}
+
+	function _F_builtin_real_equal(float $l___, float $r___)
+	{ return (int)(\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
 
 	trait _T_deep_copy_traits
 	{
