@@ -16,70 +16,72 @@
 
 namespace std
 {
-	function _F_builtin_ratio_is_integral(int &$num___, int &$den___)
-	{ return (int)(($num___ % $den___) === 0); }
+	function _F_builtin_ratio_is_integral(int &$num___, int &$den____)
+	{ return (int)(($num___ % $den____) === 0); }
 
-	function _F_builtin_ratio_is_real(int &$num___, int &$den___)
-	{ return (int)(($num___ % $den___) !== 0); }
+	function _F_builtin_ratio_is_real(int &$num___, int &$den____)
+	{ return (int)(($num___ % $den____) !== 0); }
 
-	function _F_builtin_ratio_GCD(int &$num___, int &$den___)
+	function _F_builtin_ratio_GCD(int &$num_d___, int &$den_d___)
 	{
-		$a = $num___ < 0 ? -($num___) : $num___;
-		$b = $den___ < 0 ? -($den___) : $den___;
+		$a = $num_d___ < 0 ? -($num_d___) : $num_d___;
+		$b = $den_d___ < 0 ? -($den_d___) : $den_d___;
 		$c = $a % $b;
 		while($c > 0) { $a = $b; $b = $c; $c = $a % $b; }
-		$num___ = (int)($num___ / $b);
-		$den___ = (int)($den___ / $b);
+		$num_d___ = (int)($num_d___ / $b);
+		$den_d___ = (int)($den_d___ / $b);
 	}
 
 	function _F_builtin_ratio_add(
-		  int $x1___
-		, int $y1___
-		, int $x2___
-		, int $y2___
-		, int &$num___, int &$den___
+		  int $num1___
+		, int $den1___
+		, int $num2___
+		, int $den2___
+		, int &$num_d___
+		, int &$den_d___
 	) {
-		$num___ = (($x1___ * $y2___) + ($y1___ * $x2___));
-		$den___ = ($y1___ * $y2___);
-		_F_builtin_ratio_GCD($num___, $den___);
+		$num_d___ = (($num1___ * $den2___) + ($den1___ * $num2___));
+		$den_d___ = ($den1___ * $den2___);
+		_F_builtin_ratio_GCD($num_d___, $den_d___);
 	}
 
 	function _F_builtin_ratio_subtract(
-		  int $x1___
-		, int $y1___
-		, int $x2___
-		, int $y2___
-		, int &$num___, int &$den___
+		  int $num1___
+		, int $den1___
+		, int $num2___
+		, int $den2___
+		, int &$num_d___
+		, int &$den_d___
 	) {
-		$num___ = (($x1___ * $y2___) - ($y1___ * $x2___));
-		$den___ = ($y1___ * $y2___);
-		_F_builtin_ratio_GCD($num___, $den___);
+		$num_d___ = (($num1___ * $den2___) - ($den1___ * $num2___));
+		$den_d___ = ($den1___ * $den2___);
+		_F_builtin_ratio_GCD($num_d___, $den_d___);
 	}
 
 	function _F_builtin_ratio_multiply(
-		  int $x1___
-		, int $y1___
-		, int $x2___
-		, int $y2___
-		, int &$num___
-		, int &$den___
+		  int $num1___
+		, int $den1___
+		, int $num2___
+		, int $den2___
+		, int &$num_d___
+		, int &$den_d___
 	) {
-		$num___ = ($x1___ * $x2___);
-		$den___ = ($y1___ * $y2___);
-		_F_builtin_ratio_GCD($num___, $den___);
+		$num_d___ = ($num1___ * $num2___);
+		$den_d___ = ($den1___ * $den2___);
+		_F_builtin_ratio_GCD($num_d___, $den_d___);
 	}
 
 	function _F_builtin_ratio_divide(
-		  int $x1___
-		, int $y1___
-		, int $x2___
-		, int $y2___
-		, int &$num___
-		, int &$den___
+		  int $num1___
+		, int $den1___
+		, int $num2___
+		, int $den2___
+		, int &$num_d___
+		, int &$den_d___
 	) {
-		$num___ = ($x1___ * $y2___);
-		$den___ = ($y1___ * $x2___);
-		_F_builtin_ratio_GCD($num___, $den___);
+		$num_d___ = ($num1___ * $den2___);
+		$den_d___ = ($den1___ * $num2___);
+		_F_builtin_ratio_GCD($num_d___, $den_d___);
 	}
 
 	abstract class basic_ratio_tag
