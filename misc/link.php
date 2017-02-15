@@ -23,8 +23,8 @@ echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 // print_r(std\is_callable(std\bond1('std\xformat')));
 
 echo std\urandom_real(3, 4);
-
-exit;
+std\cout(std\endl);
+//exit;
 
 foreach (std\xrange(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);

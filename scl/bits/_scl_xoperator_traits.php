@@ -59,33 +59,6 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_range_int_operator_traits
-	{
-		function offsetSet($offset___, $val___)
-		{ /* NOP */ }
-
-		function offsetExists($offset___)
-		{
-			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				return true;
-			}
-			return false;
-		}
-
-		function offsetUnset($offset___)
-		{ /* NOP */ }
-
-		function offsetGet($offset___)
-		{
-			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				return $offset___;
-			} else {
-				_F_throw_out_of_range("Out of Range error");
-			}
-			return null;
-		}
-	}
-
 	trait _T_builtin_array_immutable_int_operator_traits
 	{
 		function offsetSet($offset___, $val___)
@@ -96,7 +69,34 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return true;
 			}
-			return _F_builtin_offset_exists(offset___);
+			return false;;
+		}
+
+		function offsetUnset($offset___)
+		{ /* NOP */ }
+
+		function offsetGet($offset___)
+		{
+			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
+				return $this->_M_container[$offset___];
+			} else {
+				_F_throw_out_of_range("Out of Range error");
+			}
+			return null;
+		}
+	}
+
+	trait _T_builtin_irange_int_operator_traits
+	{
+		function offsetSet($offset___, $val___)
+		{ /* NOP */ }
+
+		function offsetExists($offset___)
+		{
+			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
+				return true;
+			}
+			return false;
 		}
 
 		function offsetUnset($offset___)

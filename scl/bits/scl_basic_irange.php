@@ -25,7 +25,7 @@ namespace std
 		const container_category = basic_iteratable_tag::basic_irange;
 
 		use _T_builtin_array_container_traits;
-		use _T_builtin_set_int_operator_unique_traits;
+		use _T_builtin_irange_int_operator_traits;
 		use _T_builtin_array_debug_traits;
 		use _T_builtin_array_serializable_traits;
 		use _T_builtin_array_iterative_traits;

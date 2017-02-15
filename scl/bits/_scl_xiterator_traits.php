@@ -53,38 +53,6 @@ namespace std
 			return false;
 		}
 	}
-	
-	final class _C_builtin_output_iterator_irange_adaptor
-		implements \Iterator
-	{
-		use _T_basic_iterator_traits;
-
-		function __construct(basic_iteratable &$iterable___)
-		{
-			$this->_M_offset = 0;
-			$this->_M_ptr = &$iterable___;
-		}
-
-		function rewind()
-		{ $this->_M_offset = 0; }
-
-		function current()
-		{ return $this->_M_offset; }
-
-		function key()
-		{ return $this->_M_offset; }
-
-		function next()
-		{ ++$this->_M_offset; }
-
-		function valid()
-		{
-			if ($this->_M_offset >= 0 && $this->_M_offset < $this->_M_ptr->_M_size) {
-				return true;
-			}
-			return false;
-		}
-	}
 
 	final class _C_builtin_output_iterator_linked_list_adaptor
 		implements \Iterator
