@@ -288,8 +288,10 @@ PHP7 built with:
 ### Files
 
 ##### Suitable syscalls
+> [_scl_xendian](./scl/bits/_scl_xendian.php)<br>
 > [_scl_xerrno](./scl/bits/_scl_xerrno.php)<br>
 > [_scl_xlocale](./scl/bits/_scl_xlocale.php)<br>
+> [_scl_xostype](./scl/bits/_scl_xostype.php)<br>
 > [_scl_xsignal](./scl/bits/_scl_xsignal.php)<br>
 > [_scl_xstdio](./scl/bits/_scl_xstdio.php)<br>
 > [_scl_xstdlib](./scl/bits/_scl_xstdlib.php)<br>
@@ -302,7 +304,6 @@ PHP7 built with:
 ##### Base container and API bindings
 > [_scl_xalgorithm](./scl/bits/_scl_xalgorithm.php)<br>
 > [_scl_xcontainer_traits](./scl/bits/_scl_xcontainer_traits.php)<br>
-> [_scl_xendian](./scl/bits/_scl_xendian.php)<br>
 > [_scl_xiterator_traits](./scl/bits/_scl_xiterator_traits.php)<br>
 > [_scl_xoperator_traits](./scl/bits/_scl_xoperator_traits.php)<br>
 > [_scl_xutility_traits](./scl/bits/_scl_xutility_traits.php)<br>
@@ -314,6 +315,7 @@ PHP7 built with:
 > [scl_basic_ios](./scl/bits/scl_basic_ios.php)<br>
 > [scl_basic_iteratable](./scl/bits/scl_basic_iteratable.php)<br>
 > [scl_basic_map](./scl/bits/scl_basic_map.php)<br>
+> [scl_basic_ratio](./scl/bits/scl_basic_ratio.php)<br>
 > [scl_basic_seqlist](./scl/bits/scl_basic_seqlist.php)<br>
 > [scl_basic_set](./scl/bits/scl_basic_set.php)<br>
 > [scl_basic_tuple](./scl/bits/scl_basic_tuple.php)<br>
@@ -337,6 +339,7 @@ PHP7 built with:
 > [scl_pair](./scl/bits/scl_pair.php)<br>
 > [scl_quad](./scl/bits/scl_quad.php)<br>
 > [scl_quint](./scl/bits/scl_quint.php)<br>
+> [scl_ratio](./scl/bits/scl_ratio.php)<br>
 > [scl_seqlist](./scl/bits/scl_seqlist.php)<br>
 > [scl_set](./scl/bits/scl_set.php)<br>
 > [scl_system_error](./scl/bits/scl_system_error.php)<br>
@@ -356,6 +359,7 @@ PHP7 built with:
 > [iterator](./scl/iterator.php)<br>
 > [limits](./scl/limits.php)<br>
 > [locale](./scl/locale.php)<br>
+> [locale](./scl/ratio.php)<br>
 > [seqlist](./scl/seqlist.php)<br>
 > [set](./scl/set.php)<br>
 > [tuple](./scl/tuple.php)<br>
