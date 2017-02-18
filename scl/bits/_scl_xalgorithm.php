@@ -115,13 +115,13 @@ namespace std
 				}
 				$c___->_M_container = $a2;
 			} else if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
-				$a = $c___->_M_ptr->_F_dump();
+				$a = $c___->_F_dump();
 				_F_builtin_merge_usort(
 					  $a
 					, $c___->_M_size
 					, $comp
 				);
-				$c___->_M_ptr->_F_from_array($a, true);
+				$c___->_F_from_array($a, true);
 			} else {
 				$c___->_M_size = _F_builtin_merge_usort(
 					  $c___->_M_container
@@ -643,6 +643,26 @@ namespace std
 				}
 				foreach ($idx as &$v) {
 					_F_builtin_splice($c___, $v, 1);
+				}
+			}
+		}
+	}
+
+	function _F_builtin_reserve(basic_iteratable &$c___, int $sz___)
+	{
+		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+				_F_throw_invalid_argument("Invalid type error");
+		} else {
+			_F_builtin_clear_all($c___);
+			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+				for ($i = 0 ; $i <= $sz___; $i++) {
+					$c___->_F_insert_last($val);
+				}
+				
+			} else {
+				for ($i = 0 ; $i <= $sz___; $i++) {
+					$c___->_M_container[] = not_a_value;
+					++$c___->_M_size;
 				}
 			}
 		}

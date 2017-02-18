@@ -36,6 +36,12 @@ namespace std
 		function _F_seq_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
+		function & reserve(int $size)
+		{
+			_F_builtin_reserve($this, $size);
+			return $this;
+		}
+
 		function front()
 		{
 			if ($this->_M_size) {

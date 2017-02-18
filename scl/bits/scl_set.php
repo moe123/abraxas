@@ -36,6 +36,12 @@ namespace std
 		function _F_set_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
+		function & reserve(int $size)
+		{
+			_F_builtin_reserve($this, $size);
+			return $this;
+		}
+
 		function & insert($val)
 		{
 			if (!_F_builtin_value_exists($this, $val)) {

@@ -157,6 +157,19 @@ namespace std
 		};
 	}
 
+	function crc32($v___)
+	{
+		return function () use ($v___) {
+			if (\is_object($v___) || \is_array($v___)) {
+				return \crc32(\serialize($v___));
+			}
+			if (\is_resource($v___)) {
+				return \crc32(print_r($v___, true));
+			}
+			return \crc32((string)$v___);
+		};
+	}
+
 	function random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
 	{
 		if ($seed___ != 0) {

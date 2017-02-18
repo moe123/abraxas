@@ -177,4 +177,9 @@ std\rotate_copy(
 );
 std\cout($dv)(std\endl);
 
+$v = std\make_vector();
+$v->reserve(10);
+
+std\cout($v)(std\endl);
+
 /* EOF */
