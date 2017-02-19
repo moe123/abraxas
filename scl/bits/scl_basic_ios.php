@@ -675,38 +675,38 @@ namespace std
 
 	function & cin(&$d___ = null)
 	{
-		static $is = null;
-		if (\is_null($is)) {
-			$is = new _C_ostream_cin;
+		static $_S_cin = null;
+		if (\is_null($_S_cin)) {
+			$_S_cin = new _C_ostream_cin;
 		}
 		if (!\is_null($d___)) {
-			$is = $is($d___);
+			$_S_cin = $_S_cin($d___);
 		}
-		return $is;
+		return $_S_cin;
 	}
 
 	function & cout($d___ = null, int $fl___ = ios_base::nomask)
 	{
-		static $os = null;
-		if (\is_null($os)) {
-			$os = new _C_ostream_cout;
+		static $_S_cout = null;
+		if (\is_null($_S_cout)) {
+			$_S_cout = new _C_ostream_cout;
 		}
 		if (!\is_null($d___)) {
-			$os = $os($d___, $fl___);
+			$_S_cout = $_S_cout($d___, $fl___);
 		}
-		return $os;
+		return $_S_cout;
 	}
 
 	function & cerr($d___ = null, int $fl___ = ios_base::nomask)
 	{
-		static $os = null;
-		if (\is_null($os)) {
-			$os = new _C_ostream_cerr;
+		static $_S_cerr = null;
+		if (\is_null($_S_cerros)) {
+			$_S_cerr = new _C_ostream_cerr;
 		}
 		if (!\is_null($d___)) {
-			$os = $os($d___, $fl___);
+			$_S_cerr = $_S_cerr($d___, $fl___);
 		}
-		return $os;
+		return $_S_cerr;
 	}
 } /* EONS */
 

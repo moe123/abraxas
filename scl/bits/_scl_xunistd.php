@@ -30,8 +30,8 @@ namespace
 
 namespace std
 {
-	function xexit(int $status = 0)
-	{ stop($status); }
+	function xexit(int $status___ = 0)
+	{ stop($status___); }
 
 	function xmillisleep(int $n___)
 	{

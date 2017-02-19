@@ -372,6 +372,12 @@ namespace std
 	function make_timeval(int $sec___ = 0, int $usec___ = 0)
 	{ return new timeval($sec___, $usec___); }
 
+	function make_xlocale(string $id___, int $mask___ = xlocale_mask::all)
+	{ return newlocale($mask___, $id___); }
+
+	function make_timezone(int $mwest___ = 0, int $dsttm___ = 0)
+	{ return new timezone($mwest___, $dsttm___); }
+
 	function make_collator(string $id___, int $lv___ = collator_level::none)
 	{ return new collator($id___, $lv___); }
 

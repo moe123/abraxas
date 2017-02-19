@@ -29,7 +29,7 @@ namespace
 
 namespace std
 {
-	const not_a_value = '^std@0';
+	const ignore = '^std@0';
 
 	abstract class basic_iteratable_tag
 	{

@@ -29,7 +29,7 @@ namespace std
 	{
 		use _T_multi_construct_traits;
 
-		static $_M_global;
+		static $_S_global;
 
 		var $_M_id;
 		var $_M_name;
@@ -38,11 +38,7 @@ namespace std
 
 		static function canonicalize_id(string $locale_id)
 		{
-			if (
-				   $locale_id === null
-				|| $locale_id === ""
-				|| $locale_id === 0
-			) {
+			if ($locale_id === null || $locale_id === "" || $locale_id === 0) {
 				$locale_id = \ini_get('intl.default_locale');
 				if ($locale_id === false || \strlen($locale_id) < 1) {
 					$locale_id = "en_US_POSIX";
@@ -80,26 +76,26 @@ namespace std
 						: $locale->_M_caterory
 				, $locale_id
 			);
-			locale::$_M_global = clone $locale;
-			locale::$_M_global->_M_id = $locale_id;
-			return locale::$_M_global;
+			locale::$_S_global = clone $locale;
+			locale::$_S_global->_M_id = $locale_id;
+			return locale::$_S_global;
 		}
 
 		static function get_global()
 		{
-			if (!isset(locale::$_M_global)) {
+			if (!isset(locale::$_S_global)) {
 				$locale_id = \setlocale(locale_category::all, "");
 				if ($locale_id === "C") {
 					$locale_id = "en_US_POSIX";
 				}
 
-				locale::$_M_global = new locale(
+				locale::$_S_global = new locale(
 					  $locale_id
 					, collator_level::none
 					, locale_category::all
 				);
 			}
-			return locale::$_M_global;
+			return locale::$_S_global;
 		}
 
 		static function get_classic()
@@ -171,6 +167,9 @@ namespace std
 			}
 			return $info;
 		}
+
+		function xlocale(int $mask = xlocale_mask::all)
+		{ return newlocale($mask, $this->_M_id); }
 
 		function & swap(locale &$locale)
 		{

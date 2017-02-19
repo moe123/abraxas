@@ -65,9 +65,9 @@ namespace std
 		var $tz_minuteswest; /* minutes west of Greenwich */
 		var $tz_dsttime;     /* type of DST correction */
 
-		function __construct(int $mws___, int $dsttm___)
+		function __construct(int $mwest___, int $dsttm___)
 		{
-			$this->tz_minuteswest = $mws___;
+			$this->tz_minuteswest = $mwest___;
 			$this->tz_dsttime     = $dsttm___;
 		}
 	} /* EOC */
@@ -113,7 +113,7 @@ namespace std
 	{
 		$t = \time();
 		if (!\is_null($tloc___)) {
-			$tloc = &$t;
+			$tloc___ = &$t;
 		}
 		return $t;
 	}
@@ -121,21 +121,12 @@ namespace std
 	function strftime(string &$dest___, string $fmt___, tm &$tm___)
 	{
 		if (_F_builtin_os_darwin()) {
-			if (false !== ($pos = \strpos($fmt___, "%P"))) {
+			if (false !== \strpos($fmt___, "%P")) {
 				$i = 0;
 				while (isset($fmt___[$i])) {
-					if (
-							$i == 0
-						&& $fmt___[$i] == "%"
-						&& $fmt___[$i + 1] == "P"
-					) {
+					if ($i == 0 && $fmt___[$i] == "%" && $fmt___[$i + 1] == "P") {
 						$fmt___[$i + 1] = "p";
-					} else if (
-							isset($fmt___[$i + 1])
-						&& $fmt___[$i] == "%"
-						&& $fmt___[$i + 1] == "P"
-						&& $fmt___[$i - 1] != "%"
-					) {
+					} else if (isset($fmt___[$i + 1]) && $fmt___[$i] == "%" && $fmt___[$i + 1] == "P" && $fmt___[$i - 1] != "%") {
 						$fmt___[$i + 1] = "p";
 					}
 					++$i;
@@ -152,7 +143,7 @@ namespace std
 
 	function strftime_l(string &$dest___, string $fmt___, tm &$tm___, locale_t $xloc___)
 	{
-		uselocale($xloc);
+		uselocale($xloc___);
 		if ($tm___->_M_gmt) {
 			$dest___ = \strftime($fmt___, timegm($tm___));
 		} else {
@@ -212,14 +203,14 @@ namespace std
 		return null;
 	}
 
-	function ftime(timeb &$tb)
+	function ftime(timeb &$tb___)
 	{
 		$r = \gettimeofday();
 		if (\is_array($r)) {
-			$tb->time     = \intval($r["sec"]);
-			$tb->millitm  = \intval($r["usec"] / 1000);
-			$tb->timezone = \intval($r["minuteswest"]);
-			$tb->dstflag  = \intval($r["dsttime"]);
+			$tb___->time     = \intval($r["sec"]);
+			$tb___->millitm  = \intval($r["usec"] / 1000);
+			$tb___->timezone = \intval($r["minuteswest"]);
+			$tb___->dstflag  = \intval($r["dsttime"]);
 		} else {
 			seterrno(EFAULT);
 			return -1;
@@ -227,15 +218,15 @@ namespace std
 		return 0;
 	}
 
-	function gettimeofday(timeval &$tv, timezone &$tz = null)
+	function gettimeofday(timeval &$tv___, timezone &$tz___ = null)
 	{
 		$r = \gettimeofday();
 		if (\is_array($r)) {
-			$tv->tv_sec  = \intval($r["sec"]);
-			$tv->tv_usec = \intval($r["usec"]);
+			$tv___->tv_sec  = \intval($r["sec"]);
+			$tv___->tv_usec = \intval($r["usec"]);
 			if (!\is_null($tz)) {
-				$tz->tz_minuteswest = \intval($r["minuteswest"]);
-				$tz->tz_dsttime     = \intval($r["dsttime"]);
+				$tz___->tz_minuteswest = \intval($r["minuteswest"]);
+				$tz___->tz_dsttime     = \intval($r["dsttime"]);
 			}
 		} else {
 			seterrno(EFAULT);

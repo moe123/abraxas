@@ -57,157 +57,157 @@ namespace std
 		}
 	} /* EOC */
 
-	function atto()
+	function & atto()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_atto;
+		static $_S_atto = null;
+		if (\is_null($_S_atto)) {
+			$_S_atto = new _C_ratio_atto;
 		}
-		return $_S_ratio;
+		return $_S_atto;
 	}
 
-	function femto()
+	function & femto()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_femto;
+		static $_S_femto = null;
+		if (\is_null($_S_femto)) {
+			$_S_femto = new _C_ratio_femto;
 		}
-		return $_S_ratio;
+		return $_S_femto;
 	}
 
-	function pico()
+	function & pico()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_pico;
+		static $_S_pico = null;
+		if (\is_null($_S_pico)) {
+			$_S_pico = new _C_ratio_pico;
 		}
-		return $_S_ratio;
+		return $_S_pico;
 	}
 
-	function nano()
+	function & nano()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_nano;
+		static $_S_nano = null;
+		if (\is_null($_S_nano)) {
+			$_S_nano = new _C_ratio_nano;
 		}
-		return $_S_ratio;
+		return $_S_nano;
 	}
 
-	function micro()
+	function & micro()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_micro;
+		static $_S_micro = null;
+		if (\is_null($_S_micro)) {
+			$_S_micro = new _C_ratio_micro;
 		}
-		return $_S_ratio;
+		return $_S_micro;
 	}
 
-	function milli()
+	function & milli()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_milli;
+		static $_S_milli = null;
+		if (\is_null($_S_milli)) {
+			$_S_milli = new _C_ratio_milli;
 		}
-		return $_S_ratio;
+		return $_S_milli;
 	}
 
-	function centi()
+	function & centi()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_deci;
+		static $_S_centi = null;
+		if (\is_null($_S_centi)) {
+			$_S_centi = new _C_ratio_deci;
 		}
-		return $_S_ratio;
+		return $_S_centi;
 	}
 
-	function deci()
+	function & deci()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_deci;
+		static $_S_deci = null;
+		if (\is_null($_S_deci)) {
+			$_S_deci = new _C_ratio_deci;
 		}
-		return $_S_ratio;
+		return $_S_deci;
 	}
 
-	function unum()
+	function & unum()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_unum;
+		static $_S_unum = null;
+		if (\is_null($_S_unum)) {
+			$_S_unum = new _C_ratio_unum;
 		}
-		return $_S_ratio;
+		return $_S_unum;
 	}
 
-	function deca()
+	function & deca()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_deca;
+		static $_S_deca = null;
+		if (\is_null($_S_deca)) {
+			$_S_deca = new _C_ratio_deca;
 		}
-		return $_S_ratio;
+		return $_S_deca;
 	}
 
-	function hecto()
+	function & hecto()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_hecto;
+		static $_S_hecto = null;
+		if (\is_null($_S_hecto)) {
+			$_S_hecto = new _C_ratio_hecto;
 		}
-		return $_S_ratio;
+		return $_S_hecto;
 	}
 
-	function kilo()
+	function & kilo()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_kilo;
+		static $_S_kilo = null;
+		if (\is_null($_S_kilo)) {
+			$_S_kilo = new _C_ratio_kilo;
 		}
-		return $_S_ratio;
+		return $_S_kilo;
 	}
 
-	function mega()
+	function & mega()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_mega;
+		static $_S_mega = null;
+		if (\is_null($_S_mega)) {
+			$_S_mega = new _C_ratio_mega;
 		}
-		return $_S_ratio;
+		return $_S_mega;
 	}
 
-	function giga()
+	function & giga()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_giga;
+		static $_S_giga = null;
+		if (\is_null($_S_giga)) {
+			$_S_giga = new _C_ratio_giga;
 		}
-		return $_S_ratio;
+		return $_S_giga;
 	}
 
-	function tera()
+	function & tera()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_tera;
+		static $_S_tera = null;
+		if (\is_null($_S_tera)) {
+			$_S_tera = new _C_ratio_tera;
 		}
-		return $_S_ratio;
+		return $_S_tera;
 	}
 
-	function peta()
+	function & peta()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_peta;
+		static $_S_peta = null;
+		if (\is_null($_S_peta)) {
+			$_S_peta = new _C_ratio_peta;
 		}
-		return $_S_ratio;
+		return $_S_peta;
 	}
 
-	function exa()
+	function & exa()
 	{
-		static $_S_ratio = null;
-		if (\is_null($_S_ratio)) {
-			$_S_ratio = new _C_ratio_exa;
+		static $_S_exa = null;
+		if (\is_null($_S_exa)) {
+			$_S_exa = new _C_ratio_exa;
 		}
-		return $_S_ratio;
+		return $_S_exa;
 	}
 
 	function & ratio_copy(basic_ratio $ratio)

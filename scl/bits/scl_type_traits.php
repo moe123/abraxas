@@ -17,7 +17,7 @@
 namespace std
 {
 	function is_null($v__)
-	{ return \is_null($v__); }
+	{ return \is_null($v__) || (\is_string($v__) && $v__ === ignore); }
 
 	function is_integral($v__)
 	{

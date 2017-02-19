@@ -661,7 +661,7 @@ namespace std
 				
 			} else {
 				for ($i = 0 ; $i <= $sz___; $i++) {
-					$c___->_M_container[] = not_a_value;
+					$c___->_M_container[] = ignore;
 					++$c___->_M_size;
 				}
 			}

@@ -16,7 +16,7 @@
 
 namespace std
 {
-	const _S_builtin_zonetab = [
+	const _N_builtin_zonetab = [
 		[ "offset" => (12 * 60)        , "stdzone" => "NZST", "dlzone" => "NZDT"    ], /* New Zealand */
 		[ "offset" => (10 * 60)        , "stdzone" => "AEST", "dlzone" => "AEDT"    ], /* Aust: Eastern */
 		[ "offset" => ((9 * 60) + 30)  , "stdzone" => "ACST", "dlzone" => "ACDT"    ], /* Aust: Central */
@@ -48,7 +48,7 @@ namespace std
 
 	function _F_builtin_tztab(int $zone___, int $dst___)
 	{
-		foreach (_S_builtin_zonetab as &$v) {
+		foreach (_N_builtin_zonetab as &$v) {
 			if ($v["offset"] ==  -($zone___)) {
 				if ($dst___ && !\is_null($v["dlzone"])) {
 					return $v["dlzone"];
@@ -58,13 +58,17 @@ namespace std
 				}
 			}
 		}
-		$sign = "-";
+		$ch_sign = '-';
 		if ($zone___ < 0) {
-			$zone___ = -$zone___;
-			$sign = "+";
+			$zone___ = -($zone___);
+			$ch_sign = '+';
 		}
 		seterrno(EINVAL);
-		return \sprintf("GMT%s%d:%02d", $sign, $zone___ / 60, $zone___ % 60);
+		return \sprintf("GMT%s%d:%02d"
+			, $ch_sign
+			, (int)($zone___ / 60)
+			, (int)($zone___ % 60)
+		);
 	}
 
 	function _F_builtin_tzname(string $tzabbr___)
@@ -81,7 +85,7 @@ namespace std
 	function _F_builtin_tzsys_1()
 	{
 		if (!_F_builtin_os_windows()) {
-			if (false !== ($tz = \readlink("/etc/localtime"))) {
+			if (false !== ($tz = @\readlink("/etc/localtime"))) {
 				if (false !== ($tz = \substr($tz, 20))) {
 					seterrno(NOERR);
 					return $tz;
@@ -134,6 +138,18 @@ namespace std
 			return $tz;
 		}
 		seterrno(EINVAL);
+		return _F_builtin_tzsys_5();
+	}
+
+	function _F_builtin_tzsys_5()
+	{
+		$l = \file_get_contents("http://ip-api.com/json");
+		$a = \json_decode($l, true);
+		if (!\is_null($a) && isset($a["timezone"])) {
+			seterrno(NOERR);
+			return $a["timezone"];
+		}
+		seterrno(EINVAL);
 		return _F_builtin_tzname("GMT");
 	}
 
@@ -141,7 +157,7 @@ namespace std
 	{ return _F_builtin_tzsys_1(); }
 
 	function tzname()
-	{ return  \date_default_timezone_get(); }
+	{ return \date_default_timezone_get(); }
 	
 	function tzoffset()
 	{
@@ -167,15 +183,19 @@ namespace std
 
 	function tzset()
 	{
-		$tz = \date_default_timezone_get();
-		if ($tz == "GMT" || $tz == "UTC") {
-			$tz = tzsys();
-			if (!\date_default_timezone_set($tz)) {
-				$tz = "GMT";
-				!\date_default_timezone_set($tz);
+		static $_S_tz = null;
+		if (\is_null($_S_tz)) {
+			$_S_tz = \date_default_timezone_get();
+			if ($_S_tz == "GMT" || $_S_tz == "UTC") {
+				$_S_tz = tzsys();
+				if (!\date_default_timezone_set($_S_tz)) {
+					$_S_tz = "GMT";
+					seterrno(EINVAL);
+					\date_default_timezone_set($_S_tz);
+				}
 			}
 		}
-		return $tz;
+		return $_S_tz;
 	}
 
 	function tzsetwall()

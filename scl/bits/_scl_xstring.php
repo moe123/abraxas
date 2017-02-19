@@ -21,8 +21,8 @@ namespace std
 		return xformat_message($fmt___, ...$args___);
 		/*
 		$fmt___ = preg_replace_callback('#\{(?!\{)\}(?!\})#', function($r) {
-			static $idx = 0;
-			return '{'.($idx++).'}';
+			static $_S_idx = 0;
+			return '{'.($_S_idx++).'}';
 		}, $fmt___);
 
 		return \str_replace(
@@ -50,14 +50,14 @@ namespace std
 		*/
 	}
 
-	function xformat_l(locale_t $xloc__, string $fmt___, ...$args___)
+	function xformat_l(locale_t $xloc___, string $fmt___, ...$args___)
 	{
-		return xformat_message_l($xloc__, $fmt___, ...$args___);
+		return xformat_message_l($xloc___, $fmt___, ...$args___);
 
 		/*
 		$fmt___ = preg_replace_callback('#\{(?!\{)\}(?!\})#', function($r) {
-			static $idx = 0;
-			return '{'.($idx++).'}';
+			static $_S_idx = 0;
+			return '{'.($_S_idx++).'}';
 		}, $fmt___);
 
 		return \str_replace(
@@ -88,13 +88,13 @@ namespace std
 	function xformatln(string $fmt___, ...$args___)
 	{ return xformat_message($fmt___ . \PHP_EOL, ...$args___); }
 
-	function xformatln_l(locale_t $xloc__, string $fmt___, ...$args___)
-	{ return xformat_message_l($xloc__, $fmt___ . \PHP_EOL, ...$args___); }
+	function xformatln_l(locale_t $xloc___, string $fmt___, ...$args___)
+	{ return xformat_message_l($xloc___, $fmt___ . \PHP_EOL, ...$args___); }
 
 	function xformat_message($fmt___, ...$args___)
 	{ return \msgfmt_format_message(\setlocale(\LC_ALL, ""), $fmt___, $args___); }
 
-	function xformat_message_l(locale_t $xloc__, $fmt___, ...$args___)
+	function xformat_message_l(locale_t $xloc___, $fmt___, ...$args___)
 	{ return \msgfmt_format_message($xloc___->u_data[0]["^std@_u_nid"], $fmt___, $args___); }
 
 	function memize(&$in___)
@@ -183,37 +183,37 @@ namespace std
 		return $s1___;
 	}
 
-	function strtol(string $str, &$endptr = null, int $base = 10)
+	function strtol(string $str___, &$endptr___ = null, int $base___ = 10)
 	{
-		if ($base > 36 || $base < 2) {
+		if ($base___ > 36 || $base___ < 2) {
 			return 0;
 		}
-		$r = \intval($str, $base);
-		if (!\is_null($endptr)) {
-			if (false !== ($span = \strpos($str, (string)\abs($r)))) {
+		$r = \intval($str___, $base___);
+		if (!\is_null($endptr___)) {
+			if (false !== ($span = \strpos($str___, (string)\abs($r)))) {
 				$span += \strlen((string)\abs($r));
-				$endptr = \substr($str, $span, \strlen($str) - $span);
+				$endptr___ = \substr($str___, $span, \strlen($str___) - $span);
 			}
 		}
 		return $r;
 	}
 
-	function strtoul(string $str, &$endptr = null, int $base = 10)
+	function strtoul(string $str___, &$endptr___ = null, int $base___ = 10)
 	{
-		$r = strtol($str, $endptr, $base);
+		$r = strtol($str___, $endptr___, $base___);
 		return $r >= 0 ? $r : numeric_limit::max;
 	}
 
-	function strtod(string $str, &$endptr = null)
+	function strtod(string $str___, &$endptr___ = null)
 	{
-		if ($base > 36 || $base < 2) {
+		if ($base___ > 36 || $base___ < 2) {
 			return 0;
 		}
-		$r = \floatval($str);
-		if (!\is_null($endptr)) {
-			if (false !== ($span = \strpos($str, (string)\abs($r)))) {
+		$r = \floatval($str___);
+		if (!\is_null($endptr___)) {
+			if (false !== ($span = \strpos($str___, (string)\abs($r)))) {
 				$span += \strlen((string)\abs($r));
-				$endptr = \substr($str, $span, \strlen($str) - $span);
+				$endptr___ = \substr($str___, $span, \strlen($str___) - $span);
 			}
 		}
 		return $r;
@@ -224,7 +224,7 @@ namespace std
 
 	function strcoll_l(string $s1___, string $s2___, locale_t $xloc___)	
 	{
-		uselocale($xloc);
+		uselocale($xloc___);
 		$r = \strcoll($s1___, $s2___);
 		_F_builtin_unsetlocale($xloc___);
 		return $r;

@@ -25,11 +25,11 @@ namespace std
 
 	function host_byte_order()
 	{
-		static $bo = -1;
-		if ($bo === -1) {
-			$bo = \unpack('S',"\x01\x00")[1] === 1 ? endian_utils::little : endian_utils::big;
+		static $_S_bo = null;
+		if (\is_null(null)) {
+			$_S_bo = \unpack('S',"\x01\x00")[1] === 1 ? endian_utils::little : endian_utils::big;
 		}
-		return $bo;
+		return $_S_bo;
 	}
 
 	function pack_int8(int $x___)
