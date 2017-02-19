@@ -184,7 +184,9 @@ $v->reserve(10);
 
 std\cout($v)(std\endl);
 
-$a = [ 2, 7, 3, 9, 4 ];
-std\cout(std\lcmv($a, 5))(std\endl);
+$v = std\make_vector(2, 7, 3, 9, 4);
+std\cout(
+	std\lcm_r($v->begin(), $v->end())
+)(std\endl);
 
 /* EOF */

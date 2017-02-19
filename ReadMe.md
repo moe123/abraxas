@@ -240,6 +240,10 @@ std\rotate_copy(
 std\cout($dv)(std\endl);
 // [ 3 4 5 1 2 ]
 
+$v = std\make_vector(2, 7, 3, 9, 4);
+$lcm = std\lcm_r($v->begin(), $v->end());
+std\cout($lcm)(std\endl);
+
 ...
 ```
 
