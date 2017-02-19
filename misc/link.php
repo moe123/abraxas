@@ -184,4 +184,7 @@ $v->reserve(10);
 
 std\cout($v)(std\endl);
 
+$a = [ 2, 7, 3, 9, 4 ];
+std\cout(std\lcmv($a, 5))(std\endl);
+
 /* EOF */

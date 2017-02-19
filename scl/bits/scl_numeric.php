@@ -120,10 +120,11 @@ namespace std
 
 	function lcmv(array &$m___, int $n___)
 	{
-		$a = (int)$m___[0];
+		$a = \abs((int)$m___[0]);
 		for ($i = 1; $i < $n___; $i++) {
-			if ($c = _F_builtin_GCD((int)$m___[$i], $a)) {
-				$a = (int)(($m___[$i] * $a) / $c);
+			$m = \abs((int)$m___[$i]);
+			if (($c = _F_builtin_GCD($m, $a))) {
+				$a = (int)(($m * $a) / $c);
 			}
 		}
 		return $a;

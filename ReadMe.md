@@ -335,6 +335,7 @@ PHP7 built with:
 > [scl_locale](./scl/bits/scl_locale.php)<br>
 > [scl_locale](./scl/bits/scl_locale.php)<br>
 > [scl_numeric_limits](./scl/bits/scl_numeric_limits.php)<br>
+> [scl_numeric](./scl/bits/scl_numeric.php)<br>
 > [scl_ostream](./scl/bits/scl_ostream.php)<br>
 > [scl_pair](./scl/bits/scl_pair.php)<br>
 > [scl_quad](./scl/bits/scl_quad.php)<br>
@@ -351,6 +352,7 @@ PHP7 built with:
 
 ##### Public front-end
 > [algorithm](./scl/algorithm.php)<br>
+> [collator](./scl/collator.php)<br>
 > [dict](./scl/dict.php)<br>
 > [exception](./scl/exception.php)<br>
 > [forward_list](./scl/forward_list.php)<br>
@@ -359,7 +361,8 @@ PHP7 built with:
 > [iterator](./scl/iterator.php)<br>
 > [limits](./scl/limits.php)<br>
 > [locale](./scl/locale.php)<br>
-> [locale](./scl/ratio.php)<br>
+> [numeric](./scl/numeric.php)<br>
+> [ratio](./scl/ratio.php)<br>
 > [seqlist](./scl/seqlist.php)<br>
 > [set](./scl/set.php)<br>
 > [tuple](./scl/tuple.php)<br>
