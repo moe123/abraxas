@@ -700,7 +700,7 @@ namespace std
 	function & cerr($d___ = null, int $fl___ = ios_base::nomask)
 	{
 		static $_S_cerr = null;
-		if (\is_null($_S_cerros)) {
+		if (\is_null($_S_cerr)) {
 			$_S_cerr = new _C_ostream_cerr;
 		}
 		if (!\is_null($d___)) {

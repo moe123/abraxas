@@ -11,6 +11,8 @@ set_include_path(
 );
 
 require_once "algorithm.php";
+require_once "numeric.php";
+require_once "ratio.php";
 require_once "exception.php";
 require_once "iostream.php";
 require_once "irange.php";

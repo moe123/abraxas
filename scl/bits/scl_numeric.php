@@ -32,8 +32,20 @@ namespace std
 		$den_d___ = (int)($den_d___ / $b);
 	}
 
-	function _F_builtin_ratio_LCM(int &$num_d___, int &$den_d___)
-	{ return (int)($num_d___ / _F_builtin_ratio_GCD($num_d___, $den_d___) * $den_d___); }
+	function _F_builtin_GCD(int $m___, int $n___)
+	{
+		$m = \abs($m___);
+		$n = \abs($n___);
+		$c = 0;
+		while($m > 0) { $c = $m; $m = $n % $m; $n = $c; }
+		return $n;
+	}
+
+	function _F_builtin_LCM(int $a___, int $b___)
+	{
+		$c = _F_builtin_GCD($a___, $b___);
+		return $c !== 0 ? (int)($a___ / ($c * $b___)) : 0;
+	}
 
 	function _F_builtin_ratio_add(
 		  int $num1___
@@ -89,10 +101,13 @@ namespace std
 
 	function gcd(int $m___, int $n___)
 	{
-		if ($m___ === 0 || $n___ === 0) {
+		if ($m___ === 0 && $n___ === 0) {
 			return 0;
 		}
-		return _F_builtin_ratio_GCD($m___, $n___);
+		if ($n___ === 0) {
+			return $m___;
+		}
+		return _F_builtin_GCD($m___, $n___);
 	}
 	
 	function lcm(int $m___, int $n___)
@@ -100,7 +115,18 @@ namespace std
 		if ($m___ === 0 || $n___ === 0) {
 			return 0;
 		}
-		return _F_builtin_ratio_LCM($m___, $n___);
+		return _F_builtin_LCM($m___, $n___);
+	}
+
+	function lcmv(array &$m___, int $n___)
+	{
+		$a = (int)$m___[0];
+		for ($i = 1; $i < $n___; $i++) {
+			if ($c = _F_builtin_GCD((int)$m___[$i], $a)) {
+				$a = (int)(($m___[$i] * $a) / $c);
+			}
+		}
+		return $a;
 	}
 } /* EONS */
 
