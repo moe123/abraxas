@@ -59,7 +59,7 @@ namespace std
 		{
 			return new locale(
 				  \Locale::getDefault()
-				, collator_level::none
+				, collator_level::natural
 			);
 		}
 
@@ -91,7 +91,7 @@ namespace std
 
 				locale::$_S_global = new locale(
 					  $locale_id
-					, collator_level::none
+					, collator_level::natural
 					, locale_category::all
 				);
 			}
@@ -192,7 +192,7 @@ namespace std
 		}
 	} /* EOC */
 
-	function set_locale(int $caterory, string $locale_id, int $collator_level =  collator_level::none)
+	function set_locale(int $caterory, string $locale_id, int $collator_level =  collator_level::natural)
 	{
 		return locale::set_global(
 			make_locale(

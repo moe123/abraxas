@@ -378,10 +378,10 @@ namespace std
 	function make_timezone(int $mwest___ = 0, int $dsttm___ = 0)
 	{ return new timezone($mwest___, $dsttm___); }
 
-	function make_collator(string $id___, int $lv___ = collator_level::none)
+	function make_collator(string $id___, int $lv___ = collator_level::natural)
 	{ return new collator($id___, $lv___); }
 
-	function make_locale(string $id___, int $lv___ = collator_level::none, int $cat___ = locale_category::all)
+	function make_locale(string $id___, int $lv___ = collator_level::natural, int $cat___ = locale_category::all)
 	{ return new locale($id___, $lv___, $cat___); }
 
 	function make_comparator(callable $f___)
