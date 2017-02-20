@@ -337,7 +337,6 @@ PHP7 built with:
 > [scl_istream](./scl/bits/scl_istream.php)<br>
 > [scl_iterator](./scl/bits/scl_iterator.php)<br>
 > [scl_locale](./scl/bits/scl_locale.php)<br>
-> [scl_locale](./scl/bits/scl_locale.php)<br>
 > [scl_numeric_limits](./scl/bits/scl_numeric_limits.php)<br>
 > [scl_numeric](./scl/bits/scl_numeric.php)<br>
 > [scl_ostream](./scl/bits/scl_ostream.php)<br>

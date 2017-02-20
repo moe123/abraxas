@@ -56,12 +56,12 @@ namespace std
 
 	abstract class collator_level
 	{
+		const natural    = \Collator::DEFAULT_STRENGTH;
+		const identical  = \Collator::IDENTICAL;
 		const primary    = \Collator::PRIMARY;
 		const secondary  = \Collator::SECONDARY;
 		const tertiary   = \Collator::TERTIARY;
 		const quaternary = \Collator::QUATERNARY;
-		const identical  = \Collator::IDENTICAL;
-		const none       = \Collator::DEFAULT_STRENGTH;
 	} /* EOC */
 
 	final class collator
@@ -76,7 +76,7 @@ namespace std
 		function __toString()
 		{ return $this->locale_id(); }
 
-		function __construct($locale, int $collator_level = collator_level::none)
+		function __construct($locale, int $collator_level = collator_level::natural)
 		{
 			if (\is_object($locale) && $locale instanceof \std\locale) {
 				$this->_M_locale_id = $locale->_M_id;
