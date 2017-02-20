@@ -19,6 +19,7 @@ namespace std
 	final class random_device
 	{
 		var $_M_dev = null;
+		var $_M_ent = 0.0;
 
 		static function min() { return 0; }
 		static function max() { return numeric_limits_int::max; }
@@ -30,15 +31,17 @@ namespace std
 		{
 			if (function_exists('\random_bytes')) {
 				$this->_M_dev = '\random_bytes';
+				$this->_M_ent = numeric_limits_int::size * 8.0;
 			} else if (function_exists('\mcrypt_create_iv')) {
 				$this->_M_dev = '\mcrypt_create_iv';
+				$this->_M_ent = numeric_limits_int::size * 8.0;
 			} else if (function_exists('\openssl_random_pseudo_bytes')) {
 				$this->_M_dev = '\openssl_random_pseudo_bytes';
 			}
 		}
 
 		function entropy()
-		{ return (float)(numeric_limits_int::size * 8.0); }
+		{ return $this->_M_ent; }
 	} /* EOC */
 } /* EONS */
 
