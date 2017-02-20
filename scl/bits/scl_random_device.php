@@ -19,13 +19,12 @@ namespace std
 	final class random_device
 	{
 		var $_M_dev = null;
-		var $_M_ssz = 4;
 
 		static function min() { return 0; }
 		static function max() { return numeric_limits_int::max; }
 
 		function __invoke()
-		{ return \bin2hex($this->_M_dev($this->_M_ssz)); }
+		{ return \bin2hex($this->_M_dev(numeric_limits_int::size)); }
 
 		function __construct()
 		{
@@ -36,13 +35,10 @@ namespace std
 			} else if (function_exists('\mcrypt_create_iv')) {
 				$this->_M_dev = '\mcrypt_create_iv';
 			}
-			if (_F_builtin_os_64bit()) {
-				$this->_M_ssz = 8;
-			}
 		}
 
 		function entropy()
-		{ return (float)($this->_M_ssz * 8.0); }
+		{ return (float)(numeric_limits_int::size * 8.0); }
 	} /* EOC */
 } /* EONS */
 
