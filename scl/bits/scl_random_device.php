@@ -30,10 +30,10 @@ namespace std
 		{
 			if (function_exists('\random_bytes')) {
 				$this->_M_dev = '\random_bytes';
-			} else if (function_exists('\openssl_random_pseudo_bytes')) {
-				$this->_M_dev = '\openssl_random_pseudo_bytes';
 			} else if (function_exists('\mcrypt_create_iv')) {
 				$this->_M_dev = '\mcrypt_create_iv';
+			} else if (function_exists('\openssl_random_pseudo_bytes')) {
+				$this->_M_dev = '\openssl_random_pseudo_bytes';
 			}
 		}
 
