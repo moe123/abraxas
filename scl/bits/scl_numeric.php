@@ -22,14 +22,14 @@ namespace std
 	function _F_builtin_ratio_is_real(int &$num___, int &$den____)
 	{ return (int)(($num___ % $den____) !== 0); }
 
-	function _F_builtin_ratio_gcd(int &$num_d___, int &$den_d___)
+	function _F_builtin_ratio_gcd(int &$m___, int &$n___)
 	{
-		$a = $num_d___ < 0 ? -($num_d___) : $num_d___;
-		$b = $den_d___ < 0 ? -($den_d___) : $den_d___;
+		$a = $m___ < 0 ? -($m___) : $m___;
+		$b = $n___ < 0 ? -($n___) : $n___;
 		$c = $a % $b;
 		while($c > 0) { $a = $b; $b = $c; $c = $a % $b; }
-		$num_d___ = (int)($num_d___ / $b);
-		$den_d___ = (int)($den_d___ / $b);
+		$m___ = (int)($m___ / $b);
+		$n___ = (int)($n___ / $b);
 	}
 
 	function _F_builtin_gcd(int $m___, int $n___)
@@ -39,6 +39,21 @@ namespace std
 		$c = 0;
 		while($m > 0) { $c = $m; $m = $n % $m; $n = $c; }
 		return $n;
+	}
+
+	function _F_builtin_ratio_reduce(
+		  int &$num1___
+		, int &$den1___
+		, int &$num2___
+		, int &$den2___
+	) {
+		$d3 = _F_builtin_gcd($den1___, $den2___);
+		$n1 = $num1___ * ($d3 / $den1___);
+		$n2 = $num2___ * ($d3 / $den2___);
+		$num1___ = $n1;
+		$den1___ = $d3;
+		$num2___ = $n2;
+		$den2___ = $d3;
 	}
 
 	function _F_builtin_lcm(int $a___, int $b___)
@@ -64,12 +79,12 @@ namespace std
 		, int $den1___
 		, int $num2___
 		, int $den2___
-		, int &$num_d___
-		, int &$den_d___
+		, int &$m___
+		, int &$n___
 	) {
-		$num_d___ = (($num1___ * $den2___) + ($den1___ * $num2___));
-		$den_d___ = ($den1___ * $den2___);
-		_F_builtin_ratio_gcd($num_d___, $den_d___);
+		$m___ = (($num1___ * $den2___) + ($den1___ * $num2___));
+		$n___ = ($den1___ * $den2___);
+		_F_builtin_ratio_gcd($m___, $n___);
 	}
 
 	function _F_builtin_ratio_subtract(
@@ -77,12 +92,12 @@ namespace std
 		, int $den1___
 		, int $num2___
 		, int $den2___
-		, int &$num_d___
-		, int &$den_d___
+		, int &$m___
+		, int &$n___
 	) {
-		$num_d___ = (($num1___ * $den2___) - ($den1___ * $num2___));
-		$den_d___ = ($den1___ * $den2___);
-		_F_builtin_ratio_gcd($num_d___, $den_d___);
+		$m___ = (($num1___ * $den2___) - ($den1___ * $num2___));
+		$n___ = ($den1___ * $den2___);
+		_F_builtin_ratio_gcd($m___, $n___);
 	}
 
 	function _F_builtin_ratio_multiply(
@@ -90,12 +105,12 @@ namespace std
 		, int $den1___
 		, int $num2___
 		, int $den2___
-		, int &$num_d___
-		, int &$den_d___
+		, int &$m___
+		, int &$n___
 	) {
-		$num_d___ = ($num1___ * $num2___);
-		$den_d___ = ($den1___ * $den2___);
-		_F_builtin_ratio_gcd($num_d___, $den_d___);
+		$m___ = ($num1___ * $num2___);
+		$n___ = ($den1___ * $den2___);
+		_F_builtin_ratio_gcd($m___, $n___);
 	}
 
 	function _F_builtin_ratio_divide(
@@ -103,12 +118,12 @@ namespace std
 		, int $den1___
 		, int $num2___
 		, int $den2___
-		, int &$num_d___
-		, int &$den_d___
+		, int &$m___
+		, int &$n___
 	) {
-		$num_d___ = ($num1___ * $den2___);
-		$den_d___ = ($den1___ * $num2___);
-		_F_builtin_ratio_gcd($num_d___, $den_d___);
+		$m___ = ($num1___ * $den2___);
+		$n___ = ($den1___ * $num2___);
+		_F_builtin_ratio_gcd($m___, $n___);
 	}
 
 	function gcd(int $m___, int $n___)
