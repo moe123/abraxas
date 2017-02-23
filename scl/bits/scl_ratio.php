@@ -132,7 +132,7 @@ namespace std
 	{
 		static $_S_centi = null;
 		if (\is_null($_S_centi)) {
-			$_S_centi = new _C_ratio_deci;
+			$_S_centi = new _C_ratio_centi;
 		}
 		return $_S_centi;
 	}

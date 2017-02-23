@@ -44,6 +44,8 @@ namespace std
 			} else if (function_exists('\openssl_random_pseudo_bytes')) {
 				$_S_dev[] = '\openssl_random_pseudo_bytes';
 				$_S_dev[] = 4.0;
+			} else {
+				seterrno(ENOSYS);
 			}
 		}
 		$ent___ = $_S_dev[1];
