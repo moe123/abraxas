@@ -100,7 +100,7 @@ namespace std
 		if ($c___->_M_size > 1) {
 			$comp = $compare___;
 			if (\is_null($comp)) {
-				$comp = function(&$l, &$r) { \strcmp((string)$l, (string)$r); };
+				$comp = function(&$l, &$r) { \strcmp(\strval($l), \strval($r)); };
 			}
 			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
 				$a1 = array_keys($c___->_M_container);
@@ -324,7 +324,7 @@ namespace std
 	) {
 		$sz = \count($a___);
 		if ($sz > 1) {
-			$mid = (int)($sz / 2);
+			$mid = \intval($sz / 2);
 			$a_1 = array_slice($a___, 0, $mid);
 			$a_2 = array_slice($a___, $mid);
 

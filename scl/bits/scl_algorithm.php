@@ -59,7 +59,7 @@ namespace std
 			}
 			while ($cnt > 0) {
 				$it = clone $first___; 
-				$step = (int)($cnt / 2);
+				$step = \intval($cnt / 2);
 				if ($step < 1) {
 					_F_throw_out_of_range("Out of Range error");
 					return $first___;
@@ -92,7 +92,7 @@ namespace std
 			}
 			while ($cnt > 0) {
 				$it = clone $first___; 
-				$step = (int)($cnt / 2);
+				$step = \intval($cnt / 2);
 				if ($step < 1) {
 					_F_throw_out_of_range("Out of Range error");
 					return $first___;

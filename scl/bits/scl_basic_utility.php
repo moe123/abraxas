@@ -153,7 +153,7 @@ namespace std
 			if (\is_resource($v___)) {
 				return \sha1(print_r($v___, true));
 			}
-			return \sha1((string)$v___);
+			return \sha1(\strval($v___));
 		};
 	}
 
@@ -166,52 +166,15 @@ namespace std
 			if (\is_resource($v___)) {
 				return \crc32(print_r($v___, true));
 			}
-			return \crc32((string)$v___);
+			return \crc32(\strval($v___));
 		};
 	}
-
-	function random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
-	{
-		if ($seed___ != 0) {
-			\mt_srand($seed);
-		} else {
-			\mt_srand();
-		}
-		if (!$max___) {
-			return \mt_rand();
-		}
-		if ($min___ < 0) {
-			$min___ = 0;
-		}
-		if ($max___ > \mt_getrandmax()) {
-			$max___ = \mt_getrandmax();
-		}
-		if ($max___ < $min___) {
-			_F_throw_invalid_argument("Invalid argument error");
-		}
-		return \mt_rand($min___, $max___);
-	}
-
-	function random_real(float $min___ = 0.0, float $max___ = 1.0, int $seed___ = 0)
-	{ return $min___ + (\mt_rand() / \mt_getrandmax()) * ($max___ - $min___); }
-
-	function urandom(int $min___ = 0, int $max___ = 0)
-	{
-		if ($min___ === 0 && $max___ === 0) {
-			$min___ = numeric_limits_int::min;
-			$max___ = numeric_limits_int::max;
-		}
-		return \random_int($min___, $max___);
-	}
-
-	function urandom_real(float $min___ = 0.0, float $max___ = 1.0)
-	{ return $min___ + (\random_int(0, numeric_limits_int::max) / numeric_limits_int::max) * ($max___ - $min___); }
 
 	/*! callable */
 	function random_int_generator(int $min___ = 0, int $max___ = 0)
 	{
 		return function () use ($min___, $max___) {
-			return urandom($min___, $max___);
+			return xrandom_u($min___, $max___);
 		};
 	}
 
@@ -219,7 +182,7 @@ namespace std
 	function random_real_generator(float $min___ = 0.0, float $max___ = 1.0)
 	{
 		return function () use ($min___, $max___) {
-			return urandom_real($min___, $max___);
+			return xrandom_u_real($min___, $max___);
 		};
 	}
 
@@ -273,22 +236,22 @@ namespace std
 	function make_lconv(
 		  string $decimal_point___ = ""
 		, string $thousands_sep___ = ""
-		, $grouping___ = []
+		, array  $grouping___ = []
 		, string $int_curr_symbol___ = ""
 		, string $currency_symbol___ = ""
 		, string $mon_decimal_point___ = ""
 		, string $mon_thousands_sep___ = ""
-		, $mon_grouping___ = []
+		, array  $mon_grouping___ = []
 		, string $positive_sign___ = ""
 		, string $negative_sign___ = ""
-		, int $int_frac_digits___ = 0
-		, int $frac_digits___ = 0
-		, int $p_cs_precedes___ = 0
-		, int $p_sep_by_space___ = 0
-		, int $n_cs_precedes___ = 0
-		, int $n_sep_by_space___ = 0
-		, int $p_sign_posn___ = 0
-		, int $n_sign_posn___ = 0
+		, int    $int_frac_digits___ = 0
+		, int    $frac_digits___ = 0
+		, int    $p_cs_precedes___ = 0
+		, int    $p_sep_by_space___ = 0
+		, int    $n_cs_precedes___ = 0
+		, int    $n_sep_by_space___ = 0
+		, int    $p_sign_posn___ = 0
+		, int    $n_sign_posn___ = 0
 	) {
 		return new lconv(
 			  $decimal_point___
@@ -313,11 +276,11 @@ namespace std
 	}
 
 	function make_utsname(
-		  $sysname___ = ""
-		, $nodename___ = ""
-		, $release___ = ""
-		, $version___ = ""
-		, $machine___ = ""
+		  string $sysname___  = ""
+		, string $nodename___ = ""
+		, string $release___  = ""
+		, string $version___  = ""
+		, string $machine___  = ""
 	) {
 		return new utsname(
 			  $sysname___

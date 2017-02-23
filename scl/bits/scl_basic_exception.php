@@ -78,6 +78,9 @@ namespace std
 
 	function _F_throw_out_of_range(string $what)
 	{ throw new out_of_range($what); }
+
+	function _F_throw_overflow_error(string $what)
+	{ throw new overflow_error($what); }
 } /* EONS */
 
 /* EOF */

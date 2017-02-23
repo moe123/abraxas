@@ -16,10 +16,10 @@
 
 namespace
 {
-	if ((int)(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
+	if (\intval(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
 		define('PHP_FLOAT_EPSILON', 0.00009);
-		define('PHP_FLOAT_MIN'    , (float)PHP_INT_MIN);
-		define('PHP_FLOAT_MAX'    , (float)PHP_INT_MAX);
+		define('PHP_FLOAT_MIN'    , \floatval(PHP_INT_MIN));
+		define('PHP_FLOAT_MAX'    , \floatval(PHP_INT_MAX));
 	}
 } /* EONS */
 
@@ -53,7 +53,7 @@ namespace std
 	}
 
 	function _F_builtin_real_equal(float $l___, float $r___)
-	{ return (int)(\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
+	{ return \intval(\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
 
 	trait _T_deep_copy_traits
 	{

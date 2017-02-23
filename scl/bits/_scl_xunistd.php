@@ -18,6 +18,7 @@ namespace
 {
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xerrno.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xostype.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xrandom.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xsignal.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstring.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdio.php";
@@ -64,30 +65,30 @@ namespace std
 	{
 		if (_F_builtin_os_64bit()) {
 			$tm = \explode(' ', \microtime());
-			return ((int)$tm[1]) * 1000 + ((int)\round($tm[0] * 1000));
+			return (\intval($tm[1]) * 1000) + (\intval(\round($tm[0] * 1000)));
 		}
 		$tm = \explode(' ', \microtime());
-		return \sprintf('%d%03d', $tm[1], $tm[0] * 1000);
+		return \sprintf('%d%03d', \intval($tm[1]), \intval($tm[0] * 1000));
 	}
 
 	function xmicroseconds()
 	{
 		if (_F_builtin_os_64bit()) {
 			$tm = \explode(' ', \microtime());
-			return ((int)$tm[1]) * 1000000 + ((int)\round($tm[0] * 1000000));
+			return (\intval($tm[1])) * 1000000 + (\intval(\round($tm[0] * 1000000)));
 		}
 		$tm = \explode(' ', \microtime());
-		return \sprintf('%d%06d', $tm[1], $tm[0] * 1000000);
+		return \sprintf('%d%06d', \intval($tm[1]), \intval($tm[0] * 1000000));
 	}
 
 	function xnanoseconds()
 	{
 		if (_F_builtin_os_64bit()) {
 			$tm = \explode(' ', \microtime());
-			return ((int)$tm[1]) * 1000000000 + ((int)\round($tm[0] * 1000000000));
+			return (\intval($tm[1])) * 1000000000 + (\intval(\round($tm[0] * 1000000000)));
 		}
 		$tm = \explode(' ', \microtime());
-		return \sprintf('%d%09d', $tm[1], $tm[0] * 1000000000);
+		return \sprintf('%d%09d', \intval($tm[1]), \intval($tm[0] * 1000000000));
 	}
 
 	function gethostname(string &$dest___, int $destsz___ = -1)

@@ -71,7 +71,7 @@ namespace std
 		var $_M_locale_name;
 
 		function __invoke($l, $r)
-		{ return $this->_M_builtin_collator->compare((string)$l, (string)$r); }
+		{ return $this->_M_builtin_collator->compare(\strval($l), \strval($r)); }
 
 		function __toString()
 		{ return $this->locale_id(); }
@@ -112,7 +112,7 @@ namespace std
 		{ return $this->_M_builtin_collator->getStrength(); }
 
 		function compare($l, $r)
-		{ return $this->_M_builtin_collator->compare((string)$l, (string)$r); }
+		{ return $this->_M_builtin_collator->compare(\strval($l), \strval($r)); }
 
 		function & swap(collator &$collator)
 		{

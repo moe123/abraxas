@@ -18,15 +18,39 @@ require_once "iostream.php";
 require_once "irange.php";
 require_once "locale.php";
 require_once "vector.php";
+require_once "random.php";
+
+$dev = new std\random_device;
+
+print_r($dev);
+std\xexit(0);
 
 echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
 // print_r(std\is_callable(std\null_callable));
 // print_r(std\is_callable(std\bond1('std\xformat')));
 
-echo std\urandom_real(3, 4);
+$l = std\make_ratio(3, 4);
+$r = std\make_ratio(-2, 3);
+
+print_r($l);
+print_r($r);
+
+$n1 = $l->num();
+$d1 = $l->den();
+$n2 = $r->num();
+$d2 = $r->den();
+std\_F_builtin_ratio_reduce($n1, $d1, $n2, $d2);
+
+std\cout($n1)("/")($d1)(std\tab)($n2)("/")($d2);
+
+$a = std\ratio_add($l, $r);
+
+print_r($a);
+
 std\cout(std\endl);
-//exit;
+
+std\xexit(0);
 
 foreach (std\xrange(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);

@@ -76,14 +76,14 @@ namespace std
 	{
 		var $_M_gmt = 0;
 
-		var $tm_sec;        /* seconds after the minute 0-61  */
-		var $tm_min;        /* minutes after the hour 0-59  */
-		var $tm_hour;       /* hours since midnight 0-23  */
-		var $tm_mday;       /* day of the month 1-31  */
-		var $tm_mon;        /* months since January 0-11  */
+		var $tm_sec;        /* seconds after the minute [0-61]  */
+		var $tm_min;        /* minutes after the hour [0-59]  */
+		var $tm_hour;       /* hours since midnight [0-23]  */
+		var $tm_mday;       /* day of the month [1-31]  */
+		var $tm_mon;        /* months since January [0-11]  */
 		var $tm_year;       /* years since 1900 */
-		var $tm_wday;       /* days since Sunday 0-6 */
-		var $tm_yday;       /* days since January 1	0-365 */
+		var $tm_wday;       /* days since Sunday [0-6] */
+		var $tm_yday;       /* days since January 1 [0-365] */
 		var $tm_isdst = -1; /* Daylight Saving Time flag */
 
 		function __construct(
@@ -173,7 +173,10 @@ namespace std
 					return $buf___[$buflen -1];
 				}
 			}
+			seterrno(EINVAL);
+			return null;
 		}
+		seterrno(ESRCH);
 		return null;
 	}
 
@@ -199,7 +202,10 @@ namespace std
 					return $buf___[$buflen -1];
 				}
 			}
+			seterrno(EINVAL);
+			return null;
 		}
+		seterrno(ESRCH);
 		return null;
 	}
 
@@ -342,7 +348,7 @@ namespace std
 		if (_F_builtin_os_64bit()) {
 			return time1 - time0;
 		}
-		return (float)time1 - (float)time0;
+		return \floatval(time1) - \floatval(time0);
 	}
 
 	function difftime_real(float $time1___, float $time0___)

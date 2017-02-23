@@ -66,8 +66,8 @@ namespace std
 		seterrno(EINVAL);
 		return \sprintf("GMT%s%d:%02d"
 			, $ch_sign
-			, (int)($zone___ / 60)
-			, (int)($zone___ % 60)
+			, \intval($zone___ / 60)
+			, \intval($zone___ % 60)
 		);
 	}
 

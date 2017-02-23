@@ -16,29 +16,47 @@
 
 namespace std
 {
-	function _F_builtin_ratio_is_integral(int &$num___, int &$den____)
-	{ return (int)(($num___ % $den____) === 0); }
+	function _F_builtin_lcm(int $a___, int $b___)
+	{
+		$c = _F_builtin_gcd($a___, $b___);
+		return $c !== 0 ? \intval(($a___ * $b___) / ($c)) : 0;
+	}
 
-	function _F_builtin_ratio_is_real(int &$num___, int &$den____)
-	{ return (int)(($num___ % $den____) !== 0); }
+	function _F_builtin_lcmv(array &$m___, int $n___)
+	{
+		$a = \abs(\intval($m___[0]));
+		for ($i = 1; $i < $n___; $i++) {
+			$m = \abs(\intval($m___[$i]));
+			if (($c = _F_builtin_gcd($m, $a))) {
+				$a = \intval(($m * $a) / $c);
+			}
+		}
+		return $a;
+	}
 
-	function _F_builtin_ratio_gcd(int &$m___, int &$n___)
+	function _F_builtin_gcd(int $m___, int $n___)
 	{
 		$a = $m___ < 0 ? -($m___) : $m___;
 		$b = $n___ < 0 ? -($n___) : $n___;
 		$c = $a % $b;
 		while($c > 0) { $a = $b; $b = $c; $c = $a % $b; }
-		$m___ = (int)($m___ / $b);
-		$n___ = (int)($n___ / $b);
+		return $b;
 	}
 
-	function _F_builtin_gcd(int $m___, int $n___)
+	function _F_builtin_ratio_is_integral(int &$num___, int &$den____)
+	{ return \intval(($num___ % $den____) === 0); }
+
+	function _F_builtin_ratio_is_real(int &$num___, int &$den____)
+	{ return \intval(($num___ % $den____) !== 0); }
+
+	function _F_builtin_ratio_gcd(int &$m___, int &$n___)
 	{
-		$m = \abs($m___);
-		$n = \abs($n___);
-		$c = 0;
-		while($m > 0) { $c = $m; $m = $n % $m; $n = $c; }
-		return $n;
+		if ($gcd = _F_builtin_gcd($m___, $n___)) {
+			$m___ = \intval($m___ / $gcd);
+			$n___ = \intval($n___ / $gcd);
+		} else {
+			_F_throw_overflow_error("Divide by zero error");
+		}
 	}
 
 	function _F_builtin_ratio_reduce(
@@ -47,31 +65,16 @@ namespace std
 		, int &$num2___
 		, int &$den2___
 	) {
-		$d3 = _F_builtin_gcd($den1___, $den2___);
-		$n1 = $num1___ * ($d3 / $den1___);
-		$n2 = $num2___ * ($d3 / $den2___);
-		$num1___ = $n1;
-		$den1___ = $d3;
-		$num2___ = $n2;
-		$den2___ = $d3;
-	}
-
-	function _F_builtin_lcm(int $a___, int $b___)
-	{
-		$c = _F_builtin_gcd($a___, $b___);
-		return $c !== 0 ? (int)($a___ / ($c * $b___)) : 0;
-	}
-
-	function _F_builtin_lcmv(array &$m___, int $n___)
-	{
-		$a = \abs((int)$m___[0]);
-		for ($i = 1; $i < $n___; $i++) {
-			$m = \abs((int)$m___[$i]);
-			if (($c = _F_builtin_gcd($m, $a))) {
-				$a = (int)(($m * $a) / $c);
-			}
+		if ($lcm = _F_builtin_lcm($den1___, $den2___)) {
+			$n1 = \intval($num1___ * \intval($lcm / $den1___));
+			$n2 = \intval($num2___ * \intval($lcm / $den2___));
+			$num1___ = $n1;
+			$den1___ = $lcm;
+			$num2___ = $n2;
+			$den2___ = $lcm;
+		} else {
+			_F_throw_overflow_error("Divide by zero error");
 		}
-		return $a;
 	}
 
 	function _F_builtin_ratio_add(

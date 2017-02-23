@@ -39,7 +39,7 @@ namespace std
 				return $f___($l, $r);
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r) > 0;
+				return \strcmp(\strval($l), \strval($r)) > 0;
 			}
 			return $l > $r;
 		};
@@ -55,7 +55,7 @@ namespace std
 				return $f___($l, $r);
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r) < 0;
+				return \strcmp(\strval($l), \strval($r)) < 0;
 			}
 			return $l < $r;
 		};
@@ -137,7 +137,7 @@ namespace std
 				return $f___(func_get_arg(0), func_get_arg(1));
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r) == 0;
+				return \strcmp(\strval($l), \strval($r)) == 0;
 			}
 			return $l == $r;
 		};
@@ -153,7 +153,7 @@ namespace std
 				return $f___($l, $r);
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r) >= 0;
+				return \strcmp(\strval($l), \strval($r)) >= 0;
 			}
 			return $l >= $r;
 		};
@@ -169,7 +169,7 @@ namespace std
 				return $f___($l, $r);
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r) <= 0;
+				return \strcmp(\strval($l), \strval($r)) <= 0;
 			}
 			return $l <= $r;
 		};
@@ -185,7 +185,7 @@ namespace std
 				return $f___($l, $r);
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r) != 0;
+				return \strcmp(\strval($l), \strval($r)) != 0;
 			}
 			return $l != $r;
 		};
@@ -201,7 +201,7 @@ namespace std
 				return $f___($l, $r);
 			}
 			if (\is_string($l) || \is_string($r)) {
-				return \strcmp((string)$l, (string)$r);
+				return \strcmp(\strval($l), \strval($r));
 			}
 			if ($l < $r) {
 				return comparison_result::ascending;

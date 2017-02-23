@@ -39,7 +39,7 @@ namespace std
 							return $r;
 						}
 					} if (\is_object($v_)) {
-						return (string)$v_;
+						return \strval($v_);
 					}
 					return $v_;
 				}
@@ -74,7 +74,7 @@ namespace std
 							return $r;
 						}
 					} if (\is_object($v_)) {
-						return (string)$v_;
+						return \strval($v_);
 					}
 					return $v_;
 				}
@@ -190,8 +190,8 @@ namespace std
 		}
 		$r = \intval($str___, $base___);
 		if (!\is_null($endptr___)) {
-			if (false !== ($span = \strpos($str___, (string)\abs($r)))) {
-				$span += \strlen((string)\abs($r));
+			if (false !== ($span = \strpos($str___, \strval(\abs($r))))) {
+				$span += \strlen(\strval(\abs($r)));
 				$endptr___ = \substr($str___, $span, \strlen($str___) - $span);
 			}
 		}
@@ -211,8 +211,8 @@ namespace std
 		}
 		$r = \floatval($str___);
 		if (!\is_null($endptr___)) {
-			if (false !== ($span = \strpos($str___, (string)\abs($r)))) {
-				$span += \strlen((string)\abs($r));
+			if (false !== ($span = \strpos($str___, \strval(\abs($r))))) {
+				$span += \strlen(\strval(\abs($r)));
 				$endptr___ = \substr($str___, $span, \strlen($str___) - $span);
 			}
 		}
