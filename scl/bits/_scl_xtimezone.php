@@ -103,7 +103,7 @@ namespace std
 		if (_F_builtin_os_windows()) {
 			$cmd = "tzutil /g";
 		} else {
-			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d\"/\" -f7,8";
+			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d'/' -f7,8";
 		}
 		if (false !== ($tz = \exec($cmd))) {
 			seterrno(NOERR);

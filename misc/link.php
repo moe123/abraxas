@@ -22,13 +22,15 @@ require_once "random.php";
 
 $dev = new std\random_device;
 
+$fn = std\bond('entropy', $dev);
+print_r($fn());
 print_r($dev);
-//std\xexit(0);
+// std\xexit(0);
 
 echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
 // print_r(std\is_callable(std\null_callable));
-// print_r(std\is_callable(std\bond1('std\xformat')));
+// print_r(std\is_callable(std\bond('std\xformat')));
 
 $l = std\make_ratio(3, 4);
 $r = std\make_ratio(-2, 3);
@@ -179,7 +181,7 @@ function fn(int $one, string $two, bool $three, int $four) {
 }
 
 $fn = std\bind(
-	std\bond1('fn')
+	std\bond('fn')
 	, std\placeholders::_1
 	, "hello"
 	, std\placeholders::_3
@@ -209,8 +211,13 @@ $v->reserve(10);
 std\cout($v)(std\endl);
 
 $v = std\make_vector(2, 7, 3, 9, 4);
+
+//print_r($v->begin());
+print_r($v->rbegin());
+//print_r($v->end());
+print_r($v->rend());
 std\cout(
-	std\lcm_r($v->begin(), $v->end())
+	std\lcm_r($v->begin(), $v->end(5))
 )(std\endl);
 
 $v  = std\make_vector(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3);

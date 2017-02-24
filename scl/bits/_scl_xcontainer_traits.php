@@ -313,7 +313,13 @@ namespace std
 		{
 			if ($offset___ < 0) {
 				$offset___ = $this->_M_size;
+			} else {
+				$offset___ = $this->_M_size - $offset___;
+				if ($offset___ < 0) {
+					$offset___ = 0;
+				}
 			}
+			
 			return new _C_forward_iterator_array($this, $offset___);
 		}
 
@@ -333,6 +339,9 @@ namespace std
 				$offset___ = 0;
 			} else {
 				$offset___ = $this->_M_size - $offset___ - 1;
+				if ($offset___ < -1) {
+					$offset___ = -1;
+				}
 			}
 			return new _C_reverse_iterator_array($this, $offset___);
 		}

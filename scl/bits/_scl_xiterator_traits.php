@@ -179,8 +179,8 @@ namespace std
 			return $this;
 		}
 
-		function _F_is_last()
-		{ return $this->_M_offset >= $this->_M_ptr->_M_size; }
+		function _F_is_out()
+		{ return $this->_M_offset > $this->_M_ptr->_M_size; }
 
 		function & _F_offset()
 		{ return $this->_M_offset; }
@@ -328,8 +328,8 @@ namespace std
 			return $this;
 		}
 
-		function _F_is_last()
-		{ return $this->_M_offset >= $this->_M_ptr->_M_size; }
+		function _F_is_out()
+		{ return $this->_M_offset > $this->_M_ptr->_M_size; }
 
 		function & _F_offset()
 		{ return $this->_M_offset; }
@@ -454,8 +454,8 @@ namespace std
 			return $this;
 		}
 
-		function _F_is_last()
-		{ return $this->_M_offset < 0; }
+		function _F_is_out()
+		{ return $this->_M_offset < -1; }
 
 		function & _F_offset()
 		{ return $this->_M_offset; }

@@ -100,7 +100,7 @@ namespace std
 		if ($c___->_M_size > 1) {
 			$comp = $compare___;
 			if (\is_null($comp)) {
-				$comp = function(&$l, &$r) { \strcmp(\strval($l), \strval($r)); };
+				$comp = function($l, $r) { \strcmp(\strval($l), \strval($r)); };
 			}
 			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
 				$a1 = array_keys($c___->_M_container);

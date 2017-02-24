@@ -23,7 +23,7 @@ namespace std
 			const normalization_off       = \Collator::OFF;
 			const normalization_reset     = \Collator::DEFAULT_VALUE;
 
-		const alternate    = \Collator::ALTERNATE_HANDLING;
+		const alternate     = \Collator::ALTERNATE_HANDLING;
 			const alternate_on            = \Collator::SHIFTED;
 			const alternate_off           = \Collator::NON_IGNORABLE;
 			const alternate_reset         = \Collator::DEFAULT_VALUE;

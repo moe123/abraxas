@@ -357,11 +357,13 @@ namespace std
 		const _20 = "^std@_19";
 	};
 
-	function bond1(string $fn___)
-	{ return $fn___; }
-
-	function bond2($cls___, string $fn___)
-	{ return [$cls___, $fn___]; }
+	function bond(string $fn___, $cls___ = null)
+	{
+		if (\is_null($cls___)) {
+			return $fn___;
+		}
+		return [$cls___, $fn___];
+	}
 
 	/*! callable */
 	function bind(callable $f___, ...$args___)
@@ -386,7 +388,14 @@ namespace std
 	}
 
 	function invoke(callable $f___, ...$args___)
-	{ return invoke_v($f___, $args___); }
+	{
+		try {
+			return $f___(...$args___);
+		} catch(\Throwable $ex) {
+			_F_throw_builtin_error("Invocation failure : ". $ex->getMessage());
+		};
+		return null;
+	}
 
 	function invoke_v(callable $f___, array &$args___) 
 	{
