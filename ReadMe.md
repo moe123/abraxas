@@ -245,6 +245,29 @@ $lcm = std\lcm_r($v->begin(), $v->end());
 std\cout($lcm)(std\endl);
 
 ...
+
+$v  = std\make_vector(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4);
+$t1 = std\make_vector(1, 2, 3);
+$t2 = std\make_vector(4, 5, 6);
+
+$r = std\find_end($v->begin(), $v->end(), $t1->begin(), $t1->end());
+if ($r == $v->end()) {
+	std\cout("subsequence not found")(std\endl);
+} else {
+	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
+}
+// last subsequence is at: 8
+
+$r = std\find_end($v->begin(), $v->end(), $t2->begin(), $t2->end());
+if ($r == $v->end()) {
+	std\cout("subsequence not found")(std\endl);
+} else {
+	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
+}
+// subsequence not found
+
+...
+
 ```
 
 #### [*] Functional / Functors

@@ -23,7 +23,7 @@ require_once "random.php";
 $dev = new std\random_device;
 
 print_r($dev);
-std\xexit(0);
+//std\xexit(0);
 
 echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
@@ -50,7 +50,7 @@ print_r($a);
 
 std\cout(std\endl);
 
-std\xexit(0);
+// std\xexit(0);
 
 foreach (std\xrange(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);
@@ -212,5 +212,23 @@ $v = std\make_vector(2, 7, 3, 9, 4);
 std\cout(
 	std\lcm_r($v->begin(), $v->end())
 )(std\endl);
+
+$v  = std\make_vector(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3);
+$t1 = std\make_vector(1, 2, 3);
+$t2 = std\make_vector(4, 5, 6);
+
+$r = std\find_end($v->begin(), $v->end(), $t1->begin(), $t1->end());
+if ($r == $v->end()) {
+	std\cout("subsequence not found")(std\endl);
+} else {
+	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
+}
+
+$r = std\find_end($v->begin(), $v->end(), $t2->begin(), $t2->end());
+if ($r == $v->end()) {
+	std\cout("subsequence not found")(std\endl);
+} else {
+	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
+}
 
 /* EOF */

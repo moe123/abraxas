@@ -652,7 +652,7 @@ namespace std
 		}
 	} /* EOC */
 
-	class _C_ostream_cin extends basic_istream
+	final class _C_ostream_cin extends basic_istream
 	{
 		function __invoke(&$d___, int $c___ = -1)
 		{ return $this->get($d___, $c___); }
@@ -661,13 +661,13 @@ namespace std
 		{ $this->_M_handle_g = \STDIN; }
 	} /* EOC */
 
-	class _C_ostream_cout extends basic_ostream
+	final class _C_ostream_cout extends basic_ostream
 	{
 		function __construct()
 		{ $this->_M_handle_p = \STDOUT; }
 	} /* EOC */
 
-	class _C_ostream_cerr extends basic_ostream
+	final class _C_ostream_cerr extends basic_ostream
 	{
 		function __construct()
 		{ $this->_M_handle_p = \STDERR; }

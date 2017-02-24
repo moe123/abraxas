@@ -695,7 +695,7 @@ namespace std
 			return $last___;
 		}
 		$it = clone $last___;
-		while (!$it->_F_is_last()) {
+		while (1) {
 			$search = search($first___, $last___, $s_first___, $s_last___);
 			if ($search == $last___) {
 					return $it;
@@ -804,7 +804,7 @@ namespace std
 		while ($first1___ != $last1___) {
 			$it1 = clone $first1___;
 			$it2 = clone $first2___;
-			while (!$it1->_F_is_last()) {
+			while (1) {
 					if ($it2 == $last2___) {
 						return $first1___;
 					}

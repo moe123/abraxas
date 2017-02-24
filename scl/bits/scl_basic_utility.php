@@ -58,10 +58,10 @@ namespace std
 		}
 	} /* EOC */
 
-	function _F_null_callable()
-	{ return function(...$args) { return "^std@nil_callable"; }; }
+	function nil_f()
+	{ return function() { return null; }; }
 
-	const null_callable = '\std\_F_null_callable';
+	const ignore = '\std\nil_f';
 
 	/* Returns integers from start to stop [inclusive] */
 	function xrange_n($start___, $stop___, int $step___ = 1) 

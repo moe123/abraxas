@@ -46,7 +46,7 @@ namespace std
 
 	function is_callable($v__)
 	{
-		if (\is_string($v__) && $v__ == null_callable) {
+		if (\is_string($v__) && $v__ == ignore) {
 			return false;
 		}
 		return \is_callable($v__);

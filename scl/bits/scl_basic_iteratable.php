@@ -29,8 +29,6 @@ namespace
 
 namespace std
 {
-	const ignore = '^std@0';
-
 	abstract class basic_iteratable_tag
 	{
 		const basic_iteratable   = 0;

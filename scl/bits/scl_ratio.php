@@ -306,7 +306,7 @@ namespace std
 		}
 		/*
 		// reducing or not reducing greedy? else let php 
-		// handling floating-point equality which seems fine.
+		// handling floating-point equality which seems to be fine-ish.
 		$n1 = $l->num();
 		$d1 = $l->den();
 		$n2 = $r->num();
