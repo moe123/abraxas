@@ -805,17 +805,17 @@ namespace std
 			$it1 = clone $first1___;
 			$it2 = clone $first2___;
 			while (1) {
-					if ($it2 == $last2___) {
-						return $first1___;
-					}
-					if ($it1 == $last1___) {
-						return $last1___;
-					}
-					if (!$p($it1->_F_this(), $it2->_F_this())) {
-						break;
-					}
-					$it1->_F_next();
-					$it2->_F_next();
+				if ($it2 == $last2___) {
+					return $first1___;
+				}
+				if ($it1 == $last1___) {
+					return $last1___;
+				}
+				if (!$p($it1->_F_this(), $it2->_F_this())) {
+					break;
+				}
+				$it1->_F_next();
+				$it2->_F_next();
 			}
 			$first1___->_F_next();
 		}
