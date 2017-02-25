@@ -128,7 +128,7 @@ namespace std
 
 		const num = 10;
 		const den = 1;
-		const mir = 10;
+		const mir = 10.0;
 	} /* EOC */
 
 	final class _C_ratio_hecto extends basic_ratio
@@ -137,7 +137,7 @@ namespace std
 
 		const num = 100;
 		const den = 1;
-		const mir = 100;
+		const mir = 100.0;
 	} /* EOC */
 
 	final class _C_ratio_kilo extends basic_ratio
@@ -146,7 +146,7 @@ namespace std
 
 		const num = 1000;
 		const den = 1;
-		const mir = 1000;
+		const mir = 1000.0;
 	} /* EOC */
 
 	final class _C_ratio_mega extends basic_ratio
@@ -155,7 +155,7 @@ namespace std
 
 		const num = 1000000;
 		const den = 1;
-		const mir = 1000000;
+		const mir = 1000000.0;
 	} /* EOC */
 
 	final class _C_ratio_giga extends basic_ratio
@@ -164,7 +164,7 @@ namespace std
 
 		const num = 1000000000;
 		const den = 1;
-		const mir = 1000000000;
+		const mir = 1000000000.0;
 	} /* EOC */
 
 	final class _C_ratio_tera extends basic_ratio
@@ -173,7 +173,7 @@ namespace std
 
 		const num = 1000000000000;
 		const den = 1;
-		const mir = 1000000000000;
+		const mir = 1000000000000.0;
 	} /* EOC */
 
 	final class _C_ratio_peta extends basic_ratio
@@ -182,7 +182,7 @@ namespace std
 
 		const num = 1000000000000000;
 		const den = 1;
-		const mir = 1000000000000000;
+		const mir = 1000000000000000.0;
 	} /* EOC */
 
 	final class _C_ratio_exa extends basic_ratio
@@ -191,7 +191,7 @@ namespace std
 
 		const num = 1000000000000000000;
 		const den = 1;
-		const mir = 1000000000000000000;
+		const mir = 1000000000000000000.0;
 	} /* EOC */
 } /* EONS */
 

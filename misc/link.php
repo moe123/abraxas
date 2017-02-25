@@ -33,10 +33,12 @@ echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 // print_r(std\is_callable(std\bond('std\xformat')));
 
 $l = std\make_ratio(3, 4);
-$r = std\make_ratio(-2, 3);
+$r = std\make_ratio(2, -3);
 
 print_r($l);
 print_r($r);
+
+std\xexit(0);
 
 $n1 = $l->num();
 $d1 = $l->den();
@@ -237,5 +239,27 @@ if ($r == $v->end()) {
 } else {
 	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
 }
+
+$rfn = function(int $n) {
+	$fp = \fopen('/dev/urandom', 'rb');
+	if ($fp === false) {
+		$fp = \fopen('/dev/random', 'rb');
+	}
+	if ($fp !== false) {
+		if ($r = \fread($fp, $n * 2) !== false) {
+			$i = 0;
+			while ($i < $n) {
+				$r = \fread($fp, $n);
+				++$i;
+			}
+			@\fclose($fp);
+			return $r;
+		}
+		@\fclose($fp);
+	}
+	return null;
+};
+
+print_r(\bin2hex($rfn(4)));
 
 /* EOF */

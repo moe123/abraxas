@@ -31,6 +31,27 @@ namespace
 
 namespace std
 {
+	function _F_builtin_random_dev(string $dev___, int $nbytes___)
+	{
+		$fp = \fopen('/dev/urandom', 'rb');
+		if ($fp === false) {
+			$fp = \fopen('/dev/random', 'rb');
+		}
+		if ($fp !== false) {
+			if ($r = \fread($fp, $nbytes___ * 2) !== false) {
+				$i = 0;
+				while ($i < $nbytes___) {
+					$r = \fread($fp, $nbytes___);
+					++$i;
+				}
+				@\fclose($fp);
+				return $r;
+			}
+			@\fclose($fp);
+		}
+		return null;
+	}
+
 	function _F_builtin_random_slot(float &$ent___)
 	{
 		static $_S_dev = null;
@@ -45,6 +66,26 @@ namespace std
 				$_S_dev[] = '\openssl_random_pseudo_bytes';
 				$_S_dev[] = 4.0;
 			} else {
+				$_S_dev[] = function(int $n) {
+					$fp = \fopen('/dev/urandom', 'rb');
+					if ($fp === false) {
+						$fp = \fopen('/dev/random', 'rb');
+					}
+					if ($fp !== false) {
+						if ($r = \fread($fp, $n * 2) !== false) {
+							$i = 0;
+							while ($i < $n) {
+								$r = \fread($fp, $n);
+								++$i;
+							}
+							@\fclose($fp);
+							return $r;
+						}
+						@\fclose($fp);
+					}
+					return null;
+				};
+				$_S_dev[] = 4.0;
 				seterrno(ENOSYS);
 			}
 		}

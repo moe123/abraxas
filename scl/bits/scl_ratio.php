@@ -29,8 +29,13 @@ namespace std
 
 		function _F_ratio_1(int $den)
 		{
-			$this->_M_num = 1;
-			$this->_M_den = $den < 0 ? -($den) : $den;
+			if ($den < 0) {
+				$this->_M_num = -1;
+				$this->_M_den = -($den);
+			} else {
+				$this->_M_num = 1;
+				$this->_M_den = $den;
+			}
 			if ($this->_M_den == 0) {
 				_F_throw_overflow_error("Divide by zero error");
 			}
@@ -39,12 +44,17 @@ namespace std
 
 		function _F_ratio_2(int $num, int $den)
 		{
-			$this->_M_num = $num;
-			$this->_M_den = $den < 0 ? -($den) : $den;
+			if ($den < 0) {
+				$this->_M_num = -($num);
+				$this->_M_den = -($den);
+			} else {
+				$this->_M_num = $num;
+				$this->_M_den = $den;
+			}
 			if ($this->_M_den == 0) {
 				_F_throw_overflow_error("Divide by zero error");
 			}
-			$this->_M_mir = $this->_M_num / $this->_M_den;
+			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
 
 		function num()
@@ -247,7 +257,7 @@ namespace std
 			, $ra->_M_num
 			, $ra->_M_den
 		);
-		$ra->_M_mir = $ra->_M_num / $ra->_M_den;
+		$ra->_M_mir = \floatval($ra->_M_num / $ra->_M_den);
 		return $ra;
 	}
 
@@ -262,16 +272,13 @@ namespace std
 			, $ra->_M_num
 			, $ra->_M_den
 		);
-		$ra->_M_mir = $ra->_M_num / $ra->_M_den;
+		$ra->_M_mir = \floatval($ra->_M_num / $ra->_M_den);
 		return $ra;
 	}
 
 	function & ratio_add(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-
-		print_r($ra);
-
 		_F_builtin_ratio_add(
 			  $l->num()
 			, $l->den()
@@ -280,7 +287,7 @@ namespace std
 			, $ra->_M_num
 			, $ra->_M_den
 		);
-		$ra->_M_mir = $ra->_M_num / $ra->_M_den;
+		$ra->_M_mir = \floatval($ra->_M_num / $ra->_M_den);
 		return $ra;
 	}
 
@@ -295,7 +302,7 @@ namespace std
 			, $ra->_M_num
 			, $ra->_M_den
 		);
-		$ra->_M_mir = $ra->_M_num / $ra->_M_den;
+		$ra->_M_mir = \floatval($ra->_M_num / $ra->_M_den);
 		return $ra;
 	}
 
