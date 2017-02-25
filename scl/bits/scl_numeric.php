@@ -59,6 +59,40 @@ namespace std
 		}
 	}
 
+	function _F_builtin_ratio_nearest(float $x, int &$num___, int &$den____)
+	{
+		$m1 = 1;
+		$m2 = 0;
+		$n1 = 0;
+		$n2 = 1;
+		if ($x < 0) {
+			$n = -($x);
+			$sign = -1;
+		} else {
+			$n = ($x);
+			$sign = 1;
+		}
+		$b = 1 / $n;
+		$p = $m1;
+		do {
+			if (!$b) {
+				break;
+			}
+			$b = 1 / $b;
+			$a = \floor($b);
+			$p = $m1;
+			$m1 = (($a * $m1) + $m2);
+			$m2 = $p;
+			$p = $n1;
+			$n1 = (($a * $n1) + $n2);
+			$n2 = $p;
+			$b = $b - $a;
+		} while (\abs($n - $m1 / $n1) > ($n * 0.000001));
+
+		$num___ = $m1 * $sign;
+		$den____ = $n1;
+	}
+
 	function _F_builtin_ratio_reduce(
 		  int &$num1___
 		, int &$den1___

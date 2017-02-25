@@ -27,18 +27,9 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_ratio_1(int $den)
+		function _F_ratio_1(float $x)
 		{
-			if ($den < 0) {
-				$this->_M_num = -1;
-				$this->_M_den = -($den);
-			} else {
-				$this->_M_num = 1;
-				$this->_M_den = $den;
-			}
-			if ($this->_M_den == 0) {
-				_F_throw_overflow_error("Divide by zero error");
-			}
+			_F_builtin_ratio_nearest($x, $this->_M_num, $this->_M_den);
 			$this->_M_mir = $this->_M_num / $this->_M_den;
 		}
 

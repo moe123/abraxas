@@ -350,8 +350,8 @@ namespace std
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
 
-	function make_ratio(int $num___, int $den___)
-	{ return new ratio($num___, $den___); }
+	function make_ratio(...$args___)
+	{ return new ratio(...$args___); }
 
 	function make_irange(int $a___ , int $b___ = null, int $s___ = 1)
 	{

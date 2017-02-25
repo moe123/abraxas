@@ -35,12 +35,13 @@ echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 $l = std\make_ratio(3, 4);
 $r = std\make_ratio(2, -3);
 
-
+$n = std\make_ratio(-0.66666666666667);
 
 print_r($l);
 print_r($r);
+print_r($n);
 
-//std\xexit(0);
+std\xexit(0);
 
 $n1 = $l->num();
 $d1 = $l->den();
@@ -60,7 +61,7 @@ $a = std\ratio_subtract($r, $l);
 print_r($a);
 
 //std\cout(std\endl);
-
+std\cout(std\endl);
 std\xexit(0);
 
 foreach (std\xrange(8, 10, 2) as $i) {
