@@ -45,10 +45,10 @@ namespace std
 	}
 
 	function lower_bound(
-			  basic_iterator $first___
-			, basic_iterator $last___
-			, $val___
-			, callable $compare___ = null
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, $val___
+		, callable $compare___ = null
 	) {
 		$cnt = distance($first___, $last___);
 		if ($cnt > 0) {
@@ -78,10 +78,10 @@ namespace std
 	}
 
 	function upper_bound(
-			  basic_iterator $first___
-			, basic_iterator $last___
-			, $val___
-			, callable $compare___ = null
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, $val___
+		, callable $compare___ = null
 	) {
 		$cnt = distance($first___, $last___);
 		if ($cnt > 0) {
@@ -627,8 +627,11 @@ namespace std
 		return $last___;
 	}
 
-	function & find_if(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
-	{
+	function & find_if(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable $unaryPredicate___
+	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
 				if ($unaryPredicate___($first___->_F_this())) {
@@ -642,8 +645,11 @@ namespace std
 		return $last___;
 	}
 
-	function & find_if_not(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
-	{
+	function & find_if_not(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable $unaryPredicate___
+	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
 				if (!$unaryPredicate___($first___->_F_this())) {
