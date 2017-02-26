@@ -65,12 +65,16 @@ namespace std
 		$m2 = 0;
 		$n1 = 0;
 		$n2 = 1;
+
 		if ($x < 0) {
 			$n = -($x);
 			$sign = -1;
 		} else {
 			$n = ($x);
 			$sign = 1;
+		}
+		if ($n < BUILTIN_FLT_EPSILON) {
+			_F_throw_overflow_error("Divide by zero error");
 		}
 		$b = 1 / $n;
 		$p = $m1;
@@ -87,7 +91,7 @@ namespace std
 			$n1 = (($a * $n1) + $n2);
 			$n2 = $p;
 			$b = $b - $a;
-		} while (\abs($n - $m1 / $n1) > ($n * 0.000001));
+		} while (\abs($n - $m1 / $n1) > ($n * BUILTIN_FLT_EPSILON));
 
 		$num___ = $m1 * $sign;
 		$den____ = $n1;
@@ -122,6 +126,31 @@ namespace std
 		$m___ = (($num1___ * $den2___) + ($den1___ * $num2___));
 		$n___ = ($den1___ * $den2___);
 		_F_builtin_ratio_gcd($m___, $n___);
+	}
+
+	function _F_builtin_ratio_add_int( 
+		  int $num1___
+		, int $den1___
+		, int $int___
+		, int &$m___
+		, int &$n___
+	) {
+		$num2 = $int___;
+		$den2 = 1;
+		_F_builtin_ratio_add($num1___, $den1___, $num2, $den2, $m___, $n___);
+	}
+
+	function _F_builtin_ratio_add_real( 
+		  int   $num1___
+		, int   $den1___
+		, float $real___
+		, int   &$m___
+		, int   &$n___
+	) {
+		$num2 = 0;
+		$den2 = 0;
+		_F_builtin_ratio_nearest($real___, $num2, $den2);
+		_F_builtin_ratio_add($num1___, $den1___, $num2, $den2, $m___, $n___);
 	}
 
 	function _F_builtin_ratio_subtract(

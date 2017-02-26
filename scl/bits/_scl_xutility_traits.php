@@ -17,7 +17,7 @@
 namespace
 {
 	if (\intval(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
-		define('PHP_FLOAT_EPSILON', 0.00009);
+		define('PHP_FLOAT_EPSILON', 0.000001);
 		define('PHP_FLOAT_MIN'    , \floatval(PHP_INT_MIN));
 		define('PHP_FLOAT_MAX'    , \floatval(PHP_INT_MAX));
 	}
