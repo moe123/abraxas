@@ -30,7 +30,7 @@ namespace std
 		function _F_ratio_1(float $x)
 		{
 			_F_builtin_ratio_nearest($x, $this->_M_num, $this->_M_den);
-			$this->_M_mir = $this->_M_num / $this->_M_den;
+			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
 
 		function _F_ratio_2(int $num, int $den)

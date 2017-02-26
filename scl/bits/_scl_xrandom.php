@@ -31,23 +31,50 @@ namespace
 
 namespace std
 {
-	function _F_builtin_random_dev(string $dev___, int $nbytes___)
+	function _F_builtin_random_dev_1(int $nbytes___)
 	{
-		$fp = \fopen('/dev/urandom', 'rb');
-		if ($fp === false) {
-			$fp = \fopen('/dev/random', 'rb');
-		}
-		if ($fp !== false) {
-			if ($r = \fread($fp, $nbytes___ * 2) !== false) {
-				$i = 0;
-				while ($i < $nbytes___) {
-					$r = \fread($fp, $nbytes___);
-					++$i;
+		if (_F_builtin_os_nix() && $nbytes___ > 0) {
+			$fp = @\fopen('/dev/urandom', 'rb');
+			if ($fp === false) {
+				$fp = @\fopen('/dev/random', 'rb');
+			}
+			if ($fp !== false) {
+				if ($r = @\fread($fp, $nbytes___ * 2) !== false) {
+					$i = 0;
+					while ($i < $nbytes___) {
+						$r = @\fread($fp, $nbytes___);
+						++$i;
+					}
+					@\fclose($fp);
+					return $r;
 				}
 				@\fclose($fp);
+			}
+		}
+		return null;
+	}
+
+
+	function _F_builtin_random_dev_2(int $nbytes___)
+	{
+		if (_F_builtin_os_nix() && $nbytes___ > 0) {
+			if (false !== ($fp = @\popen("`which dd` if=/dev/urandom bs=1 count=" . $nbytes___ . " 2> /dev/null", "r"))) {
+				$r = @\stream_get_contents($fp);
+				@\pclose($fp);
 				return $r;
 			}
-			@\fclose($fp);
+		}
+		return null;
+	}
+
+	function _F_builtin_random_dev_3(int $nbytes___)
+	{
+		if (_F_builtin_os_nix() && $nbytes___ > 0) {
+			if (false !== ($fp = @\popen("`which openssl` rand " . $nbytes___ . " 2> /dev/null", "r"))) {
+				$r = @\stream_get_contents($fp);
+				@\pclose($fp);
+				return $r;
+			}
 		}
 		return null;
 	}
@@ -66,26 +93,6 @@ namespace std
 				$_S_dev[] = '\openssl_random_pseudo_bytes';
 				$_S_dev[] = 4.0;
 			} else {
-				$_S_dev[] = function(int $n) {
-					$fp = \fopen('/dev/urandom', 'rb');
-					if ($fp === false) {
-						$fp = \fopen('/dev/random', 'rb');
-					}
-					if ($fp !== false) {
-						if ($r = \fread($fp, $n * 2) !== false) {
-							$i = 0;
-							while ($i < $n) {
-								$r = \fread($fp, $n);
-								++$i;
-							}
-							@\fclose($fp);
-							return $r;
-						}
-						@\fclose($fp);
-					}
-					return null;
-				};
-				$_S_dev[] = 4.0;
 				seterrno(ENOSYS);
 			}
 		}

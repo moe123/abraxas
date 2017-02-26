@@ -28,7 +28,7 @@ namespace std
 
 		const num = 0;
 		const den = 0;
-		const mir = 0;
+		const mir = 0.0;
 
 		function num()
 		{ return static::num; }
@@ -47,7 +47,7 @@ namespace std
 
 		const num = 1;
 		const den = 1;
-		const mir = 1;
+		const mir = 1.0;
 	} /* EOC */
 
 	final class _C_ratio_atto extends basic_ratio

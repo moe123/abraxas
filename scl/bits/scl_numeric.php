@@ -43,11 +43,11 @@ namespace std
 		return $b;
 	}
 
-	function _F_builtin_ratio_is_integral(int &$num___, int &$den____)
-	{ return \intval(($num___ % $den____) === 0); }
+	function _F_builtin_ratio_is_integral(int &$num___, int &$den___)
+	{ return \intval(($num___ % $den___) === 0); }
 
-	function _F_builtin_ratio_is_real(int &$num___, int &$den____)
-	{ return \intval(($num___ % $den____) !== 0); }
+	function _F_builtin_ratio_is_real(int &$num___, int &$den___)
+	{ return \intval(($num___ % $den___) !== 0); }
 
 	function _F_builtin_ratio_gcd(int &$m___, int &$n___)
 	{
@@ -59,7 +59,7 @@ namespace std
 		}
 	}
 
-	function _F_builtin_ratio_nearest(float $x, int &$num___, int &$den____)
+	function _F_builtin_ratio_nearest(float $x, int &$num___, int &$den___)
 	{
 		$m1 = 1;
 		$m2 = 0;
@@ -74,7 +74,9 @@ namespace std
 			$sign = 1;
 		}
 		if ($n < BUILTIN_FLT_EPSILON) {
-			_F_throw_overflow_error("Divide by zero error");
+			$num___ = 0;
+			$den___ = 1;
+			return;
 		}
 		$b = 1 / $n;
 		$p = $m1;
@@ -94,7 +96,7 @@ namespace std
 		} while (\abs($n - $m1 / $n1) > ($n * BUILTIN_FLT_EPSILON));
 
 		$num___ = $m1 * $sign;
-		$den____ = $n1;
+		$den___ = $n1;
 	}
 
 	function _F_builtin_ratio_reduce(
