@@ -43,7 +43,7 @@ namespace std
 				if ($locale_id === false || \strlen($locale_id) < 1) {
 					$locale_id = "en_US_POSIX";
 				}
-			} else if ($locale_id === "C") {
+			} else if ($locale_id === "C" || $locale_id === "POSIX") {
 				$locale_id = "en_US_POSIX";
 			}
 			return \Locale::canonicalize($locale_id);

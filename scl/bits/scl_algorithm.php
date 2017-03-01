@@ -160,6 +160,30 @@ namespace std
 		);
 	}
 
+	function partition (
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable $unaryPredicate___
+	) {
+		while ($first___ != $last___) {
+			while ($unaryPredicate___($first___->_F_this())) {
+				$first___->_F_next();
+				if ($first___ == $last___) {
+					return $first___;
+				}
+			}
+			do {
+				$last___->_F_prev();
+				if ($first___ == $last___) {
+					return $first___;
+				}
+			} while (!$unaryPredicate___($last___->_F_this()));
+			iter_swap($first___, $last___);
+			$first___->_F_next();
+		}
+		return $first___;
+	}
+
 	function min(
 		  &$v1___
 		, &$v2___
@@ -701,7 +725,7 @@ namespace std
 			return $last___;
 		}
 		$it = clone $last___;
-		while (1) {
+		while (true) {
 			$search = search($first___, $last___, $s_first___, $s_last___);
 			if ($search == $last___) {
 					return $it;
@@ -712,6 +736,29 @@ namespace std
 			}
 		}
 		return $it;
+	}
+
+	function includes(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, basic_iterator $last2___
+		, callable $compare___ = null
+	) {
+		$comp = $compare___;
+		if (\is_null($comp)) {
+			$comp = function ($l, $r) { return $l < $r; };
+		}
+		for (; $first2___ != $last2___; $first1___->_F_next())
+		{
+			if (($first1___ == $last1___) || $comp($first2___->_F_this(), $first1___->_F_this())) {
+				return false;
+			}
+			if (!$comp($first1___->_F_this(), $first2___->_F_this())) {
+				$first2___->_F_next();
+			}
+		}
+		return true;
 	}
 
 	function adjacent_find(
@@ -810,7 +857,7 @@ namespace std
 		while ($first1___ != $last1___) {
 			$it1 = clone $first1___;
 			$it2 = clone $first2___;
-			while (1) {
+			while (true) {
 				if ($it2 == $last2___) {
 					return $first1___;
 				}
@@ -909,7 +956,7 @@ namespace std
 		$ret = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				if ($unaryPredicate___($first___->_F_offset(), $first___->_F_this())) {
+				if ($unaryPredicate___($first___->_F_pos(), $first___->_F_this())) {
 					$ret++;
 				}
 				$first___->_F_next();

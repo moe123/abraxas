@@ -16,7 +16,7 @@
 
 namespace std
 {
-	class basic_forward_list implements
+	class basic_forward_list extends basic_iteratable implements
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_seqlist.php
+// scl_ordered_list.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,7 +16,7 @@
 
 namespace std
 {
-	final class seqlist extends basic_seqlist
+	final class ordered_list extends basic_ordered_list
 	{
 		use _T_multi_construct_traits;
 
@@ -26,19 +26,19 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_seq_1(array $list_initializer)
+		function _F_ordered_list_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
 				$this->push_back($val);
 			}
 		}
 
-		function _F_seq_2(basic_iterator $first, basic_iterator $last)
+		function _F_ordered_list_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
-		function & reserve(int $size)
+		function & reserve(int $size, $fill = null)
 		{
-			_F_builtin_reserve($this, $size);
+			_F_builtin_reserve($this, $size, $fill);
 			return $this;
 		}
 

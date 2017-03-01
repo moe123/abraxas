@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basic_seqlist.php
+// scl_basic_ordered_list.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,13 +16,13 @@
 
 namespace std
 {
-	abstract class basic_seqlist extends basic_iteratable implements
+	abstract class basic_ordered_list extends basic_iteratable implements
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable
 		, \Countable
 	{
-		const container_category = basic_iteratable_tag::basic_seqlist;
+		const container_category = basic_iteratable_tag::basic_ordered_list;
 
 		use _T_builtin_array_container_traits;
 		use _T_builtin_array_int_operator_traits;

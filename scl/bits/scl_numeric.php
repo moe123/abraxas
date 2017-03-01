@@ -44,10 +44,10 @@ namespace std
 	}
 
 	function _F_builtin_ratio_is_integral(int &$num___, int &$den___)
-	{ return \intval(($num___ % $den___) === 0); }
+	{ return (($num___ % $den___) === 0); }
 
 	function _F_builtin_ratio_is_real(int &$num___, int &$den___)
-	{ return \intval(($num___ % $den___) !== 0); }
+	{ return (($num___ % $den___) !== 0); }
 
 	function _F_builtin_ratio_gcd(int &$m___, int &$n___)
 	{
@@ -73,7 +73,7 @@ namespace std
 			$n = ($x);
 			$sign = 1;
 		}
-		if ($n < BUILTIN_FLT_EPSILON) {
+		if ($n < numeric_limits_float::epsilon) {
 			$num___ = 0;
 			$den___ = 1;
 			return;
@@ -93,7 +93,7 @@ namespace std
 			$n1 = (($a * $n1) + $n2);
 			$n2 = $p;
 			$b = $b - $a;
-		} while (\abs($n - $m1 / $n1) > ($n * BUILTIN_FLT_EPSILON));
+		} while (\abs($n - $m1 / $n1) > ($n * numeric_limits_float::epsilon));
 
 		$num___ = $m1 * $sign;
 		$den___ = $n1;

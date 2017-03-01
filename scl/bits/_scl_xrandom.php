@@ -54,7 +54,6 @@ namespace std
 		return null;
 	}
 
-
 	function _F_builtin_random_dev_2(int $nbytes___)
 	{
 		if (_F_builtin_os_nix() && $nbytes___ > 0) {

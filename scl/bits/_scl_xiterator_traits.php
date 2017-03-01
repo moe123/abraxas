@@ -181,9 +181,6 @@ namespace std
 
 		function _F_is_out()
 		{ return $this->_M_offset > $this->_M_ptr->_M_size; }
-
-		function & _F_offset()
-		{ return $this->_M_offset; }
 	}
 
 	trait _T_forward_iterator_builtin_array_traits
@@ -331,9 +328,6 @@ namespace std
 		function _F_is_out()
 		{ return $this->_M_offset > $this->_M_ptr->_M_size; }
 
-		function & _F_offset()
-		{ return $this->_M_offset; }
-
 		function _F_pos_assign($val___)
 		{
 			if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
@@ -456,9 +450,6 @@ namespace std
 
 		function _F_is_out()
 		{ return $this->_M_offset < -1; }
-
-		function & _F_offset()
-		{ return $this->_M_offset; }
 	}
 	
 	trait _T_reverse_iterator_builtin_array_traits
@@ -541,6 +532,84 @@ namespace std
 
 		function _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->second; }
+	}
+
+	trait _T_pair_iterator_traits
+	{
+		var $_M_first  = null;
+		var $_M_second = null;
+
+		function __construct(basic_iterator $first1___, basic_iterator $first2___)
+		{
+			$this->_M_first = $first1___;
+			$this->_M_second = $first2___;
+		}
+
+		function __destruct()
+		{ $this->_M_ptr = null; }
+
+		function & _F_advance(int $distance___ = 1)
+		{
+			$this->_M_first->_F_advance($distance___);
+			$this->_M_second->_F_advance($distance___);
+			return $this;
+		}
+
+		function & _F_pos()
+		{ return 0; }
+
+		function & _F_seek(int $offset___)
+		{
+			$this->_M_first->_F_seek($offset___);
+			$this->_M_second->_F_seek($offset___);
+			return $this;
+		}
+
+		function & _F_next()
+		{
+			$this->_M_first->_F_next();
+			$this->_M_second->_F_next();
+			return $this;
+		}
+
+		function & _F_prev()
+		{
+			$this->_M_first->_F_prev();
+			$this->_M_second->_F_prev();
+			return $this;
+		}
+
+		function & _F_seek_begin(int $offset___ = -1)
+		{
+			$this->_M_first->_F_seek_begin($offset___);
+			$this->_M_second->_F_seek_begin($offset___);
+			return $this;
+		}
+
+		function & _F_seek_end(int $offset___ = -1)
+		{
+			$this->_M_first->_F_seek_end($offset___);
+			$this->_M_second->_F_seek_end($offset___);
+			return $this;
+		}
+
+		function _F_is_out()
+		{ return $this->_M_first->_F_is_out(); }
+
+		function _F_pos_assign($val___)
+		{
+			$this->_M_first->_F_pos_assign($val___);
+			$this->_M_second->_F_pos_assign($val___);
+		}
+
+		function _F_this()
+		{ return $this; }
+
+		function _F_first()
+		{ return make_pair($this->_M_first->_F_first(), $this->_M_second->_F_first()); }
+
+		function _F_second()
+		{ return make_pair($this->_M_first->_F_second(), $this->_M_second->_F_second()); }
 	}
 } /* EONS */
 

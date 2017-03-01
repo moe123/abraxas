@@ -118,8 +118,8 @@ std\cout($v);
 ```
 
 #### [*] Iterators
-Abraxas implements four different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter and 
-Front-Inserter. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. 
+Abraxas implements five different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter,  
+Front-Inserter and Pair-Iterator. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. 
 `Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container 
 category) and `second()` the value.
 
@@ -302,6 +302,31 @@ std\invoke($fn, 4, -0.1333);
 
 ...
 
+$pv = std\partition(
+	  $v->begin()
+	, $v->end()
+	, function(int $i) {
+		return (($i % 2) === 0);
+	}
+);
+
+$p_even = std\make_vector();
+$p_odd  = std\make_vector();
+
+std\copy($v->begin(), $pv, std\back_inserter($p_even));
+std\copy($pv, $v->end(), std\front_inserter($p_odd));
+
+std\cout($p_even)(std\endl);
+// [ 0 8 2 6 4 ]
+
+std\cout($p_odd)(std\endl);
+// [ 9 1 7 3 5 ]
+
+std\cout($v)(std\endl);
+// [ 0 8 2 6 4 5 3 7 1 9 ]
+
+...
+
 ```
 
 #### [*] Locale
@@ -343,8 +368,8 @@ PHP7 built with:
 > [scl_basic_iteratable](./scl/bits/scl_basic_iteratable.php?ts=3)<br>
 > [scl_basic_map](./scl/bits/scl_basic_map.php?ts=3)<br>
 > [scl_basic_ratio](./scl/bits/scl_basic_ratio.php?ts=3)<br>
-> [scl_basic_seqlist](./scl/bits/scl_basic_seqlist.php?ts=3)<br>
-> [scl_basic_set](./scl/bits/scl_basic_set.php?ts=3)<br>
+> [scl_basic_ordered_list](./scl/bits/scl_basic_ordered_list.php?ts=3)<br>
+> [scl_basic_ordered_set](./scl/bits/scl_basic_ordered_set.php?ts=3)<br>
 > [scl_basic_tuple](./scl/bits/scl_basic_tuple.php?ts=3)<br>
 > [scl_basic_utility](./scl/bits/scl_basic_utility.php?ts=3)<br>
 > [scl_basic_vector](./scl/bits/scl_basic_vector.php?ts=3)<br>
@@ -367,7 +392,7 @@ PHP7 built with:
 > [scl_quad](./scl/bits/scl_quad.php?ts=3)<br>
 > [scl_quint](./scl/bits/scl_quint.php?ts=3)<br>
 > [scl_ratio](./scl/bits/scl_ratio.php?ts=3)<br>
-> [scl_seqlist](./scl/bits/scl_seqlist.php?ts=3)<br>
+> [scl_ordered_list](./scl/bits/scl_ordered_list.php?ts=3)<br>
 > [scl_set](./scl/bits/scl_set.php?ts=3)<br>
 > [scl_system_error](./scl/bits/scl_system_error.php?ts=3)<br>
 > [scl_triad](./scl/bits/scl_triad.php?ts=3)<br>
@@ -389,7 +414,7 @@ PHP7 built with:
 > [locale](./scl/locale.php?ts=3)<br>
 > [numeric](./scl/numeric.php?ts=3)<br>
 > [ratio](./scl/ratio.php?ts=3)<br>
-> [seqlist](./scl/seqlist.php?ts=3)<br>
+> [ordered_list](./scl/ordered_list.php?ts=3)<br>
 > [set](./scl/set.php?ts=3)<br>
 > [tuple](./scl/tuple.php?ts=3)<br>
 > [vector](./scl/vector.php?ts=3)<br>

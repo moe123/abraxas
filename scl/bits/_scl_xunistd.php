@@ -195,7 +195,7 @@ namespace std
 		return 0;
 	}
 
-	function ffsynk($fp___)
+	function ffsync($fp___)
 	{
 		if (\fflush($fp___)) {
 			return 0;
@@ -204,7 +204,7 @@ namespace std
 		return -1;
 	}
 
-	function synk()
+	function sync()
 	{
 		\fflush(\STDOUT);
 		\fflush(\STDERR);

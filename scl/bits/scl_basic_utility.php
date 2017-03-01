@@ -58,10 +58,10 @@ namespace std
 		}
 	} /* EOC */
 
-	function nil_f()
+	function ignore()
 	{ return function() { return null; }; }
 
-	const ignore = '\std\nil_f';
+	const ignore = '\std\ignore';
 
 	/* Returns integers from start to stop [inclusive] */
 	function xrange_n($start___, $stop___, int $step___ = 1) 
@@ -367,8 +367,11 @@ namespace std
 	function make_set(...$args___)
 	{ return new set($args___); }
 
-	function make_seqlist(...$args___)
-	{ return new seqlist($args___); }
+	function make_forward_list(...$args___)
+	{ return new forward_list($args___); }
+
+	function make_ordered_list(...$args___)
+	{ return new ordered_list($args___); }
 
 	function make_tuple(...$args___)
 	{ return new tuple($args___); }

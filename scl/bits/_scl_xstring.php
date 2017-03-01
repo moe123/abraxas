@@ -284,13 +284,30 @@ namespace std
 		}
 	}
 
-	function utf8_glyph_split(string $s___, int $l___ = 1)
+	function utf8_glyph_count(string $s___)
 	{
 		$out = [];
-		preg_match_all("/./u", $s___, $out);
-		$arr = array_chunk($out[0], $l___);
-		$out = array_map('implode', $out);
-		return $out;
+		@\preg_match_all("/./u", $s___, $out);
+		return \count($out[0]);
+	}
+
+	function utf8_glyph_split(string $s___, int $l___ = 1)
+	{
+		if ($l___ > 1) {
+			$out = [];
+			@\preg_match_all("/./u", $s___, $out);
+			$arr = \array_chunk($out[0], $l___);
+			$out = \array_map('\implode', $arr);
+			return $out;
+		}
+		return @\preg_split("//u", $s___, -1, PREG_SPLIT_NO_EMPTY);
+	}
+
+	function utf8_glyph_sustring(string $s___, int $pos___, int $len___ = -1)
+	{
+		$out = [];
+		@\preg_match_all("/./u", $s___, $out);
+		$out =\array_slice($out[0], $pos___, $len___ < 1 ? null : $len___);
 	}
 } /* EONS */
 

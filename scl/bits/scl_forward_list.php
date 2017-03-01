@@ -36,9 +36,9 @@ namespace std
 		function _F_forward_list_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
-		function & reserve(int $size)
+		function & reserve(int $size, $fill = null)
 		{
-			_F_builtin_reserve($this, $size);
+			_F_builtin_reserve($this, $size, $fill);
 			return $this;
 		}
 

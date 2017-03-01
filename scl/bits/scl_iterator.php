@@ -23,6 +23,7 @@ namespace std
 		const reverse_iterator        = 30;
 
 		const insert_iterator         = 40;
+		const pair_iterator           = 40;
 		const back_insert_iterator    = 50;
 		const front_insert_iterator   = 60;
 	}
@@ -187,11 +188,55 @@ namespace std
 		use _T_inserter_iterator_traits;
 	}
 
+	final class _C_pair_iterator extends insert_iterator
+	{
+		const iterator_category = basic_iterator_tag::pair_iterator;
+
+		use _T_basic_iterator_traits;
+		use _T_pair_iterator_traits;
+
+		function first()
+		{ return $this->_F_first(); }
+
+		function second()
+		{ return $this->_F_second(); }
+		
+		function & assign($val___)
+		{
+			$this->_F_pos_assign($val___);
+			return $this;
+		}
+
+		function & advance(int $d___ = 1)
+		{
+			$this->_F_advance($d___);
+			return $this;
+		}
+
+		function & prev()
+		{
+			$this->_F_prev();
+			return $this;
+		}
+
+		function & next()
+		{
+			$this->_F_next();
+			return $this;
+		}
+	}
+
 	function back_inserter(basic_iteratable $iterable___)
 	{ return new _C_back_insert_iterator($iterable___); }
 
 	function front_inserter(basic_iteratable $iterable___)
 	{ return new _C_front_insert_iterator($iterable___); }
+
+	function pair_iterator(basic_iterator $first1___, basic_iterator $first2___)
+	{ return new _C_pair_iterator($first1___, $first2___); }
+
+	function & iterator_copy(basic_iterator &$it___)
+	{ return clone $it___; }
 
 	function distance(basic_iterator $first___, basic_iterator $last___)
 	{
@@ -215,11 +260,27 @@ namespace std
 	function advance(basic_iterator $it___, int $distance___)
 	{ $it___->_F_advance($distance___); }
 
-	function next(basic_iterator $it___)
-	{ return $it___->_F_next(); }
+	function next(basic_iterator $it___, int $n___ = -1)
+	{
+		if ($n > 1) {
+			for ($i = 0; $i < $n; $i++) {
+				$it___->_F_next();
+			}
+			return $it___;
+		}
+		return $it___->_F_next();
+	}
 
-	function prev(basic_iterator $it___)
-	{ return $it___->_F_prev(); }
+	function prev(basic_iterator $it___, int $n___ = -1)
+	{
+		if ($n > 1) {
+			for ($i = 0; $i < $n; $i++) {
+				$it___->_F_prev();
+			}
+			return $it___;
+		}
+		return $it___->_F_prev();
+	}
 
 	function begin(basic_iteratable &$iterable___, $offset___ = -1)
 	{ return $iterable___->begin($offset___); }

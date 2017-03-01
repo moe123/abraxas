@@ -18,6 +18,9 @@ require_once "iostream.php";
 require_once "irange.php";
 require_once "locale.php";
 require_once "vector.php";
+require_once "ordered_list.php";
+require_once "ordered_set.php";
+require_once "forward_list.php";
 require_once "random.php";
 
 $dev = new std\random_device;
@@ -41,7 +44,7 @@ print_r($l);
 print_r($r);
 print_r($n);
 
-std\xexit(0);
+//std\xexit(0);
 
 $n1 = $l->num();
 $d1 = $l->den();
@@ -60,9 +63,8 @@ print_r($l);
 $a = std\ratio_subtract($r, $l);
 print_r($a);
 
-//std\cout(std\endl);
 std\cout(std\endl);
-std\xexit(0);
+//std\xexit(0);
 
 foreach (std\xrange(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);
@@ -216,7 +218,7 @@ std\rotate_copy(
 std\cout($dv)(std\endl);
 
 $v = std\make_vector();
-$v->reserve(10);
+$v->reserve(10, std\ignore);
 
 std\cout($v)(std\endl);
 
@@ -248,26 +250,93 @@ if ($r == $v->end()) {
 	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
 }
 
-$rfn = function(int $n) {
-	$fp = \fopen('/dev/urandom', 'rb');
-	if ($fp === false) {
-		$fp = \fopen('/dev/random', 'rb');
-	}
-	if ($fp !== false) {
-		if ($r = \fread($fp, $n * 2) !== false) {
-			$i = 0;
-			while ($i < $n) {
-				$r = \fread($fp, $n);
-				++$i;
-			}
-			@\fclose($fp);
-			return $r;
-		}
-		@\fclose($fp);
-	}
-	return null;
-};
+$v1 = std\make_vector('a', 'b', 'c', 'f', 'h', 'x');
+$v2 = std\make_vector('a', 'b', 'c');
+$v3 = std\make_vector('a', 'c');
+$v4 = std\make_vector('g');
+$v5 = std\make_vector('a', 'c', 'g');
+$v6 = std\make_vector('A', 'B', 'C');
 
-print_r(\bin2hex($rfn(4)));
+function cmp_nocase($l , $r)
+{ return \strtolower($l) < \strtolower($r); }
+
+foreach ($v2 as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(": ")
+	(std\includes($v1->begin(), $v1->end(), $v2->begin(), $v2->end()))
+(std\endl);
+
+foreach ($v3 as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(": ")
+	(std\includes($v1->begin(), $v1->end(), $v3->begin(), $v3->end()))
+(std\endl);
+
+foreach ($v4 as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(": ")
+	(std\includes($v1->begin(), $v1->end(), $v4->begin(), $v4->end()))
+(std\endl);
+
+foreach ($v5 as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(": ")
+	(std\includes($v1->begin(), $v1->end(), $v5->begin(), $v5->end()))
+(std\endl);
+
+foreach ($v6 as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(": ")
+	(std\includes($v1->begin(), $v1->end(), $v6->begin(), $v6->end(), std\bond('cmp_nocase')))
+(std\endl);
+
+$v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+std\cout("Original vector: ")(std\endl);
+foreach ($v as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(std\endl);
+std\cout("Partition: ")(std\endl);
+$pv = std\partition(
+	  $v->begin()
+	, $v->end()
+	, function(int $i) { return (($i % 2) === 0); }
+);
+
+$p_even = std\make_vector();
+$p_odd  = std\make_vector();
+
+print_r($pv);
+
+std\copy($v->begin(), $pv, std\back_inserter($p_even));
+std\copy(
+	  std\iterator_copy($pv)
+	, $v->end()
+	, std\front_inserter($p_odd)
+);
+
+print_r($p_even);
+print_r($p_odd);
+print_r($v);
+
+$f1_even = std\make_ordered_list();
+$f2_even = std\make_forward_list();
+
+std\copy($v->begin(), $pv, std\pair_iterator(
+	  std\back_inserter($f1_even)
+	, std\front_inserter($f2_even)
+));
+
+print_r($f1_even);
+print_r($f2_even);
+
+print_r(std\utf8_glyph_split("Ilık süt", 3));
+print_r(std\utf8_glyph_split("hello"));
+print_r(std\utf8_glyph_sustring("Ilık süt", 4));
 
 /* EOF */

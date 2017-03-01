@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basic_set.php
+// scl_basic_ordered_set.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,7 +16,7 @@
 
 namespace std
 {
-	abstract class basic_set extends basic_iteratable implements
+	abstract class basic_ordered_set extends basic_iteratable implements
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable

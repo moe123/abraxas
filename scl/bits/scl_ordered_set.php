@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_set.php
+// scl_ordered_set.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,7 +16,7 @@
 
 namespace std
 {
-	final class set extends basic_set
+	final class ordered_set extends basic_ordered_set
 	{
 		use _T_multi_construct_traits;
 
@@ -26,19 +26,19 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_set_1(array $list_initializer)
+		function _F_ordered_set_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
 				$this->insert($val);
 			}
 		}
 
-		function _F_set_2(basic_iterator $first, basic_iterator $last)
+		function _F_ordered_set_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
-		function & reserve(int $size)
+		function & reserve(int $size, $fill = null)
 		{
-			_F_builtin_reserve($this, $size);
+			_F_builtin_reserve($this, $size, $fill);
 			return $this;
 		}
 

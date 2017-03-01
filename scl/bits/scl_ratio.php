@@ -300,7 +300,7 @@ namespace std
 	function ratio_equal(basic_ratio $l, basic_ratio $r)
 	{
 		if ($l->den() == $r->den()) {
-			return \intval($l->num() == $r->num());
+			return ($l->num() == $r->num());
 		}
 		/*
 		// reducing or not reducing greedy? else let php 
@@ -312,42 +312,42 @@ namespace std
 		_F_builtin_ratio_reduce($n1, $d1, $n2, $d2);
 		return $n1 == $n2;
 		*/
-		return \intval($l->mir() == $r->mir());
+		return ($l->mir() == $r->mir());
 	}
 
 	function ratio_not_equal(basic_ratio $l, basic_ratio $r)
-	{ return \intval(!ratio_equal($l, $r)); }
+	{ return (!ratio_equal($l, $r)); }
 
 	function ratio_less(basic_ratio $l, basic_ratio $r)
 	{
 		if ($l->den() == $r->den()) {
-			return \intval($l->num() < $r->num());
+			return ($l->num() < $r->num());
 		}
-		return \intval($l->mir() < $r->mir());
+		return ($l->mir() < $r->mir());
 	}
 
 	function ratio_less_equal(basic_ratio $l, basic_ratio $r)
 	{
 		if ($l->den() == $r->den()) {
-			return \intval($l->num() <= $r->num());
+			return ($l->num() <= $r->num());
 		}
-		return \intval($l->mir() <= $r->mir());
+		return ($l->mir() <= $r->mir());
 	}
 
 	function ratio_greater(basic_ratio $l, basic_ratio $r)
 	{
 		if ($l->den() == $r->den()) {
-			return \intval($l->num() > $r->num());
+			return ($l->num() > $r->num());
 		}
-		return \intval($l->mir() > $r->mir());
+		return ($l->mir() > $r->mir());
 	}
 
 	function ratio_greater_equal(basic_ratio $l, basic_ratio $r)
 	{
 		if ($l->den() == $r->den()) {
-			return \intval($l->num() >= $r->num());
+			return ($l->num() >= $r->num());
 		}
-		return \intval($l->mir() >= $r->mir());
+		return ($l->mir() >= $r->mir());
 	}
 } /* EONS */
 
