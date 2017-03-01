@@ -337,6 +337,6 @@ print_r($f2_even);
 
 print_r(std\utf8_glyph_split("Ilık süt", 3));
 print_r(std\utf8_glyph_split("hello"));
-print_r(std\utf8_glyph_sustring("Ilık süt", 4));
+print_r(std\utf8_glyph_substring("Ilık süt", 4));
 
 /* EOF */

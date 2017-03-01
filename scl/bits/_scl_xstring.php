@@ -303,11 +303,11 @@ namespace std
 		return @\preg_split("//u", $s___, -1, PREG_SPLIT_NO_EMPTY);
 	}
 
-	function utf8_glyph_sustring(string $s___, int $pos___, int $len___ = -1)
+	function utf8_glyph_substring(string $s___, int $pos___, int $len___ = -1)
 	{
 		$out = [];
 		@\preg_match_all("/./u", $s___, $out);
-		$out =\array_slice($out[0], $pos___, $len___ < 1 ? null : $len___);
+		$out = \array_slice($out[0], $pos___, $len___ < 1 ? null : $len___);
 	}
 } /* EONS */
 
