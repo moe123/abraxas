@@ -307,7 +307,7 @@ namespace std
 	{
 		$out = [];
 		@\preg_match_all("/./u", $s___, $out);
-		$out = \array_slice($out[0], $pos___, $len___ < 1 ? null : $len___);
+		return \array_slice($out[0], $pos___, $len___ < 1 ? null : $len___);
 	}
 } /* EONS */
 

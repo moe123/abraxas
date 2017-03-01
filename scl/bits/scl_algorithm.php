@@ -151,7 +151,7 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $n_first___
 		, basic_iterator $last___
-		, insert_iterator $d_out_first___
+		, basic_iterator $d_out_first___
 	) {
 		return copy(
 			  $first___
@@ -274,7 +274,7 @@ namespace std
 	function copy(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, insert_iterator $out___
+		, basic_iterator $out___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -293,7 +293,7 @@ namespace std
 	function copy_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, insert_iterator $out___
+		, basic_iterator $out___
 		, callable $unaryPredicate___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
@@ -316,7 +316,7 @@ namespace std
 	function copy_n(
 		  basic_iterator $first___
 		, int $count___
-		, insert_iterator $out___
+		, basic_iterator $out___
 	) {
 		$i = 0;
 		while ($i < $count___) {
@@ -333,7 +333,7 @@ namespace std
 	function copy_backward(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, insert_iterator $out___
+		, basic_iterator $out___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -465,7 +465,7 @@ namespace std
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $last2___
-		, insert_iterator $out___
+		, basic_iterator $out___
 		, callable $compare___ = null
 	) {
 		if (
@@ -972,7 +972,7 @@ namespace std
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $last2___
-		, insert_iterator $out___
+		, basic_iterator $out___
 		, callable $compare___ = null
 	) {
 		$comp = $compare___;
@@ -1110,7 +1110,7 @@ namespace std
 	function transform_s(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
-		, insert_iterator $out___
+		, basic_iterator $out___
 		, callable $unaryOperation___
 	) {
 		while ($first1___ != $last1___) {

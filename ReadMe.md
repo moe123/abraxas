@@ -190,6 +190,24 @@ std\cout(std\endl);
 
 ...
 
+// pair_iterator madness
+
+$c1 = std\make_ordered_list();
+$c2 = std\make_forward_list();
+$c3 = std\make_ordered_list();
+$c4 = std\make_forward_list();
+
+std\copy($v->begin(2), $v->begin(4), std\pair_iterator(
+	std\pair_iterator(
+		  std\back_inserter($c1)
+		, std\front_inserter($c2)
+	),
+	std\pair_iterator(
+		  std\back_inserter($c3)
+		, std\front_inserter($c4)
+	)
+));
+
 ```
 
 #### [*] Algorithms

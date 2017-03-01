@@ -326,17 +326,27 @@ print_r($v);
 
 $f1_even = std\make_ordered_list();
 $f2_even = std\make_forward_list();
+$f3_even = std\make_ordered_list();
+$f4_even = std\make_forward_list();
 
 std\copy($v->begin(), $pv, std\pair_iterator(
-	  std\back_inserter($f1_even)
-	, std\front_inserter($f2_even)
+	std\pair_iterator(
+		  std\back_inserter($f1_even)
+		, std\front_inserter($f2_even)
+	),
+	std\pair_iterator(
+		  std\back_inserter($f3_even)
+		, std\front_inserter($f4_even)
+	)
 ));
 
 print_r($f1_even);
 print_r($f2_even);
+print_r($f3_even);
+print_r($f4_even);
 
 print_r(std\utf8_glyph_split("Ilık süt", 3));
 print_r(std\utf8_glyph_split("hello"));
-print_r(std\utf8_glyph_substring("Ilık süt", 4));
+print_r(std\utf8_glyph_substring("Ilık süt", 2, 3));
 
 /* EOF */
