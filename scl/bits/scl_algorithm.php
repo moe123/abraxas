@@ -18,16 +18,16 @@ namespace std
 {
 	function swap(&$v1___, &$v2___)
 	{
-		$v = $v1___;
+		$v0    = $v1___;
 		$v1___ = $v2___;
-		$v2___ = $v;
+		$v2___ = $v0;
 	}
 
 	function & clamp(
-		  &$v___
-		, &$lo___
-		, &$hi___
-		, callable $compare___ = null
+		           &$v___
+		,          &$lo___
+		,          &$hi___
+		, callable  $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -47,8 +47,8 @@ namespace std
 	function lower_bound(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $val___
-		, callable $compare___ = null
+		,                $val___
+		, callable       $compare___ = null
 	) {
 		$cnt = distance($first___, $last___);
 		if ($cnt > 0) {
@@ -80,8 +80,8 @@ namespace std
 	function upper_bound(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $val___
-		, callable $compare___ = null
+		,                $val___
+		, callable       $compare___ = null
 	) {
 		$cnt = distance($first___, $last___);
 		if ($cnt > 0) {
@@ -160,10 +160,10 @@ namespace std
 		);
 	}
 
-	function partition (
+	function partition(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $unaryPredicate___
+		, callable       $unaryPredicate___
 	) {
 		while ($first___ != $last___) {
 			while ($unaryPredicate___($first___->_F_this())) {
@@ -184,10 +184,31 @@ namespace std
 		return $first___;
 	}
 
+	function partition_point(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $unaryPredicate___
+	) {
+		$dist = distance($first___, $last___);
+		while ($dist > 0)
+		{
+			$it = clone $first___;
+			$step = \intval($dist / 2);
+			$it->_F_advance($step);
+			if ($unaryPredicate___($it->_F_this())) {
+				$first___ = clone $it->_F_next();
+				$dist -= ($step + 1);
+			} else {
+				$dist = $step;
+			}
+		}
+		return first;
+	}
+
 	function min(
-		  &$v1___
-		, &$v2___
-		, callable $compare___ = null
+		           &$v1___
+		,          &$v2___
+		, callable  $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -200,9 +221,9 @@ namespace std
 	}
 
 	function minmax(
-		  &$v1___
-		, &$v2___
-		, callable $compare___ = null
+		           &$v1___
+		,          &$v2___
+		, callable  $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -217,7 +238,7 @@ namespace std
 	function min_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -239,7 +260,7 @@ namespace std
 	function max_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -294,7 +315,7 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, basic_iterator $out___
-		, callable $unaryPredicate___
+		, callable       $unaryPredicate___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -315,7 +336,7 @@ namespace std
 
 	function copy_n(
 		  basic_iterator $first___
-		, int $count___
+		, int            $count___
 		, basic_iterator $out___
 	) {
 		$i = 0;
@@ -369,7 +390,7 @@ namespace std
 	function generate(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $generator___
+		, callable       $generator___
 	) {
 		while ($first___ != $last___) {
 			$first___->_F_pos_assign($generator___());
@@ -379,8 +400,8 @@ namespace std
 
 	function generate_n(
 		  basic_iterator $first___
-		, int $count___
-		, callable $generator___
+		, int            $count___
+		, callable       $generator___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
 			$first___->_F_pos_assign($generator___());
@@ -390,8 +411,8 @@ namespace std
 
 	function place_fill_n(
 		  insert_iterator $out___
-		, int $count___
-		, $val___
+		, int             $count___
+		,                 $val___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
 			$out___->_F_pos_assign($val___);
@@ -401,8 +422,8 @@ namespace std
 
 	function place_generate_n(
 		  insert_iterator $out___
-		, int $count___
-		, callable $generator___
+		, int             $count___
+		, callable        $generator___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
 			$out___->_F_pos_assign($generator___());
@@ -412,8 +433,8 @@ namespace std
 
 	function place_iota(
 		  insert_iterator $out___
-		, int $count___
-		, $val___
+		, int             $count___
+		,                 $val___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
 			$out___->_F_pos_assign($val___);
@@ -424,9 +445,9 @@ namespace std
 
 	function place_iota_f(
 		  insert_iterator $out___
-		, int $count___
-		, $val___
-		, callable $nextOperation___
+		, int             $count___
+		,                 $val___
+		, callable        $nextOperation___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
 			$out___->_F_pos_assign($val___);
@@ -438,7 +459,7 @@ namespace std
 	function iota(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $val___
+		,                $val___
 	) {
 		while ($first___ != $last___) {
 			$first___->_F_pos_assign($val___);
@@ -450,8 +471,8 @@ namespace std
 	function iota_f(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $val___
-		, callable $nextOperation___
+		,                $val___
+		, callable       $nextOperation___
 	) {
 		while ($first___ != $last___) {
 			$first___->_F_pos_assign($val___);
@@ -466,7 +487,7 @@ namespace std
 		, basic_iterator $first2___
 		, basic_iterator $last2___
 		, basic_iterator $out___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) {
 		if (
 			$first1___::iterator_category === $last1___::iterator_category &&
@@ -534,7 +555,7 @@ namespace std
 	function unique_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $binaryPredicate___ = null
+		, callable       $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
@@ -556,7 +577,7 @@ namespace std
 	function accumulate(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $init___
+		,                $init___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -572,8 +593,8 @@ namespace std
 	function accumulate_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $init___
-		, callable $binaryOperation___ = null
+		,                $init___
+		, callable       $binaryOperation___ = null
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryOperation___;
@@ -594,7 +615,7 @@ namespace std
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
-		, $init___
+		,                $init___
 	) {
 		if ($first1___::iterator_category === $last1___::iterator_category) {
 			while ($first1___ != $last1___) {
@@ -612,9 +633,9 @@ namespace std
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
-		, $init___
-		, callable $binaryOperation1___ = null
-		, callable $binaryOperation2___ = null
+		,                $init___
+		, callable       $binaryOperation1___ = null
+		, callable       $binaryOperation2___ = null
 	) {
 		if ($first1___::iterator_category === $last1___::iterator_category) {
 			$p1 = $binaryOperation1___;
@@ -654,7 +675,7 @@ namespace std
 	function & find_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $unaryPredicate___
+		, callable       $unaryPredicate___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -672,7 +693,7 @@ namespace std
 	function & find_if_not(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $unaryPredicate___
+		, callable       $unaryPredicate___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -692,7 +713,7 @@ namespace std
 		, basic_iterator $last___
 		, basic_iterator $s_first___
 		, basic_iterator $s_last___
-		, callable $binaryPredicate___ = null
+		, callable       $binaryPredicate___ = null
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryPredicate___;
@@ -743,7 +764,7 @@ namespace std
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $last2___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -787,7 +808,7 @@ namespace std
 	function adjacent_find_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $binaryPredicate___ = null
+		, callable       $binaryPredicate___ = null
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $binaryPredicate___;
@@ -834,8 +855,11 @@ namespace std
 		return $unaryFunction___;
 	}
 
-	function for_each_n(basic_iterator $first___, int $count___, callable $unaryFunction___)
-	{
+	function for_each_n(
+		  basic_iterator $first___
+		, int            $count___
+		, callable       $unaryFunction___
+	) {
 		for ($i = 0; $i < $count___; $i++) {
 			$unaryFunction___($first___->_F_this());
 			$first___->_F_next();
@@ -848,7 +872,7 @@ namespace std
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $last2___
-		, callable $binaryPredicate___ = null
+		, callable       $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
@@ -878,9 +902,9 @@ namespace std
 	function search_n(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, int $count___
-		, $val___
-		, callable $binaryPredicate___ = null
+		, int            $count___
+		,                $val___
+		, callable       $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
@@ -914,7 +938,7 @@ namespace std
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
-		, callable $binaryPredicate___ = null
+		, callable       $binaryPredicate___ = null
 	) {
 		if ($first1___::iterator_category === $last1___::iterator_category) {
 			$p = $binaryPredicate___;
@@ -935,8 +959,11 @@ namespace std
 		return false;
 	}
 
-	function count(basic_iterator $first___, basic_iterator $last___, $val___)
-	{
+	function count(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		,                $val___
+	) {
 		$ret = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -951,8 +978,11 @@ namespace std
 		return $ret;
 	}
 
-	function count_if(basic_iterator $first___, basic_iterator $last___, callable $unaryPredicate___)
-	{
+	function count_if(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $unaryPredicate___
+	) {
 		$ret = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
@@ -973,7 +1003,7 @@ namespace std
 		, basic_iterator $first2___
 		, basic_iterator $last2___
 		, basic_iterator $out___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) {
 		$comp = $compare___;
 		if (\is_null($comp)) {
@@ -1004,8 +1034,8 @@ namespace std
 	function replace(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $old_value___
-		, $new_value___
+		,                $old_value___
+		,                $new_value___
 	) {
 		if ($first___ != $last___) {
 			while ($first___ != $last___) {
@@ -1020,7 +1050,7 @@ namespace std
 	function replace_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $unaryPredicate___
+		, callable       $unaryPredicate___
 		, $new_value___
 	) {
 		if ($first___ != $last___) {
@@ -1036,7 +1066,7 @@ namespace std
 	function remove(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, $val___
+		,                $val___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);
 		if ($first___ != $last___) {
@@ -1056,7 +1086,7 @@ namespace std
 	function remove_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $unaryPredicate___
+		, callable       $unaryPredicate___
 	) {
 		$first___ = find_if($first___, $last___, $unaryPredicate___);
 		if ($first___ != $last___) {
@@ -1077,7 +1107,7 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, basic_iterator $out___
-		, callable $unaryOperation___
+		, callable       $unaryOperation___
 	) {
 		while ($first___ != $last___) {
 			$out___->_F_pos_assign(
@@ -1094,7 +1124,7 @@ namespace std
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $out___
-		, callable $binaryOperation___
+		, callable       $binaryOperation___
 	) {
 		while ($first1___ != $last1___) {
 			$out___->_F_pos_assign(
@@ -1111,7 +1141,7 @@ namespace std
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $out___
-		, callable $unaryOperation___
+		, callable       $unaryOperation___
 	) {
 		while ($first1___ != $last1___) {
 			$c = $unaryOperation___($first1___->_F_this());
@@ -1122,13 +1152,13 @@ namespace std
 
 	function sort(
 		  basic_iteratable &$c___
-		, callable $compare___ = null
+		, callable          $compare___ = null
 	) { _F_builtin_sort($c___, $compare___); }
 
 	function sort_r(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) { _F_builtin_sort_r($first___, $last___, $compare___); }
 } /* EONS */
 

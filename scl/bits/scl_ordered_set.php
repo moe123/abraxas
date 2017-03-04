@@ -63,24 +63,24 @@ namespace std
 			return $this;
 		}
 
-		function & swap(set &$set)
+		function & swap(set &$oset)
 		{
 			$c = $this->_M_container;
 			$sz = $this->_M_size;
 
-			$this->_M_container = $set->_M_container;
-			$this->_M_size = $set->_M_size;
+			$this->_M_container = $oset->_M_container;
+			$this->_M_size = $oset->_M_size;
 
-			$set->_M_container = $c;
-			$set->_M_size = $sz;
+			$oset->_M_container = $c;
+			$oset->_M_size = $sz;
 
 			return $this;
 		}
 
-		function & assign(set &$set)
+		function & assign(set &$oset)
 		{
 			_F_builtin_clear_all($this);
-			foreach ($set->_M_container as &$val) {
+			foreach ($oset->_M_container as &$val) {
 				$this->insert($val);
 			}
 			return $this;
@@ -93,9 +93,9 @@ namespace std
 			return $this;
 		}
 
-		function & merge(set &$set)
+		function & merge(set &$oset)
 		{
-			foreach ($set->_M_container as &$val) {
+			foreach ($oset->_M_container as &$val) {
 				$this->insert($val);
 			}
 			return $this;

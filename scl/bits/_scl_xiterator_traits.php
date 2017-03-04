@@ -130,12 +130,12 @@ namespace std
 		function __destruct()
 		{ $this->_M_ptr = null; }
 
-		function & _F_advance(int $distance___ = 1)
+		function & _F_advance(int $dist___ = 1)
 		{
-			if ($distance___ < 1) {
+			if ($dist___ < 1) {
 				return;
 			}
-			for ($i = 0 ; $i < $distance___ ; $i++) {
+			for ($i = 0 ; $i < $dist___ ; $i++) {
 				$this->_M_offset++;
 			}
 			if ($this->_M_offset > $this->_M_ptr->_M_size) {
@@ -276,12 +276,12 @@ namespace std
 		function __destruct()
 		{ $this->_M_ptr = null; }
 
-		function & _F_advance(int $distance___ = 1)
+		function & _F_advance(int $dist___ = 1)
 		{
-			if ($distance___ < 1) {
+			if ($dist___ < 1) {
 				return;
 			}
-			for ($i = 0 ; $i < $distance___ ; $i++) {
+			for ($i = 0 ; $i < $dist___ ; $i++) {
 				$this->_M_offset++;
 			}
 			if ($this->_M_offset > $this->_M_ptr->_M_size) {
@@ -366,7 +366,7 @@ namespace std
 		{
 			if (
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
-				$this->_M_ptr::container_category === basic_iteratable_tag::basic_map
+				$this->_M_ptr::container_category === basic_iteratable_tag::basic_ordered_map
 			) {
 				return $this->_M_ptr->item_at($this->_M_offset)->first;
 			}
@@ -377,7 +377,7 @@ namespace std
 		{
 			if (
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
-				$this->_M_ptr::container_category === basic_iteratable_tag::basic_map
+				$this->_M_ptr::container_category === basic_iteratable_tag::basic_ordered_map
 			) {
 				return $this->_M_ptr->item_at($this->_M_offset)->second;
 			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
@@ -398,12 +398,12 @@ namespace std
 		function __destruct()
 		{ $this->_M_ptr = null; }
 
-		function & _F_advance(int $distance___ = 1)
+		function & _F_advance(int $dist___ = 1)
 		{
-			if ($distance___ < 1) {
+			if ($dist___ < 1) {
 				return;
 			}
-			for ($i = 0 ; $i < $distance___ ; $i++) {
+			for ($i = 0 ; $i < $dist___ ; $i++) {
 				--$this->_M_offset;
 			}
 			if ($this->_M_offset < -1) {
@@ -548,10 +548,10 @@ namespace std
 		function __destruct()
 		{ $this->_M_ptr = null; }
 
-		function & _F_advance(int $distance___ = 1)
+		function & _F_advance(int $dist___ = 1)
 		{
-			$this->_M_first->_F_advance($distance___);
-			$this->_M_second->_F_advance($distance___);
+			$this->_M_first->_F_advance($dist___);
+			$this->_M_second->_F_advance($dist___);
 			return $this;
 		}
 

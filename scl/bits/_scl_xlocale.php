@@ -40,22 +40,22 @@ namespace std
 		function __construct(
 			  string $decimal_point___
 			, string $thousands_sep___
-			, $grouping___
+			, array  $grouping___
 			, string $int_curr_symbol___
 			, string $currency_symbol___
 			, string $mon_decimal_point___
 			, string $mon_thousands_sep___
-			, $mon_grouping___
+			, array  $mon_grouping___
 			, string $positive_sign___
 			, string $negative_sign___
-			, int $int_frac_digits___
-			, int $frac_digits___
-			, int $p_cs_precedes___
-			, int $p_sep_by_space___
-			, int $n_cs_precedes___
-			, int $n_sep_by_space___
-			, int $p_sign_posn___
-			, int $n_sign_posn___
+			, int    $int_frac_digits___
+			, int    $frac_digits___
+			, int    $p_cs_precedes___
+			, int    $p_sep_by_space___
+			, int    $n_cs_precedes___
+			, int    $n_sep_by_space___
+			, int    $p_sign_posn___
+			, int    $n_sign_posn___
 		) {
 			$this->decimal_point      = $decimal_point___;
 			$this->thousands_sep      = $thousands_sep___;

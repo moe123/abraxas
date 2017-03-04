@@ -188,7 +188,7 @@ namespace std
 		use _T_inserter_iterator_traits;
 	}
 
-	final class _C_pair_iterator extends insert_iterator
+	final class _C_pair_iterator extends basic_iterator
 	{
 		const iterator_category = basic_iterator_tag::pair_iterator;
 
@@ -257,8 +257,8 @@ namespace std
 		return $n;
 	}
 
-	function advance(basic_iterator $it___, int $distance___)
-	{ $it___->_F_advance($distance___); }
+	function advance(basic_iterator $it___, int $dist___)
+	{ $it___->_F_advance($dist___); }
 
 	function next(basic_iterator $it___, int $n___ = -1)
 	{

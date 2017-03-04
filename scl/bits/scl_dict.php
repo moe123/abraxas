@@ -255,7 +255,7 @@ namespace std
 						$this->set($first->first(), $first->second());
 						$first->next();
 					}
-				} else if ($first->_M_ptr::container_category === basic_iteratable_tag::basic_map) {
+				} else if ($first->_M_ptr::container_category === basic_iteratable_tag::basic_ordered_map) {
 					while ($first != $last) {
 						$this->set(
 							  $first->second()->first

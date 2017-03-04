@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basic_map.php
+// scl_basic_ordered_map.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,13 +16,13 @@
 
 namespace std
 {
-	abstract class basic_map extends basic_iteratable implements 
+	abstract class basic_ordered_map extends basic_iteratable implements 
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable
 		, \Countable
 	{
-		const container_category = basic_iteratable_tag::basic_map;
+		const container_category = basic_iteratable_tag::basic_ordered_map;
 
 		use _T_builtin_array_container_traits;
 		use _T_builtin_array_int_operator_traits;
@@ -44,9 +44,6 @@ namespace std
 				. PHP_EOL
 			;
 		}
-
-		function copy()
-		{ return clone $this; }
 
 		function to_array()
 		{ return $this->__toArray(); }

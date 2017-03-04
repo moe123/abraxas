@@ -364,8 +364,8 @@ namespace std
 	function make_vector(...$args___)
 	{ return new vector($args___); }
 
-	function make_set(...$args___)
-	{ return new set($args___); }
+	function make_ordered_set(...$args___)
+	{ return new ordered_set($args___); }
 
 	function make_forward_list(...$args___)
 	{ return new forward_list($args___); }
@@ -373,11 +373,11 @@ namespace std
 	function make_ordered_list(...$args___)
 	{ return new ordered_list($args___); }
 
-	function make_tuple(...$args___)
-	{ return new tuple($args___); }
-
 	function make_dict(...$args___)
 	{ return new dict($args___); }
+
+	function make_tuple(...$args___)
+	{ return new tuple($args___); }
 
 	function make_pair($a1___, $a2___)
 	{ return new pair($a1___, $a2___); }
@@ -390,6 +390,39 @@ namespace std
 
 	function make_quint($a1___, $a2___, $a3___, $a4___, $a5___)
 	{ return new quint($a1___, $a2___, $a3___, $a4___, $a5___); }
+
+	function & irange_copy(irange &$irg___)
+	{ return clone $irg___; }
+
+	function & vector_copy(vector &$vec___)
+	{ return clone $vec___; }
+
+	function & ordered_set_copy(ordered_set &$oset___)
+	{ return clone $oset___; }
+
+	function & forward_list_copy(forward_list &$fwl___)
+	{ return clone $fwl___; }
+
+	function & ordered_list_copy(ordered_list &$olist___)
+	{ return clone $olist___; }
+
+	function & dict_copy(dict &$dict___)
+	{ return clone $dict___; }
+
+	function & tuple_copy(tuple &$tuple___)
+	{ return clone $tuple___; }
+
+	function & pair_copy(pair &$pair___)
+	{ return clone $pair___; }
+
+	function & triad_copy(triad &$triad___)
+	{ return clone $triad___; }
+
+	function & quad_copy(quad &$quad___)
+	{ return clone $quad___; }
+
+	function & quint_copy(quint &$quint___)
+	{ return clone $quint___; }
 } /* EONS */
 
 /* EOF */

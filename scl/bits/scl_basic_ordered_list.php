@@ -45,9 +45,6 @@ namespace std
 			;
 		}
 
-		function copy()
-		{ return clone $this; }
-
 		function to_array()
 		{ return $this->__toArray(); }
 

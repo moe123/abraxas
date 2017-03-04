@@ -384,7 +384,7 @@ PHP7 built with:
 > [scl_basic_forward_list](./scl/bits/scl_basic_forward_list.php?ts=3)<br>
 > [scl_basic_ios](./scl/bits/scl_basic_ios.php?ts=3)<br>
 > [scl_basic_iteratable](./scl/bits/scl_basic_iteratable.php?ts=3)<br>
-> [scl_basic_map](./scl/bits/scl_basic_map.php?ts=3)<br>
+> [scl_basic_ordered_map](./scl/bits/scl_basic_ordered_map.php?ts=3)<br>
 > [scl_basic_ratio](./scl/bits/scl_basic_ratio.php?ts=3)<br>
 > [scl_basic_ordered_list](./scl/bits/scl_basic_ordered_list.php?ts=3)<br>
 > [scl_basic_ordered_set](./scl/bits/scl_basic_ordered_set.php?ts=3)<br>

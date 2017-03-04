@@ -116,24 +116,24 @@ namespace std
 			return $this;
 		}
 
-		function & swap(seq &$seq)
+		function & swap(ordered_list &$olist)
 		{
 			$c = $this->_M_container;
 			$sz = $this->_M_size;
 
-			$this->_M_container = $seq->_M_container;
-			$this->_M_size = $seq->_M_size;
+			$this->_M_container = $olist->_M_container;
+			$this->_M_size = $olist->_M_size;
 
-			$seq->_M_container = $c;
-			$seq->_M_size = $sz;
+			$olist->_M_container = $c;
+			$olist->_M_size = $sz;
 
 			return $this;
 		}
 
-		function & assign(seq &$seq)
+		function & assign(ordered_list &$olist)
 		{
 			_F_builtin_clear_all($this);
-			foreach ($seq->_M_container as &$val) {
+			foreach ($olist->_M_container as &$val) {
 				$this->push_back($val);
 			}
 			return $this;
@@ -146,9 +146,9 @@ namespace std
 			return $this;
 		}
 
-		function & merge(seq &$seq)
+		function & merge(ordered_list &$olist)
 		{
-			foreach ($seq->_M_container as &$val) {
+			foreach ($olist->_M_container as &$val) {
 				$this->push_back($val);
 			}
 			return $this;
@@ -181,15 +181,15 @@ namespace std
 
 		function & splice(
 			  basic_iterator $pos
-			, seq &$seq
+			, ordered_list &$olist
 			, basic_iterator $first = null
 			, basic_iterator $last = null
 		) {
 			if ($first === null) {
-				$first = $seq->begin();
+				$first = $olist->begin();
 			}
 			if ($last === null) {
-				$first = $seq->end();
+				$first = $olist->end();
 			}
 			if ($first::iterator_category === $last::iterator_category) {
 				$index = $pos->_F_pos();
