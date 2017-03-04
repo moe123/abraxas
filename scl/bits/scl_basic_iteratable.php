@@ -37,7 +37,7 @@ namespace std
 		const basic_ordered_set  = 1;
 		const basic_vector       = 1;
 		const basic_irange       = 1;
-		const basic_ordered_map          = 5;
+		const basic_ordered_map  = 5;
 		const basic_dict         = 9;
 	}
 
