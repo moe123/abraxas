@@ -22,6 +22,7 @@ require_once "ordered_list.php";
 require_once "ordered_set.php";
 require_once "forward_list.php";
 require_once "random.php";
+require_once "tuple.php";
 
 $dev = new std\random_device;
 
@@ -34,6 +35,8 @@ echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
 // print_r(std\is_callable(std\null_callable));
 // print_r(std\is_callable(std\bond('std\xformat')));
+
+std\make_pair(3, 4);
 
 $l = std\make_ratio(3, 4);
 $r = std\make_ratio(2, -3);
@@ -249,6 +252,13 @@ if ($r == $v->end()) {
 } else {
 	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
 }
+
+$s1 = std\make_ordered_set()
+	-> assign_r(
+		std\rbegin($v, 1), std\rend($v, 2)
+	);
+
+print_r($s1);
 
 $v1 = std\make_vector('a', 'b', 'c', 'f', 'h', 'x');
 $v2 = std\make_vector('a', 'b', 'c');

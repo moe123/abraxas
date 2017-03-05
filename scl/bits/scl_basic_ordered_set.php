@@ -22,7 +22,7 @@ namespace std
 		, \JsonSerializable
 		, \Countable
 	{
-		const container_category = basic_iteratable_tag::basic_set;
+		const container_category = basic_iteratable_tag::basic_ordered_set;
 
 		use _T_builtin_array_container_traits;
 		use _T_builtin_set_int_operator_unique_traits;
@@ -52,8 +52,8 @@ namespace std
 		{
 			if ($this->_M_size) {
 				return \json_encode(
-						  $this->_M_container
-						, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES
+					  $this->_M_container
+					, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES
 				);
 			}
 			return "[]";

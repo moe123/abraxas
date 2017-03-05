@@ -58,7 +58,7 @@ namespace std
 		function & enumerate(\Closure $f___, bool $r___ = false)
 		{
 			if ($this->_M_size) {
-				if (static::container_category === basic_iteratable_tag::basic_forward_list) {
+				if (static::container_category === forward_list) {
 					$stop = false;
 					if ($r___ === true) {
 						for($i = $self->_M_size - 1; $i >= 0; $i--) {
@@ -110,7 +110,7 @@ namespace std
 		{
 			$self = new static();
 			if ($this->_M_size) {
-				if (static::container_category === basic_iteratable_tag::basic_forward_list) {
+				if (static::container_category === forward_list) {
 					$a = array_map(
 						  $f___
 						, \range(0, $this->_M_size -1)
@@ -123,7 +123,7 @@ namespace std
 						, array_keys($this->_M_container)
 						, $this->_M_container
 					);
-					if (static::container_category !== basic_iteratable_tag::basic_dict) {
+					if (static::container_category !== dict) {
 						$self->_M_container = array_values($self->_M_container);
 					}
 					$self->_M_size = \count($self->_M_container);
@@ -141,7 +141,7 @@ namespace std
 		{
 			$self = new static();
 			if ($this->_M_size) {
-				if (static::container_category === basic_iteratable_tag::basic_forward_list) {
+				if (static::container_category === forward_list) {
 					$a = array_filter(
 						  $this->_F_dump()
 						, $f___
@@ -154,7 +154,7 @@ namespace std
 						, $f___
 						, ARRAY_FILTER_USE_BOTH
 					);
-					if (static::container_category !== basic_iteratable_tag::basic_dict) {
+					if (static::container_category !== dict) {
 						$self->_M_container = array_values($self->_M_container);
 					}
 					$self->_M_size = @count($self->_M_container);
@@ -172,7 +172,7 @@ namespace std
 		{
 			$self = new static();
 			if ($this->_M_size) {
-				if (static::container_category === basic_iteratable_tag::basic_forward_list) {
+				if (static::container_category === forward_list) {
 					$self->_F_insert_last(
 						array_reduce(
 							  $this->_F_dump()
@@ -201,7 +201,7 @@ namespace std
 				if (\is_null($f___)) {
 					$f___ = function($l, $r) { return $l + $r; };
 				}
-				if (static::container_category === basic_iteratable_tag::basic_forward_list) {
+				if (static::container_category === forward_list) {
 					$self->_F_insert_last(
 						array_reduce(
 							  $this->_F_dump()

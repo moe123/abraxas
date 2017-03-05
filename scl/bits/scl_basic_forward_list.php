@@ -52,8 +52,8 @@ namespace std
 		{
 			if ($this->_M_size) {
 				return \json_encode(
-						  $this->_F_dump()
-						, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES
+					  $this->_F_dump()
+					, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES
 				);
 			}
 			return "[]";

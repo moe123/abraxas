@@ -460,7 +460,7 @@ namespace std
 						}
 					}
 					*/
-					return \in_array($c___->_M_container, $val___);
+					return \in_array($val___, $c___->_M_container);
 				}
 			} else {
 				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
