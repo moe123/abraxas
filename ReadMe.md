@@ -118,10 +118,7 @@ std\cout($v);
 ```
 
 #### [*] Iterators
-Abraxas implements five different types of iterators: Forward-Bidirectional, Reverse-Bidirectional, Back-Inserter,  
-Front-Inserter and Pair-Iterator. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. 
-`Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container 
-category) and `second()` the value.
+Abraxas implements five different types of iterators: `Forward-Bidirectional`, `Reverse-Bidirectional`, `Back-Inserter`, `Front-Inserter` and `Pair-Iterator`. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. `Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
 
 ```php
 
@@ -220,7 +217,7 @@ this is transparent to the end-user).
 It should be noted that unlike the `C++ STL`, for convenience, (as everything is handled 
 at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
 or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
-(however, for well-known reasons, reusing `Inserters` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
+(however, for well-known reasons, reusing `Inserters` or `Pair-Iterators` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
 
 ```php
 ...
@@ -320,6 +317,7 @@ std\invoke($fn, 4, -0.1333);
 
 ...
 
+$v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 $pv = std\partition(
 	  $v->begin()
 	, $v->end()
