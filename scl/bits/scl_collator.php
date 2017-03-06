@@ -76,16 +76,10 @@ namespace std
 		function __toString()
 		{ return $this->locale_id(); }
 
-		function __construct($locale, int $collator_level = collator_level::natural)
+		function __construct(locale $locale, int $collator_level = collator_level::natural)
 		{
-			if (\is_object($locale) && $locale instanceof \std\locale) {
-				$this->_M_locale_id = $locale->_M_id;
-			} else if (\is_string($locale)) {
-				$this->_M_locale_id = $locale;
-			} else {
-				_F_throw_builtin_error("No matching constructor for initialization of 'collator'");
-			}
-			$this->_M_locale_name = locale::canonicalize_id($this->_M_locale_id);
+			$this->_M_locale_id        = $locale->_M_id;
+			$this->_M_locale_name      = locale::canonicalize_id($this->_M_locale_id);
 			$this->_M_builtin_collator = new \Collator($this->_M_locale_name);
 			$this->set_level($collator_level);
 		}

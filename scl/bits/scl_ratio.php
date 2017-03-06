@@ -27,13 +27,13 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_ratio_1(float $x)
+		function ratio_1(float $x)
 		{
 			_F_builtin_ratio_nearest($x, $this->_M_num, $this->_M_den);
 			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
 
-		function _F_ratio_2(int $num, int $den)
+		function ratio_2(int $num, int $den)
 		{
 			if ($den < 0) {
 				$this->_M_num = -($num);

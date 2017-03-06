@@ -27,14 +27,14 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_triad_1(triad &$triad)
+		function triad_1(triad &$triad)
 		{
 			$this->first = $triad->first;
 			$this->second = $triad->second;
 			$this->third = $triad->third;
 		}
 
-		function _F_triad_2($first, $second, $third)
+		function triad_2($first, $second, $third)
 		{
 			$this->first = $first;
 			$this->second = $second;

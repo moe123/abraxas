@@ -74,13 +74,13 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_u8string_1(u8string &$u8str)
+		function u8string_1(u8string &$u8str)
 		{
 			$this->_M_container = $u8str->_M_container;
 			$this->_M_size      = $u8str->_M_len;
 		}
 
-		function _F_u8string_2(string $str, int $encoding)
+		function u8string_2(string $str, int $encoding)
 		{
 			$this->_M_container = utf8_glyph_split($str);
 			$this->_M_size      = \count($this->_M_container);

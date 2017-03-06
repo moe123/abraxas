@@ -27,14 +27,14 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_tuple_1(array $list_initializer)
+		function tuple_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
 				_F_builtin_push_back($this->_M_container, $val);
 			}
 		}
 
-		function _F_tuple_2(array $list_initializer, bool $concat)
+		function tuple_2(array $list_initializer, bool $concat)
 		{
 			if ($concat === true) {
 				$this->_F_unpackv($list_initializer);

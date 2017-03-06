@@ -26,14 +26,14 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_vector_1(array $list_initializer)
+		function vector_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
 				$this->push_back($val);
 			}
 		}
 
-		function _F_vector_2(basic_iterator $first, basic_iterator $last)
+		function vector_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
 		function & reserve(int $size, $fill = null)

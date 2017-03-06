@@ -34,7 +34,7 @@ namespace std
 		var $_M_id;
 		var $_M_name;
 		var $_M_collator;
-		var $_M_caterory = locale_category::all;
+		var $_M_caterory;
 
 		static function canonicalize_id(string $locale_id)
 		{
@@ -43,7 +43,7 @@ namespace std
 				if ($locale_id === false || \strlen($locale_id) < 1) {
 					$locale_id = "en_US_POSIX";
 				}
-			} else if ($locale_id === "C" || $locale_id === "POSIX") {
+			} else if ($locale_id == "C" || $locale_id == "POSIX") {
 				$locale_id = "en_US_POSIX";
 			}
 			return \Locale::canonicalize($locale_id);
@@ -101,6 +101,9 @@ namespace std
 		static function get_classic()
 		{ return make_locale("C"); }
 
+		static function get_posix()
+		{ return make_locale("en_US_POSIX"); }
+
 		function __invoke($l, $r)
 		{ return $this->_M_collator->compare($l, $r); }
 
@@ -110,26 +113,27 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_locale_1(locale &$locale)
+		function locale_1(locale &$locale)
 		{
-			$this->_M_id = $locale->_M_id;
-			$this->_M_name = $locale->_M_name;
+			$this->_M_id       = $locale->_M_id;
+			$this->_M_name     = $locale->_M_name;
 			$this->_M_collator = $locale->_M_collator;
 			$this->_M_caterory = $locale->_M_caterory;
 		}
 
-		function _F_locale_2(string $locale_id, int $collator_level)
+		function locale_2(string $locale_id, int $collator_level)
 		{
-			$this->_M_id = $locale_id;
-			$this->_M_name = locale::canonicalize_id($locale_id);
-			$this->_M_collator = make_collator($this->_M_id, $collator_level);
+			$this->_M_id       = $locale_id;
+			$this->_M_name     = locale::canonicalize_id($locale_id);
+			$this->_M_collator = make_collator($this, $collator_level);
+			$this->_M_caterory = locale_category::all;
 		}
 
-		function _F_locale_3(string $locale_id, int $collator_level, int $category)
+		function locale_3(string $locale_id, int $collator_level, int $category)
 		{
-			$this->_M_id = $locale_id;
-			$this->_M_name = locale::canonicalize_id($locale_id);
-			$this->_M_collator = make_collator($this->_M_id, $collator_level);
+			$this->_M_id       = $locale_id;
+			$this->_M_name     = locale::canonicalize_id($locale_id);
+			$this->_M_collator = make_collator($this, $collator_level);
 			$this->_M_caterory = $category;
 		}
 
@@ -192,8 +196,11 @@ namespace std
 		}
 	} /* EOC */
 
-	function set_locale(int $caterory, string $locale_id, int $collator_level =  collator_level::natural)
-	{
+	function set_locale(
+		  int    $caterory
+		, string $locale_id
+		, int    $collator_level =  collator_level::natural
+	) {
 		return locale::set_global(
 			make_locale(
 				  $locale_id

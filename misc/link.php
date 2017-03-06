@@ -253,12 +253,10 @@ if ($r == $v->end()) {
 	std\cout("last subsequence is at: ")(std\distance($v->begin(), $r))(std\endl);
 }
 
-$s1 = std\make_ordered_set()
-	-> assign_r(
-		std\rbegin($v, 1), std\rend($v, 2)
-	);
-
-print_r($s1);
+$s1 = std\make_ordered_set(
+	std\rbegin($v, 1), std\rend($v, 2)
+);
+std\cout($s1)(std\endl);
 
 $v1 = std\make_vector('a', 'b', 'c', 'f', 'h', 'x');
 $v2 = std\make_vector('a', 'b', 'c');

@@ -29,7 +29,7 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_quint_1(quint &$quint)
+		function quint_1(quint &$quint)
 		{
 			$this->first = $quint->first;
 			$this->second = $quint->second;
@@ -38,7 +38,7 @@ namespace std
 			$this->fifth = $quint->fifth;
 		}
 
-		function _F_quint_2($first, $second, $third, $fourth, $fifth)
+		function quint_2($first, $second, $third, $fourth, $fifth)
 		{
 			$this->first = $first;
 			$this->second = $second;

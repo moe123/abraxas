@@ -26,7 +26,7 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_irange_1(int $len___)
+		function irange_1(int $len___)
 		{
 			for ($i = 0; $i < $len___; $i++) {
 				$this->_M_container[] = $i;
@@ -34,7 +34,7 @@ namespace std
 			}
 		}
 
-		function _F_irange_2(int $pos___, int $len___)
+		function irange_2(int $pos___, int $len___)
 		{
 			for ($i = $pos___; $i < $len___ + $pos___; $i++) {
 				$this->_M_container[] = $i;
@@ -42,7 +42,7 @@ namespace std
 			}
 		}
 
-		function _F_irange_3(int $pos___, int $len___, int $step___)
+		function irange_3(int $pos___, int $len___, int $step___)
 		{
 			if ($step___ == 0) {
 				$step___ = 1;

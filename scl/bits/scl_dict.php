@@ -26,7 +26,7 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_dict_1(array $list_initializer)
+		function dict_1(array $list_initializer)
 		{
 			$c = \count($list_initializer);
 			if (($c & 1) != 0) {
@@ -40,7 +40,7 @@ namespace std
 			}
 		}
 
-		function _F_dict_2(basic_iterator $first, basic_iterator $last)
+		function dict_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
 		function keys()

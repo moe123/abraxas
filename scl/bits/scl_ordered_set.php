@@ -26,14 +26,14 @@ namespace std
 			$this->_F_multi_construct(func_num_args(), func_get_args());
 		}
 
-		function _F_ordered_set_1(array $list_initializer)
+		function ordered_set_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
 				$this->insert($val);
 			}
 		}
 
-		function _F_ordered_set_2(basic_iterator $first, basic_iterator $last)
+		function ordered_set_2(basic_iterator $first, basic_iterator $last)
 		{ $this->assign_r($first, $last); }
 
 		function & reserve(int $size, $fill = null)

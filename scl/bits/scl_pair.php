@@ -26,13 +26,13 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_pair_1(pair &$pair)
+		function pair_1(pair &$pair)
 		{
 			$this->first = $pair->first;
 			$this->second = $pair->second;
 		}
 
-		function _F_pair_2($first, $second)
+		function pair_2($first, $second)
 		{
 			$this->first = $first;
 			$this->second = $second;

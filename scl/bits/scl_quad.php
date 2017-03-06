@@ -28,7 +28,7 @@ namespace std
 		function __construct()
 		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		function _F_quad_1(quad &$quad)
+		function quad_1(quad &$quad)
 		{
 			$this->first = $quad->first;
 			$this->second = $quad->second;
@@ -36,7 +36,7 @@ namespace std
 			$this->fourth = $quad->fourth;
 		}
 
-		function _F_quad_2($first, $second, $third, $fourth)
+		function quad_2($first, $second, $third, $fourth)
 		{
 			$this->first = $first;
 			$this->second = $second;
