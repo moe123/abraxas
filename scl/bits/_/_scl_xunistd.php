@@ -27,6 +27,12 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdlib.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xlocale.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutsname.php";
+	
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xiterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xcontainer_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xoperator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xutility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xalgorithm.php";
 } /* EONS */
 
 namespace std
@@ -228,7 +234,7 @@ namespace std
 
 	function getpid()
 	{
-		if (function_exists('\posix_getpid')) {
+		if (\function_exists('\posix_getpid')) {
 			return posix_getpid();
 		} else {
 			return \getmypid();
@@ -238,7 +244,7 @@ namespace std
 
 	function getppid()
 	{
-		if (function_exists('\posix_getppid')) {
+		if (\function_exists('\posix_getppid')) {
 			return posix_getppid();
 		} else {
 			return \intval(\exec("`which ps` -o ppid= " . \getmypid() . " | xargs"));

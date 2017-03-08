@@ -17,73 +17,10 @@
 namespace std
 {
 	function xformat(string $fmt___, ...$args___)
-	{
-		return xformat_message($fmt___, ...$args___);
-		/*
-		$fmt___ = preg_replace_callback('#\{(?!\{)\}(?!\})#', function($r) {
-			static $_S_idx = 0;
-			return '{'.($_S_idx++).'}';
-		}, $fmt___);
-
-		return \str_replace(
-			array_map(
-				function (&$k) { return '{'.$k.'}'; }
-				, array_keys($args___)
-			)
-			, array_map(
-				function ($v_) {
-					if (\is_float($v_)) {
-						$numfmt = \numfmt_create(\setlocale(\LC_NUMERIC, ""), \NumberFormatter::DECIMAL);
-						\numfmt_set_attribute($numfmt, \NumberFormatter::MAX_FRACTION_DIGITS, 20);
-						if (false !== ($r = \numfmt_format($numfmt, $v_))) {
-							return $r;
-						}
-					} if (\is_object($v_)) {
-						return \strval($v_);
-					}
-					return $v_;
-				}
-				, array_values($args___)
-			)
-			, $fmt___
-		);
-		*/
-	}
+	{ return xformat_message($fmt___, ...$args___); }
 
 	function xformat_l(locale_t $xloc___, string $fmt___, ...$args___)
-	{
-		return xformat_message_l($xloc___, $fmt___, ...$args___);
-
-		/*
-		$fmt___ = preg_replace_callback('#\{(?!\{)\}(?!\})#', function($r) {
-			static $_S_idx = 0;
-			return '{'.($_S_idx++).'}';
-		}, $fmt___);
-
-		return \str_replace(
-			array_map(
-				function (&$k) { return '{'.$k.'}'; }
-				, array_keys($args___)
-			)
-			, array_map(
-				function ($v_) {
-					if (\is_float($v_)) {
-						$numfmt = \numfmt_create($xloc___->u_data[0]["^std@_u_nid"], \NumberFormatter::DECIMAL);
-						\numfmt_set_attribute($numfmt, \NumberFormatter::MAX_FRACTION_DIGITS, 20);
-						if (false !== ($r = \numfmt_format($numfmt, $v_))) {
-							return $r;
-						}
-					} if (\is_object($v_)) {
-						return \strval($v_);
-					}
-					return $v_;
-				}
-				, array_values($args___)
-			)
-			, $fmt___
-		);
-		*/
-	}
+	{ return xformat_message_l($xloc___, $fmt___, ...$args___); }
 
 	function xformatln(string $fmt___, ...$args___)
 	{ return xformat_message($fmt___ . \PHP_EOL, ...$args___); }
@@ -104,9 +41,18 @@ namespace std
 			$i = 0;
 			while (isset($in___[$i])) { ++$i; }
 			if (!$i) {
-				$in___ = "_";
+				$in___ = \chr(0);
 			}
 		}
+	}
+
+	function & bzero(&$dest___, int $n___)
+	{
+		memize($dest___);
+		for ($i = 0; $i < $n___; $i++) {
+			$dest___[$i] = \chr(0);
+		}
+		return $dest___;
 	}
 
 	function & memcpy_r(&$dest___, $src___, int $offset___, int $n___)
@@ -155,6 +101,21 @@ namespace std
 			++$i;
 		}
 		return $i;
+	}
+
+	function strlen(string $s___, int $nullch___ = 0)
+	{
+		if (!$nullch___) {
+			$i = 0;
+			while (isset($s___[$i]) && $s___[$i] !== \chr(0)) {
+				++$i;
+			}
+			return $i;
+		}
+		if (\function_exists('\mb_strlen')) {
+			return \mb_strlen($s___, '8bit');
+		}
+		return \strlen($s___);
 	}
 
 	function & strncpy(string &$dest___, string $src___, int $n___)
@@ -228,86 +189,6 @@ namespace std
 		$r = \strcoll($s1___, $s2___);
 		_F_builtin_unsetlocale($xloc___);
 		return $r;
-	}
-
-	function utf8_glyph_len($c___)
-	{
-		$cp = \ord($c___);
-		if ($cp < 0x80) { return 1; }
-		else if (($cp & 0xE0) == 0xC0) { return 2; }
-		else if (($cp & 0xF0) == 0xE0) { return 3; }
-		else if (($cp & 0xF8) == 0xF0) { return 4; }
-		else if (($cp & 0xFC) == 0xF8) { return 5; }
-		else if (($cp & 0xFE) == 0xFC) { return 6; }
-		_F_throw_builtin_error("Invalid UTF-8 codepoint");
-		return 0;
-	}
-
-	function utf8_glyph_offset($c___)
-	{ return utf8_glyph_len(c) -1; }
-
-	function utf8_is_valid(string $in___)
-	{
-		for ($i = 0 ; i < memlen($in___) ; $i++) {
-			if (utf8_glyph_len($in___[$i]) === 0) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	function utf8_have_bom(string &$in___)
-	{
-		$r = false;
-		if (isset($in___[2])) {
-			$b1 = \ord($in___[0]);
-			$b2 = \ord($in___[1]);
-			$b3 = \ord($in___[2]);
-			if ($b1 == 0xEF && $b2 == 0xBB && $b3 == 0xBF) {
-				$r = true;
-			}
-		}
-		return $r;
-	}
-
-	function utf8_add_bom(string &$in___)
-	{
-		if (!utf8_have_bom($in___)) {
-			$in___ = \chr(0xEF) . \chr(0xBB) . \chr(0xBF) . $in___;
-		}
-	}
-
-	function utf8_del_bom(string &$in___)
-	{
-		if (utf8_have_bom($in___)) {
-			$in___ = memsub($in___, 3, memlen($in___));
-		}
-	}
-
-	function utf8_glyph_count(string $s___)
-	{
-		$out = [];
-		@\preg_match_all("/./u", $s___, $out);
-		return \count($out[0]);
-	}
-
-	function utf8_glyph_split(string $s___, int $l___ = 1)
-	{
-		if ($l___ > 1) {
-			$out = [];
-			@\preg_match_all("/./u", $s___, $out);
-			$arr = \array_chunk($out[0], $l___);
-			$out = \array_map('\implode', $arr);
-			return $out;
-		}
-		return @\preg_split("//u", $s___, -1, PREG_SPLIT_NO_EMPTY);
-	}
-
-	function utf8_glyph_substring(string $s___, int $pos___, int $len___ = -1)
-	{
-		$out = [];
-		@\preg_match_all("/./u", $s___, $out);
-		return \array_slice($out[0], $pos___, $len___ < 1 ? null : $len___);
 	}
 } /* EONS */
 

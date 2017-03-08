@@ -99,10 +99,10 @@ namespace std
 		}
 
 		static function get_classic()
-		{ return make_locale("C"); }
+		{ return new locale("C"); }
 
 		static function get_posix()
-		{ return make_locale("en_US_POSIX"); }
+		{ return new locale("en_US_POSIX"); }
 
 		function __invoke($l, $r)
 		{ return $this->_M_collator->compare($l, $r); }
@@ -125,7 +125,7 @@ namespace std
 		{
 			$this->_M_id       = $locale_id;
 			$this->_M_name     = locale::canonicalize_id($locale_id);
-			$this->_M_collator = make_collator($this, $collator_level);
+			$this->_M_collator = new collator($this, $collator_level);
 			$this->_M_caterory = locale_category::all;
 		}
 
@@ -133,7 +133,7 @@ namespace std
 		{
 			$this->_M_id       = $locale_id;
 			$this->_M_name     = locale::canonicalize_id($locale_id);
-			$this->_M_collator = make_collator($this, $collator_level);
+			$this->_M_collator = new collator($this, $collator_level);
 			$this->_M_caterory = $category;
 		}
 
@@ -202,7 +202,7 @@ namespace std
 		, int    $collator_level =  collator_level::natural
 	) {
 		return locale::set_global(
-			make_locale(
+			new locale(
 				  $locale_id
 				, $collator_level
 				, $caterory

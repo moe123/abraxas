@@ -606,10 +606,10 @@ namespace std
 		{ return $this; }
 
 		function _F_first()
-		{ return make_pair($this->_M_first->_F_first(), $this->_M_second->_F_first()); }
+		{ return new pair($this->_M_first->_F_first(), $this->_M_second->_F_first()); }
 
 		function _F_second()
-		{ return make_pair($this->_M_first->_F_second(), $this->_M_second->_F_second()); }
+		{ return new pair($this->_M_first->_F_second(), $this->_M_second->_F_second()); }
 	}
 } /* EONS */
 

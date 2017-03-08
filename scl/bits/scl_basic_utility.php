@@ -16,14 +16,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xiterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xcontainer_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xoperator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xalgorithm.php";
-
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_" . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
@@ -124,7 +117,7 @@ namespace std
 		} else if (is_tuple($in___)()) {
 			return tuple_size($in___)();
 		} else if (\is_string($in___)) {
-			return \strlen($in___);
+			return strlen($in___);
 		} else if (\is_float($in___)) {
 			return numeric_limits_float::size;
 		} else if (\is_int($in___)) {

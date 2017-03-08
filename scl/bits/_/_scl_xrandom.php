@@ -14,21 +14,6 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xiterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xcontainer_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xoperator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xalgorithm.php";
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
-} /* EONS */
-
 namespace std
 {
 	function _F_builtin_random_dev_1(int $nbytes___)
@@ -82,13 +67,13 @@ namespace std
 	{
 		static $_S_dev = null;
 		if (\is_null($_S_dev)) {
-			if (function_exists('\random_bytes')) {
+			if (\function_exists('\random_bytes')) {
 				$_S_dev[] = '\random_bytes';
 				$_S_dev[] = 32.0;
-			} else if (function_exists('\mcrypt_create_iv')) {
+			} else if (\function_exists('\mcrypt_create_iv')) {
 				$_S_dev[] = '\mcrypt_create_iv';
 				$_S_dev[] = 32.0;
-			} else if (function_exists('\openssl_random_pseudo_bytes')) {
+			} else if (\function_exists('\openssl_random_pseudo_bytes')) {
 				$_S_dev[] = '\openssl_random_pseudo_bytes';
 				$_S_dev[] = 4.0;
 			} else {

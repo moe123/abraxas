@@ -93,7 +93,7 @@ namespace std
 				$idx = 0;
 				foreach ($this->_M_container as $k => &$v) {
 					if ($idx === $index) {
-						return make_pair($k, $v);
+						return new pair($k, $v);
 					}
 					++$idx;
 				}
@@ -154,7 +154,7 @@ namespace std
 			$vec = new vector;
 			if ($this->_M_size > 0) {
 				foreach ($this->_M_container as $k => &$val) {
-					$vec[] = make_pair($k, $val);
+					$vec[] = new pair($k, $val);
 				}
 			}
 			return $vec;
@@ -163,7 +163,7 @@ namespace std
 		function pop_item(string $key)
 		{
 			if (_F_builtin_offset_exists($this->_M_container, $key)) {
-				$pop_item = make_pair($key, $this->_M_container[$key]);
+				$pop_item = new pair($key, $this->_M_container[$key]);
 				unset($this->_M_container[$key]);
 				return $pop_item;
 			}
@@ -183,7 +183,7 @@ namespace std
 		function get_item(string $key)
 		{
 			if (_F_builtin_offset_exists($this->_M_container, $key)) {
-				return make_pair($key, $this->_M_container[$key]);
+				return new pair($key, $this->_M_container[$key]);
 			}
 			_F_throw_logic_error("Key does not exist error");
 			return null;

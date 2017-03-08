@@ -80,6 +80,7 @@ namespace std
 
 	abstract class locale_category
 	{
+		const none     = 0;
 		const collate  = \LC_COLLATE;
 		const ctype    = \LC_CTYPE;
 		const monetary = \LC_MONETARY;
@@ -91,6 +92,7 @@ namespace std
 
 	abstract class xlocale_mask
 	{
+		const none     = 0;
 		const collate  = 1 << 0;
 		const ctype    = 1 << 1;
 		const monetary = 1 << 2;

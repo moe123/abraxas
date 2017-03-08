@@ -71,7 +71,12 @@ namespace std
 		var $_M_locale_name;
 
 		function __invoke($l, $r)
-		{ return $this->_M_builtin_collator->compare(\strval($l), \strval($r)); }
+		{
+			if (false === ($r = $this->_M_builtin_collator->compare(\strval($l), \strval($r)))) {
+				_F_throw_invalid_argument("Invalid type error");
+			}
+			return $r;
+		}
 
 		function __toString()
 		{ return $this->locale_id(); }

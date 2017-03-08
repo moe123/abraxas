@@ -38,7 +38,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___($l, $r);
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r)) > 0;
 			}
 			return $l > $r;
@@ -54,7 +54,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___($l, $r);
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r)) < 0;
 			}
 			return $l < $r;
@@ -136,7 +136,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___(func_get_arg(0), func_get_arg(1));
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r)) == 0;
 			}
 			return $l == $r;
@@ -152,7 +152,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___($l, $r);
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r)) >= 0;
 			}
 			return $l >= $r;
@@ -168,7 +168,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___($l, $r);
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r)) <= 0;
 			}
 			return $l <= $r;
@@ -184,7 +184,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___($l, $r);
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r)) != 0;
 			}
 			return $l != $r;
@@ -200,7 +200,7 @@ namespace std
 			if (!\is_null($f___)) {
 				return $f___($l, $r);
 			}
-			if (\is_string($l) || \is_string($r)) {
+			if (is_string($l) || is_string($r)) {
 				return \strcmp(\strval($l), \strval($r));
 			}
 			if ($l < $r) {
@@ -208,9 +208,6 @@ namespace std
 			}
 			if ($l > $r) {
 				return comparison_result::descending;
-			}
-			if ($l == $r) {
-				return comparison_result::same;
 			}
 			return comparison_result::same;
 		};

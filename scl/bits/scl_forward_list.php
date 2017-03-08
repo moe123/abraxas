@@ -195,7 +195,7 @@ namespace std
 
 		function & reverse()
 		{
-			$this->_F_rev();
+			_F_builtin_reverse($this);
 			return $this;
 		}
 

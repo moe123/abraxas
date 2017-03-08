@@ -188,7 +188,7 @@ namespace std
 				uselocale($xloc___);
 				$pt = \strptime($buf___, $fmt___);
 				_F_builtin_unsetlocale($xloc___);
-				if ($lt !== false) {
+				if ($pt !== false) {
 					$res___->tm_sec   = \intval($pt["tm_sec"]);
 					$res___->tm_min   = \intval($pt["tm_min"]);
 					$res___->tm_hour  = \intval($pt["tm_hour"]);

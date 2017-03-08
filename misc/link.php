@@ -353,8 +353,30 @@ print_r($f2_even);
 print_r($f3_even);
 print_r($f4_even);
 
-print_r(std\utf8_glyph_split("Ilık süt", 3));
-print_r(std\utf8_glyph_split("hello"));
-print_r(std\utf8_glyph_substring("Ilık süt", 2, 3));
+$c = 0;
+print_r(std\_F_builtin_u8gh_split("Ilık süt", $c, 3));
+print_r(std\_F_builtin_u8gh_split("hello", $c));
+print_r(std\_F_builtin_u8gh_subv("Ilık süt", 2, 3));
+
+$a = 'a';
+$b = 'A';
+
+\setlocale (\LC_COLLATE, 'en_US');
+echo "en_US: " . \strcoll ($a, $b) . "\n"; // prints -2
+
+$bin  = chr(0);
+$bin .= chr(0);
+$bin .= chr(0);
+$bin .= chr(0);
+
+echo std\strlen($bin, 1);
+echo std\strlen($bin);
+
+echo $bin;
+
+$array1 = array('zero_a','two_a', 'three_a');
+$array2 = array('one_b', 'three_b', 'four_b');
+$result = $array1 + $array2;
+var_dump($result);
 
 /* EOF */
