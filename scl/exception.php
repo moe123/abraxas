@@ -16,7 +16,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 } /* EONS */
 
 namespace std

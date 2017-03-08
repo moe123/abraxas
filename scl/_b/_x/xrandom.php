@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// _scl_xrandom.php
+// xrandom.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -126,7 +126,7 @@ namespace std
 		return \mt_rand($min___, $max___);
 	}
 
-	function xrandom_u(int $min___ = 0, int $max___ = 0)
+	function xrandom_u_int(int $min___ = 0, int $max___ = 0)
 	{
 		if ($min___ === 0 && $max___ === 0) {
 			$min___ = numeric_limits_int::min;

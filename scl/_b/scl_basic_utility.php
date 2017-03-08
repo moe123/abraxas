@@ -16,7 +16,9 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_" . DIRECTORY_SEPARATOR . "_scl_xunistd.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR .
+						 "_x" . DIRECTORY_SEPARATOR . "xunilib.php";
+
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";
@@ -24,6 +26,17 @@ namespace
 
 namespace std
 {
+	const ignore      = '\std\ignore';
+	const hash        = '\std\hash';
+	const crc32       = '\std\crc32';
+	const cast_int    = '\std\cast_int';
+	const cast_long   = '\std\cast_long';
+	const cast_bool   = '\std\cast_bool';
+	const cast_float  = '\std\cast_float';
+	const cast_double = '\std\cast_double';
+	const cast_str    = '\std\cast_str';
+	const cast_obj    = '\std\cast_obj';
+
 	abstract class comparison_result
 	{
 		const same       = 0;
@@ -51,18 +64,15 @@ namespace std
 		}
 	} /* EOC */
 
-	function ignore()
-	{ return function() { return null; }; }
-
-	const ignore = '\std\ignore';
+	function ignore() { return function() { return null; }; }
 
 	/* Returns integers from start to stop [inclusive] */
-	function xrange_n($start___, $stop___, int $step___ = 1) 
+	function irange_lazy_n(int $start___, int $stop___ = null, int $step___ = 1) 
 	{
 		if (!$step___) {
 			$step___ = 1;
 		}
-		if (is_null($stop___)) {
+		if (\is_null($stop___)) {
 			$stop___ = $start___;
 			$start___ = 0;
 		}
@@ -72,12 +82,12 @@ namespace std
 	}
 
 	/* Returns integers from start to stop [exclusive] */
-	function xrange_p(int $start___, int $stop___ = null, int $step___ = 1) 
+	function irange_lazy_p(int $start___, int $stop___ = null, int $step___ = 1) 
 	{
 		if (!$step___) {
 			$step___ = 1;
 		}
-		if (is_null($stop___)) {
+		if (\is_null($stop___)) {
 			$stop___ = $start___;
 			$start___ = 0;
 		}
@@ -87,12 +97,12 @@ namespace std
 	}
 
 	/* Returns N integers from pos */
-	function xrange(int $pos___ , int $len___ = null, int $step___ = 1) 
+	function irange_lazy(int $pos___ , int $len___ = null, int $step___ = 1) 
 	{
 		if ($step___ == 0) {
 			$step___ = 1;
 		}
-		if (is_null($len___)) {
+		if (\is_null($len___)) {
 			$len___ = $pos___;
 			$pos___ = 0;
 		}
@@ -137,6 +147,20 @@ namespace std
 		return \gettype($in___);
 	}
 
+	function cast_int($x___) { return (int)$x___; }
+
+	function cast_long($x___) { return (int)$x___; }
+
+	function cast_bool($x___) { return (bool)$x___; }
+
+	function cast_float($x___) { return (float)$x___; }
+
+	function cast_double($x___) { return (double)$x___; }
+
+	function cast_str($x___) { return (string)$x___; }
+
+	function cast_obj($x___) { return (object)$x___; }
+
 	function hash($v___)
 	{
 		return function () use ($v___) {
@@ -167,7 +191,7 @@ namespace std
 	function random_int_generator(int $min___ = 0, int $max___ = 0)
 	{
 		return function () use ($min___, $max___) {
-			return xrandom_u($min___, $max___);
+			return xrandom_u_int($min___, $max___);
 		};
 	}
 

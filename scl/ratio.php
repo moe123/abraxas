@@ -16,10 +16,10 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_numeric.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_basic_ratio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "bits" . DIRECTORY_SEPARATOR . "scl_ratio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_numeric.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_basic_ratio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_ratio.php";
 } /* EONS */
 
 /* EOF */

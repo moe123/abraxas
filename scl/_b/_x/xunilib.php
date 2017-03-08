@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// _scl_xunistd.php
+// xunilib.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -16,23 +16,23 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xerrno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xostype.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xrandom.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xsignal.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstring.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xtime.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xtimezone.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xstdlib.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xlocale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_scl_xutsname.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xerrno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xostype.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xrandom.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xsignal.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xstring.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtime.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtimezone.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlocale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xutsname.php";
 	
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xiterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xcontainer_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xoperator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xutility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "_scl_xalgorithm.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xiterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xcontainer_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xoperator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xutility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xalgorithm.php";
 } /* EONS */
 
 namespace std

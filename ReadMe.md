@@ -156,12 +156,12 @@ if ($pos != std\end($v)) {
 
 // range & fast enumeration integration
 
-foreach (std\xrange(8, 10, 2) as $i) {
+foreach (std\irange_lazy(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
 
-foreach (std\xrange(8, 10, -2) as $i) {
+foreach (std\irange_lazy(8, 10, -2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
@@ -356,67 +356,67 @@ PHP7 built with:
 ### Files
 
 ##### Bindings
-> [_scl_xalgorithm](./scl/bits/_/_scl_xalgorithm.php?ts=3)<br>
-> [_scl_xcontainer_traits](./scl/bits/_/_scl_xcontainer_traits.php?ts=3)<br>
-> [_scl_xendian](./scl/bits/_/_scl_xendian.php?ts=3)<br>
-> [_scl_xerrno](./scl/bits/_/_scl_xerrno.php?ts=3)<br>
-> [_scl_xiterator_traits](./scl/bits/_/_scl_xiterator_traits.php?ts=3)<br>
-> [_scl_xlocale](./scl/bits/_/_scl_xlocale.php?ts=3)<br>
-> [_scl_xoperator_traits](./scl/bits/_/_scl_xoperator_traits.php?ts=3)<br>
-> [_scl_xostype](./scl/bits/_/_scl_xostype.php?ts=3)<br>
-> [_scl_xsignal](./scl/bits/_/_scl_xsignal.php?ts=3)<br>
-> [_scl_xstdio](./scl/bits/_/_scl_xstdio.php?ts=3)<br>
-> [_scl_xstdlib](./scl/bits/_/_scl_xstdlib.php?ts=3)<br>
-> [_scl_xstring](./scl/bits/_/_scl_xstring.php?ts=3)<br>
-> [_scl_xtime](./scl/bits/_/_scl_xtime.php?ts=3)<br>
-> [_scl_xtimezone](./scl/bits/_/_scl_xtimezone.php?ts=3)<br>
-> [_scl_xunistd](./scl/bits/_/_scl_xunistd.php?ts=3)<br>
-> [_scl_xutility_traits](./scl/bits/_/_scl_xutility_traits.php?ts=3)<br>
-> [_scl_xutsname](./scl/bits/_/_scl_xutsname.php?ts=3)<br>
+> [xalgorithm](./scl/_b/_x/xalgorithm.php?ts=3)<br>
+> [xcontainer_traits](./scl/_b/_x/xcontainer_traits.php?ts=3)<br>
+> [xendian](./scl/_b/_x/xendian.php?ts=3)<br>
+> [xerrno](./scl/_b/_x/xerrno.php?ts=3)<br>
+> [xiterator_traits](./scl/_b/_x/xiterator_traits.php?ts=3)<br>
+> [xlocale](./scl/_b/_x/xlocale.php?ts=3)<br>
+> [xoperator_traits](./scl/_b/_x/xoperator_traits.php?ts=3)<br>
+> [xostype](./scl/_b/_x/xostype.php?ts=3)<br>
+> [xsignal](./scl/_b/_x/xsignal.php?ts=3)<br>
+> [xio](./scl/_b/_x/xio.php?ts=3)<br>
+> [xlib](./scl/_b/_x/xlib.php?ts=3)<br>
+> [xstring](./scl/_b/_x/xstring.php?ts=3)<br>
+> [xtime](./scl/_b/_x/xtime.php?ts=3)<br>
+> [xtimezone](./scl/_b/_x/xtimezone.php?ts=3)<br>
+> [xunilib](./scl/_b/_x/xunilib.php?ts=3)<br>
+> [xutility_traits](./scl/_b/_x/xutility_traits.php?ts=3)<br>
+> [xutsname](./scl/_b/_x/xutsname.php?ts=3)<br>
 
 ##### Basic implementation
-> [scl_basic_dict](./scl/bits/scl_basic_dict.php?ts=3)<br>
-> [scl_basic_exception](./scl/bits/scl_basic_exception.php?ts=3)<br>
-> [scl_basic_forward_list](./scl/bits/scl_basic_forward_list.php?ts=3)<br>
-> [scl_basic_ios](./scl/bits/scl_basic_ios.php?ts=3)<br>
-> [scl_basic_irange](./scl/bits/scl_basic_irange.php?ts=3)<br>
-> [scl_basic_iteratable](./scl/bits/scl_basic_iteratable.php?ts=3)<br>
-> [scl_basic_ordered_list](./scl/bits/scl_basic_ordered_list.php?ts=3)<br>
-> [scl_basic_ordered_map](./scl/bits/scl_basic_ordered_map.php?ts=3)<br>
-> [scl_basic_ordered_set](./scl/bits/scl_basic_ordered_set.php?ts=3)<br>
-> [scl_basic_ratio](./scl/bits/scl_basic_ratio.php?ts=3)<br>
-> [scl_basic_tuple](./scl/bits/scl_basic_tuple.php?ts=3)<br>
-> [scl_basic_utility](./scl/bits/scl_basic_utility.php?ts=3)<br>
-> [scl_basic_vector](./scl/bits/scl_basic_vector.php?ts=3)<br>
+> [scl_basic_dict](./scl/_b/scl_basic_dict.php?ts=3)<br>
+> [scl_basic_exception](./scl/_b/scl_basic_exception.php?ts=3)<br>
+> [scl_basic_forward_list](./scl/_b/scl_basic_forward_list.php?ts=3)<br>
+> [scl_basic_ios](./scl/_b/scl_basic_ios.php?ts=3)<br>
+> [scl_basic_irange](./scl/_b/scl_basic_irange.php?ts=3)<br>
+> [scl_basic_iteratable](./scl/_b/scl_basic_iteratable.php?ts=3)<br>
+> [scl_basic_ordered_list](./scl/_b/scl_basic_ordered_list.php?ts=3)<br>
+> [scl_basic_ordered_map](./scl/_b/scl_basic_ordered_map.php?ts=3)<br>
+> [scl_basic_ordered_set](./scl/_b/scl_basic_ordered_set.php?ts=3)<br>
+> [scl_basic_ratio](./scl/_b/scl_basic_ratio.php?ts=3)<br>
+> [scl_basic_tuple](./scl/_b/scl_basic_tuple.php?ts=3)<br>
+> [scl_basic_utility](./scl/_b/scl_basic_utility.php?ts=3)<br>
+> [scl_basic_vector](./scl/_b/scl_basic_vector.php?ts=3)<br>
 
 ##### Implementation
-> [scl_algorithm](./scl/bits/scl_algorithm.php?ts=3)<br>
-> [scl_collation](./scl/bits/scl_collation.php?ts=3)<br>
-> [scl_collator](./scl/bits/scl_collator.php?ts=3)<br>
-> [scl_dict](./scl/bits/scl_dict.php?ts=3)<br>
-> [scl_forward_list](./scl/bits/scl_forward_list.php?ts=3)<br>
-> [scl_functional](./scl/bits/scl_functional.php?ts=3)<br>
-> [scl_iostream](./scl/bits/scl_iostream.php?ts=3)<br>
-> [scl_irange](./scl/bits/scl_irange.php?ts=3)<br>
-> [scl_istream](./scl/bits/scl_istream.php?ts=3)<br>
-> [scl_iterator](./scl/bits/scl_iterator.php?ts=3)<br>
-> [scl_locale](./scl/bits/scl_locale.php?ts=3)<br>
-> [scl_numeric_limits](./scl/bits/scl_numeric_limits.php?ts=3)<br>
-> [scl_numeric](./scl/bits/scl_numeric.php?ts=3)<br>
-> [scl_ordered_list](./scl/bits/scl_ordered_list.php?ts=3)<br>
-> [scl_ordered_set](./scl/bits/scl_ordered_set.php?ts=3)<br>
-> [scl_ostream](./scl/bits/scl_ostream.php?ts=3)<br>
-> [scl_pair](./scl/bits/scl_pair.php?ts=3)<br>
-> [scl_quad](./scl/bits/scl_quad.php?ts=3)<br>
-> [scl_quint](./scl/bits/scl_quint.php?ts=3)<br>
-> [scl_random](./scl/bits/scl_random.php?ts=3)<br>
-> [scl_ratio](./scl/bits/scl_ratio.php?ts=3)<br>
-> [scl_system_error](./scl/bits/scl_system_error.php?ts=3)<br>
-> [scl_triad](./scl/bits/scl_triad.php?ts=3)<br>
-> [scl_tuple](./scl/bits/scl_tuple.php?ts=3)<br>
-> [scl_type_traits](./scl/bits/scl_type_traits.php?ts=3)<br>
-> [scl_u8string](./scl/bits/scl_u8string.php?ts=3)<br>
-> [scl_vector](./scl/bits/scl_vector.php?ts=3)<br>
+> [scl_algorithm](./scl/_b/scl_algorithm.php?ts=3)<br>
+> [scl_collation](./scl/_b/scl_collation.php?ts=3)<br>
+> [scl_collator](./scl/_b/scl_collator.php?ts=3)<br>
+> [scl_dict](./scl/_b/scl_dict.php?ts=3)<br>
+> [scl_forward_list](./scl/_b/scl_forward_list.php?ts=3)<br>
+> [scl_functional](./scl/_b/scl_functional.php?ts=3)<br>
+> [scl_iostream](./scl/_b/scl_iostream.php?ts=3)<br>
+> [scl_irange](./scl/_b/scl_irange.php?ts=3)<br>
+> [scl_istream](./scl/_b/scl_istream.php?ts=3)<br>
+> [scl_iterator](./scl/_b/scl_iterator.php?ts=3)<br>
+> [scl_locale](./scl/_b/scl_locale.php?ts=3)<br>
+> [scl_numeric_limits](./scl/_b/scl_numeric_limits.php?ts=3)<br>
+> [scl_numeric](./scl/_b/scl_numeric.php?ts=3)<br>
+> [scl_ordered_list](./scl/_b/scl_ordered_list.php?ts=3)<br>
+> [scl_ordered_set](./scl/_b/scl_ordered_set.php?ts=3)<br>
+> [scl_ostream](./scl/_b/scl_ostream.php?ts=3)<br>
+> [scl_pair](./scl/_b/scl_pair.php?ts=3)<br>
+> [scl_quad](./scl/_b/scl_quad.php?ts=3)<br>
+> [scl_quint](./scl/_b/scl_quint.php?ts=3)<br>
+> [scl_random](./scl/_b/scl_random.php?ts=3)<br>
+> [scl_ratio](./scl/_b/scl_ratio.php?ts=3)<br>
+> [scl_system_error](./scl/_b/scl_system_error.php?ts=3)<br>
+> [scl_triad](./scl/_b/scl_triad.php?ts=3)<br>
+> [scl_tuple](./scl/_b/scl_tuple.php?ts=3)<br>
+> [scl_type_traits](./scl/_b/scl_type_traits.php?ts=3)<br>
+> [scl_u8string](./scl/_b/scl_u8string.php?ts=3)<br>
+> [scl_vector](./scl/_b/scl_vector.php?ts=3)<br>
 
 ##### Public front-end
 > [algorithm](./scl/algorithm.php?ts=3)<br>

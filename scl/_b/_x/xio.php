@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// _scl_xstdio.php
+// xio.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

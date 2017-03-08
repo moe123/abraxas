@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// _scl_xsignal.php
+// xsignal.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

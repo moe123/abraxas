@@ -69,12 +69,12 @@ print_r($a);
 std\cout(std\endl);
 //std\xexit(0);
 
-foreach (std\xrange(8, 10, 2) as $i) {
+foreach (std\irange_lazy(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
 
-foreach (std\xrange(8, 10, -2) as $i) {
+foreach (std\irange_lazy(8, 10, -2) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
@@ -96,17 +96,17 @@ std\cout(std\endl);
 //std\xexit(0);
 
 std\cout(std\xnanoseconds())(std\endl);
-foreach (std\xrange_n(1, 3) as $i) {
+foreach (std\irange_lazy_n(1, 3) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
 
-foreach (std\xrange_p(5, 9) as $i) {
+foreach (std\irange_lazy_p(5, 9) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
 
-foreach (std\xrange(8, 3) as $i) {
+foreach (std\irange_lazy(8, 3) as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
