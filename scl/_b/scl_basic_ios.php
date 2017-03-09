@@ -673,6 +673,10 @@ namespace std
 		{ $this->_M_handle_p = \STDERR; }
 	} /* EOC */
 
+	const cin  = '\std\cin';
+	const cout = '\std\cout';
+	const cerr = '\std\cerr';
+
 	function & cin(&$d___ = null)
 	{
 		static $_S_cin = null;

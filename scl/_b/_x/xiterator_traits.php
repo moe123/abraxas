@@ -534,6 +534,71 @@ namespace std
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->second; }
 	}
 
+	trait _T_ostream_iterator_traits
+	{
+		var $_M_ostr = null;
+		var $_M_sep  = '';
+
+		function __construct(basic_ostream $os___, string $sep___ = '')
+		{
+			$this->_M_ptr  = null;
+			$this->_M_ostr = $os___;
+			$this->_M_sep  = $sep___;
+		}
+
+		function __destruct()
+		{
+			$this->_M_ptr  = null;
+			$this->_M_ostr = null;
+			$this->_M_sep  = null;
+		}
+
+		function & _F_advance(int $dist___ = 1)
+		{
+			++$this->_M_offset;
+			return $this;
+		}
+
+		function & _F_pos()
+		{ return $this->_M_offset; }
+
+		function & _F_seek(int $offset___)
+		{ return $this; }
+
+		function & _F_next()
+		{
+			++$this->_M_offset;
+			return $this;
+		}
+
+		function & _F_prev()
+		{
+			--$this->_M_offset;
+			return $this;
+		}
+
+		function & _F_seek_begin(int $offset___ = -1)
+		{ return $this; }
+
+		function & _F_seek_end(int $offset___ = -1)
+		{ return $this; }
+
+		function _F_is_out()
+		{ return false; }
+
+		function _F_pos_assign($val___)
+		{ $this->_M_ostr($val___)($sep___); }
+
+		function _F_this()
+		{ return $this; }
+
+		function _F_first()
+		{ return $this->_M_offset; }
+
+		function _F_second()
+		{ return $this->_M_offset; }
+	}
+
 	trait _T_pair_iterator_traits
 	{
 		var $_M_first  = null;
@@ -541,12 +606,17 @@ namespace std
 
 		function __construct(basic_iterator $first1___, basic_iterator $first2___)
 		{
-			$this->_M_first = $first1___;
+			$this->_M_ptr    = null;
+			$this->_M_first  = $first1___;
 			$this->_M_second = $first2___;
 		}
 
 		function __destruct()
-		{ $this->_M_ptr = null; }
+		{
+			$this->_M_ptr    = null;
+			$this->_M_first  = null;
+			$this->_M_second = null;
+		}
 
 		function & _F_advance(int $dist___ = 1)
 		{
@@ -556,17 +626,14 @@ namespace std
 		}
 
 		function & _F_pos()
-		{ return 0; }
+		{ return $this->_M_offset; }
 
 		function & _F_seek(int $offset___)
-		{
-			$this->_M_first->_F_seek($offset___);
-			$this->_M_second->_F_seek($offset___);
-			return $this;
-		}
+		{ return $this; }
 
 		function & _F_next()
 		{
+			++$this->_M_offset;
 			$this->_M_first->_F_next();
 			$this->_M_second->_F_next();
 			return $this;
@@ -574,27 +641,20 @@ namespace std
 
 		function & _F_prev()
 		{
+			--$this->_M_offset;
 			$this->_M_first->_F_prev();
 			$this->_M_second->_F_prev();
 			return $this;
 		}
 
 		function & _F_seek_begin(int $offset___ = -1)
-		{
-			$this->_M_first->_F_seek_begin($offset___);
-			$this->_M_second->_F_seek_begin($offset___);
-			return $this;
-		}
+		{ return $this; }
 
 		function & _F_seek_end(int $offset___ = -1)
-		{
-			$this->_M_first->_F_seek_end($offset___);
-			$this->_M_second->_F_seek_end($offset___);
-			return $this;
-		}
+		{ return $this; }
 
 		function _F_is_out()
-		{ return $this->_M_first->_F_is_out(); }
+		{ return $this->_M_first->_F_is_out() && $this->_M_second->_F_is_out(); }
 
 		function _F_pos_assign($val___)
 		{
