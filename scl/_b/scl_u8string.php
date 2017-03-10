@@ -18,7 +18,7 @@ namespace std
 {
 	final class u8string extends basic_u8string
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		function __construct()
 		{

@@ -24,13 +24,13 @@ namespace std
 	{
 		const container_category = basic_iteratable_tag::basic_forward_list;
 
-		use _T_builtin_linked_list_container_traits;
-		use _T_builtin_linked_list_int_operator_traits;
-		use _T_builtin_linked_list_serializable_traits;
-		use _T_builtin_linked_list_debug_traits;
-		use _T_builtin_linked_list_iteratable_traits;
-		use _T_builtin_linked_list_iterative_traits;
-		use _T_builtin_countable_traits;
+		use _T_builtin_linked_list_container;
+		use _T_builtin_linked_list_int_operator;
+		use _T_builtin_linked_list_serializable;
+		use _T_builtin_linked_list_debug;
+		use _T_builtin_linked_list_iteratable;
+		use _T_builtin_linked_list_iterative;
+		use _T_builtin_countable;
 
 		function __toArray()
 		{ return $this->_F_dump(); }

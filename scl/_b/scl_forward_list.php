@@ -18,7 +18,7 @@ namespace std
 {
 	final class forward_list extends basic_forward_list
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		function __construct()
 		{

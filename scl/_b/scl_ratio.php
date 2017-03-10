@@ -18,7 +18,7 @@ namespace std
 {
 	final class ratio extends basic_ratio
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		var $_M_num = 1;
 		var $_M_den = 1;

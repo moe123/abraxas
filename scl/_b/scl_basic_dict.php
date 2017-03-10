@@ -24,13 +24,13 @@ namespace std
 	{
 		const container_category = basic_iteratable_tag::basic_dict;
 
-		use _T_builtin_array_container_traits;
-		use _T_builtin_array_string_operator_traits;
-		use _T_builtin_array_debug_traits;
-		use _T_builtin_array_serializable_traits;
-		use _T_builtin_dict_iterative_traits;
-		use _T_builtin_dict_iteratable_traits;
-		use _T_builtin_countable_traits;
+		use _T_builtin_array_container;
+		use _T_builtin_array_string_operator;
+		use _T_builtin_array_debug;
+		use _T_builtin_array_serializable;
+		use _T_builtin_dict_iterative;
+		use _T_builtin_dict_iteratable;
+		use _T_builtin_countable;
 
 		function __toArray()
 		{ return $this->_M_container; }

@@ -18,7 +18,7 @@ namespace std
 {
 	final class dict extends basic_dict
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		function __construct()
 		{ 

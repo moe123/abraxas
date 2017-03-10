@@ -18,7 +18,7 @@ namespace std
 {
 	final class ordered_list extends basic_ordered_list
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		function __construct()
 		{ 

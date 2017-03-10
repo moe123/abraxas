@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_builtin_array_int_operator_traits
+	trait _T_builtin_array_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -59,7 +59,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_immutable_int_operator_traits
+	trait _T_builtin_array_immutable_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{ /* NOP */ }
@@ -86,7 +86,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_irange_int_operator_traits
+	trait _T_builtin_irange_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{ /* NOP */ }
@@ -113,7 +113,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_set_int_operator_unique_traits
+	trait _T_builtin_set_int_operator_unique
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -160,7 +160,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_string_operator_traits
+	trait _T_builtin_array_string_operator
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -200,7 +200,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_linked_list_int_operator_traits
+	trait _T_builtin_linked_list_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{

@@ -18,7 +18,7 @@ namespace std
 {
 	final class irange extends basic_irange
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		function __construct()
 		{ 

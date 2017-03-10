@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_builtin_exception_traits 
+	trait _T_builtin_exception 
 	{
 		function what() { return $this->getMessage(); }
 		
@@ -26,16 +26,16 @@ namespace std
 	}
 
 	class basic_exception extends \Exception
-	{ use _T_builtin_exception_traits; }
+	{ use _T_builtin_exception; }
 
 	class builtin_error extends \Error
-	{ use _T_builtin_exception_traits; }
+	{ use _T_builtin_exception; }
 
 	class builtin_type_error extends \TypeError
-	{ use _T_builtin_exception_traits; }
+	{ use _T_builtin_exception; }
 
 	class runtime_error extends \Exception
-	{ use _T_builtin_exception_traits; }
+	{ use _T_builtin_exception; }
 
 	class overflow_error extends runtime_error
 	{ /* NOP */ }

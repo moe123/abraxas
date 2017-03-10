@@ -17,7 +17,7 @@
 namespace std
 {
 /* ! - builtin_array */
-	trait _T_builtin_array_container_traits
+	trait _T_builtin_array_container
 	{
 		var $_M_container = null;
 		var $_M_size = -1;
@@ -35,7 +35,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_set_container_traits
+	trait _T_builtin_set_container
 	{
 		var $_M_container = null;
 		var $_M_size = -1;
@@ -53,7 +53,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_mapreduce_traits
+	trait _T_builtin_mapreduce
 	{
 		function & enumerate(\Closure $f___, bool $r___ = false)
 		{
@@ -219,7 +219,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_conformity_traits
+	trait _T_builtin_array_conformity
 	{
 		function _F_is_seq(array $container___, int $size___)
 		{
@@ -281,25 +281,25 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_debug_traits
+	trait _T_builtin_array_debug
 	{
 		function __debugInfo()
 		{ return $this->_M_container; }
 	}
 
-	trait _T_builtin_array_serializable_traits
+	trait _T_builtin_array_serializable
 	{
 		function jsonSerialize()
 		{ return $this->_M_container; }
 	}
 
-	trait _T_builtin_array_iterative_traits
+	trait _T_builtin_array_iterative
 	{
 		function getIterator()
 		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
 	}
 
-	trait _T_builtin_array_iteratable_traits
+	trait _T_builtin_array_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -353,7 +353,7 @@ namespace std
 		{ return new _C_reverse_iterator_array($this, $this->_M_size); }
 	}
 
-	trait _T_builtin_countable_traits
+	trait _T_builtin_countable
 	{
 		function count()
 		{ return $this->_M_size; }
@@ -368,7 +368,7 @@ namespace std
 		var $_M_prev = null;
 	}
 
-	trait _T_builtin_linked_list_container_traits
+	trait _T_builtin_linked_list_container
 	{
 		var $_M_f_node = null;
 		var $_M_l_node = null;
@@ -786,25 +786,25 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_linked_list_debug_traits
+	trait _T_builtin_linked_list_debug
 	{
 		function __debugInfo()
 		{ return $this->_F_dump(); }
 	}
 
-	trait _T_builtin_linked_list_serializable_traits
+	trait _T_builtin_linked_list_serializable
 	{
 		function jsonSerialize()
 		{ return $this->_F_dump(); }
 	}
 
-	trait _T_builtin_linked_list_iterative_traits
+	trait _T_builtin_linked_list_iterative
 	{
 		function getIterator()
 		{ return new _C_builtin_output_iterator_linked_list_adaptor($this); }
 	}
 
-	trait _T_builtin_linked_list_iteratable_traits
+	trait _T_builtin_linked_list_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -851,13 +851,13 @@ namespace std
 
 /* ! - dict */
 
-	trait _T_builtin_dict_iterative_traits
+	trait _T_builtin_dict_iterative
 	{
 		function getIterator()
 		{ return new _C_builtin_output_iterator_associative_adaptor($this); }
 	}
 
-	trait _T_builtin_dict_iteratable_traits
+	trait _T_builtin_dict_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -904,13 +904,13 @@ namespace std
 
 /* ! - map */
 
-	trait _T_builtin_map_iterative_traits
+	trait _T_builtin_map_iterative
 	{
 		function getIterator()
 		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
 	}
 
-	trait _T_builtin_map_iteratable_traits
+	trait _T_builtin_map_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -955,7 +955,7 @@ namespace std
 		{ return new _C_reverse_iterator_map($this, $this->_M_size); }
 	}
 
-	trait _T_builtin_tuple_utils_traits
+	trait _T_builtin_tuple_utils
 	{
 		function _F_expandv(&$dest___, &$v___, &$sz___)
 		{

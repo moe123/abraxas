@@ -27,7 +27,7 @@ namespace std
 
 	final class locale
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		static $_S_global;
 

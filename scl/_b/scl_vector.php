@@ -18,7 +18,7 @@ namespace std
 {
 	final class vector extends basic_vector
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		function __construct()
 		{

@@ -18,8 +18,8 @@ namespace std
 {
 	final class tuple extends basic_tuple
 	{
-		use _T_multi_construct_traits;
-		use _T_builtin_tuple_utils_traits;
+		use _T_multi_construct;
+		use _T_builtin_tuple_utils;
 
 		function __construct()
 		{

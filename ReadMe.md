@@ -118,7 +118,7 @@ std\cout($v);
 ```
 
 #### [*] Iterators
-Abraxas implements five different types of iterators: `Forward-Bidirectional`, `Reverse-Bidirectional`, `Back-Inserter`, `Front-Inserter` and `Pair-Iterator`. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. `Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
+Abraxas implements five different types of iterators: `Forward-Bidirectional`, `Reverse-Bidirectional`, `Back-Inserter`, `Front-Inserter` and `Dual-Iterator`. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. `Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
 
 ```php
 
@@ -187,19 +187,19 @@ std\cout(std\endl);
 
 ...
 
-// pair_iterator madness
+// dual_iterator madness
 
 $c1 = std\make_ordered_list();
 $c2 = std\make_forward_list();
 $c3 = std\make_ordered_list();
 $c4 = std\make_forward_list();
 
-std\copy($v->begin(2), $v->begin(4), std\pair_iterator(
-	std\pair_iterator(
+std\copy($v->begin(2), $v->begin(4), std\duo(
+	std\duo(
 		  std\back_inserter($c1)
 		, std\front_inserter($c2)
 	),
-	std\pair_iterator(
+	std\duo(
 		  std\back_inserter($c3)
 		, std\front_inserter($c4)
 	)
@@ -217,7 +217,7 @@ this is transparent to the end-user).
 It should be noted that unlike the `C++ STL`, for convenience, (as everything is handled 
 at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
 or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
-(however, for well-known reasons, reusing `Inserters` or `Pair-Iterators` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
+(however, for well-known reasons, reusing `Inserters` or `Dual-Iterator` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
 
 ```php
 ...

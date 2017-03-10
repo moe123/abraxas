@@ -55,7 +55,7 @@ namespace std
 	function _F_builtin_real_equal(float $l___, float $r___)
 	{ return (\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
 
-	trait _T_deep_copy_traits
+	trait _T_deep_copy
 	{
 		function __clone() {
 			foreach($this as $k => $v) {
@@ -64,7 +64,7 @@ namespace std
 		}
 	}
 
-	trait _T_multi_construct_traits
+	trait _T_multi_construct
 	{
 		function _F_ctor_call_1(&$cls___, &$argc___, &$argv___)
 		{

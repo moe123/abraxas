@@ -18,7 +18,7 @@ namespace std
 {
 	final class pair
 	{
-		use _T_multi_construct_traits;
+		use _T_multi_construct;
 
 		var $first  = null;
 		var $second = null;
