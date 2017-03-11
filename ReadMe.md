@@ -58,11 +58,11 @@ We try as much as we can to re-introduce type safety on any internal structures 
 
 #### [*] Containers
 It contains sequence containers and associative containers and maybe in the future public 
-container adaptors: `forward_list`, `tuple`, `seq_list`, `vector`, `map`, `dict`, `set` are almost done.
+container adaptors: `forward_list`, `tuple`, `ordered_list`, `vector`, `map`, `dict`, `set` are almost done.
 
 ```php
 
-$l  = std\make_seq_list(
+$l  = std\make_ordered_list(
 	  "Hémimorphite"
 	, "Calcédoine"
 	, "Pastèque"
