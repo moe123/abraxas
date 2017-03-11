@@ -135,9 +135,9 @@ namespace std
 
 		function & _F_pos_assign($val___);
 
-		function & _F_this();
-		function & _F_first();
-		function & _F_second();
+		function _F_this();
+		function _F_first();
+		function _F_second();
 	}
 
 	trait _T_forward_iterator
@@ -215,13 +215,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_offset; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 	}
 
@@ -236,13 +236,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_offset; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 	}
 
@@ -259,13 +259,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->item_at($this->_M_offset); }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_ptr->item_at($this->_M_offset)->first; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->item_at($this->_M_offset)->second; }
 	}
 
@@ -280,13 +280,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->first; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->second; }
 	}
 
@@ -378,7 +378,7 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{
 			if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
 				return $this->_M_ptr->item_at($this->_M_offset);
@@ -388,7 +388,7 @@ namespace std
 			return $this->_M_ptr->_M_container[$this->_M_offset];
 		}
 
-		function & _F_first()
+		function _F_first()
 		{
 			if (
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
@@ -399,7 +399,7 @@ namespace std
 			return $this->_M_offset;
 		}
 
-		function & _F_second()
+		function _F_second()
 		{
 			if (
 				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
@@ -489,13 +489,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_offset; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 	}
 
@@ -510,13 +510,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_offset; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->_F_get_at($this->_M_offset); }
 	}
 
@@ -533,13 +533,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->item_at($this->_M_offset); }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_ptr->item_at($this->_M_offset)->first; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->item_at($this->_M_offset)->second; }
 	}
 
@@ -554,13 +554,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]; }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->first; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_ptr->_M_container[$this->_M_offset]->second; }
 	}
 
@@ -619,17 +619,17 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return $this->_M_offset; }
 
-		function & _F_first()
+		function _F_first()
 		{ return $this->_M_offset; }
 
-		function & _F_second()
+		function _F_second()
 		{ return $this->_M_offset; }
 	}
 
-	trait _T_dual_iterator
+	trait _T_binary_iterator
 	{
 		var $_M_first  = null;
 		var $_M_second = null;
@@ -706,13 +706,13 @@ namespace std
 			return $this;
 		}
 
-		function & _F_this()
+		function _F_this()
 		{ return new pair($this->_M_first->_F_this(), $this->_M_second->_F_this()); }
 
-		function & _F_first()
+		function _F_first()
 		{ return new pair($this->_M_first->_F_first(), $this->_M_second->_F_first()); }
 
-		function & _F_second()
+		function _F_second()
 		{ return new pair($this->_M_first->_F_second(), $this->_M_second->_F_second()); }
 	}
 } /* EONS */

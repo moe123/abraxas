@@ -22,7 +22,7 @@ namespace std
 		const forward_iterator        = 20;
 		const reverse_iterator        = 30;
 		const insert_iterator         = 40;
-		const dual_iterator           = 50;
+		const binary_iterator           = 50;
 
 		const back_insert_iterator    = 41;
 		const front_insert_iterator   = 42;
@@ -232,12 +232,12 @@ namespace std
 		}
 	}
 
-	final class dual_iterator extends basic_iterator
+	final class binary_iterator extends basic_iterator
 	{
-		const iterator_category = basic_iterator_tag::dual_iterator;
+		const iterator_category = basic_iterator_tag::binary_iterator;
 
 		use _T_basic_iterator;
-		use _T_dual_iterator;
+		use _T_binary_iterator;
 
 		function first()
 		{ return $this->_F_first(); }
@@ -280,7 +280,7 @@ namespace std
 	{ return new ostream_iterator($ostream___, $sep___ ); }
 
 	function duo(basic_iterator $first1___, basic_iterator $first2___)
-	{ return new dual_iterator($first1___, $first2___); }
+	{ return new binary_iterator($first1___, $first2___); }
 
 	function & iterator_copy(basic_iterator &$it___)
 	{ return clone $it___; }
