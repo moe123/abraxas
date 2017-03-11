@@ -249,6 +249,9 @@ namespace std
 
 		function & update_r(basic_iterator $first, basic_iterator $last)
 		{
+			if (\is_null($first->_M_ptr)) {
+				_F_throw_invalid_argument("Invalid type error");
+			}
 			if ($first::iterator_category === $last::iterator_category) {
 				if ($first->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
 					while ($first != $last) {

@@ -92,6 +92,9 @@ namespace std
 		, basic_iterator $last___
 		, callable $compare___ = null
 	) {
+		if (\is_null($first___->_M_ptr)) {
+			_F_throw_invalid_argument("Invalid type error");
+		}
 		if ($first___->_M_ptr->_M_size) {
 			if ($first___->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
 				_F_builtin_sort($first___->_M_ptr, $compare___);
@@ -179,6 +182,9 @@ namespace std
 		, basic_iteratable $c2___
 		, insert_iterator $out_first___
 	) {
+		if (\is_null($out_first___->_M_ptr)) {
+			_F_throw_invalid_argument("Invalid type error");
+		}
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
 			$c2 = null;
@@ -218,6 +224,9 @@ namespace std
 		, basic_iteratable $c2___
 		, insert_iterator $out_first___
 	) {
+		if (\is_null($out_first___->_M_ptr)) {
+			_F_throw_invalid_argument("Invalid type error");
+		}
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
 			$c2 = null;
