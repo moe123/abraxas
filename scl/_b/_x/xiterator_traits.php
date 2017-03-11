@@ -629,7 +629,7 @@ namespace std
 		{ return $this->_M_offset; }
 	}
 
-	trait _T_binary_iterator
+	trait _T_duo_iterator
 	{
 		var $_M_first  = null;
 		var $_M_second = null;

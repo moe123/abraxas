@@ -110,6 +110,21 @@ namespace std
 		return $first___;
 	}
 
+	function binary_search(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		,                $val___
+		, callable       $binaryPredicate___ = null
+	)
+	{
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function (&$l, $r) { return $l < $r; };
+		}
+		$first___ = lower_bound($first___, $last___, $val___, $p);
+		return (!($first___ == $last___) && !($p($val___, $first___->_F_this())));
+	}
+
 	function rotate(
 		  basic_iterator $first___
 		, basic_iterator $n_first___
