@@ -249,7 +249,10 @@ namespace std
 
 		function & update_r(basic_iterator $first, basic_iterator $last)
 		{
-			if (\is_null($first->_M_ptr)) {
+			if (
+				$first::iterator_category === basic_iterator_tag::duo_iterator ||
+				$first::iterator_category === basic_iterator_tag::ostream_iterator
+			) {
 				_F_throw_invalid_argument("Invalid type error");
 			}
 			if ($first::iterator_category === $last::iterator_category) {

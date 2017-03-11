@@ -38,6 +38,12 @@ namespace std
 		, basic_iterator $last2___
 		, callable       $compare___ = null
 	) {
+		if (
+			$first1___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$first2___::iterator_category === basic_iterator_tag::insert_iterator
+		) {
+			_F_throw_invalid_argument("Invalid type error");
+		}
 		$s1 = _F_builtin_u8gh_substr(
 			\strval($first1___->_M_ptr)
 			, $first1___->_F_pos()
@@ -92,7 +98,10 @@ namespace std
 		, basic_iterator $last___
 		, callable $compare___ = null
 	) {
-		if (\is_null($first___->_M_ptr)) {
+		if (
+			$first___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$first___::iterator_category === basic_iterator_tag::insert_iterator
+		) {
 			_F_throw_invalid_argument("Invalid type error");
 		}
 		if ($first___->_M_ptr->_M_size) {
@@ -182,7 +191,10 @@ namespace std
 		, basic_iteratable $c2___
 		, insert_iterator $out_first___
 	) {
-		if (\is_null($out_first___->_M_ptr)) {
+		if (
+			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
+		) {
 			_F_throw_invalid_argument("Invalid type error");
 		}
 		if ($c1___->_M_size && $c2___->_M_size) {
@@ -224,7 +236,10 @@ namespace std
 		, basic_iteratable $c2___
 		, insert_iterator $out_first___
 	) {
-		if (\is_null($out_first___->_M_ptr)) {
+		if (
+			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
+		) {
 			_F_throw_invalid_argument("Invalid type error");
 		}
 		if ($c1___->_M_size && $c2___->_M_size) {

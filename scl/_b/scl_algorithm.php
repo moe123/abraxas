@@ -1216,10 +1216,16 @@ namespace std
 		, basic_iterator $last2___
 		, callable       $compare___ = null
 	) {
-		if ((!\is_null($first1___->_M_ptr) && !\is_null($first2___->_M_ptr)) && (
+		if (
+			$first1___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$first2___::iterator_category === basic_iterator_tag::insert_iterator
+		) {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		if (
 			$first1___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string &&
 			$first2___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string
-		)) {
+		) {
 			return _F_builtin_compare_r(
 				  $first1___
 				, $last1___
