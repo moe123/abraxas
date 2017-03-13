@@ -337,12 +337,12 @@ $f2_even = std\make_forward_list();
 $f3_even = std\make_ordered_list();
 $f4_even = std\make_forward_list();
 
-std\copy($v->begin(), $pv, std\iterator_duo(
-	std\iterator_duo(
+std\copy($v->begin(), $pv, std\duo_inserter(
+	std\duo_inserter(
 		  std\back_inserter($f1_even)
 		, std\front_inserter($f2_even)
 	),
-	std\iterator_duo(
+	std\duo_inserter(
 		  std\back_inserter($f3_even)
 		, std\front_inserter($f4_even)
 	)
