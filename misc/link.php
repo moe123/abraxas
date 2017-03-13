@@ -299,9 +299,13 @@ std\cout(": ")
 foreach ($v6 as $i) {
 	std\cout($i)(std\space);
 }
-std\cout(": ")
-	(std\includes($v1->begin(), $v1->end(), $v6->begin(), $v6->end(), std\bond('cmp_nocase')))
-(std\endl);
+std\cout(": ")(std\includes(
+	  $v1->begin()
+	, $v1->end()
+	, $v6->begin()
+	, $v6->end()
+	, std\bond('cmp_nocase')
+))(std\endl);
 
 $v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 std\cout("Original vector: ")(std\endl);
@@ -337,12 +341,12 @@ $f2_even = std\make_forward_list();
 $f3_even = std\make_ordered_list();
 $f4_even = std\make_forward_list();
 
-std\copy($v->begin(), $pv, std\duo_inserter(
-	std\duo_inserter(
+std\copy($v->begin(), $pv, std\duotator(
+	std\duotator(
 		  std\back_inserter($f1_even)
 		, std\front_inserter($f2_even)
 	),
-	std\duo_inserter(
+	std\duotator(
 		  std\back_inserter($f3_even)
 		, std\front_inserter($f4_even)
 	)
@@ -353,30 +357,22 @@ print_r($f2_even);
 print_r($f3_even);
 print_r($f4_even);
 
-$c = 0;
-print_r(std\_X_u8gh_split("Ilık süt", $c, 3));
-print_r(std\_X_u8gh_split("hello", $c));
-print_r(std\_X_u8gh_subv("Ilık süt", 2, 3));
+$v1 = std\make_vector(1, 2, 3, 4, 5);
+$v2 = std\make_vector(3, 4, 5, 6, 7);
+$d0 = std\make_vector();
 
-$a = 'a';
-$b = 'A';
+std\set_union(
+	  $v1->begin()
+	, $v1->end()
+	, $v2->begin()
+	, $v2->end()
+	, std\front_inserter($d0)
+);
 
-\setlocale (\LC_COLLATE, 'en_US');
-echo "en_US: " . \strcoll ($a, $b) . "\n"; // prints -2
+foreach ($d0 as $i) {
+	std\cout($i)(std\space);
+}
 
-$bin  = chr(0);
-$bin .= chr(0);
-$bin .= chr(0);
-$bin .= chr(0);
-
-echo std\strlen($bin, 1);
-echo std\strlen($bin);
-
-echo $bin;
-
-$array1 = array('zero_a','two_a', 'three_a');
-$array2 = array('one_b', 'three_b', 'four_b');
-$result = $array1 + $array2;
-var_dump($result);
+std\cout(std\endl);
 
 /* EOF */

@@ -1038,6 +1038,66 @@ namespace std
 		return $out___;
 	}
 
+	function set_difference(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, basic_iterator $last2___
+		, basic_iterator $out___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		while ($first1___ != $last1___) {
+			if (first2 == last2) {
+				return copy($first1___, $last1___, $out___);
+			}
+			if ($p($first1___->_F_this(), $first2___->_F_this())) {
+				$out___->_F_assign($first1___->_F_this());
+				$out___->_F_next();
+				$first1___->_F_next();
+			} else {
+				if (!$p($first2___->_F_this(), $first1___->_F_this())) {
+					$first1___->_F_next();
+				}
+				$first2___->_F_next();
+			}
+		}
+		return $out___;
+	}
+
+	function set_union(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, basic_iterator $last2___
+		, basic_iterator $out___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		while ($first1___ != $last1___) {
+			if ($first2___ == $last2___)
+				return copy($first1___, $last1___, $out___);
+			if ($p($first2___->_F_this(), $first1___->_F_this())) {
+				$out___->_F_assign($first2___->_F_this());
+				$first2___->_F_next();
+			} else {
+				$out___->_F_assign($first1___->_F_this());
+				if (!$p($first1___->_F_this(), $first2___->_F_this())) {
+					$first2___->_F_next();
+				}
+				$first1___->_F_next();
+			}
+			$out___->_F_next();
+		}
+		return copy($first2___, $last2___, $out___);
+	}
+
 	function replace(
 		  basic_iterator $first___
 		, basic_iterator $last___
