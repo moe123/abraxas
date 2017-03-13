@@ -25,7 +25,7 @@ namespace std
 	function stream_inserter(basic_ostream $ostream___, string $sep___ = '')
 	{ return new ostream_iterator($ostream___, $sep___ ); }
 
-	function iterator_duo(basic_iterator $first1___, basic_iterator $first2___)
+	function duo_inserter(basic_iterator $first1___, basic_iterator $first2___)
 	{ return new duo_iterator($first1___, $first2___); }
 
 	function iterator_copy(basic_iterator &$it___)

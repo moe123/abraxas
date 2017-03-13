@@ -1190,24 +1190,10 @@ namespace std
 	}
 
 	function compare(
-		  basic_iteratable &$c1___
-		, basic_iteratable &$c2___
+		  basic_u8string &$c1___
+		, basic_u8string &$c2___
 		, callable          $compare___ = null
-	) {
-		if (
-			$c1___::container_category === basic_iteratable_tag::basic_u8string &&
-			$c2___::container_category === basic_iteratable_tag::basic_u8string
-		) {
-			return _F_builtin_compare($c1___, $c2___, $compare___);
-		}
-		return lexicographical_compare(
-			  $c1___->begin()
-			, $c1___->end()
-			, $c2___->begin()
-			, $c2___->end()
-			, $compare___
-		);
-	}
+	) { return _F_builtin_compare($c1___, $c2___, $compare___); }
 
 	function compare_r(
 		  basic_iterator $first1___
@@ -1216,31 +1202,18 @@ namespace std
 		, basic_iterator $last2___
 		, callable       $compare___ = null
 	) {
-		if (
-			$first1___::iterator_category === basic_iterator_tag::duo_iterator ||
-			$first2___::iterator_category === basic_iterator_tag::insert_iterator
-		) {
+		if ((
+				$first1___::iterator_category !== basic_iterator_tag::duo_iterator &&
+				$first2___::iterator_category !== basic_iterator_tag::insert_iterator
+			) && (
+				$first1___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string &&
+				$first2___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string
+		)) {
+			return _F_builtin_compare_r($first1___, $last1___, $first2___, $last2___, $compare___);
+		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		if (
-			$first1___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string &&
-			$first2___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string
-		) {
-			return _F_builtin_compare_r(
-				  $first1___
-				, $last1___
-				, $first2___
-				, $last2___
-				, $compare___
-			);
-		}
-		return lexicographical_compare(
-			  $first1___
-			, $last1___
-			, $first2___
-			, $last2___
-			, $compare___
-		);
+		return -1;
 	}
 
 	function sort(
