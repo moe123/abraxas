@@ -16,9 +16,9 @@
 
 namespace std
 {
-	function _F_builtin_random_dev_1(int $nbytes___)
+	function _X_random_dev_1(int $nbytes___)
 	{
-		if (_F_builtin_os_nix() && $nbytes___ > 0) {
+		if (_X_os_nix() && $nbytes___ > 0) {
 			$fp = @\fopen('/dev/urandom', 'rb');
 			if ($fp === false) {
 				$fp = @\fopen('/dev/random', 'rb');
@@ -39,9 +39,9 @@ namespace std
 		return null;
 	}
 
-	function _F_builtin_random_dev_2(int $nbytes___)
+	function _X_random_dev_2(int $nbytes___)
 	{
-		if (_F_builtin_os_nix() && $nbytes___ > 0) {
+		if (_X_os_nix() && $nbytes___ > 0) {
 			if (false !== ($fp = @\popen("`which dd` if=/dev/urandom bs=1 count=" . $nbytes___ . " 2> /dev/null", "r"))) {
 				$r = @\stream_get_contents($fp);
 				@\pclose($fp);
@@ -51,9 +51,9 @@ namespace std
 		return null;
 	}
 
-	function _F_builtin_random_dev_3(int $nbytes___)
+	function _X_random_dev_3(int $nbytes___)
 	{
-		if (_F_builtin_os_nix() && $nbytes___ > 0) {
+		if (_X_os_nix() && $nbytes___ > 0) {
 			if (false !== ($fp = @\popen("`which openssl` rand " . $nbytes___ . " 2> /dev/null", "r"))) {
 				$r = @\stream_get_contents($fp);
 				@\pclose($fp);
@@ -63,7 +63,7 @@ namespace std
 		return null;
 	}
 
-	function _F_builtin_random_slot(float &$ent___)
+	function _X_random_slot(float &$ent___)
 	{
 		static $_S_dev = null;
 		if (\is_null($_S_dev)) {
@@ -84,25 +84,25 @@ namespace std
 		return  $_S_dev[0];
 	}
 
-	function _F_builtin_random()
+	function _X_random()
 	{ return \mt_rand(0, 0x7FFFFFFE); }
 
-	function _F_builtin_random_u(int $upb___)
+	function _X_random_u(int $upb___)
 	{
 		$x = \abs($upb___) + 1;
-		$r = _F_builtin_random() % $x;
+		$r = _X_random() % $x;
 		$i = 0;
 		while($r >= $x) {
-			$r = _F_builtin_random() % $x;
+			$r = _X_random() % $x;
 		}
 		return $r;
 	}
 
-	function _F_builtin_random01()
-	{ return ( _F_builtin_random_u(0x7FFFFFFE) / 0x7FFFFFFE) * 1.0; }
+	function _X_random01()
+	{ return ( _X_random_u(0x7FFFFFFE) / 0x7FFFFFFE) * 1.0; }
 
-	function _F_builtin_random11()
-	{ return (2.0 * ( _F_builtin_random_u(0x7FFFFFFE) / 0x7FFFFFFE)) - 1.0; }
+	function _X_random11()
+	{ return (2.0 * ( _X_random_u(0x7FFFFFFE) / 0x7FFFFFFE)) - 1.0; }
 
 	function xrandom(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
 	{
@@ -121,7 +121,7 @@ namespace std
 			$max___ = \mt_getrandmax();
 		}
 		if ($max___ < $min___) {
-			 _F_builtin_throw_invalid_argument("Invalid argument error");
+			 _X_throw_invalid_argument("Invalid argument error");
 		}
 		return \mt_rand($min___, $max___);
 	}
@@ -139,7 +139,7 @@ namespace std
 	{ return $min___ + (\mt_rand() / \mt_getrandmax()) * ($max___ - $min___); }
 
 	function random()
-	{ return _F_builtin_random(); }
+	{ return _X_random(); }
 } /* EONS */
 
 /* EOF */

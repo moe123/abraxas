@@ -37,7 +37,7 @@ namespace std
 	define('BUILTIN_SINT_LOWEST'  , -PHP_INT_MAX);
 	define('BUILTIN_SINT_MIN'     , PHP_INT_MIN);
 
-	function _F_builtin_deep_copy($v___)
+	function _X_copy($v___)
 	{
 		if (\is_resource($v___) || !\is_object($v___)) {
 			return $v___;
@@ -52,14 +52,14 @@ namespace std
 		return clone $v___;
 	}
 
-	function _F_builtin_real_equal(float $l___, float $r___)
+	function _X_real_equal(float $l___, float $r___)
 	{ return (\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
 
 	trait _T_deep_copy
 	{
 		function __clone() {
 			foreach($this as $k => $v) {
-				$this->{$k} = _F_builtin_deep_copy($v);
+				$this->{$k} = _X_copy($v);
 			}
 		}
 	}
@@ -102,7 +102,7 @@ namespace std
 				$cls = $this->_F_ctor_cls_name();
 				if (!$this->_F_ctor_call_1($cls, $argc___, $argv___)) {
 					if (!$this->_F_ctor_call_2($cls, $argc___, $argv___)) {
-						_F_throw_builtin_error(
+						_X_throw_error(
 							  "No matching constructor for initialization of '" . $cls . "'"
 						);
 					}

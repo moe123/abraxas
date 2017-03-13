@@ -38,7 +38,7 @@ namespace std
 
 		function & reserve(int $size, $fill = null)
 		{
-			_F_builtin_reserve($this, $size, $fill);
+			_X_reserve($this, $size, $fill);
 			return $this;
 		}
 
@@ -71,20 +71,20 @@ namespace std
 
 		function & push_back($val)
 		{
-			_F_builtin_push_back($this, $val);
+			_X_push_back($this, $val);
 			return $this;
 		}
 
 		function & pop_back()
 		{
-			_F_builtin_pop_back($this);
+			_X_pop_back($this);
 			return $this;
 		}
 
 		function & insert(int $index, $val)
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
-				_F_builtin_insert($this, $index, $val);
+				_X_insert($this, $index, $val);
 			} else {
 				_F_throw_out_of_range("Out of Range error");
 			}
@@ -120,7 +120,7 @@ namespace std
 
 		function & assign(vector &$vec)
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			foreach ($vec->_M_container as &$val) {
 				$this->push_back($val);
 			}
@@ -129,7 +129,7 @@ namespace std
 
 		function & assign_r(basic_iterator $first, basic_iterator $last)
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			$this->merge_r($first, $last);
 			return $this;
 		}
@@ -161,7 +161,7 @@ namespace std
 				if (($index + $len) > $this->_M_size) {
 					_F_throw_out_of_range("Out of Range error");
 				}
-				_F_builtin_splice($this, $index, $len);
+				_X_splice($this, $index, $len);
 			} else {
 				_F_throw_out_of_range("Out of Range error");
 			}
@@ -176,19 +176,19 @@ namespace std
 
 		function & erase_from(basic_iterator $first)
 		{
-			_F_builtin_splice($this, $first->_F_pos());
+			_X_splice($this, $first->_F_pos());
 			return $this;
 		}
 
 		function & erase_r(basic_iterator $first, basic_iterator $last)
 		{
-			_F_builtin_splice($this, $first->_F_pos(), distance($first, $last));
+			_X_splice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
 		}
 
 		function & clear()
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			return $this;
 		}
 

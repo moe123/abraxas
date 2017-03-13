@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_builtin_array_int_operator
+	trait _T_x_langarray_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -41,7 +41,7 @@ namespace std
 		function offsetUnset($offset___)
 		{
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				_F_builtin_splice($this->_M_container, $offset___, 1);
+				_X_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			} else {
 				_F_throw_out_of_range("Out of Range error");
@@ -59,7 +59,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_immutable_int_operator
+	trait _T_x_langarray_immutable_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{ /* NOP */ }
@@ -86,7 +86,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_irange_int_operator
+	trait _T_x_irange_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{ /* NOP */ }
@@ -113,17 +113,17 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_set_int_operator_unique
+	trait _T_x_set_int_operator_unique
 	{
 		function offsetSet($offset___, $val___)
 		{
 			if (\is_null($offset___)) {
-				if (!_F_builtin_value_exists($this, $val___)) {
+				if (!_X_value_exists($this, $val___)) {
 					$this->_M_container[] = $val___;
 					++$this->_M_size;
 				}
 			} else if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				if (!_F_builtin_value_exists($this, $val___)) {
+				if (!_X_value_exists($this, $val___)) {
 					$this->_M_container[$offset___] = $val___;
 				}
 			} else {
@@ -142,7 +142,7 @@ namespace std
 		function offsetUnset($offset___)
 		{
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				_F_builtin_splice($this->_M_container, $offset___, 1);
+				_X_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			} else {
 				_F_throw_out_of_range("Out of Range error");
@@ -160,7 +160,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_array_string_operator
+	trait _T_x_langarray_string_operator
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -200,7 +200,7 @@ namespace std
 		}
 	}
 
-	trait _T_builtin_linked_list_int_operator
+	trait _T_x_linkedlist_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{

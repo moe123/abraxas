@@ -40,8 +40,8 @@ namespace std
 	{
 		$v1 = $it1___->_F_this();
 		$v2 = $it2___->_F_this();
-		$it1___->_F_pos_assign($v2);
-		$it2___->_F_pos_assign($v1);
+		$it1___->_F_assign($v2);
+		$it2___->_F_assign($v1);
 	}
 
 	function lower_bound(
@@ -314,9 +314,7 @@ namespace std
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				$out___->_F_pos_assign(
-					_F_builtin_deep_copy($first___->_F_this())
-				);
+				$out___->_F_assign(_X_copy($first___->_F_this()));
 				$out___->_F_next();
 				$first___->_F_next();
 			}
@@ -336,9 +334,7 @@ namespace std
 			while ($first___ != $last___) {
 				$v = $first___->_F_this();
 				if ($unaryPredicate___($v)) {
-					$out___->_F_pos_assign(
-						_F_builtin_deep_copy($v)
-					);
+					$out___->_F_assign(_X_copy($v));
 					$out___->_F_next();
 				}
 				$first___->_F_next();
@@ -356,9 +352,7 @@ namespace std
 	) {
 		$i = 0;
 		while ($i < $count___) {
-			$out___->_F_pos_assign(
-				_F_builtin_deep_copy($first___->_F_this())
-			);
+			$out___->_F_assign(_X_copy($first___->_F_this()));
 			$out___->_F_next();
 			$first___->_F_next();
 			++$i;
@@ -373,9 +367,7 @@ namespace std
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
-				$out___->_F_pos_assign(
-					_F_builtin_deep_copy($last___->_F_this())
-				);
+				$out___->_F_assign(_X_copy($last___->_F_this()));
 				$last___->_F_prev();
 				$out___->_F_next();
 			}
@@ -388,7 +380,7 @@ namespace std
 	function fill(basic_iterator $first___, basic_iterator $last___, $val___)
 	{
 		while ($first___ != $last___) {
-			$first___->_F_pos_assign($val___);
+			$first___->_F_assign($val___);
 			$first___->_F_next();
 		}
 	}
@@ -396,7 +388,7 @@ namespace std
 	function fill_n(basic_iterator $first___, int $count___, $val___)
 	{
 		for ($i = 0; $i < $count___; $i++) {
-			$first___->_F_pos_assign($val___);
+			$first___->_F_assign($val___);
 			$first___->_F_next();
 		}
 		return $first___;
@@ -408,7 +400,7 @@ namespace std
 		, callable       $generator___
 	) {
 		while ($first___ != $last___) {
-			$first___->_F_pos_assign($generator___());
+			$first___->_F_assign($generator___());
 			$first___->_F_next();
 		}
 	}
@@ -419,7 +411,7 @@ namespace std
 		, callable       $generator___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
-			$first___->_F_pos_assign($generator___());
+			$first___->_F_assign($generator___());
 			$first___->_F_next();
 		}
 	}
@@ -430,7 +422,7 @@ namespace std
 		,                 $val___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
-			$out___->_F_pos_assign($val___);
+			$out___->_F_assign($val___);
 			$out___->_F_next();
 		}
 	}
@@ -441,7 +433,7 @@ namespace std
 		, callable        $generator___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
-			$out___->_F_pos_assign($generator___());
+			$out___->_F_assign($generator___());
 			$out___->_F_next();
 		}
 	}
@@ -452,7 +444,7 @@ namespace std
 		,                 $val___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
-			$out___->_F_pos_assign($val___);
+			$out___->_F_assign($val___);
 			$out___->_F_next();
 			++$val___;
 		}
@@ -465,7 +457,7 @@ namespace std
 		, callable        $nextOperation___
 	) {
 		for ($i = 0; $i < $count___; $i++) {
-			$out___->_F_pos_assign($val___);
+			$out___->_F_assign($val___);
 			$out___->_F_next();
 			$val___ = $nextOperation___($val___);
 		}
@@ -477,7 +469,7 @@ namespace std
 		,                $val___
 	) {
 		while ($first___ != $last___) {
-			$first___->_F_pos_assign($val___);
+			$first___->_F_assign($val___);
 			$first___->_F_next();
 			++$val___;
 		}
@@ -490,7 +482,7 @@ namespace std
 		, callable       $nextOperation___
 	) {
 		while ($first___ != $last___) {
-			$first___->_F_pos_assign($val___);
+			$first___->_F_assign($val___);
 			$first___->_F_next();
 			$val___ = $nextOperation___($val___);
 		}
@@ -517,10 +509,10 @@ namespace std
 					return copy($first1___, $last1___, $out___);
 				}
 				if ($p($first2___->_F_this(), $first1___->_F_this())) {
-					$out___->_F_pos_assign($first2___->_F_this());
+					$out___->_F_assign($first2___->_F_this());
 					$first2___->_F_next();
 				} else {
-					$out___->_F_pos_assign($first1___->_F_this());
+					$out___->_F_assign($first1___->_F_this());
 					$first1___->_F_next();
 				}
 				$out___->_F_next();
@@ -533,7 +525,7 @@ namespace std
 	}
 
 	function reverse(basic_iteratable &$c___)
-	{ _F_builtin_reverse($c___); }
+	{ _X_reverse($c___); }
 
 	function reverse_r(basic_iterator $first___, basic_iterator $last___)
 	{
@@ -548,7 +540,7 @@ namespace std
 	}
 
 	function unique(basic_iteratable &$c___, callable $binaryPredicate___ = null)
-	{ _F_builtin_unique($c___, $binaryPredicate___); }
+	{ _X_unique($c___, $binaryPredicate___); }
 
 	function unique_r(
 		  basic_iterator $first___
@@ -560,7 +552,7 @@ namespace std
 		$it = clone $first___;
 		while ($first___->_F_next() != $last___) {
 			if (!($it->_F_this() == $first___->_F_this()) && $it->_F_next() != $first___) {
-				$it->_F_pos_assign($first___->_F_this());
+				$it->_F_assign($first___->_F_this());
 			}
 		}
 		$it->_F_next();
@@ -582,7 +574,7 @@ namespace std
 		$it = clone $first___;
 		while ($first___->_F_next() != $last___) {
 			if (!$p($it->_F_this(), $first___->_F_this()) && $it->_F_next() != $first___) {
-				$it->_F_pos_assign($first___->_F_this());
+				$it->_F_assign($first___->_F_this());
 			}
 		}
 		$it->_F_next();
@@ -1033,7 +1025,7 @@ namespace std
 						$first1___->_F_next();
 				} else {
 					if (!$p($first2___->_F_this(), $first1___->_F_this())) {
-							$out___->_F_pos_assign($first1___->_F_this());
+							$out___->_F_assign($first1___->_F_this());
 							$out___->_F_next();
 							$first1___->_F_next();
 					}
@@ -1055,7 +1047,7 @@ namespace std
 		if ($first___ != $last___) {
 			while ($first___ != $last___) {
 				if ($first___->_F_this() == $old_value___) {
-					$first___->_F_pos_assign($new_value);
+					$first___->_F_assign($new_value);
 				}
 				$first___->_F_next();
 			}
@@ -1071,7 +1063,7 @@ namespace std
 		if ($first___ != $last___) {
 			while ($first___ != $last___) {
 				if ($unaryPredicate___($first___->_F_this())) {
-					$first___->_F_pos_assign($new_value);
+					$first___->_F_assign($new_value);
 				}
 				$first___->_F_next();
 			}
@@ -1089,7 +1081,7 @@ namespace std
 			while ($it != $last___) {
 				$v = $it->_F_this();
 				if (!($v == $val___)) {
-					$first___->_F_pos_assign($v);
+					$first___->_F_assign($v);
 					$first___->_F_next();
 				}
 				$it->_F_next();
@@ -1109,7 +1101,7 @@ namespace std
 			while ($it != $last___) {
 				$v = $it->_F_this();
 				if (!$unaryPredicate___($v)) {
-					$first___->_F_pos_assign($v);
+					$first___->_F_assign($v);
 					$first___->_F_next();
 				}
 				$it->_F_next();
@@ -1125,7 +1117,7 @@ namespace std
 		, callable       $unaryOperation___
 	) {
 		while ($first___ != $last___) {
-			$out___->_F_pos_assign(
+			$out___->_F_assign(
 				$unaryOperation___($first___->_F_this())
 			);
 			$out___->_F_next();
@@ -1142,7 +1134,7 @@ namespace std
 		, callable       $binaryOperation___
 	) {
 		while ($first1___ != $last1___) {
-			$out___->_F_pos_assign(
+			$out___->_F_assign(
 				$binaryOperation___($first1___->_F_this(), $first2___->_F_this())
 			);
 			$out___->_F_next();
@@ -1192,8 +1184,14 @@ namespace std
 	function compare(
 		  basic_u8string &$c1___
 		, basic_u8string &$c2___
-		, callable          $compare___ = null
-	) { return _F_builtin_compare($c1___, $c2___, $compare___); }
+		, callable        $compare___ = null
+	) { return _X_compare($c1___, $c2___, $compare___); }
+
+	function compare_s(
+		  string   $u8s1___
+		, string   $u8s2___
+		, callable $compare___ = null
+	) { return _X_compare_s($u8s1___, $u8s2___, $compare___); }
 
 	function compare_r(
 		  basic_iterator $first1___
@@ -1201,31 +1199,18 @@ namespace std
 		, basic_iterator $first2___
 		, basic_iterator $last2___
 		, callable       $compare___ = null
-	) {
-		if ((
-				$first1___::iterator_category !== basic_iterator_tag::duo_iterator &&
-				$first2___::iterator_category !== basic_iterator_tag::insert_iterator
-			) && (
-				$first1___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string &&
-				$first2___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string
-		)) {
-			return _F_builtin_compare_r($first1___, $last1___, $first2___, $last2___, $compare___);
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return -1;
-	}
+	) { return _X_compare_r($first1___, $last1___, $first2___, $last2___, $compare___); }
 
 	function sort(
 		  basic_iteratable &$c___
 		, callable          $compare___ = null
-	) { _F_builtin_sort($c___, $compare___); }
+	) { _X_sort($c___, $compare___); }
 
 	function sort_r(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $compare___ = null
-	) { _F_builtin_sort_r($first___, $last___, $compare___); }
+	) { _X_sort_r($first___, $last___, $compare___); }
 } /* EONS */
 
 /* EOF */

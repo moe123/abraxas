@@ -30,7 +30,7 @@ namespace std
 
 		function __construct()
 		{
-			$this->_M_dev = _F_builtin_random_slot($this->_M_ent);
+			$this->_M_dev = _X_random_slot($this->_M_ent);
 			$this->_M_ini = \bin2hex(($this->_M_dev)(16));
 		}
 

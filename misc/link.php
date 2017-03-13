@@ -53,7 +53,7 @@ $n1 = $l->num();
 $d1 = $l->den();
 $n2 = $r->num();
 $d2 = $r->den();
-std\_F_builtin_ratio_reduce($n1, $d1, $n2, $d2);
+std\_X_ratio_reduce($n1, $d1, $n2, $d2);
 
 //std\cout($n1)("/")($d1)(std\tab)($n2)("/")($d2);
 
@@ -354,9 +354,9 @@ print_r($f3_even);
 print_r($f4_even);
 
 $c = 0;
-print_r(std\_F_builtin_u8gh_split("Ilık süt", $c, 3));
-print_r(std\_F_builtin_u8gh_split("hello", $c));
-print_r(std\_F_builtin_u8gh_subv("Ilık süt", 2, 3));
+print_r(std\_X_u8gh_split("Ilık süt", $c, 3));
+print_r(std\_X_u8gh_split("hello", $c));
+print_r(std\_X_u8gh_subv("Ilık süt", 2, 3));
 
 $a = 'a';
 $b = 'A';

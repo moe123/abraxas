@@ -38,14 +38,14 @@ namespace std
 
 		function & reserve(int $size, $fill = null)
 		{
-			_F_builtin_reserve($this, $size, $fill);
+			_X_reserve($this, $size, $fill);
 			return $this;
 		}
 
 		function & insert($val)
 		{
-			if (!_F_builtin_value_exists($this, $val)) {
-				_F_builtin_push_front($this, $val);
+			if (!_X_value_exists($this, $val)) {
+				_X_push_front($this, $val);
 			}
 			return $this;
 		}
@@ -79,7 +79,7 @@ namespace std
 
 		function & assign(set &$oset)
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			foreach ($oset->_M_container as &$val) {
 				$this->insert($val);
 			}
@@ -88,7 +88,7 @@ namespace std
 
 		function & assign_r(basic_iterator $first, basic_iterator $last)
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			$this->merge_r($first, $last);
 			return $this;
 		}
@@ -120,7 +120,7 @@ namespace std
 				if (($index + $len) > $this->_M_size) {
 					_F_throw_out_of_range("Out of Range error");
 				}
-				_F_builtin_splice($this, $index, $len);
+				_X_splice($this, $index, $len);
 			} else {
 				_F_throw_out_of_range("Out of Range error");
 			}
@@ -135,19 +135,19 @@ namespace std
 
 		function & erase_from(basic_iterator $first)
 		{
-			_F_builtin_splice($this, $first->_F_pos());
+			_X_splice($this, $first->_F_pos());
 			return $this;
 		}
 
 		function & erase_r(basic_iterator $first, basic_iterator $last)
 		{
-			_F_builtin_splice($this, $first->_F_pos(), distance($first, $last));
+			_X_splice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
 		}
 
 		function & clear()
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			return $this;
 		}
 

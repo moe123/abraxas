@@ -114,7 +114,7 @@ namespace std
 		var $u_data = [];
 	}
 
-	function _F_builtin_unsetlocale(locale_t &$xloc___)
+	function _X_unsetlocale(locale_t &$xloc___)
 	{
 		if ($xloc___->u_data[0]["^std@_u_rst"]) {
 			\setlocale(
@@ -212,7 +212,7 @@ namespace std
 	{
 		uselocale($xloc___);
 		$lc = localeconv();
-		_F_builtin_unsetlocale($xloc___);
+		_X_unsetlocale($xloc___);
 		return $lc;
 	}
 

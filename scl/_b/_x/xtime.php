@@ -120,7 +120,7 @@ namespace std
 
 	function strftime(string &$dest___, string $fmt___, tm &$tm___)
 	{
-		if (_F_builtin_os_darwin()) {
+		if (_X_os_darwin()) {
 			if (false !== \strpos($fmt___, "%P")) {
 				$i = 0;
 				while (isset($fmt___[$i])) {
@@ -149,13 +149,13 @@ namespace std
 		} else {
 			$dest___ = \strftime($fmt___, timelocale($tm___));
 		}
-		_F_builtin_unsetlocale($xloc___);
+		_X_unsetlocale($xloc___);
 		return $dest___;
 	}
 
 	function strptime(string $buf___, string $fmt___, tm &$res___)
 	{
-		if (!_F_builtin_os_windows()) {
+		if (!_X_os_windows()) {
 			$buflen = \strlen($buf___);
 			if ($buflen) {
 				$pt = \strptime($buf___, $fmt___);
@@ -182,12 +182,12 @@ namespace std
 
 	function strptime_l(string $buf___, string $fmt___, tm &$res___, locale_t $xloc___)
 	{
-		if (!_F_builtin_os_windows()) {
+		if (!_X_os_windows()) {
 			$buflen = \strlen($buf___);
 			if ($buflen) {
 				uselocale($xloc___);
 				$pt = \strptime($buf___, $fmt___);
-				_F_builtin_unsetlocale($xloc___);
+				_X_unsetlocale($xloc___);
 				if ($pt !== false) {
 					$res___->tm_sec   = \intval($pt["tm_sec"]);
 					$res___->tm_min   = \intval($pt["tm_min"]);
@@ -345,7 +345,7 @@ namespace std
 
 	function difftime(int $time1___, int $time0___)
 	{
-		if (_F_builtin_os_64bit()) {
+		if (_X_os_64bit()) {
 			return time1 - time0;
 		}
 		return \floatval(time1) - \floatval(time0);

@@ -16,7 +16,7 @@
 
 namespace std
 {
-	const _N_builtin_zonetab = [
+	const _N_x_zonetab = [
 		[ "offset" => (12 * 60)        , "stdzone" => "NZST", "dlzone" => "NZDT"    ], /* New Zealand */
 		[ "offset" => (10 * 60)        , "stdzone" => "AEST", "dlzone" => "AEDT"    ], /* Aust: Eastern */
 		[ "offset" => ((9 * 60) + 30)  , "stdzone" => "ACST", "dlzone" => "ACDT"    ], /* Aust: Central */
@@ -46,9 +46,9 @@ namespace std
 		[ "offset" => (-12 * 60)       , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
 	];
 
-	function _F_builtin_tztab(int $zone___, int $dst___)
+	function _X_tztab(int $zone___, int $dst___)
 	{
-		foreach (_N_builtin_zonetab as &$v) {
+		foreach (_N_x_zonetab as &$v) {
 			if ($v["offset"] ==  -($zone___)) {
 				if ($dst___ && !\is_null($v["dlzone"])) {
 					return $v["dlzone"];
@@ -71,7 +71,7 @@ namespace std
 		);
 	}
 
-	function _F_builtin_tzname(string $tzabbr___)
+	function _X_tzname(string $tzabbr___)
 	{
 		if ($tzabbr___ != "GMT" && $tzabbr___ != "UTC") {
 			if (false !== ($tz = \timezone_name_from_abbr($tzabbr___))) {
@@ -82,9 +82,9 @@ namespace std
 		return "Europe/London";
 	}
 
-	function _F_builtin_tzsys_1()
+	function _X_tzsys_1()
 	{
-		if (!_F_builtin_os_windows()) {
+		if (!_X_os_windows()) {
 			if (false !== ($tz = @\readlink("/etc/localtime"))) {
 				if (false !== ($tz = \substr($tz, 20))) {
 					seterrno(NOERR);
@@ -92,15 +92,15 @@ namespace std
 				}
 			}
 		} else {
-			return _F_builtin_tzsys_2();
+			return _X_tzsys_2();
 		}
 		seterrno(EINVAL);
-		return _F_builtin_tzsys_2();
+		return _X_tzsys_2();
 	}
 
-	function _F_builtin_tzsys_2()
+	function _X_tzsys_2()
 	{
-		if (_F_builtin_os_windows()) {
+		if (_X_os_windows()) {
 			$cmd = "tzutil /g";
 		} else {
 			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d'/' -f7,8";
@@ -110,12 +110,12 @@ namespace std
 			return $tz;
 		}
 		seterrno(EINVAL);
-		return _F_builtin_tzsys_3();
+		return _X_tzsys_3();
 	}
 
-	function _F_builtin_tzsys_3()
+	function _X_tzsys_3()
 	{
-		if (!_F_builtin_os_windows()) {
+		if (!_X_os_windows()) {
 			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
 				if (false !== ($tz != \timezone_name_from_abbr($tz))) {
 					seterrno(NOERR);
@@ -124,10 +124,10 @@ namespace std
 			}
 		}
 		seterrno(EINVAL);
-		return _F_builtin_tzsys_4();
+		return _X_tzsys_4();
 	}
 
-	function _F_builtin_tzsys_4()
+	function _X_tzsys_4()
 	{
 		if (false !== ($tz = \getenv("TZNAME"))) {
 			seterrno(NOERR);
@@ -138,10 +138,10 @@ namespace std
 			return $tz;
 		}
 		seterrno(EINVAL);
-		return _F_builtin_tzsys_5();
+		return _X_tzsys_5();
 	}
 
-	function _F_builtin_tzsys_5()
+	function _X_tzsys_5()
 	{
 		$l = \file_get_contents("http://ip-api.com/json");
 		$a = \json_decode($l, true);
@@ -150,11 +150,11 @@ namespace std
 			return $a["timezone"];
 		}
 		seterrno(EINVAL);
-		return _F_builtin_tzname("GMT");
+		return _X_tzname("GMT");
 	}
 
 	function tzsys()
-	{ return _F_builtin_tzsys_1(); }
+	{ return _X_tzsys_1(); }
 
 	function tzname()
 	{ return \date_default_timezone_get(); }
@@ -202,7 +202,7 @@ namespace std
 	{ return tzset(); }
 
 	function timezone(int $zone___, int $dst___)
-	{ return _F_builtin_tztab($zone___, $dst___); }
+	{ return _X_tztab($zone___, $dst___); }
 } /* EONS */
 
 /* EOF */

@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_builtin_exception 
+	trait _T_x_exception 
 	{
 		function what() { return $this->getMessage(); }
 		
@@ -26,16 +26,16 @@ namespace std
 	}
 
 	class basic_exception extends \Exception
-	{ use _T_builtin_exception; }
+	{ use _T_x_exception; }
 
-	class builtin_error extends \Error
-	{ use _T_builtin_exception; }
+	class x_error extends \Error
+	{ use _T_x_exception; }
 
-	class builtin_type_error extends \TypeError
-	{ use _T_builtin_exception; }
+	class x_type_error extends \TypeError
+	{ use _T_x_exception; }
 
 	class runtime_error extends \Exception
-	{ use _T_builtin_exception; }
+	{ use _T_x_exception; }
 
 	class overflow_error extends runtime_error
 	{ /* NOP */ }
@@ -58,11 +58,11 @@ namespace std
 	class out_of_range extends logic_error
 	{ /* NOP */ }
 
-	function _F_throw_builtin_error(string $what)
-	{ throw new builtin_error($what); }
+	function _X_throw_error(string $what)
+	{ throw new x_error($what); }
 
-	function _F_throw_builtin_type_error(string $what)
-	{ throw new builtin_type_error($what); }
+	function _X_throw_type_error(string $what)
+	{ throw new x_type_error($what); }
 
 	function _F_throw_logic_error(string $what)
 	{ throw new logic_error($what); }

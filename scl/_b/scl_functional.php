@@ -389,7 +389,7 @@ namespace std
 		try {
 			return $f___(...$args___);
 		} catch(\Throwable $ex) {
-			_F_throw_builtin_error("Invocation failure : ". $ex->getMessage());
+			_X_throw_error("Invocation failure : ". $ex->getMessage());
 		};
 		return null;
 	}
@@ -399,7 +399,7 @@ namespace std
 		try {
 			return $f___(...$args___);
 		} catch(\Throwable $ex) {
-			_F_throw_builtin_error("Invocation failure : ". $ex->getMessage());
+			_X_throw_error("Invocation failure : ". $ex->getMessage());
 		};
 		return null;
 	}

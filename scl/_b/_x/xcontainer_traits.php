@@ -16,8 +16,7 @@
 
 namespace std
 {
-/* ! - builtin_array */
-	trait _T_builtin_array_container
+	trait _T_x_langarray_container
 	{
 		var $_M_container = null;
 		var $_M_size = -1;
@@ -33,27 +32,9 @@ namespace std
 			$this->_M_size = 0;
 			$this->_M_container = null;
 		}
-	}
+	} /* EOT */
 
-	trait _T_builtin_set_container
-	{
-		var $_M_container = null;
-		var $_M_size = -1;
-
-		function __construct()
-		{
-			$this->_M_size = 0;
-			$this->_M_container = [];
-		}
-
-		function __destruct()
-		{
-			$this->_M_size = 0;
-			$this->_M_container = null;
-		}
-	}
-
-	trait _T_builtin_mapreduce
+	trait _T_x_mapreduce
 	{
 		function & enumerate(\Closure $f___, bool $r___ = false)
 		{
@@ -99,7 +80,7 @@ namespace std
 				}
 				return $this;
 			}
-		}
+		} /* EOT */
 
 		/**
 		* object map(\Closure $f___)
@@ -217,9 +198,9 @@ namespace std
 			}
 			return $self;
 		}
-	}
+	} /* EOT */
 
-	trait _T_builtin_array_conformity
+	trait _T_x_langarray_conformity
 	{
 		function _F_is_seq(array $container___, int $size___)
 		{
@@ -279,27 +260,27 @@ namespace std
 				)
 			);
 		}
-	}
+	} /* EOT */
 
-	trait _T_builtin_array_debug
+	trait _T_x_langarray_debug
 	{
 		function __debugInfo()
 		{ return $this->_M_container; }
-	}
+	} /* EOT */
 
-	trait _T_builtin_array_serializable
+	trait _T_x_langarray_serializable
 	{
 		function jsonSerialize()
 		{ return $this->_M_container; }
-	}
+	} /* EOT */
 
-	trait _T_builtin_array_iterative
+	trait _T_x_langarray_iterative
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
-	}
+		{ return new _C_x_outiter_sequential_adaptor($this); }
+	} /* EOT */
 
-	trait _T_builtin_array_iteratable
+	trait _T_x_langarray_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -351,24 +332,22 @@ namespace std
 
 		function reverse_iterator()
 		{ return new _C_reverse_iterator_array($this, $this->_M_size); }
-	}
+	} /* EOT */
 
-	trait _T_builtin_countable
+	trait _T_x_countable
 	{
 		function count()
 		{ return $this->_M_size; }
-	}
+	} /* EOT */
 
-/* ! - linked_list */
-
-	class _C_builtin_list_node
+	class _C_x_list_node
 	{
 		var $_M_data = null;
 		var $_M_next = null;
 		var $_M_prev = null;
-	}
+	} /* EOC */
 
-	trait _T_builtin_linked_list_container
+	trait _T_x_linkedlist_container
 	{
 		var $_M_f_node = null;
 		var $_M_l_node = null;
@@ -414,7 +393,7 @@ namespace std
 
 		function & _F_insert_first(&$d___)
 		{
-			$n = new _C_builtin_list_node;
+			$n = new _C_x_list_node;
 			$n->_M_data = $d___;
 			if ($this->_M_size < 1) {
 				$this->_M_l_node = $n;
@@ -429,7 +408,7 @@ namespace std
 
 		function _F_insert_last(&$d___)
 		{
-			$n = new _C_builtin_list_node;
+			$n = new _C_x_list_node;
 			$n->_M_data = $d___;
 			if ($this->_M_size < 1) {
 				$this->_M_f_node = $n;
@@ -451,7 +430,7 @@ namespace std
 						return false;
 					}
 				}
-				$n = new _C_builtin_list_node;
+				$n = new _C_x_list_node;
 				$n->_M_data = $d___;
 
 				if ($c == $this->_M_l_node) {
@@ -497,7 +476,7 @@ namespace std
 					++$i;
 				}
 
-				$n = new _C_builtin_list_node;
+				$n = new _C_x_list_node;
 				$n->_M_data = $d___;
 
 				if ($c == $this->_M_l_node) {
@@ -784,34 +763,34 @@ namespace std
 			$this->_M_l_node = null;
 			$this->_M_size = 0;
 		}
-	}
+	} /* EOT */
 
-	trait _T_builtin_linked_list_debug
+	trait _T_x_linkedlist_debug
 	{
 		function __debugInfo()
 		{ return $this->_F_dump(); }
-	}
+	} /* EOT */
 
-	trait _T_builtin_linked_list_serializable
+	trait _T_x_linkedlist_serializable
 	{
 		function jsonSerialize()
 		{ return $this->_F_dump(); }
-	}
+	} /* EOT */
 
-	trait _T_builtin_linked_list_iterative
+	trait _T_x_linkedlist_iterative
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_linked_list_adaptor($this); }
-	}
+		{ return new _C_x_outiter_linkedlist_adaptor($this); }
+	} /* EOT */
 
-	trait _T_builtin_linked_list_iteratable
+	trait _T_x_linkedlist_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
 			if ($offset___ < 0) {
 				$offset___ = 0;
 			}
-			return new _C_forward_iterator_linked_list($this, $offset___);
+			return new _C_forward_iterator_linkedlist($this, $offset___);
 		}
 
 		function end(int $offset___ = -1)
@@ -819,7 +798,7 @@ namespace std
 			if ($offset___ < 0) {
 				$offset___ = $this->_M_size;
 			}
-			return new _C_forward_iterator_linked_list($this, $offset___);
+			return new _C_forward_iterator_linkedlist($this, $offset___);
 		}
 
 		function rbegin($offset___ = -1)
@@ -829,7 +808,7 @@ namespace std
 			} else {
 				$offset___ = $this->_M_size - $offset___;
 			}
-			return new _C_reverse_iterator_linked_list($this, $offset___);
+			return new _C_reverse_iterator_linkedlist($this, $offset___);
 		}
 
 		function rend($offset___ = -1)
@@ -839,25 +818,23 @@ namespace std
 			} else {
 				$offset___ = $this->_M_size - $offset___ - 1;
 			}
-			return new _C_reverse_iterator_linked_list($this, $offset___);
+			return new _C_reverse_iterator_linkedlist($this, $offset___);
 		}
 
 		function iterator()
-		{ return new _C_forward_iterator_linked_list($this, 0); }
+		{ return new _C_forward_iterator_linkedlist($this, 0); }
 
 		function reverse_iterator()
-		{ return new _C_reverse_iterator_linked_list($this, $this->_M_size); }
-	}
+		{ return new _C_reverse_iterator_linkedlist($this, $this->_M_size); }
+	} /* EOT */
 
-/* ! - dict */
-
-	trait _T_builtin_dict_iterative
+	trait _T_x_dict_iterative
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_associative_adaptor($this); }
+		{ return new _C_x_outiter_associative_adaptor($this); }
 	}
 
-	trait _T_builtin_dict_iteratable
+	trait _T_x_dict_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -900,17 +877,15 @@ namespace std
 
 		function reverse_iterator()
 		{ return new _C_reverse_iterator_dict($this, $this->_M_size); }
-	}
+	} /* EOT */
 
-/* ! - map */
-
-	trait _T_builtin_map_iterative
+	trait _T_x_map_iterative
 	{
 		function getIterator()
-		{ return new _C_builtin_output_iterator_sequential_adaptor($this); }
-	}
+		{ return new _C_x_outiter_sequential_adaptor($this); }
+	} /* EOT */
 
-	trait _T_builtin_map_iteratable
+	trait _T_x_map_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -953,9 +928,9 @@ namespace std
 
 		function reverse_iterator()
 		{ return new _C_reverse_iterator_map($this, $this->_M_size); }
-	}
+	} /* EOT */
 
-	trait _T_builtin_tuple_utils
+	trait _T_x_tuple_utils
 	{
 		function _F_expandv(&$dest___, &$v___, &$sz___)
 		{
@@ -993,7 +968,7 @@ namespace std
 				$this->_F_expandv($this->_M_container, $v, $this->_M_size);
 			}
 		}
-	}
+	} /* EOT */
 } /* EONS */
 
 /* EOF */

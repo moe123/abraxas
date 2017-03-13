@@ -50,7 +50,7 @@ namespace std
 
 		function & assign($val___)
 		{
-			$this->_F_pos_assign($v___);
+			$this->_F_assign($v___);
 			return $this;
 		}
 
@@ -91,7 +91,7 @@ namespace std
 		
 		function & assign($val___)
 		{
-			$this->_F_pos_assign($val___);
+			$this->_F_assign($val___);
 			return $this;
 		}
 
@@ -129,7 +129,7 @@ namespace std
 
 		function & assign($val___)
 		{
-			$this->_F_pos_assign($val___);
+			$this->_F_assign($val___);
 			return $this;
 		}
 
@@ -155,10 +155,10 @@ namespace std
 	} /* EOC */
 
 	final class _C_forward_iterator_array extends forward_iterator
-	{ use _T_forward_iterator_builtin_array; }
+	{ use _T_forward_iterator_x_langarray; }
 
-	final class _C_forward_iterator_linked_list extends forward_iterator
-	{ use _T_forward_iterator_linked_list; }
+	final class _C_forward_iterator_linkedlist extends forward_iterator
+	{ use _T_forward_iterator_linkedlist; }
 
 	final class _C_forward_iterator_dict extends forward_iterator
 	{ use _T_forward_iterator_dict; }
@@ -167,10 +167,10 @@ namespace std
 	{ use _T_forward_iterator_map; }
 
 	final class _C_reverse_iterator_array extends reverse_iterator
-	{ use _T_reverse_iterator_builtin_array; }
+	{ use _T_reverse_iterator_x_langarray; }
 
-	final class _C_reverse_iterator_linked_list extends reverse_iterator
-	{ use _T_reverse_iterator_linked_list; }
+	final class _C_reverse_iterator_linkedlist extends reverse_iterator
+	{ use _T_reverse_iterator_linkedlist; }
 
 	final class _C_reverse_iterator_dict extends reverse_iterator
 	{ use _T_reverse_iterator_dict; }
@@ -209,7 +209,7 @@ namespace std
 		
 		function & assign($val___)
 		{
-			$this->_F_pos_assign($val___);
+			$this->_F_assign($val___);
 			return $this;
 		}
 
@@ -247,7 +247,7 @@ namespace std
 		
 		function & assign($val___)
 		{
-			$this->_F_pos_assign($val___);
+			$this->_F_assign($val___);
 			return $this;
 		}
 

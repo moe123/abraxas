@@ -69,7 +69,7 @@ namespace std
 
 	function xmilliseconds()
 	{
-		if (_F_builtin_os_64bit()) {
+		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
 			return (\intval($tm[1]) * 1000) + (\intval(\round($tm[0] * 1000)));
 		}
@@ -79,7 +79,7 @@ namespace std
 
 	function xmicroseconds()
 	{
-		if (_F_builtin_os_64bit()) {
+		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
 			return (\intval($tm[1])) * 1000000 + (\intval(\round($tm[0] * 1000000)));
 		}
@@ -89,7 +89,7 @@ namespace std
 
 	function xnanoseconds()
 	{
-		if (_F_builtin_os_64bit()) {
+		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
 			return (\intval($tm[1])) * 1000000000 + (\intval(\round($tm[0] * 1000000000)));
 		}
@@ -109,7 +109,7 @@ namespace std
 
 	function getdomainname(string &$dest___, int $destsz___ = -1)
 	{
-		if (_F_builtin_os_windows()) {
+		if (_X_os_windows()) {
 			$cmd = "wmic computersystem get domain";
 		} else {
 			$cmd = "`which domainname`";

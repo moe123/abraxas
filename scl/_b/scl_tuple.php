@@ -19,7 +19,7 @@ namespace std
 	final class tuple extends basic_tuple
 	{
 		use _T_multi_construct;
-		use _T_builtin_tuple_utils;
+		use _T_x_tuple_utils;
 
 		function __construct()
 		{
@@ -30,7 +30,7 @@ namespace std
 		function tuple_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
-				_F_builtin_push_back($this->_M_container, $val);
+				_X_push_back($this->_M_container, $val);
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace std
 				$this->_F_unpackv($list_initializer);
 			} else {
 				foreach ($list_initializer as &$val) {
-					_F_builtin_push_back($this->_M_container, $val);
+					_X_push_back($this->_M_container, $val);
 				}
 			}
 		}

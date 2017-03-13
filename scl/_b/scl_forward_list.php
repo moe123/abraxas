@@ -38,7 +38,7 @@ namespace std
 
 		function & reserve(int $size, $fill = null)
 		{
-			_F_builtin_reserve($this, $size, $fill);
+			_X_reserve($this, $size, $fill);
 			return $this;
 		}
 
@@ -121,7 +121,7 @@ namespace std
 
 		function & assign(forward_list &$fwdl)
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			$this->_F_merge($fwdl, $val);
 			return $this;
 		}
@@ -188,14 +188,14 @@ namespace std
 		function & sort(callable $compare = null)
 		{
 			if ($this->_M_size) {
-				_F_builtin_sort($this, $compare);
+				_X_sort($this, $compare);
 			}
 			return $this;
 		}
 
 		function & reverse()
 		{
-			_F_builtin_reverse($this);
+			_X_reverse($this);
 			return $this;
 		}
 
@@ -207,7 +207,7 @@ namespace std
 
 		function & clear()
 		{
-			_F_builtin_clear_all($this);
+			_X_clear_all($this);
 			return $this;
 		}
 	}

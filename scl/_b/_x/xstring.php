@@ -187,7 +187,7 @@ namespace std
 	{
 		uselocale($xloc___);
 		$r = \strcoll($s1___, $s2___);
-		_F_builtin_unsetlocale($xloc___);
+		_X_unsetlocale($xloc___);
 		return $r;
 	}
 } /* EONS */

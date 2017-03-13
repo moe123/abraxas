@@ -66,13 +66,13 @@ namespace std
 
 	final class collator
 	{
-		var $_M_builtin_collator;
+		var $_M_x_collator;
 		var $_M_locale_id;
 		var $_M_locale_name;
 
 		function __invoke($l, $r)
 		{
-			if (false === ($r = $this->_M_builtin_collator->compare(\strval($l), \strval($r)))) {
+			if (false === ($r = $this->_M_x_collator->compare(\strval($l), \strval($r)))) {
 				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $r;
@@ -85,7 +85,7 @@ namespace std
 		{
 			$this->_M_locale_id        = $locale->_M_id;
 			$this->_M_locale_name      = locale::canonicalize_id($this->_M_locale_id);
-			$this->_M_builtin_collator = new \Collator($this->_M_locale_name);
+			$this->_M_x_collator = new \Collator($this->_M_locale_name);
 			$this->set_level($collator_level);
 		}
 
@@ -96,34 +96,34 @@ namespace std
 		{ return $this->_M_locale_name; }
 
 		function name()
-		{ return $this->_M_builtin_collator->getLocale(\Locale::VALID_LOCALE); }
+		{ return $this->_M_x_collator->getLocale(\Locale::VALID_LOCALE); }
 
 		function set_mode(int $mode, int $mode_value)
-		{ $this->_M_builtin_collator->setAttribute($mode, $mode_value); }
+		{ $this->_M_x_collator->setAttribute($mode, $mode_value); }
 
 		function get_mode(int $mode)
-		{ $this->_M_builtin_collator->getAttribute($mode); }
+		{ $this->_M_x_collator->getAttribute($mode); }
 
 		function set_level(int $level)
-		{ $this->_M_builtin_collator->setStrength($level); }
+		{ $this->_M_x_collator->setStrength($level); }
 
 		function get_level()
-		{ return $this->_M_builtin_collator->getStrength(); }
+		{ return $this->_M_x_collator->getStrength(); }
 
 		function compare($l, $r)
-		{ return $this->_M_builtin_collator->compare(\strval($l), \strval($r)); }
+		{ return $this->_M_x_collator->compare(\strval($l), \strval($r)); }
 
 		function & swap(collator &$collator)
 		{
-			$coll = $this->_M_builtin_collator;
+			$coll = $this->_M_x_collator;
 			$lcid  = $this->_M_locale_id;
 			$lcnm  = $this->_M_locale_name;
 
-			$this->_M_builtin_collator = $collator->_M_builtin_collator;
+			$this->_M_x_collator = $collator->_M_x_collator;
 			$this->_M_locale_id = $collator->_M_locale_id;
 			$this->_M_locale_name = $collator->_M_locale_name;
 
-			$collator->_M_builtin_collator = $coll;
+			$collator->_M_x_collator = $coll;
 			$collator->_M_locale_id = $lcid;
 			$collator->_M_locale_name = $lcnm;
 

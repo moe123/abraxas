@@ -24,13 +24,13 @@ namespace std
 	{
 		const container_category = basic_iteratable_tag::basic_ordered_list;
 
-		use _T_builtin_array_container;
-		use _T_builtin_array_int_operator;
-		use _T_builtin_array_debug;
-		use _T_builtin_array_serializable;
-		use _T_builtin_array_iterative;
-		use _T_builtin_array_iteratable;
-		use _T_builtin_countable;
+		use _T_x_langarray_container;
+		use _T_x_langarray_int_operator;
+		use _T_x_langarray_debug;
+		use _T_x_langarray_serializable;
+		use _T_x_langarray_iterative;
+		use _T_x_langarray_iteratable;
+		use _T_x_countable;
 
 		function __toArray()
 		{ return $this->_M_container; }

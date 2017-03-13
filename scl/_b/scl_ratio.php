@@ -29,7 +29,7 @@ namespace std
 
 		function ratio_1(float $x)
 		{
-			_F_builtin_ratio_nearest($x, $this->_M_num, $this->_M_den);
+			_X_ratio_nearest($x, $this->_M_num, $this->_M_den);
 			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
 
@@ -240,7 +240,7 @@ namespace std
 	function & ratio_muliply(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_F_builtin_ratio_multiply(
+		_X_ratio_multiply(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -255,7 +255,7 @@ namespace std
 	function & ratio_divide(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_F_builtin_ratio_divide(
+		_X_ratio_divide(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -270,7 +270,7 @@ namespace std
 	function & ratio_add(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_F_builtin_ratio_add(
+		_X_ratio_add(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -285,7 +285,7 @@ namespace std
 	function & ratio_subtract(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_F_builtin_ratio_subtract(
+		_X_ratio_subtract(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -309,7 +309,7 @@ namespace std
 		$d1 = $l->den();
 		$n2 = $r->num();
 		$d2 = $r->den();
-		_F_builtin_ratio_reduce($n1, $d1, $n2, $d2);
+		_X_ratio_reduce($n1, $d1, $n2, $d2);
 		return $n1 == $n2;
 		*/
 		return ($l->mir() == $r->mir());
