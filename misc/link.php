@@ -369,10 +369,11 @@ std\set_union(
 	, std\front_inserter($d0)
 );
 
-foreach ($d0 as $i) {
-	std\cout($i)(std\space);
+$it = $d0->begin();
+while ($it != $d0->end()) {
+	std\cout($it->second())(std\space);
+	$it->next();
 }
-
 std\cout(std\endl);
 
 /* EOF */

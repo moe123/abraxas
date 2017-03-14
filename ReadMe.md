@@ -283,6 +283,28 @@ if ($r == $v->end()) {
 
 ...
 
+$v1 = std\make_vector(1, 2, 3, 4, 5);
+$v2 = std\make_vector(3, 4, 5, 6, 7);
+$d0 = std\make_vector();
+
+std\set_union(
+	  $v1->begin()
+	, $v1->end()
+	, $v2->begin()
+	, $v2->end()
+	, std\front_inserter($d0)
+);
+
+$it = $d0->begin();
+while ($it != $d0->end()) {
+	std\cout($it->second())(std\space);
+	$it->next();
+}
+std\cout(std\endl);
+// 7 6 5 4 3 2 1
+
+...
+
 ```
 
 #### [*] Functional / Functors
