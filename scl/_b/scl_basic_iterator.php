@@ -50,7 +50,7 @@ namespace std
 
 		function & assign($val___)
 		{
-			$this->_F_assign($v___);
+			$this->_F_assign($val___);
 			return $this;
 		}
 
