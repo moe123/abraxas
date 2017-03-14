@@ -581,6 +581,61 @@ namespace std
 		return $it;
 	}
 
+	function unique_copy(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $out___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			if ($first___ == $last___) {
+				return $out___;
+			}
+			$out___->_F_assign($first___->_F_this());
+			while ($first___ != $last___) {
+				$first___->_F_next();
+				$v = $first___->_F_this();
+				if ($out___->_F_this() != $v) {
+					$out___->_F_next();
+					$out___->_F_assign($v);
+				}
+			}
+			$out___->_F_next();
+		} else {
+			_X_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
+	function unique_copy_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $out___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, &$r) { return $l == $r; };
+			}
+			if ($first___ == $last___) {
+				return $out___;
+			}
+			$out___->_F_assign($first___->_F_this());
+			while ($first___ != $last___) {
+				$first___->_F_next();
+				$v = $first___->_F_this();
+				if (!$p($out___->_F_this(), $v)) {
+					$out___->_F_next();
+					$out___->_F_assign($v);
+				}
+			}
+			$out___->_F_next();
+		} else {
+			_X_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
 	function accumulate(
 		  basic_iterator $first___
 		, basic_iterator $last___
