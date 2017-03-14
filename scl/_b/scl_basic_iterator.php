@@ -154,8 +154,8 @@ namespace std
 		}
 	} /* EOC */
 
-	final class _C_forward_iterator_array extends forward_iterator
-	{ use _T_forward_iterator_x_langarray; }
+	final class _C_forward_iterator_langarray extends forward_iterator
+	{ use _T_forward_iterator_langarray; }
 
 	final class _C_forward_iterator_linkedlist extends forward_iterator
 	{ use _T_forward_iterator_linkedlist; }
@@ -166,8 +166,8 @@ namespace std
 	final class _C_forward_iterator_map extends forward_iterator
 	{ use _T_forward_iterator_map; }
 
-	final class _C_reverse_iterator_array extends reverse_iterator
-	{ use _T_reverse_iterator_x_langarray; }
+	final class _C_reverse_iterator_langarray extends reverse_iterator
+	{ use _T_reverse_iterator_langarray; }
 
 	final class _C_reverse_iterator_linkedlist extends reverse_iterator
 	{ use _T_reverse_iterator_linkedlist; }

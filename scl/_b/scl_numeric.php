@@ -55,7 +55,7 @@ namespace std
 			$m___ = \intval($m___ / $gcd);
 			$n___ = \intval($n___ / $gcd);
 		} else {
-			_F_throw_overflow_error("Divide by zero error");
+			_X_throw_overflow_error("Divide by zero error");
 		}
 	}
 
@@ -113,7 +113,7 @@ namespace std
 			$num2___ = $n2;
 			$den2___ = $lcm;
 		} else {
-			_F_throw_overflow_error("Divide by zero error");
+			_X_throw_overflow_error("Divide by zero error");
 		}
 	}
 

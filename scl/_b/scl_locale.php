@@ -197,8 +197,8 @@ namespace std
 	} /* EOC */
 
 	function set_locale(
-		  int    $caterory
-		, string $locale_id
+		  string $locale_id
+		, int    $caterory       = locale_category::all
 		, int    $collator_level =  collator_level::natural
 	) {
 		return locale::set_global(

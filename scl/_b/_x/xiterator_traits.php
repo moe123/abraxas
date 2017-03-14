@@ -22,7 +22,7 @@ namespace std
 		var $_M_ptr = null;
 	}
 
-	final class _C_x_fwditer_sequential_adaptor
+	final class _C_fwditer_sequential_adaptor
 		implements \Iterator
 	{
 		use _T_basic_iterator;
@@ -54,7 +54,7 @@ namespace std
 		}
 	}
 
-	final class _C_x_fwditer_linkedlist_adaptor
+	final class _C_fwditer_linkedlist_adaptor
 		implements \Iterator
 	{
 		use _T_basic_iterator;
@@ -86,7 +86,7 @@ namespace std
 		}
 	}
 
-	final class _C_x_fwditer_associative_adaptor
+	final class _C_fwditer_associative_adaptor
 		implements \Iterator
 	{
 		use _T_basic_iterator;
@@ -160,7 +160,7 @@ namespace std
 				$this->_M_offset++;
 			}
 			if ($this->_M_offset > $this->_M_ptr->_M_size) {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -204,7 +204,7 @@ namespace std
 		{ return $this->_M_offset > $this->_M_ptr->_M_size; }
 	}
 
-	trait _T_forward_iterator_x_langarray
+	trait _T_forward_iterator_langarray
 	{
 		function & _F_assign($val___)
 		{
@@ -310,7 +310,7 @@ namespace std
 				$this->_M_offset++;
 			}
 			if ($this->_M_offset > $this->_M_ptr->_M_size) {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -433,7 +433,7 @@ namespace std
 				--$this->_M_offset;
 			}
 			if ($this->_M_offset < -1) {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -478,7 +478,7 @@ namespace std
 		{ return $this->_M_offset < -1; }
 	}
 	
-	trait _T_reverse_iterator_x_langarray
+	trait _T_reverse_iterator_langarray
 	{
 		function & _F_assign($val___)
 		{

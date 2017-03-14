@@ -71,7 +71,7 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				return $this->_F_get_at($index);
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -89,7 +89,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -108,7 +108,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -147,7 +147,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}

@@ -30,7 +30,7 @@ namespace std
 		{
 			$c = \count($list_initializer);
 			if (($c & 1) != 0) {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			for ($i = 0; $i < $c; $i += 2) {
 				$this->set(
@@ -68,7 +68,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -83,7 +83,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -98,7 +98,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -113,7 +113,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_F_throw_logic_error("Key does not exist error");
+			_X_throw_logic_error("Key does not exist error");
 			return -1;
 		}
 
@@ -128,7 +128,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_F_throw_logic_error("Value does not exist error");
+			_X_throw_logic_error("Value does not exist error");
 			return -1;
 		}
 
@@ -145,7 +145,7 @@ namespace std
 				unset($this->_M_container[$key]);
 				return $pop;
 			}
-			_F_throw_logic_error("Key does not exist error");
+			_X_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
@@ -167,7 +167,7 @@ namespace std
 				unset($this->_M_container[$key]);
 				return $pop_item;
 			}
-			_F_throw_logic_error("Key does not exist error");
+			_X_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
@@ -176,7 +176,7 @@ namespace std
 			if (_X_offset_exists($this->_M_container, $key)) {
 				return $this->_M_container[$key];
 			}
-			_F_throw_logic_error("Key does not exist error");
+			_X_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
@@ -185,7 +185,7 @@ namespace std
 			if (_X_offset_exists($this->_M_container, $key)) {
 				return new pair($key, $this->_M_container[$key]);
 			}
-			_F_throw_logic_error("Key does not exist error");
+			_X_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
@@ -253,7 +253,7 @@ namespace std
 				$first::iterator_category === basic_iterator_tag::duo_iterator ||
 				$first::iterator_category === basic_iterator_tag::ostream_iterator
 			) {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			if ($first::iterator_category === $last::iterator_category) {
 				if ($first->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
@@ -270,10 +270,10 @@ namespace std
 						$first->next();
 					}
 				} else {
-					_F_throw_invalid_argument("Invalid type error");
+					_X_throw_invalid_argument("Invalid type error");
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}

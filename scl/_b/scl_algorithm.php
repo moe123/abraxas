@@ -61,7 +61,7 @@ namespace std
 				$it = clone $first___; 
 				$step = \intval($cnt / 2);
 				if ($step < 1) {
-					_F_throw_out_of_range("Out of Range error");
+					_X_throw_out_of_range("Out of Range error");
 					return $first___;
 				}
 				$it->_F_advance($step);
@@ -94,7 +94,7 @@ namespace std
 				$it = clone $first___; 
 				$step = \intval($cnt / 2);
 				if ($step < 1) {
-					_F_throw_out_of_range("Out of Range error");
+					_X_throw_out_of_range("Out of Range error");
 					return $first___;
 				}
 				$it->_F_advance($step);
@@ -319,7 +319,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out___;
 	}
@@ -340,7 +340,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out___;
 	}
@@ -372,7 +372,7 @@ namespace std
 				$out___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out___;
 	}
@@ -519,7 +519,7 @@ namespace std
 			}
 			return copy($first2___, $last2___, $out___);
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out___;
 	}
@@ -535,7 +535,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 	}
 
@@ -592,7 +592,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $init___;
 	}
@@ -613,7 +613,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $init___;
 	}
@@ -631,7 +631,7 @@ namespace std
 				$first2___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $init___;
 	}
@@ -659,7 +659,7 @@ namespace std
 				$first2___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $init___;
 	}
@@ -674,7 +674,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $last___;
 	}
@@ -692,7 +692,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $last___;
 	}
@@ -710,7 +710,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $last___;
 	}
@@ -738,7 +738,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $last___;
 	}
@@ -807,7 +807,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $last___;
 	}
@@ -835,7 +835,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $last___;
 	}
@@ -857,7 +857,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $unaryFunction___;
 	}
@@ -961,7 +961,7 @@ namespace std
 			}
 			return true;
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return false;
 	}
@@ -980,7 +980,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $ret;
 	}
@@ -999,7 +999,7 @@ namespace std
 				$first___->_F_next();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $ret;
 	}
@@ -1033,7 +1033,7 @@ namespace std
 				}
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out___;
 	}

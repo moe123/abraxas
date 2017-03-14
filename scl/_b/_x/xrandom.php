@@ -16,6 +16,14 @@
 
 namespace std
 {
+	const random_upper_bound  = '\std\random_upper_bound';
+	const random_real_01      = '\std\random_real_01';
+	const random_real_11      = '\std\random_real_11';
+
+	const random              = '\std\random';
+	const random_uniform_int  = '\std\random_uniform_int';
+	const random_uniform_real = '\std\random_uniform_real';
+
 	function _X_random_dev_1(int $nbytes___)
 	{
 		if (_X_os_nix() && $nbytes___ > 0) {
@@ -84,27 +92,24 @@ namespace std
 		return  $_S_dev[0];
 	}
 
-	function _X_random()
-	{ return \mt_rand(0, 0x7FFFFFFE); }
-
-	function _X_random_u(int $upb___)
+	function random_upper_bound(int $upb___)
 	{
 		$x = \abs($upb___) + 1;
-		$r = _X_random() % $x;
+		$r = \mt_rand(0, 0x7FFFFFFE) % $x;
 		$i = 0;
 		while($r >= $x) {
-			$r = _X_random() % $x;
+			$r = \mt_rand(0, 0x7FFFFFFE) % $x;
 		}
 		return $r;
 	}
 
-	function _X_random01()
-	{ return ( _X_random_u(0x7FFFFFFE) / 0x7FFFFFFE) * 1.0; }
+	function random_real_01()
+	{ return (random_upper_bound(0x7FFFFFFE) / 0x7FFFFFFE) * 1.0; }
 
-	function _X_random11()
-	{ return (2.0 * ( _X_random_u(0x7FFFFFFE) / 0x7FFFFFFE)) - 1.0; }
+	function random_real_11()
+	{ return (2.0 * (random_upper_bound(0x7FFFFFFE) / 0x7FFFFFFE)) - 1.0; }
 
-	function xrandom(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
+	function random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
 	{
 		if ($seed___ != 0) {
 			\mt_srand($seed);
@@ -126,7 +131,7 @@ namespace std
 		return \mt_rand($min___, $max___);
 	}
 
-	function xrandom_u_int(int $min___ = 0, int $max___ = 0)
+	function random_uniform_int(int $min___ = 0, int $max___ = 0)
 	{
 		if ($min___ === 0 && $max___ === 0) {
 			$min___ = numeric_limits_int::min;
@@ -135,11 +140,8 @@ namespace std
 		return \random_int($min___, $max___);
 	}
 
-	function xrandom_u_real(float $min___ = 0.0, float $max___ = 1.0)
+	function random_uniform_real(float $min___ = 0.0, float $max___ = 1.0)
 	{ return $min___ + (\mt_rand() / \mt_getrandmax()) * ($max___ - $min___); }
-
-	function random()
-	{ return _X_random(); }
 } /* EONS */
 
 /* EOF */

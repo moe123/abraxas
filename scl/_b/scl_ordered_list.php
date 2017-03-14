@@ -47,7 +47,7 @@ namespace std
 			if ($this->_M_size) {
 				return $this->_M_container[0];
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -56,7 +56,7 @@ namespace std
 			if ($this->_M_size) {
 				return $this->_M_container[$this->_M_size - 1];
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -65,7 +65,7 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				return $this->_M_container[$index];
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -98,7 +98,7 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				_X_insert($this, $index, $val);
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -111,7 +111,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -162,7 +162,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -198,7 +198,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -237,11 +237,11 @@ namespace std
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
 				if (($index + $len) > $this->_M_size) {
-					_F_throw_out_of_range("Out of Range error");
+					_X_throw_out_of_range("Out of Range error");
 				}
 				_X_splice($this, $index, $len);
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}

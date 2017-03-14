@@ -43,7 +43,7 @@ namespace std
 				$this->_M_den = $den;
 			}
 			if ($this->_M_den == 0) {
-				_F_throw_overflow_error("Divide by zero error");
+				_X_throw_overflow_error("Divide by zero error");
 			}
 			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}

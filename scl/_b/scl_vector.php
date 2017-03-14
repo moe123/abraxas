@@ -47,7 +47,7 @@ namespace std
 			if ($this->_M_size) {
 				return $this->_M_container[0];
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -56,7 +56,7 @@ namespace std
 			if ($this->_M_size) {
 				return $this->_M_container[$this->_M_size - 1];
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -65,7 +65,7 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				return $this->_M_container[$index];
 			}
-			_F_throw_out_of_range("Out of Range error");
+			_X_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -86,20 +86,35 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				_X_insert($this, $index, $val);
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
-		
+
+		function & insert_n(basic_iterator $first, int $n___)
+		{
+			if ($first::iterator_category === $last::iterator_category) {
+				$i = 0;
+				while ($i < $n___) {
+					_X_insert($this, $first->_F_pos(), $first->_F_this());
+					$first->next();
+					++$i;
+				}
+			} else {
+				_X_throw_invalid_argument("Invalid type error");
+			}
+			return $this;
+		}
+
 		function & insert_r(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->insert($first->_F_pos(), $first->_F_this());
+					_X_insert($this, $first->_F_pos(), $first->_F_this());
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -122,7 +137,7 @@ namespace std
 		{
 			_X_clear_all($this);
 			foreach ($vec->_M_container as &$val) {
-				$this->push_back($val);
+				_X_push_back($this, $val);
 			}
 			return $this;
 		}
@@ -137,7 +152,7 @@ namespace std
 		function & merge(vector &$vec)
 		{
 			foreach ($vec->_M_container as &$val) {
-				$this->push_back($val);
+				_X_push_back($this, $val);
 			}
 			return $this;
 		}
@@ -146,11 +161,11 @@ namespace std
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->push_back($first->_F_this());
+					_X_push_back($this, $first->_F_this());
 					$first->next();
 				}
 			} else {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -159,11 +174,11 @@ namespace std
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
 				if (($index + $len) > $this->_M_size) {
-					_F_throw_out_of_range("Out of Range error");
+					_X_throw_out_of_range("Out of Range error");
 				}
 				_X_splice($this, $index, $len);
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}

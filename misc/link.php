@@ -29,12 +29,12 @@ $dev = new std\random_device;
 $fn = std\bond('entropy', $dev);
 print_r($fn());
 print_r($dev);
-// std\xexit(0);
+// std\stop(0);
 
-echo std\xformatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
+echo std\_X_formatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
 // print_r(std\is_callable(std\null_callable));
-// print_r(std\is_callable(std\bond('std\xformat')));
+// print_r(std\is_callable(std\bond('std\_X_format')));
 
 std\make_pair(3, 4);
 
@@ -47,7 +47,7 @@ print_r($l);
 print_r($r);
 print_r($n);
 
-//std\xexit(0);
+//std\stop(0);
 
 $n1 = $l->num();
 $d1 = $l->den();
@@ -67,7 +67,7 @@ $a = std\ratio_subtract($r, $l);
 print_r($a);
 
 std\cout(std\endl);
-//std\xexit(0);
+//std\stop(0);
 
 foreach (std\irange_lazy(8, 10, 2) as $i) {
 	std\cout($i)(std\tab);
@@ -93,9 +93,9 @@ foreach (std\make_irange(8, 10, -2) as $i) {
 }
 std\cout(std\endl);
 
-//std\xexit(0);
+//std\stop(0);
 
-std\cout(std\xnanoseconds())(std\endl);
+std\cout(std\clock_nanosecond())(std\endl);
 foreach (std\irange_lazy_n(1, 3) as $i) {
 	std\cout($i)(std\tab);
 }
@@ -124,9 +124,9 @@ foreach ($rg as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
-std\cout(std\xnanoseconds())(std\endl);
+std\cout(std\clock_nanosecond())(std\endl);
 
-//std\xexit(0);
+//std\stop(0);
 
 $tb = std\make_timeb();
 var_dump(std\tzset());
@@ -176,7 +176,7 @@ std\place_generate_n(
 std\place_generate_n(
 	  std\back_inserter($v)
 	, 5
-	, std\random_int_generator(-300, 500)
+	, std\random_real_11
 );
 
 std\place_generate_n(

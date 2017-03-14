@@ -64,29 +64,36 @@ namespace std
 		const quaternary = \Collator::QUATERNARY;
 	} /* EOC */
 
+	abstract class collator_flag
+	{
+		const regular   = \Collator::SORT_REGULAR;
+		const numeric   = \Collator::SORT_NUMERIC;
+		const character = \Collator::SORT_STRING;
+	} /* EOC */
+
 	final class collator
 	{
-		var $_M_x_collator;
+		var $_M_collator;
 		var $_M_locale_id;
 		var $_M_locale_name;
+		var $_M_flag;
 
 		function __invoke($l, $r)
-		{
-			if (false === ($r = $this->_M_x_collator->compare(\strval($l), \strval($r)))) {
-				_F_throw_invalid_argument("Invalid type error");
-			}
-			return $r;
-		}
+		{ return $this->compare($l, $r); }
 
 		function __toString()
 		{ return $this->locale_id(); }
 
-		function __construct(locale $locale, int $collator_level = collator_level::natural)
-		{
+		function __construct(
+			  locale $locale
+			, int    $collator_level = collator_level::natural
+			, int    $collator_flag  = collator_flag::regular
+		) {
 			$this->_M_locale_id        = $locale->_M_id;
 			$this->_M_locale_name      = locale::canonicalize_id($this->_M_locale_id);
-			$this->_M_x_collator = new \Collator($this->_M_locale_name);
+			$this->_M_collator = new \Collator($this->_M_locale_name);
 			$this->set_level($collator_level);
+			$this->set_flag($collator_flag);
 		}
 
 		function locale_id()
@@ -96,34 +103,45 @@ namespace std
 		{ return $this->_M_locale_name; }
 
 		function name()
-		{ return $this->_M_x_collator->getLocale(\Locale::VALID_LOCALE); }
+		{ return $this->_M_collator->getLocale(\Locale::VALID_LOCALE); }
 
 		function set_mode(int $mode, int $mode_value)
-		{ $this->_M_x_collator->setAttribute($mode, $mode_value); }
+		{ $this->_M_collator->setAttribute($mode, $mode_value); }
 
 		function get_mode(int $mode)
-		{ $this->_M_x_collator->getAttribute($mode); }
+		{ $this->_M_collator->getAttribute($mode); }
 
 		function set_level(int $level)
-		{ $this->_M_x_collator->setStrength($level); }
+		{ $this->_M_collator->setStrength($level); }
 
 		function get_level()
-		{ return $this->_M_x_collator->getStrength(); }
+		{ return $this->_M_collator->getStrength(); }
+
+		function set_flag(int $flag)
+		{ $this->_M_flag = $flag; }
+
+		function get_flag()
+		{ return $this->_M_flag; }
 
 		function compare($l, $r)
-		{ return $this->_M_x_collator->compare(\strval($l), \strval($r)); }
+		{
+			if (false === ($r = $this->_M_collator->compare(\strval($l), \strval($r), $this->_M_flag))) {
+				_X_throw_invalid_argument("Invalid type error");
+			}
+			return $r;
+		}
 
 		function & swap(collator &$collator)
 		{
-			$coll = $this->_M_x_collator;
+			$coll = $this->_M_collator;
 			$lcid  = $this->_M_locale_id;
 			$lcnm  = $this->_M_locale_name;
 
-			$this->_M_x_collator = $collator->_M_x_collator;
+			$this->_M_collator = $collator->_M_collator;
 			$this->_M_locale_id = $collator->_M_locale_id;
 			$this->_M_locale_name = $collator->_M_locale_name;
 
-			$collator->_M_x_collator = $coll;
+			$collator->_M_collator = $coll;
 			$collator->_M_locale_id = $lcid;
 			$collator->_M_locale_name = $lcnm;
 

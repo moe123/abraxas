@@ -16,7 +16,7 @@
 
 namespace std
 {
-	const _N_x_zonetab = [
+	const _N_zonetab = [
 		[ "offset" => (12 * 60)        , "stdzone" => "NZST", "dlzone" => "NZDT"    ], /* New Zealand */
 		[ "offset" => (10 * 60)        , "stdzone" => "AEST", "dlzone" => "AEDT"    ], /* Aust: Eastern */
 		[ "offset" => ((9 * 60) + 30)  , "stdzone" => "ACST", "dlzone" => "ACDT"    ], /* Aust: Central */
@@ -48,7 +48,7 @@ namespace std
 
 	function _X_tztab(int $zone___, int $dst___)
 	{
-		foreach (_N_x_zonetab as &$v) {
+		foreach (_N_zonetab as &$v) {
 			if ($v["offset"] ==  -($zone___)) {
 				if ($dst___ && !\is_null($v["dlzone"])) {
 					return $v["dlzone"];

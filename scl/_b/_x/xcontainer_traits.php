@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_x_langarray_container
+	trait _T_langarray_container
 	{
 		var $_M_container = null;
 		var $_M_size = -1;
@@ -34,7 +34,7 @@ namespace std
 		}
 	} /* EOT */
 
-	trait _T_x_mapreduce
+	trait _T_langarray_mapreduce
 	{
 		function & enumerate(\Closure $f___, bool $r___ = false)
 		{
@@ -200,7 +200,7 @@ namespace std
 		}
 	} /* EOT */
 
-	trait _T_x_langarray_conformity
+	trait _T_langarray_conformity
 	{
 		function _F_is_seq(array $container___, int $size___)
 		{
@@ -262,32 +262,32 @@ namespace std
 		}
 	} /* EOT */
 
-	trait _T_x_langarray_debug
+	trait _T_langarray_debug
 	{
 		function __debugInfo()
 		{ return $this->_M_container; }
 	} /* EOT */
 
-	trait _T_x_langarray_serializable
+	trait _T_langarray_serializable
 	{
 		function jsonSerialize()
 		{ return $this->_M_container; }
 	} /* EOT */
 
-	trait _T_x_langarray_iterative
+	trait _T_langarray_iterative
 	{
 		function getIterator()
-		{ return new _C_x_fwditer_sequential_adaptor($this); }
+		{ return new _C_fwditer_sequential_adaptor($this); }
 	} /* EOT */
 
-	trait _T_x_langarray_iteratable
+	trait _T_langarray_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
 			if ($offset___ < 0) {
 				$offset___ = 0;
 			}
-			return new _C_forward_iterator_array($this, $offset___);
+			return new _C_forward_iterator_langarray($this, $offset___);
 		}
 
 		function end(int $offset___ = -1)
@@ -301,7 +301,7 @@ namespace std
 				}
 			}
 			
-			return new _C_forward_iterator_array($this, $offset___);
+			return new _C_forward_iterator_langarray($this, $offset___);
 		}
 
 		function rbegin($offset___ = -1)
@@ -311,7 +311,7 @@ namespace std
 			} else {
 				$offset___ = $this->_M_size - $offset___;
 			}
-			return new _C_reverse_iterator_array($this, $offset___);
+			return new _C_reverse_iterator_langarray($this, $offset___);
 		}
 
 		function rend($offset___ = -1)
@@ -324,30 +324,30 @@ namespace std
 					$offset___ = -1;
 				}
 			}
-			return new _C_reverse_iterator_array($this, $offset___);
+			return new _C_reverse_iterator_langarray($this, $offset___);
 		}
 
 		function iterator()
-		{ return new _C_forward_iterator_array($this, 0); }
+		{ return new _C_forward_iterator_langarray($this, 0); }
 
 		function reverse_iterator()
-		{ return new _C_reverse_iterator_array($this, $this->_M_size); }
+		{ return new _C_reverse_iterator_langarray($this, $this->_M_size); }
 	} /* EOT */
 
-	trait _T_x_countable
+	trait _T_countable
 	{
 		function count()
 		{ return $this->_M_size; }
 	} /* EOT */
 
-	class _C_x_list_node
+	class _C_list_node
 	{
 		var $_M_data = null;
 		var $_M_next = null;
 		var $_M_prev = null;
 	} /* EOC */
 
-	trait _T_x_linkedlist_container
+	trait _T_linkedlist_container
 	{
 		var $_M_f_node = null;
 		var $_M_l_node = null;
@@ -393,7 +393,7 @@ namespace std
 
 		function & _F_insert_first(&$d___)
 		{
-			$n = new _C_x_list_node;
+			$n = new _C_list_node;
 			$n->_M_data = $d___;
 			if ($this->_M_size < 1) {
 				$this->_M_l_node = $n;
@@ -408,7 +408,7 @@ namespace std
 
 		function _F_insert_last(&$d___)
 		{
-			$n = new _C_x_list_node;
+			$n = new _C_list_node;
 			$n->_M_data = $d___;
 			if ($this->_M_size < 1) {
 				$this->_M_f_node = $n;
@@ -430,7 +430,7 @@ namespace std
 						return false;
 					}
 				}
-				$n = new _C_x_list_node;
+				$n = new _C_list_node;
 				$n->_M_data = $d___;
 
 				if ($c == $this->_M_l_node) {
@@ -476,7 +476,7 @@ namespace std
 					++$i;
 				}
 
-				$n = new _C_x_list_node;
+				$n = new _C_list_node;
 				$n->_M_data = $d___;
 
 				if ($c == $this->_M_l_node) {
@@ -765,25 +765,25 @@ namespace std
 		}
 	} /* EOT */
 
-	trait _T_x_linkedlist_debug
+	trait _T_linkedlist_debug
 	{
 		function __debugInfo()
 		{ return $this->_F_dump(); }
 	} /* EOT */
 
-	trait _T_x_linkedlist_serializable
+	trait _T_linkedlist_serializable
 	{
 		function jsonSerialize()
 		{ return $this->_F_dump(); }
 	} /* EOT */
 
-	trait _T_x_linkedlist_iterative
+	trait _T_linkedlist_iterative
 	{
 		function getIterator()
-		{ return new _C_x_fwditer_linkedlist_adaptor($this); }
+		{ return new _C_fwditer_linkedlist_adaptor($this); }
 	} /* EOT */
 
-	trait _T_x_linkedlist_iteratable
+	trait _T_linkedlist_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -828,13 +828,13 @@ namespace std
 		{ return new _C_reverse_iterator_linkedlist($this, $this->_M_size); }
 	} /* EOT */
 
-	trait _T_x_dict_iterative
+	trait _T_dict_iterative
 	{
 		function getIterator()
-		{ return new _C_x_fwditer_associative_adaptor($this); }
+		{ return new _C_fwditer_associative_adaptor($this); }
 	}
 
-	trait _T_x_dict_iteratable
+	trait _T_dict_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -879,13 +879,13 @@ namespace std
 		{ return new _C_reverse_iterator_dict($this, $this->_M_size); }
 	} /* EOT */
 
-	trait _T_x_map_iterative
+	trait _T_map_iterative
 	{
 		function getIterator()
-		{ return new _C_x_fwditer_sequential_adaptor($this); }
+		{ return new _C_fwditer_sequential_adaptor($this); }
 	} /* EOT */
 
-	trait _T_x_map_iteratable
+	trait _T_map_iteratable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -930,7 +930,7 @@ namespace std
 		{ return new _C_reverse_iterator_map($this, $this->_M_size); }
 	} /* EOT */
 
-	trait _T_x_tuple_utils
+	trait _T_tuple_utils
 	{
 		function _F_expandv(&$dest___, &$v___, &$sz___)
 		{

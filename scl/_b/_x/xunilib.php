@@ -21,6 +21,7 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xrandom.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xsignal.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xstring.php";
+	
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xio.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtime.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtimezone.php";
@@ -28,19 +29,17 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlocale.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xutsname.php";
 	
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xiterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xcontainer_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xoperator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xutility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR  . "xalgorithm.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xexception.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xiterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xcontainer_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xoperator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xutility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xalgorithm.php";
 } /* EONS */
 
 namespace std
 {
-	function xexit(int $status___ = 0)
-	{ stop($status___); }
-
-	function xmillisleep(int $n___)
+	function clock_millisleep(int $n___)
 	{
 		if (true !== \time_nanosleep(0, $n___ * 1000 * 1000)) {
 			seterrno(EINTR);
@@ -49,7 +48,7 @@ namespace std
 		return 0;
 	}
 
-	function xmicrosleep(int $n___)
+	function clock_microsleep(int $n___)
 	{
 		if (true !== \time_nanosleep(0, $n___ * 1000)) {
 			seterrno(EINTR);
@@ -58,7 +57,7 @@ namespace std
 		return 0;
 	}
 
-	function xnanosleep(int $n___)
+	function clock_nanosleep(int $n___)
 	{
 		if (true !== \time_nanosleep(0, $n___)) {
 			seterrno(EINTR);
@@ -67,7 +66,7 @@ namespace std
 		return 0;
 	}
 
-	function xmilliseconds()
+	function clock_milliseconds()
 	{
 		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
@@ -77,7 +76,7 @@ namespace std
 		return \sprintf('%d%03d', \intval($tm[1]), \intval($tm[0] * 1000));
 	}
 
-	function xmicroseconds()
+	function clock_microseconds()
 	{
 		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
@@ -87,7 +86,7 @@ namespace std
 		return \sprintf('%d%06d', \intval($tm[1]), \intval($tm[0] * 1000000));
 	}
 
-	function xnanoseconds()
+	function clock_nanosecond()
 	{
 		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());

@@ -79,7 +79,7 @@ namespace std
 			}
 			return comparison_result::same;
 		}
-		_F_throw_invalid_argument("Invalid type error");
+		_X_throw_invalid_argument("Invalid type error");
 		return comparison_result::ascending;
 	}
 
@@ -121,7 +121,7 @@ namespace std
 			$first___::iterator_category === basic_iterator_tag::duo_iterator ||
 			$first___::iterator_category === basic_iterator_tag::insert_iterator
 		) {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		if ($first___->_M_ptr->_M_size) {
 			if ($first___->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
@@ -214,7 +214,7 @@ namespace std
 			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
 			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
 		) {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
@@ -245,7 +245,7 @@ namespace std
 				$out_first___->_F_seek_end();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out_first___;
 	}
@@ -259,7 +259,7 @@ namespace std
 			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
 			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
 		) {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
@@ -290,7 +290,7 @@ namespace std
 				$out_first___->_F_seek_end();
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $out_first___;
 	}
@@ -606,7 +606,7 @@ namespace std
 	function _X_reindex(basic_iteratable &$c___)
 	{
 		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		} else {
 			if ($c___::container_category !== basic_iteratable_tag::basic_forward_list) {
 				$c___->_M_container = \array_values($c___->_M_container);
@@ -691,7 +691,7 @@ namespace std
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			} else {
 				$idx = [];
 				$j = 0;
@@ -718,7 +718,7 @@ namespace std
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 			} else {
 				$idx = [];
 				for ($i = 0; $i < $c___->_M_size; $i++) {
@@ -736,7 +736,7 @@ namespace std
 	function _X_reserve(basic_iteratable &$c___, int $sz___, $val___ = ignore)
 	{
 		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
-				_F_throw_invalid_argument("Invalid type error");
+				_X_throw_invalid_argument("Invalid type error");
 		} else {
 			_X_clear_all($c___);
 			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
@@ -765,7 +765,7 @@ namespace std
 		}
 	}
 
-	const _N_x_encodingtab = [
+	const _N_encodingtab = [
 		  "auto"
 		, "UTF-8"
 		, "UTF-32"
@@ -874,7 +874,7 @@ namespace std
 	function _X_u8gh_guess(string $s___)
 	{
 		if (false !== ($enc = \mb_detect_encoding($s___, "auto"))) {
-			return \array_search($enc, _N_x_encodingtab[$enc]);
+			return \array_search($enc, _N_encodingtab[$enc]);
 		}
 		return -1;
 	}
@@ -886,7 +886,7 @@ namespace std
 	{  return _X_u8gh_guess($s___) == $enc___; }
 
 	function _X_u8gh_convert(string $s___, int $enc___)
-	{ return \mb_convert_encoding($s___, "UTF-8", _N_x_encodingtab[$enc___]); }
+	{ return \mb_convert_encoding($s___, "UTF-8", _N_encodingtab[$enc___]); }
 
 	function _X_u8gh_count(string $s___)
 	{
@@ -979,6 +979,42 @@ namespace std
 		$s1 = _X_u8gh_substr(\strval($s1___), $pos___, $len___);
 		$s2 = _X_u8gh_substr(\strval($s2___), $pos___, $len___);
 		return $cmp___($s1, $s2);
+	}
+
+	function _X_u8gh_to_u16(string $s___, int $little_endian___ = 0)
+	{
+		return \mb_convert_encoding(
+			  $s___
+			, ($little_endian___ === endian_utils::little ? "UTF-16LE" : "UTF-16BE")
+			, "UTF-8"
+		);
+	}
+
+	function _X_u8gh_to_u32(string $s___, int $little_endian___ = 0)
+	{
+		return \mb_convert_encoding(
+			  $s___
+			, ($little_endian___ === endian_utils::little ? "UTF-32LE" : "UTF-32BE")
+			, "UTF-8"
+		);
+	}
+
+	function _X_u16gh_convert(string $s___, int $enc___, int $little_endian___ = 0)
+	{
+		return \mb_convert_encoding(
+			  $s___
+			, ($little_endian___ ? "UTF-16LE" : "UTF-16BE")
+			, _N_encodingtab[$enc___]
+		);
+	}
+
+	function _X_u32gh_convert(string $s___, int $enc___, int $little_endian___ = 0)
+	{
+		return \mb_convert_encoding(
+			  $s___
+			, ($little_endian___ ? "UTF-32LE" : "UTF-32BE")
+			, _N_encodingtab[$enc___]
+		);
 	}
 } /* EONS */
 

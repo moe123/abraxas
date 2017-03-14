@@ -25,7 +25,7 @@ namespace std
 	function abort()
 	{ signal(SIGABRT); }
 
-	function xtrap()
+	function trap()
 	{ assert(1 == 0); }
 
 	function assert($expr___, string $msg___ = "") 

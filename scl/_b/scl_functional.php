@@ -378,7 +378,7 @@ namespace std
 				}
 			}
 			if (\preg_grep('/^' . \preg_quote("^std@_", '/') . '/', $args___)) {
-				_F_throw_invalid_argument("Placeholder error");
+				_X_throw_invalid_argument("Placeholder error");
 			}
 			return call_user_func_array($f___, $args___);
 		};

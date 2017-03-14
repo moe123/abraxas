@@ -16,7 +16,7 @@
 
 namespace std
 {
-	trait _T_x_langarray_int_operator
+	trait _T_langarray_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -26,7 +26,7 @@ namespace std
 			} else if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				$this->_M_container[$offset___] = $val___;
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -44,7 +44,7 @@ namespace std
 				_X_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -53,13 +53,13 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
 	}
 
-	trait _T_x_langarray_immutable_int_operator
+	trait _T_langarray_immutable_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{ /* NOP */ }
@@ -80,13 +80,13 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
 	}
 
-	trait _T_x_irange_int_operator
+	trait _T_irange_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{ /* NOP */ }
@@ -107,13 +107,13 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
 	}
 
-	trait _T_x_set_int_operator_unique
+	trait _T_set_int_operator_unique
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -127,7 +127,7 @@ namespace std
 					$this->_M_container[$offset___] = $val___;
 				}
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -145,7 +145,7 @@ namespace std
 				_X_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -154,13 +154,13 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_F_throw_out_of_range("Out of Range error");
+				_X_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
 	}
 
-	trait _T_x_langarray_string_operator
+	trait _T_langarray_string_operator
 	{
 		function offsetSet($offset___, $val___)
 		{
@@ -200,7 +200,7 @@ namespace std
 		}
 	}
 
-	trait _T_x_linkedlist_int_operator
+	trait _T_linkedlist_int_operator
 	{
 		function offsetSet($offset___, $val___)
 		{

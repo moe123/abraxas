@@ -191,7 +191,7 @@ namespace std
 	function random_int_generator(int $min___ = 0, int $max___ = 0)
 	{
 		return function () use ($min___, $max___) {
-			return xrandom_u_int($min___, $max___);
+			return random_uniform_int($min___, $max___);
 		};
 	}
 
@@ -199,7 +199,7 @@ namespace std
 	function random_real_generator(float $min___ = 0.0, float $max___ = 1.0)
 	{
 		return function () use ($min___, $max___) {
-			return xrandom_u_real($min___, $max___);
+			return random_uniform_real($min___, $max___);
 		};
 	}
 

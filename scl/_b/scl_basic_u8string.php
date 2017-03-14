@@ -53,13 +53,13 @@ namespace std
 	{
 		const container_category = basic_iteratable_tag::basic_u8string;
 
-		use _T_x_langarray_container;
-		use _T_x_langarray_int_operator;
-		use _T_x_langarray_debug;
-		use _T_x_langarray_serializable;
-		use _T_x_langarray_iterative;
-		use _T_x_langarray_iteratable;
-		use _T_x_countable;
+		use _T_langarray_container;
+		use _T_langarray_int_operator;
+		use _T_langarray_debug;
+		use _T_langarray_serializable;
+		use _T_langarray_iterative;
+		use _T_langarray_iteratable;
+		use _T_countable;
 
 		function __toArray()
 		{ return $this->_M_container; }

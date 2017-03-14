@@ -45,7 +45,7 @@ namespace std
 				}
 			}
 		} else {
-			_F_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		}
 		return $n;
 	}

@@ -16,22 +16,22 @@
 
 namespace std
 {
-	function xformat(string $fmt___, ...$args___)
-	{ return xformat_message($fmt___, ...$args___); }
+	function _X_format(string $fmt___, ...$args___)
+	{ return _X_format_message($fmt___, ...$args___); }
 
-	function xformat_l(locale_t $xloc___, string $fmt___, ...$args___)
-	{ return xformat_message_l($xloc___, $fmt___, ...$args___); }
+	function _X_format_l(locale_t $xloc___, string $fmt___, ...$args___)
+	{ return _X_format_message_l($xloc___, $fmt___, ...$args___); }
 
-	function xformatln(string $fmt___, ...$args___)
-	{ return xformat_message($fmt___ . \PHP_EOL, ...$args___); }
+	function _X_formatln(string $fmt___, ...$args___)
+	{ return _X_format_message($fmt___ . \PHP_EOL, ...$args___); }
 
-	function xformatln_l(locale_t $xloc___, string $fmt___, ...$args___)
-	{ return xformat_message_l($xloc___, $fmt___ . \PHP_EOL, ...$args___); }
+	function _X_formatln_l(locale_t $xloc___, string $fmt___, ...$args___)
+	{ return _X_format_message_l($xloc___, $fmt___ . \PHP_EOL, ...$args___); }
 
-	function xformat_message($fmt___, ...$args___)
+	function _X_format_message($fmt___, ...$args___)
 	{ return \msgfmt_format_message(\setlocale(\LC_ALL, ""), $fmt___, $args___); }
 
-	function xformat_message_l(locale_t $xloc___, $fmt___, ...$args___)
+	function _X_format_message_l(locale_t $xloc___, $fmt___, ...$args___)
 	{ return \msgfmt_format_message($xloc___->u_data[0]["^std@_u_nid"], $fmt___, $args___); }
 
 	function memize(&$in___)

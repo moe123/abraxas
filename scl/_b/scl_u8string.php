@@ -20,6 +20,30 @@ namespace std
 	{
 		use _T_multi_construct;
 
+		static function & to_utf8(string &$s, int $encoding, int &$binlen)
+		{
+			$binlen = 0;
+			if (strlen($s)) {
+				if ($encoding !== basic_encoding::utf8) {
+					$s = _X_u8gh_convert($s, $encoding);
+					$binlen = strlen($s);
+				}
+			}
+			return "";
+		}
+
+		static function & to_utf16(string &$s, int $encoding, int &$binlen)
+		{
+			$binlen = 0;
+			if (strlen($s)) {
+				if ($encoding !== basic_encoding::utf8) {
+					$s = _X_u16gh_convert($s, $encoding);
+					$binlen = strlen($s);
+				}
+			}
+			return "";
+		}
+
 		function __construct()
 		{
 			parent::__construct();
@@ -30,7 +54,7 @@ namespace std
 		{ $this->assign($u8); }
 
 		function u8string_2(string $s, int $encoding)
-		{ $this->assign_str($s, $encoding); }
+		{ $this->assign_s($s, $encoding); }
 
 		function & assign(u8string &$u8)
 		{
@@ -39,12 +63,13 @@ namespace std
 			return $this;
 		}
 
-		function & assign_str(string $s, int $encoding = basic_encoding::utf8)
+		function & assign_s(string $s, int $encoding = basic_encoding::utf8)
 		{
-			if ($encoding !== basic_encoding::utf8) {
-				$s = _X_u8gh_convert($s, $encoding);
+			$binlen = 0;
+			$s = u8string::to_utf8($s, $encoding, $binlen);
+			if ($binlen) {
+				$this->_M_container = _X_u8gh_split($s, $this->_M_size);
 			}
-			$this->_M_container = _X_u8gh_split($s, $this->_M_size);
 			return $this;
 		}
 
@@ -67,7 +92,7 @@ namespace std
 			return $this;
 		}
 
-		function & insert_str(string $s, int $pos, int $encoding = basic_encoding::utf8)
+		function & insert_s(string $s, int $pos, int $encoding = basic_encoding::utf8)
 		{
 			$u8 = new u8string($s, $encoding);
 			$this->insert($u8, $pos);
@@ -100,11 +125,29 @@ namespace std
 			return $u8;
 		}
 
+		function substr_compare(u8string &$u8, $pos, $len = -1)
+		{ return _X_u8gh_substr_cmp($this, $u8, $pos, $len); }
+
+		function substr_localized_compare(u8string &$u8, locale &$loc, $pos, $len = -1)
+		{ return _X_u8gh_substr_cmp($this, $u8, $pos, $len, $loc); }
+
 		function compare(u8string &$u8)
 		{ return _X_u8_cmp($this, $u8); }
 
 		function localized_compare(u8string &$u8, locale &$loc)
 		{ return _X_u8_cmp($this, $u8, $loc); }
+
+		function compare_s(string $s8)
+		{
+			$u8 = (new u8string)->assign_s($s, $encoding);
+			return _X_u8_cmp($this, $u8);
+		}
+
+		function localized_compare_s(string $s8, locale &$loc)
+		{
+			$u8 = (new u8string)->assign_s($s, $encoding);
+			return _X_u8_cmp($this, $u8, $loc);
+		}
 
 		function find(u8string &$u8, int $pos = 0)
 		{ return _X_u8_find($this, $u8, $pos); }
@@ -128,12 +171,11 @@ namespace std
 			return $this;
 		}
 
-		function & append_str(string $s, int $encoding = basic_encoding::utf8)
+		function & append_s(string $s, int $encoding = basic_encoding::utf8)
 		{
-			if (strlen($s)) {
-				if ($encoding !== basic_encoding::utf8) {
-					$s = _X_u8gh_convert($s, $encoding);
-				}
+			$binlen = 0;
+			$s = u8string::to_utf8($s, $encoding, $binlen);
+			if ($binlen) {
 				$c = 0;
 				$a = _X_u8gh_split($s, $c);
 				if ($this->_M_size && $c) {
@@ -167,12 +209,11 @@ namespace std
 			return $this;
 		}
 
-		function & prepend_str(string $s, int $encoding = basic_encoding::utf8)
+		function & prepend_s(string $s, int $encoding = basic_encoding::utf8)
 		{
-			if (strlen($s)) {
-				if ($encoding !== basic_encoding::utf8) {
-					$s = _X_u8gh_convert($s, $encoding);
-				}
+			$binlen = 0;
+			$s = u8string::to_utf8($s, $encoding, $binlen);
+			if ($binlen) {
 				$c = 0;
 				$a = _X_u8gh_split($s, $c);
 				if ($this->_M_size && $c) {
