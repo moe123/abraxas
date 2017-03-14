@@ -277,7 +277,7 @@ namespace std
 	trait _T_x_langarray_iterative
 	{
 		function getIterator()
-		{ return new _C_x_outiter_sequential_adaptor($this); }
+		{ return new _C_x_fwditer_sequential_adaptor($this); }
 	} /* EOT */
 
 	trait _T_x_langarray_iteratable
@@ -780,7 +780,7 @@ namespace std
 	trait _T_x_linkedlist_iterative
 	{
 		function getIterator()
-		{ return new _C_x_outiter_linkedlist_adaptor($this); }
+		{ return new _C_x_fwditer_linkedlist_adaptor($this); }
 	} /* EOT */
 
 	trait _T_x_linkedlist_iteratable
@@ -831,7 +831,7 @@ namespace std
 	trait _T_x_dict_iterative
 	{
 		function getIterator()
-		{ return new _C_x_outiter_associative_adaptor($this); }
+		{ return new _C_x_fwditer_associative_adaptor($this); }
 	}
 
 	trait _T_x_dict_iteratable
@@ -882,7 +882,7 @@ namespace std
 	trait _T_x_map_iterative
 	{
 		function getIterator()
-		{ return new _C_x_outiter_sequential_adaptor($this); }
+		{ return new _C_x_fwditer_sequential_adaptor($this); }
 	} /* EOT */
 
 	trait _T_x_map_iteratable

@@ -22,7 +22,7 @@ namespace std
 		var $_M_ptr = null;
 	}
 
-	final class _C_x_outiter_sequential_adaptor
+	final class _C_x_fwditer_sequential_adaptor
 		implements \Iterator
 	{
 		use _T_basic_iterator;
@@ -54,7 +54,7 @@ namespace std
 		}
 	}
 
-	final class _C_x_outiter_linkedlist_adaptor
+	final class _C_x_fwditer_linkedlist_adaptor
 		implements \Iterator
 	{
 		use _T_basic_iterator;
@@ -86,7 +86,7 @@ namespace std
 		}
 	}
 
-	final class _C_x_outiter_associative_adaptor
+	final class _C_x_fwditer_associative_adaptor
 		implements \Iterator
 	{
 		use _T_basic_iterator;
