@@ -19,7 +19,7 @@ not happened before.</sup></sub>
 <sub><sup>2 - </sup></sub><sub><sup>الجبر</sup></sub><sub><sup> : Al-kitāb al-mukhtaṣar fī ḥisāb al-ğabr wa’l-muqābala</sup></sub>
 
 
-#### [*] Brief
+#### | Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
 and the `C++ STL`. Providing the same five main components: `Algorithms`, `Containers`, `Functional`, `Iterators` and `Locale`.
 (I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
@@ -51,12 +51,12 @@ while (!std\cin($buf)->eof()) {
 ...
 ```
 
-#### [*] Caveats
+#### | Caveats
 In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
 measures and designs such as adding more comparator callbacks in the `Algorithms` component.
 We try as much as we can to re-introduce type safety on any internal structures (∩｀-´)⊃━☆ﾟ.*･｡ﾟ.
 
-#### [*] Containers
+#### | Containers
 It contains sequence containers and associative containers and maybe in the future public 
 container adaptors: `forward_list`, `tuple`, `ordered_list`, `vector`, `ordered_map`, `dict`, `ordered_set` are almost done.
 
@@ -117,7 +117,7 @@ std\cout($v);
 
 ```
 
-#### [*] Iterators
+#### | Iterators
 Abraxas implements five different types of iterators: `Forward-Bidirectional`, `Reverse-Bidirectional`, `Back-Inserter`, `Front-Inserter` and `Duo-Iterator`. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. `Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
 
 ```php
@@ -207,7 +207,7 @@ std\copy($v->begin(2), $v->begin(4), std\duotator(
 
 ```
 
-#### [*] Algorithms
+#### | Algorithms
 A large number of algorithms have been already written, in the same way than `C++ STL`, it requires
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
 existing x functions (not always, depends on performances, zero-copying / COW and what can 
@@ -307,7 +307,7 @@ std\cout(std\endl);
 
 ```
 
-#### [*] Functional / Functors
+#### | Functional / Functors
 A mixture of existing features and overloads.
 ```php
 
@@ -367,7 +367,7 @@ std\cout($v)(std\endl);
 
 ```
 
-#### [*] Locale
+#### | Locale
 A mixture of existing features and overloads, inspired by Boost.Locale.
 
 ### Requirements

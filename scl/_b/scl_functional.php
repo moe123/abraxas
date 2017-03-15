@@ -49,10 +49,20 @@ namespace std
 	{ return $l___ * $r___; }
 
 	function divides($l___, $r___)
-	{ return $l___ / $r___; }
+	{
+		if (\is_int($l___) && \is_int($r___)) {
+			return \intdiv(\intval($l___), \intval($r___));
+		}
+		return $l___ / $r___;
+	}
 
 	function modulus($l___, $r___)
-	{ return $l___ % $r___; }
+	{
+		if (\is_float($l___) || \is_float($r___)) {
+			return  \fmod(\floatval($l___), \floatval($r___));
+		}
+		return $l___ % $r___;
+	}
 
 	function negate($x___)
 	{ return -($x___); }
