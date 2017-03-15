@@ -736,7 +736,7 @@ namespace std
 	function _X_reserve(basic_iteratable &$c___, int $sz___, $val___ = ignore)
 	{
 		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
-				_X_throw_invalid_argument("Invalid type error");
+			_X_throw_invalid_argument("Invalid type error");
 		} else {
 			_X_clear_all($c___);
 			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
@@ -981,38 +981,54 @@ namespace std
 		return $cmp___($s1, $s2);
 	}
 
-	function _X_u8gh_to_u16(string $s___, int $little_endian___ = 0)
+	function _X_u8gh_to_u16(string $s___, int $byte_order___ = endian_utils::big)
 	{
+		$bo = $byte_order___;
+		if ($bo === endian_utils::host) {
+			$bo = host_byte_order();
+		}
 		return \mb_convert_encoding(
 			  $s___
-			, ($little_endian___ === endian_utils::little ? "UTF-16LE" : "UTF-16BE")
+			, ($bo === endian_utils::little ? "UTF-16LE" : "UTF-16BE")
 			, "UTF-8"
 		);
 	}
 
-	function _X_u8gh_to_u32(string $s___, int $little_endian___ = 0)
+	function _X_u8gh_to_u32(string $s___, int $byte_order___ = endian_utils::big)
 	{
+		$bo = $byte_order___;
+		if ($bo === endian_utils::host) {
+			$bo = host_byte_order();
+		}
 		return \mb_convert_encoding(
 			  $s___
-			, ($little_endian___ === endian_utils::little ? "UTF-32LE" : "UTF-32BE")
+			, ($bo === endian_utils::little ? "UTF-32LE" : "UTF-32BE")
 			, "UTF-8"
 		);
 	}
 
-	function _X_u16gh_convert(string $s___, int $enc___, int $little_endian___ = 0)
+	function _X_u16gh_convert(string $s___, int $enc___, int $byte_order___ = endian_utils::big)
 	{
+		$bo = $byte_order___;
+		if ($bo === endian_utils::host) {
+			$bo = host_byte_order();
+		}
 		return \mb_convert_encoding(
 			  $s___
-			, ($little_endian___ ? "UTF-16LE" : "UTF-16BE")
+			, ($bo ? "UTF-16LE" : "UTF-16BE")
 			, _N_encodingtab[$enc___]
 		);
 	}
 
-	function _X_u32gh_convert(string $s___, int $enc___, int $little_endian___ = 0)
+	function _X_u32gh_convert(string $s___, int $enc___, int $byte_order___ = endian_utils::big)
 	{
+		$bo = $byte_order___;
+		if ($bo === endian_utils::host) {
+			$bo = host_byte_order();
+		}
 		return \mb_convert_encoding(
 			  $s___
-			, ($little_endian___ ? "UTF-32LE" : "UTF-32BE")
+			, ($bo ? "UTF-32LE" : "UTF-32BE")
 			, _N_encodingtab[$enc___]
 		);
 	}

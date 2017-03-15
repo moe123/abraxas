@@ -128,7 +128,10 @@ namespace std
 	function logical_not($x___)
 	{ return !($x___); }
 
-	function pre_increment(&$x___)
+	function logical_likely($x___)
+	{ return !!($x___); }
+
+	function & pre_increment(&$x___)
 	{ return ++$x___; }
 
 	function & post_increment(&$x___)
@@ -190,7 +193,7 @@ namespace std
 			if (\preg_grep('/^' . \preg_quote("^std@_", '/') . '/', $args___)) {
 				_X_throw_invalid_argument("Placeholder error");
 			}
-			return call_user_func_array($f___, $args___);
+			return @\call_user_func_array($f___, $args___);
 		};
 	}
 
@@ -243,25 +246,15 @@ namespace std
 
 	function count_args(callable $f___)
 	{
-		return function () use ($f___) {
-			$r = \is_array($f___) ? new \ReflectionMethod($f___[0], $f___[1]) : new \ReflectionFunction($f___);
-			return $r->getNumberOfParameters();
-		};
+		$r = \is_array($f___) ? new \ReflectionMethod($f___[0], $f___[1]) : new \ReflectionFunction($f___);
+		return $r->getNumberOfParameters();
 	}
 
 	function is_unary_function(callable $f___)
-	{
-		return function () use ($f___) {
-			return count_args($f___)() == 1;
-		};
-	}
+	{ return count_args($f___) == 1; }
 
 	function is_binary_function(callable $f___)
-	{
-		return function () use ($f___) {
-			return count_args($f___)() == 2;
-		};
-	}
+	{ return count_args($f___) == 2; }
 } /* EONS */
 
 /* EOF */

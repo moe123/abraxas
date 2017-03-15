@@ -17,6 +17,7 @@
 namespace
 {
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xerrno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xendian.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xostype.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xrandom.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xsignal.php";

@@ -74,11 +74,24 @@ namespace std
 		return $dest___;
 	}
 
+	function & memccpy(&$dest___, $src___, int $c___, int $n___)
+	{
+		memize($dest___);
+		memize($src___);
+		for ($i = 0; $i < $n___; $i++) {
+			if ($src___[$i] == pack_uint8($c___)) {
+				break;
+			}
+			$dest___[$i] = $src___[$i];
+		}
+		return $dest___;
+	}
+
 	function & memset(&$dest___, int $c___, int $n___)
 	{
 		memize($dest___);
 		for ($i = 0; $i < $n___; $i++) {
-			$dest___[$i] = \chr($c___);
+			$dest___[$i] = pack_uint8($c___);
 		}
 		return $dest___;
 	}
@@ -101,6 +114,38 @@ namespace std
 			++$i;
 		}
 		return $i;
+	}
+
+	function memchr(&$src___, int $c___, int $n___)
+	{
+		for ($i = 0; $i < $n___; $i++) {
+			if ($src___[$i] == pack_uint8($c___)) {
+				return $src___[$i];
+			}
+		}
+		return null;
+	}
+
+	function rawmemchr(&$src___, int $c___)
+	{
+		$i = 0;
+		while (isset($src___[$i])) {
+			if ($src___[$i] == pack_uint8($c___)) {
+				return $src___[$i];
+			}
+			++$i;
+		}
+		return null;
+	}
+
+	function memrchr(&$src___, int $c___, int $n___)
+	{
+		for ($i = ($n___ - 1); $i >= 0; $i--) {
+			if ($src___[$i] == pack_uint8($c___)) {
+				return $src___[$i];
+			}
+		}
+		return null;
 	}
 
 	function strlen(string $s___, int $nullch___ = 0)

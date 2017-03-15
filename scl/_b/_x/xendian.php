@@ -53,8 +53,22 @@ namespace std
 	function pack_int16(int $x___)
 	{ return \pack("s", $x___); }
 
-	function unpack_int16(int $x___)
-	{ return \unpack("s", $x___)[1]; }
+	function unpack_int16(int $x___, int $byte_order___ = endian_utils::host)
+	{
+		switch ($byte_order___) {
+			case endian_utils::big:
+			case endian_utils::little:
+			{
+				$x = \unpack("n", $x___); 
+				$x = $x[1]; 
+				if ($x >= \pow(2, 15)) {
+					$x -= \pow(2, 16);
+				}
+				return $x;
+			}
+		}
+		return \unpack("s", $x___)[1];
+	}
 
 	function pack_int16_v(...$v___)
 	{ return \pack("s*", ...$v___); }
@@ -141,7 +155,6 @@ namespace std
 
 	function pack_uint32_v(int $byte_order___, ...$v___)
 	{
-		$buf = "";
 		$m = "L*";
 		switch ($byte_order___) {
 			case endian_utils::big:
@@ -176,7 +189,6 @@ namespace std
 
 	function pack_uint64_v(int $byte_order___, ...$v___)
 	{
-		$buf = "";
 		$m = "Q*";
 		switch ($byte_order___) {
 			case endian_utils::big:

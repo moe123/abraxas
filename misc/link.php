@@ -307,6 +307,12 @@ std\cout(": ")(std\includes(
 	, std\less
 ))(std\endl);
 
+$x = 1;
+echo std\post_increment($x);
+echo $x;
+$dest___ = "";
+std\memset($dest___, 129, 4);
+
 //std\bond('cmp_nocase')
 std\stop(0);
 
