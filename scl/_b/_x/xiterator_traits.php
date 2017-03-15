@@ -7,7 +7,8 @@
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
  
-/*! 
+/*!
+ * @project    Abraxas (Standard Container Library).
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
@@ -19,7 +20,7 @@ namespace std
 	trait _T_basic_iterator
 	{
 		var $_M_offset = 0;
-		var $_M_ptr = null;
+		var $_M_ptr    = null;
 	}
 
 	final class _C_fwditer_sequential_adaptor
@@ -566,14 +567,20 @@ namespace std
 
 	trait _T_ostream_iterator
 	{
-		var $_M_ostr = null;
-		var $_M_sep  = '';
+		var $_M_ostr     = null;
+		var $_M_sep      = '';
+		var $_M_have_sep = 0;
+		var $_M_init     = 0;
 
 		function __construct(basic_ostream $os___, string $sep___ = '')
 		{
 			$this->_M_ptr  = null;
 			$this->_M_ostr = $os___;
 			$this->_M_sep  = $sep___;
+			if (\strlen($this->_M_sep)) {
+				$this->_M_have_sep = 1;
+			}
+			$this->_M_init = 0;
 		}
 
 		function __destruct()
@@ -615,7 +622,12 @@ namespace std
 
 		function & _F_assign($val___)
 		{
-			$this->_M_ostr($val___)($sep___);
+			if ($this->_M_init === 0) {
+				$this->_M_init = 1;
+			} else if ($this->_M_have_sep) {
+				$this->_M_ostr($sep___);
+			}
+			$this->_M_ostr($val___);
 			return $this;
 		}
 
