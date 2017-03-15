@@ -29,306 +29,106 @@ namespace std
 	const less_equal    = '\std\less_equal';
 	const not_equal_to  = '\std\not_equal_to';
 
-	/*! callable */
-	function greater(callable $f___ = null)
+	function greater($l___, $r___)
 	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___($l, $r);
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r)) > 0;
-			}
-			return $l > $r;
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___)) > 0;
+		}
+		return $l___ > $r___;
 	}
 	
-	/*! callable */
-	function less(callable $f___ = null)
+	function less($l___, $r___)
 	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___($l, $r);
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r)) < 0;
-			}
-			return $l < $r;
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___)) < 0;
+		}
+		return $l___ < $r___;
 	}
 
-	/*! callable */
-	function multiplies(callable $f___ = null)
+	function multiplies($l___, $r___)
+	{ return $l___ * $r___; }
+
+	function divides($l___, $r___)
+	{ return $l___ / $r___; }
+
+	function modulus($l___, $r___)
+	{ return $l___ % $r___; }
+
+	function negate($x___)
+	{ return -($x___); }
+
+	function minus($l___, $r___)
+	{ return $l___ - $r___; }
+
+	function plus($l___, $r___)
+	{ return $l___ + $r___; }
+
+	function equal_to($l___, $r___)
 	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) * func_get_arg(1);
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___)) == 0;
+		}
+		return $l___ == $r___;
 	}
 
-	/*! callable */
-	function divides(callable $f___ = null)
+	function greater_equal($l___, $r___)
 	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) / func_get_arg(1);
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___)) >= 0;
+		}
+		return $l___ >= $r___;
 	}
 
-	/*! callable */
-	function modulus(callable $f___ = null)
+	function less_equal($l___, $r___)
 	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) % func_get_arg(1);
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___)) <= 0;
+		}
+		return $l___ <= $r___;
 	}
 
-	/*! callable */
-	function negate(callable $f___ = null)
+	function not_equal_to($l___, $r___)
 	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0));
-			}
-			return -(func_get_arg(0));
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___)) != 0;
+		}
+		return $l___ != $r___;
 	}
 
-	/*! callable */
-	function minus(callable $f___ = null)
+	function logical_cmp($l___, $r___)
 	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) - func_get_arg(1);
-		};
+		if (is_string($l___) || is_string($r___)) {
+			return \strcmp(\strval($l___), \strval($r___));
+		}
+		if ($l___ < $r___) {
+			return comparison_result::ascending;
+		}
+		if ($l___ > $r___) {
+			return comparison_result::descending;
+		}
+		return comparison_result::same;
 	}
 
-	/*! callable */
-	function plus(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) + func_get_arg(1);
-		};
-	}
+	function logical_and($l___, $r___)
+	{ return $l___ && $r___; }
 
-	/*! callable */
-	function equal_to(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r)) == 0;
-			}
-			return $l == $r;
-		};
-	}
+	function logical_or($l___, $r___)
+	{ return $l___ || $r___; }
 
-	/*! callable */
-	function greater_equal(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___($l, $r);
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r)) >= 0;
-			}
-			return $l >= $r;
-		};
-	}
+	function logical_not($x___)
+	{ return !($x___); }
 
-	/*! callable */
-	function less_equal(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___($l, $r);
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r)) <= 0;
-			}
-			return $l <= $r;
-		};
-	}
+	function pre_increment(&$x___)
+	{ return ++$x___; }
 
-	/*! callable */
-	function not_equal_to(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___($l, $r);
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r)) != 0;
-			}
-			return $l != $r;
-		};
-	}
+	function & post_increment(&$x___)
+	{ return $x___++; }
 
-	/*! callable */
-	function logical_cmp(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			$l = func_get_arg(0);
-			$r = func_get_arg(0);
-			if (!\is_null($f___)) {
-				return $f___($l, $r);
-			}
-			if (is_string($l) || is_string($r)) {
-				return \strcmp(\strval($l), \strval($r));
-			}
-			if ($l < $r) {
-				return comparison_result::ascending;
-			}
-			if ($l > $r) {
-				return comparison_result::descending;
-			}
-			return comparison_result::same;
-		};
-	}
+	function & pre_decrement(&$x___)
+	{ return --$x___; }
 
-	/*! callable */
-	function logical_and(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) && func_get_arg(1);
-		};
-	}
-
-	/*! callable */
-	function logical_or(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), func_get_arg(1));
-			}
-			return func_get_arg(0) || func_get_arg(1);
-		};
-	}
-
-	/*! callable */
-	function logical_not(callable $f___ = null)
-	{
-		return function () use ($f___) {
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0));
-			}
-			return !(func_get_arg(0));
-		};
-	}
-
-	/*! callable */
-	function & pre_increment(callable $f___ = null)
-	{
-		return function & () use ($f___) {
-			$step = 1;
-			if (func_num_args() == 2) {
-				$step = func_get_arg(1);
-			}
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), $step);
-			}
-			$p = &func_get_arg(0);
-			$i = 0;
-			while ($i < $step) {
-				++$p;
-				++$i;
-			}
-			return $p;
-		};
-	}
-
-	/*! callable */
-	function & post_increment(callable $f___ = null)
-	{
-		return function & () use ($f___) {
-			$step = 1;
-			if (func_num_args() == 2) {
-				$step = func_get_arg(1);
-			}
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), $step);
-			}
-			$p = &func_get_arg(0);
-			$i = 0;
-			while ($i < $step) {
-				$p++;
-				++$i;
-			}
-			return $p;
-		};
-	}
-
-	/*! callable */
-	function & pre_decrement(callable $f___ = null)
-	{
-		return function & () use ($f___) {
-			$step = 1;
-			if (func_num_args() == 2) {
-				$step = func_get_arg(1);
-			}
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), $step);
-			}
-			$p = &func_get_arg(0);
-			$i = 0;
-			while ($i < $step) {
-				--$p;
-				++$i;
-			}
-			return $p;
-		};
-	}
-
-	/*! callable */
-	function & post_decrement(callable $f___ = null)
-	{
-		return function & () use ($f___) {
-			$step = 1;
-			if (func_num_args() == 2) {
-				$step = func_get_arg(1);
-			}
-			if (!\is_null($f___)) {
-				return $f___(func_get_arg(0), $step);
-			}
-			$p = &func_get_arg(0);
-			$i = 0;
-			while ($i < $step) {
-				$p--;
-				++$i;
-			}
-			return $p;
-		};
-	}
+	function & post_decrement(&$x___)
+	{ return $x___--; }
 
 	abstract class placeholders
 	{

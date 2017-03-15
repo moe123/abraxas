@@ -19,7 +19,7 @@ namespace std
 	define('std\EXIT_SUCCESS', 0);
 	define('std\EXIT_FAILURE', -1);
 
-	function stop(int $status___)
+	function stop(int $status___ = 0)
 	{ exit($status___); }
 
 	function abort()
