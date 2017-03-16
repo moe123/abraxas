@@ -27,4 +27,10 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_ostream.php";
 } /* EONS */
 
+namespace std
+{
+	abstract class ios extends ios_base
+	{ /* NOP */ } /* EOC */
+} /* EONS */
+
 /* EOF */

@@ -43,9 +43,6 @@ namespace std
 		const iso8859_16 = 21;
 	} /* EOC */
 
-	class encoding extends basic_encoding
-	{ /* NOP */ } /* EOC */
-
 	abstract class basic_u8string extends basic_iteratable implements
 		  \ArrayAccess
 		, \IteratorAggregate

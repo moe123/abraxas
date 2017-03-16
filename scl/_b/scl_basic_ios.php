@@ -83,9 +83,6 @@ namespace std
 		const scientific  = 1 << 9;
 	} /* EOC */
 
-	abstract class ios extends ios_base
-	{ /* NOP */ } /* EOC */
-
 	abstract class basic_ios
 	{
 		var $_M_locale   = null;

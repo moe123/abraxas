@@ -17,6 +17,9 @@
 
 namespace std
 {
+	abstract class encoding extends basic_encoding
+	{ /* NOP */ } /* EOC */
+
 	final class u8string extends basic_u8string
 	{
 		use _T_multi_construct;

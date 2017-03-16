@@ -30,6 +30,30 @@ namespace std
 	const less_equal    = '\std\less_equal';
 	const not_equal_to  = '\std\not_equal_to';
 
+	abstract class placeholders
+	{
+		const _1  = "^std@_0";
+		const _2  = "^std@_1";
+		const _3  = "^std@_2";
+		const _4  = "^std@_3";
+		const _5  = "^std@_4";
+		const _6  = "^std@_5";
+		const _7  = "^std@_6";
+		const _8  = "^std@_7";
+		const _9  = "^std@_8";
+		const _10 = "^std@_9";
+		const _11 = "^std@_10";
+		const _12 = "^std@_11";
+		const _13 = "^std@_12";
+		const _14 = "^std@_13";
+		const _15 = "^std@_14";
+		const _16 = "^std@_15";
+		const _17 = "^std@_16";
+		const _18 = "^std@_17";
+		const _19 = "^std@_18";
+		const _20 = "^std@_19";
+	};
+
 	function greater($l___, $r___)
 	{
 		if (is_string($l___) || is_string($r___)) {
@@ -143,30 +167,6 @@ namespace std
 
 	function & post_decrement(&$x___)
 	{ return $x___--; }
-
-	abstract class placeholders
-	{
-		const _1  = "^std@_0";
-		const _2  = "^std@_1";
-		const _3  = "^std@_2";
-		const _4  = "^std@_3";
-		const _5  = "^std@_4";
-		const _6  = "^std@_5";
-		const _7  = "^std@_6";
-		const _8  = "^std@_7";
-		const _9  = "^std@_8";
-		const _10 = "^std@_9";
-		const _11 = "^std@_10";
-		const _12 = "^std@_11";
-		const _13 = "^std@_12";
-		const _14 = "^std@_13";
-		const _15 = "^std@_14";
-		const _16 = "^std@_15";
-		const _17 = "^std@_16";
-		const _18 = "^std@_17";
-		const _19 = "^std@_18";
-		const _20 = "^std@_19";
-	};
 
 	function bond(string $fn___, $cls___ = null)
 	{
