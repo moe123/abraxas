@@ -22,6 +22,11 @@ namespace
 
 namespace std
 {
+	const cin  = '\std\cin';
+	const cout = '\std\cout';
+	const cerr = '\std\cerr';
+	const clog = '\std\cerr';
+
 	abstract class char_utils
 	{
 		const eol = \PHP_EOL;
@@ -37,10 +42,10 @@ namespace std
 		const lfcr = "\n\r";
 		
 		static function to_int($c___)
-		{ return \ord($c___); }
+		{ return unpack_uint8($c___); }
 		
 		static function to_char($i___)
-		{ return \chr($i___); }
+		{ return pack_uint8($i___); }
 	} /* EOC */
 
 	const endl        = char_utils::eol;
@@ -670,10 +675,6 @@ namespace std
 		function __construct()
 		{ $this->_M_handle_p = \STDERR; }
 	} /* EOC */
-
-	const cin  = '\std\cin';
-	const cout = '\std\cout';
-	const cerr = '\std\cerr';
 
 	function & cin(&$d___ = null)
 	{

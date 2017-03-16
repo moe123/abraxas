@@ -308,10 +308,15 @@ std\cout(": ")(std\includes(
 ))(std\endl);
 
 $x = 1;
-echo std\post_increment($x);
-echo $x;
+//echo std\post_increment($x);
+//echo $x;
 $dest___ = "";
-std\memset($dest___, 129, 4);
+std\memset($dest___, 256, 1);
+
+echo bin2hex($dest___);
+
+//echo std\char_utils::to_char(bin2hex($dest___));
+echo std\char_utils::to_int($dest___);
 
 //std\bond('cmp_nocase')
 std\stop(0);
@@ -332,7 +337,7 @@ $pv = std\partition(
 $p_even = std\make_vector();
 $p_odd  = std\make_vector();
 
-print_r($pv);
+//print_r($pv);
 
 std\copy($v->begin(), $pv, std\back_inserter($p_even));
 std\copy(
@@ -341,9 +346,9 @@ std\copy(
 	, std\front_inserter($p_odd)
 );
 
-print_r($p_even);
-print_r($p_odd);
-print_r($v);
+//print_r($p_even);
+//print_r($p_odd);
+//print_r($v);
 
 $f1_even = std\make_ordered_list();
 $f2_even = std\make_forward_list();

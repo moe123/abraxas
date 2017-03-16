@@ -60,7 +60,7 @@ namespace std
 			}
 			while ($cnt > 0) {
 				$it = clone $first___; 
-				$step = \intval($cnt / 2);
+				$step = \intdiv($cnt / 2);
 				if ($step < 1) {
 					_X_throw_out_of_range("Out of Range error");
 					return $first___;
@@ -93,7 +93,7 @@ namespace std
 			}
 			while ($cnt > 0) {
 				$it = clone $first___; 
-				$step = \intval($cnt / 2);
+				$step = \intdiv($cnt / 2);
 				if ($step < 1) {
 					_X_throw_out_of_range("Out of Range error");
 					return $first___;
@@ -209,7 +209,7 @@ namespace std
 		while ($dist > 0)
 		{
 			$it = clone $first___;
-			$step = \intval($dist / 2);
+			$step = \intdiv($dist / 2);
 			$it->_F_advance($step);
 			if ($unaryPredicate___($it->_F_this())) {
 				$first___ = clone $it->_F_next();

@@ -36,7 +36,7 @@ namespace std
 	function pack_int8(int $x___)
 	{ return \pack("c", $x___); }
 
-	function unpack_int8(int $x___)
+	function unpack_int8($x___)
 	{ return \unpack("c", $x___)[1]; }
 
 	function pack_int8_v(...$v___)
@@ -45,7 +45,7 @@ namespace std
 	function pack_uint8(int $x___)
 	{ return \pack("C", $x___); }
 
-	function unpack_uint8(int $x___)
+	function unpack_uint8($x___)
 	{ return \unpack("C", $x___)[1]; }
 
 	function pack_uint8_v(...$v___)
@@ -54,7 +54,7 @@ namespace std
 	function pack_int16(int $x___)
 	{ return \pack("s", $x___); }
 
-	function unpack_int16(int $x___, int $byte_order___ = endian_utils::host)
+	function unpack_int16($x___, int $byte_order___ = endian_utils::host)
 	{
 		switch ($byte_order___) {
 			case endian_utils::big:
@@ -88,7 +88,7 @@ namespace std
 		return \pack($m, $x___);
 	}
 
-	function unpack_uint16(int $x___, int $byte_order___ = endian_utils::host)
+	function unpack_uint16($x___, int $byte_order___ = endian_utils::host)
 	{
 		$m = "S";
 		switch ($byte_order___) {
@@ -120,7 +120,7 @@ namespace std
 	function pack_int32(int $x___)
 	{ return \pack("l", $x___); }
 
-	function unpack_int32(int $x___)
+	function unpack_int32($x___)
 	{ return \unpack("l", $x___)[1]; }
 
 	function pack_int32_v(...$v___)
@@ -140,7 +140,7 @@ namespace std
 		return \pack($m, $x___);
 	}
 
-	function unpack_uint32(int $x___, int $byte_order___ = endian_utils::host)
+	function unpack_uint32($x___, int $byte_order___ = endian_utils::host)
 	{
 		$m = "L";
 		switch ($byte_order___) {
