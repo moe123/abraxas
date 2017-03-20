@@ -313,7 +313,7 @@ namespace std
 		_X_ratio_reduce($n1, $d1, $n2, $d2);
 		return $n1 == $n2;
 		*/
-		return ($l->mir() == $r->mir());
+		return (\abs($l->mir() - $r->mir()) < numeric_limits_float::epsilon);
 	}
 
 	function ratio_not_equal(basic_ratio $l, basic_ratio $r)

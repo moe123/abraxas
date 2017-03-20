@@ -38,6 +38,154 @@ namespace std
 		function entropy()
 		{ return $this->_M_ent; }
 	} /* EOC */
+
+	final class mersenne_twister_engine 
+	{
+		var $_M_dev = null;
+
+		static function min()
+		{ return 0; }
+
+		static function max()
+		{ return \mt_getrandmax(); }
+
+		function __construct(random_device $dev = null)
+		{
+			$this->_M_dev = \is_null($dev) ? new random_device : $dev;
+			$this->discard(1);
+		}
+
+		function __destruct()
+		{ $this->_M_dev = null; }
+
+		function __invoke(int $a = 0, int $b = -1)
+		{
+			if ($a < 0) {
+				$a = mersenne_twister_engine::min();
+			}
+
+			if ($b < 1) {
+				$b = mersenne_twister_engine::max();
+			}
+
+			if ($b < $a) {
+				$c = $b;
+				$b = $a;
+				$a = $c;
+			}
+			return \mt_rand($a, $b); }
+
+		function seed(int $x = -1)
+		{
+			if ($x < 1) {
+				$hex .= \bin2hex(($this->_M_dev)(8));
+				for ($i = 0; $i < strlen($hex); $i++) {
+					$x += \ord($hex[$i]);
+				}
+			}
+			@\mt_srand($x, \MT_RAND_MT19937);
+		}
+
+		function discard(int $n)
+		{
+			for ($i = 0; $i < $n; $i++) {
+				@\mt_rand(
+					  mersenne_twister_engine::min()
+					, mersenne_twister_engine::max()
+				);
+			}
+		}
+	} /* EOC */
+
+	final class uniform_int_distribution
+	{
+		var $_M_a;
+		var $_M_b;
+		var $_M_r;
+
+		function min() { return $this->_M_a; }
+		function max() { return $this->_M_b; }
+
+		function __construct(int $a = 0, int $b = -1)
+		{
+			$this->_M_a = $a;
+			$this->_M_b = $b;
+			$this->_M_r = 0;
+		}
+
+		function __invoke(callable $gen, int $a = 0, int $b = -1)
+		{
+			if ($this->_M_r > 0) {
+				$this->_M_r = 0;
+				$gen->seed();
+				$gen->discard(1);
+			}
+
+			if ($a <= 0 && $b < 1) {
+				return $gen($this->_M_a, $this->_M_b);
+			}
+			return $gen($a, $b);
+		}
+
+		function reset()
+		{ $this->_M_r = 1; }
+
+		function a()
+		{ return $this->_M_a; }
+
+		function b()
+		{ return $this->_M_a; }
+	} /* EOC */
+
+	final class uniform_real_distribution
+	{
+		var $_M_a;
+		var $_M_b;
+		var $_M_r;
+
+		function min() { return $this->_M_a; }
+		function max() { return $this->_M_b; }
+
+		function __construct(float $a = 0.0, float $b = 1.0)
+		{
+			$this->_M_a = $a;
+			$this->_M_b = $b;
+			$this->_M_r = 0;
+		}
+
+		function __invoke(callable $gen, float $a = 0.0, float $b = 0.0)
+		{
+			if ($this->_M_r > 0) {
+				$this->_M_r = 0;
+				$gen->seed();
+				$gen->discard(1);
+			}
+
+			if (\abs($a - $b) < numeric_limits_float::epsilon) {
+				return (
+					  $this->_M_a
+					+ ($gen($gen::min(), $gen::max()) / $gen::max())
+					* ($this->_M_b - $this->_M_a)
+				);
+			}
+
+			if ($b < $a) {
+				$c = $b;
+				$b = $a;
+				$a = $c;
+			}
+			return ($a + ($gen($gen::min(), $gen::max()) / $gen::max()) * ($b - $a));
+		}
+
+		function reset()
+		{ $this->_M_r = 1; }
+
+		function a()
+		{ return $this->_M_a; }
+
+		function b()
+		{ return $this->_M_a; }
+	} /* EOC */
 } /* EONS */
 
 /* EOF */

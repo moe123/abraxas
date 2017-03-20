@@ -45,6 +45,35 @@ namespace std
 		$it2___->_F_assign($v1);
 	}
 
+	function shuffle(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $gen___ = null
+	) {
+		$g = $gen___;
+		if (\is_null($g)) {
+			$g = new mersenne_twister_engine;
+		}
+		$n  = $last___->_F_pos() - $first___->_F_pos();
+		$d = new uniform_int_distribution;
+		for ($i = ($n - 1); $i > 0; --$i) {
+			$idx1 = $i;
+			$idx2 = $d($g, 0, $i);
+
+			$first___->_F_seek($idx1);
+			$v1 = $first___->_F_this();
+
+			$first___->_F_seek($idx2);
+			$v2 = $first___->_F_this();
+
+			$first___->_F_seek($idx1);
+			$first___->_F_assign($v2);
+
+			$first___->_F_seek($idx2);
+			$first___->_F_assign($v1);
+		}
+	}
+
 	function lower_bound(
 		  basic_iterator $first___
 		, basic_iterator $last___

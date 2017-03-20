@@ -68,7 +68,7 @@ namespace std
 		return 0;
 	}
 
-	function clock_milliseconds()
+	function clock_millitime()
 	{
 		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
@@ -78,7 +78,7 @@ namespace std
 		return \sprintf('%d%03d', \intval($tm[1]), \intval($tm[0] * 1000));
 	}
 
-	function clock_microseconds()
+	function clock_microtime()
 	{
 		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());
@@ -88,7 +88,7 @@ namespace std
 		return \sprintf('%d%06d', \intval($tm[1]), \intval($tm[0] * 1000000));
 	}
 
-	function clock_nanosecond()
+	function clock_nanotime()
 	{
 		if (_X_os_64bit()) {
 			$tm = \explode(' ', \microtime());

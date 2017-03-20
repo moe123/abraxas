@@ -95,7 +95,7 @@ std\cout(std\endl);
 
 //std\stop(0);
 
-std\cout(std\clock_nanosecond())(std\endl);
+std\cout(std\clock_nanotime())(std\endl);
 foreach (std\irange_lazy_n(1, 3) as $i) {
 	std\cout($i)(std\tab);
 }
@@ -124,7 +124,7 @@ foreach ($rg as $i) {
 	std\cout($i)(std\tab);
 }
 std\cout(std\endl);
-std\cout(std\clock_nanosecond())(std\endl);
+std\cout(std\clock_nanotime())(std\endl);
 
 //std\stop(0);
 
@@ -315,8 +315,36 @@ std\memset($dest___, 256, 1);
 
 echo bin2hex($dest___);
 
+std\cout(std\endl);
+
 //echo std\char_utils::to_char(bin2hex($dest___));
 echo std\char_utils::to_int($dest___);
+
+std\cout(std\endl);
+
+$v = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
+std\shuffle($v->begin(), $v->end());
+
+foreach ($v as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(std\endl);
+
+$v = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
+std\shuffle($v->begin(), $v->end());
+
+foreach ($v as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(std\endl);
+
+$v = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
+std\shuffle($v->begin(), $v->end());
+
+foreach ($v as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(std\endl);
 
 //std\bond('cmp_nocase')
 std\stop(0);

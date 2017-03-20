@@ -204,6 +204,12 @@ namespace std
 		};
 	}
 
+	function random_device()
+	{ return new random_device; }
+
+	function mt19937(random_device $dev___)
+	{ return new mersenne_twister_engine($dev___); }
+
 	function tuple_size($v___)
 	{
 		if (\is_object($v___)) {
@@ -409,38 +415,8 @@ namespace std
 	function make_quint($a1___, $a2___, $a3___, $a4___, $a5___)
 	{ return new quint($a1___, $a2___, $a3___, $a4___, $a5___); }
 
-	function & irange_copy(irange &$irg___)
-	{ return clone $irg___; }
-
-	function & vector_copy(vector &$vec___)
-	{ return clone $vec___; }
-
-	function & ordered_set_copy(ordered_set &$oset___)
-	{ return clone $oset___; }
-
-	function & forward_list_copy(forward_list &$fwl___)
-	{ return clone $fwl___; }
-
-	function & ordered_list_copy(ordered_list &$olist___)
-	{ return clone $olist___; }
-
-	function & dict_copy(dict &$dict___)
-	{ return clone $dict___; }
-
-	function & tuple_copy(tuple &$tuple___)
-	{ return clone $tuple___; }
-
-	function & pair_copy(pair &$pair___)
-	{ return clone $pair___; }
-
-	function & triad_copy(triad &$triad___)
-	{ return clone $triad___; }
-
-	function & quad_copy(quad &$quad___)
-	{ return clone $quad___; }
-
-	function & quint_copy(quint &$quint___)
-	{ return clone $quint___; }
+	function iteratable_copy(basic_iteratable &$c___)
+	{ return clone $c___; }
 } /* EONS */
 
 /* EOF */
