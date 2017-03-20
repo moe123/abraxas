@@ -39,6 +39,57 @@ namespace std
 		{ return $this->_M_ent; }
 	} /* EOC */
 
+	final class cryptographically_secure_engine 
+	{
+		var $_M_dev = null;
+
+		static function min()
+		{ return 0; }
+
+		static function max()
+		{ return numeric_limits_int::max; }
+
+		function __construct(random_device $dev = null)
+		{
+			$this->_M_dev = null;
+			$this->discard(1);
+		}
+
+		function __destruct()
+		{ $this->_M_dev = null; }
+
+		function __invoke(int $a = 0, int $b = -1)
+		{
+			if ($a < 0) {
+				$a = cryptographically_secure_engine::min();
+			}
+
+			if ($b < 1) {
+				$b = cryptographically_secure_engine::max();
+			}
+
+			if ($b < $a) {
+				$c = $b;
+				$b = $a;
+				$a = $c;
+			}
+			return @\random_int($a, $b);
+		}
+
+		function seed(int $x = -1)
+		{ /* NOP */ }
+
+		function discard(int $n)
+		{
+			for ($i = 0; $i < $n; $i++) {
+				@\random_int(
+					  mersenne_twister_engine::min()
+					, mersenne_twister_engine::max()
+				);
+			}
+		}
+	} /* EOC */
+
 	final class mersenne_twister_engine 
 	{
 		var $_M_dev = null;
@@ -73,7 +124,8 @@ namespace std
 				$b = $a;
 				$a = $c;
 			}
-			return \mt_rand($a, $b); }
+			return \mt_rand($a, $b);
+		}
 
 		function seed(int $x = -1)
 		{

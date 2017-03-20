@@ -207,6 +207,9 @@ namespace std
 	function random_device()
 	{ return new random_device; }
 
+	function cs00700(random_device $dev___)
+	{ return new cryptographically_secure_engine($dev___); }
+
 	function mt19937(random_device $dev___)
 	{ return new mersenne_twister_engine($dev___); }
 
