@@ -24,7 +24,7 @@ namespace std
 		var $_M_ini = 0x0;
 
 		static function min() { return 0; }
-		static function max() { return 0x7FFFFFFE; }
+		static function max() { return 0x7FFFFFFF; }
 
 		function __invoke()
 		{ return ($this->_M_dev)(4); }
@@ -47,7 +47,7 @@ namespace std
 		{ return 0; }
 
 		static function max()
-		{ return numeric_limits_int::max; }
+		{ return 0x7FFFFFFF; }
 
 		function __construct(random_device $dev = null)
 		{

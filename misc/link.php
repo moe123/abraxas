@@ -346,6 +346,14 @@ foreach ($v as $i) {
 }
 std\cout(std\endl);
 
+$v = std\make_vector(1, 2, 3, 4, 5, 6, 7, 8, 9);
+std\shuffle($v->begin(), $v->end());
+
+foreach ($v as $i) {
+	std\cout($i)(std\space);
+}
+std\cout(std\endl);
+
 //std\bond('cmp_nocase')
 std\stop(0);
 
