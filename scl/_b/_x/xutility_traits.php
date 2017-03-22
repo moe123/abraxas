@@ -69,7 +69,7 @@ namespace std
 	{
 		function _F_ctor_call_1(&$cls___, &$argc___, &$argv___)
 		{
-			if (@\count($argv___[0]) == 2 && (
+			if (@\count($argv___[0]) === 2 && (
 					$argv___[0][0] instanceof \std\basic_iterator &&
 					$argv___[0][1] instanceof \std\basic_iterator
 			)) {
@@ -85,7 +85,11 @@ namespace std
 		function _F_ctor_call_2(&$cls___, &$argc___, &$argv___) {
 			$ctor = $cls___ . "_" . $argc___;
 			if (@\method_exists($this, $ctor)) {
-				@\call_user_func_array(array($this, $ctor), $argv___);
+				if (@\count($argv___[0]) === 1 && \is_array($argv___[0][0])) {
+					@\call_user_func_array([ $this, $ctor ], $argv___[0]);
+					return 1;
+				}
+				@\call_user_func_array([ $this, $ctor ], $argv___);
 				return 1;
 			}
 			return 0;

@@ -37,12 +37,52 @@ namespace std
 		return $p($v___, $lo___) ? $lo___ : $p($hi___, $v___) ? $hi___ : $v___;
 	}
 
-	function iter_swap(basic_iterator $it1___, basic_iterator $it2___)
+	function iter_swap(basic_iterator &$it1___, basic_iterator &$it2___)
 	{
 		$v1 = $it1___->_F_this();
 		$v2 = $it2___->_F_this();
 		$it1___->_F_assign($v2);
 		$it2___->_F_assign($v1);
+	}
+
+	function iter_swap_position(basic_iterator &$it___, int $pos1___, int $pos2___)
+	{
+		$pos = $it___->_F_pos();
+
+		$it___->_F_seek($pos1___);
+		$v1 = $it___->_F_this();
+
+		$it___->_F_seek($pos2___);
+		$v2 = $it___->_F_this();
+
+		$it___->_F_seek($pos1___);
+		$it___->_F_assign($v2);
+
+		$it___->_F_seek($pos2___);
+		$it___->_F_assign($v1);
+
+		$it___->_F_seek($pos);
+	}
+
+	function & iter_assign_position(basic_iterator &$it___, int $pos___, $val___)
+	{
+		$pos = $it___->_F_pos();
+		
+		$it___->_F_seek($pos___);
+		$it___->_F_assign($val___);
+
+		$it___->_F_seek($pos);
+
+		return $it___;
+	}
+
+	function iter_position(basic_iterator &$it___)
+	{ return $it___->_F_pos(); }
+
+	function & iter_assign(basic_iterator &$it___, $val___)
+	{
+		$it___->_F_assign($val___);
+		return $it___;
 	}
 
 	function shuffle(
@@ -57,20 +97,7 @@ namespace std
 		$n  = $last___->_F_pos() - $first___->_F_pos();
 		$d = new uniform_int_distribution;
 		for ($i = ($n - 1); $i > 0; --$i) {
-			$idx1 = $i;
-			$idx2 = $d($g, 0, $i);
-
-			$first___->_F_seek($idx1);
-			$v1 = $first___->_F_this();
-
-			$first___->_F_seek($idx2);
-			$v2 = $first___->_F_this();
-
-			$first___->_F_seek($idx1);
-			$first___->_F_assign($v2);
-
-			$first___->_F_seek($idx2);
-			$first___->_F_assign($v1);
+			iter_swap_position($first___, $i, $d($g, 0, $i));
 		}
 	}
 
