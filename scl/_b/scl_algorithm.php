@@ -52,7 +52,7 @@ namespace std
 	) {
 		$g = $gen___;
 		if (\is_null($g)) {
-			$g = new mersenne_twister_engine;
+			$g = new cryptographically_secure_engine(new random_device);
 		}
 		$n  = $last___->_F_pos() - $first___->_F_pos();
 		$d = new uniform_int_distribution;

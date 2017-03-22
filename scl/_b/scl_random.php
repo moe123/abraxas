@@ -39,10 +39,25 @@ namespace std
 		{ return $this->_M_ent; }
 	} /* EOC */
 
-	final class cryptographically_secure_engine 
+	abstract class pseudo_random_engine 
 	{
 		var $_M_dev = null;
 
+		static function min()
+		{ return 0; }
+
+		static function max()
+		{ return 0x7FFFFFFF; }
+
+		function seed(int $x = -1)
+		{ /* NOP */ }
+
+		function discard(int $n)
+		{ /* NOP */ }
+	}
+
+	final class cryptographically_secure_engine extends pseudo_random_engine
+	{
 		static function min()
 		{ return 0; }
 
@@ -90,16 +105,8 @@ namespace std
 		}
 	} /* EOC */
 
-	final class mersenne_twister_engine 
+	final class mersenne_twister_engine extends pseudo_random_engine
 	{
-		var $_M_dev = null;
-
-		static function min()
-		{ return 0; }
-
-		static function max()
-		{ return \mt_getrandmax(); }
-
 		function __construct(random_device $dev = null)
 		{
 			$this->_M_dev = \is_null($dev) ? new random_device : $dev;
@@ -151,9 +158,9 @@ namespace std
 
 	final class uniform_int_distribution
 	{
-		var $_M_a;
-		var $_M_b;
-		var $_M_r;
+		var $_M_a = 0;
+		var $_M_b = -1;
+		var $_M_r = 0;
 
 		function min() { return $this->_M_a; }
 		function max() { return $this->_M_b; }
@@ -165,7 +172,7 @@ namespace std
 			$this->_M_r = 0;
 		}
 
-		function __invoke(callable $gen, int $a = 0, int $b = -1)
+		function __invoke(pseudo_random_engine &$gen, int $a = 0, int $b = -1)
 		{
 			if ($this->_M_r > 0) {
 				$this->_M_r = 0;
@@ -186,14 +193,14 @@ namespace std
 		{ return $this->_M_a; }
 
 		function b()
-		{ return $this->_M_a; }
+		{ return $this->_M_b; }
 	} /* EOC */
 
 	final class uniform_real_distribution
 	{
-		var $_M_a;
-		var $_M_b;
-		var $_M_r;
+		var $_M_a = 0.0;
+		var $_M_b = 1.0;
+		var $_M_r = 0;
 
 		function min() { return $this->_M_a; }
 		function max() { return $this->_M_b; }
@@ -205,7 +212,7 @@ namespace std
 			$this->_M_r = 0;
 		}
 
-		function __invoke(callable $gen, float $a = 0.0, float $b = 0.0)
+		function __invoke(pseudo_random_engine &$gen, float $a = 0.0, float $b = 0.0)
 		{
 			if ($this->_M_r > 0) {
 				$this->_M_r = 0;
@@ -236,7 +243,7 @@ namespace std
 		{ return $this->_M_a; }
 
 		function b()
-		{ return $this->_M_a; }
+		{ return $this->_M_b; }
 	} /* EOC */
 } /* EONS */
 
