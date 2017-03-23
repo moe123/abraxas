@@ -118,7 +118,7 @@ namespace std
 			if ($argc___) {
 				if (!$this->_F_ctor_call($argc___, $argv___)) {
 					_X_throw_error(
-							"No matching constructor for initialization of '" . $cls . "'"
+							"No matching constructor"
 					);
 				}
 			}
