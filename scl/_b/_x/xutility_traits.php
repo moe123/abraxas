@@ -59,7 +59,7 @@ namespace std
 	function _X_real_iszero(float $x___)
 	{ return ($x___ == 0.0 || \abs($x___) < BUILTIN_FLT_EPSILON); }
 
-	function _X_real_arezero(...$args___)
+	function _X_real_zeroed(...$args___)
 	{
 		$ret = false;
 		foreach ($args___ as $x) {
@@ -84,50 +84,42 @@ namespace std
 
 	trait _T_multi_construct
 	{
-		function _F_ctor_call_1(&$cls___, &$argc___, &$argv___)
+		function _F_ctor_call(&$argc___, &$argv___)
 		{
+			$rc = new \ReflectionClass($this);
+			$cls = $rc->getShortName();
+			unset($rc); 
 			if (@\count($argv___[0]) === 2 && (
 					$argv___[0][0] instanceof \std\basic_iterator &&
 					$argv___[0][1] instanceof \std\basic_iterator
 			)) {
-				$ctor = $cls___ . "_2";
+				$ctor = $cls . "_2";
 				if (@\method_exists($this, $ctor)) {
 					@\call_user_func(array($this, $ctor), $argv___[0][0] , $argv___[0][1]);
 					return 1;
 				}
-			}
-			return 0;
-		}
-
-		function _F_ctor_call_2(&$cls___, &$argc___, &$argv___) {
-			$ctor = $cls___ . "_" . $argc___;
-			if (@\method_exists($this, $ctor)) {
-				if (@\count($argv___[0]) === 1 && \is_array($argv___[0][0])) {
-					@\call_user_func_array([ $this, $ctor ], $argv___[0]);
+			} else {
+				$ctor = $cls . "_" . $argc___;
+				if (@\method_exists($this, $ctor)) {
+					if (@\count($argv___[0]) === 1 && \is_array($argv___[0][0])) {
+						@\call_user_func_array([ $this, $ctor ], $argv___[0]);
+						return 1;
+					}
+					@\call_user_func_array([ $this, $ctor ], $argv___);
 					return 1;
 				}
-				@\call_user_func_array([ $this, $ctor ], $argv___);
-				return 1;
+				return 0;
 			}
 			return 0;
-		}
-
-		function _F_ctor_cls_name()
-		{
-			$rc = new \ReflectionClass($this);
-			return $rc->getShortName();
 		}
 
 		function _F_multi_construct($argc___, $argv___)
 		{
 			if ($argc___) {
-				$cls = $this->_F_ctor_cls_name();
-				if (!$this->_F_ctor_call_1($cls, $argc___, $argv___)) {
-					if (!$this->_F_ctor_call_2($cls, $argc___, $argv___)) {
-						_X_throw_error(
-							  "No matching constructor for initialization of '" . $cls . "'"
-						);
-					}
+				if (!$this->_F_ctor_call($argc___, $argv___)) {
+					_X_throw_error(
+							"No matching constructor for initialization of '" . $cls . "'"
+					);
 				}
 			}
 		}

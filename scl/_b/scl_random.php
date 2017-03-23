@@ -233,7 +233,7 @@ namespace std
 				$gen->discard(1);
 			}
 
-			if (_X_real_arezero($a, $b)) {
+			if (_X_real_zeroed($a, $b)) {
 				return (
 					  $this->_M_a
 					+ ($gen($gen::min(), $gen::max()) / $gen::max())
