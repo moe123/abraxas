@@ -26,13 +26,23 @@ namespace std
 		static function min() { return 0; }
 		static function max() { return 0x7FFFFFFF; }
 
-		function __invoke()
-		{ return ($this->_M_dev)(4); }
+		function __invoke(int $sz = 4)
+		{ return ($this->_M_dev)($sz); }
 
 		function __construct()
 		{
 			$this->_M_dev = _X_random_slot($this->_M_ent);
 			$this->_M_ini = \bin2hex(($this->_M_dev)(16));
+		}
+
+		function ini()
+		{
+			$x = 0;
+			$hex = $this->_M_ini;
+			for ($i = 0; $i < \strlen($this->_M_ini); $i++) {
+				$x += \ord($this->_M_ini[$i]);
+			}
+			return $x;
 		}
 
 		function entropy()
@@ -131,14 +141,15 @@ namespace std
 				$b = $a;
 				$a = $c;
 			}
-			return \mt_rand($a, $b);
+			return @\mt_rand($a, $b);
 		}
 
 		function seed(int $x = -1)
 		{
 			if ($x < 1) {
-				$hex .= \bin2hex(($this->_M_dev)(8));
-				for ($i = 0; $i < strlen($hex); $i++) {
+				$x = 0;
+				$hex = \bin2hex(($this->_M_dev)(8));
+				for ($i = 0; $i < \strlen($hex); $i++) {
 					$x += \ord($hex[$i]);
 				}
 			}
@@ -220,7 +231,7 @@ namespace std
 				$gen->discard(1);
 			}
 
-			if (\abs($a - $b) < numeric_limits_float::epsilon) {
+			if (_X_real_arezero($a, $b)) {
 				return (
 					  $this->_M_a
 					+ ($gen($gen::min(), $gen::max()) / $gen::max())

@@ -92,7 +92,7 @@ namespace std
 	) {
 		$g = $gen___;
 		if (\is_null($g)) {
-			$g = new cryptographically_secure_engine(new random_device);
+			$g = new cryptographically_secure_engine;
 		}
 		$n  = $last___->_F_pos() - $first___->_F_pos();
 		$d = new uniform_int_distribution;

@@ -650,7 +650,11 @@ namespace std
 		{
 			$this->_M_ptr    = null;
 			$this->_M_first  = $first1___;
-			$this->_M_second = $first2___;
+			if ($first1___ === $first2___) {
+				$this->_M_second = clone $first2___;
+			} else {
+				$this->_M_second = $first2___;
+			}
 		}
 
 		function __destruct()

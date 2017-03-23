@@ -56,6 +56,23 @@ namespace std
 	function _X_real_equal(float $l___, float $r___)
 	{ return (\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
 
+	function _X_real_iszero(float $x___)
+	{ return ($x___ == 0.0 || \abs($x___) < BUILTIN_FLT_EPSILON); }
+
+	function _X_real_arezero(...$args___)
+	{
+		$ret = false;
+		foreach ($args___ as $x) {
+			if ($x == 0.0 || \abs($x) < BUILTIN_FLT_EPSILON) {
+				$ret = true;
+			} else {
+				$ret = false;
+				break;
+			}
+		}
+		return $ret;
+	}
+
 	trait _T_deep_copy
 	{
 		function __clone() {

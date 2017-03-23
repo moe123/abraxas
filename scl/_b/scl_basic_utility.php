@@ -207,10 +207,10 @@ namespace std
 	function random_device()
 	{ return new random_device; }
 
-	function cs00700(random_device $dev___)
+	function cs00700(random_device $dev___ = null)
 	{ return new cryptographically_secure_engine($dev___); }
 
-	function mt19937(random_device $dev___)
+	function mt19937(random_device $dev___ = null)
 	{ return new mersenne_twister_engine($dev___); }
 
 	function tuple_size($v___)

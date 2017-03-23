@@ -101,7 +101,7 @@ namespace std
 	function equal_to($l___, $r___)
 	{
 		if (\is_float($l___) || \is_float($r___)) {
-			return (\abs($l___ - $r___) < numeric_limits_float::epsilon);
+			return _X_real_equal($l___, $r___);
 		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) == 0;
@@ -112,7 +112,7 @@ namespace std
 	function greater_equal($l___, $r___)
 	{
 		if (\is_float($l___) || \is_float($r___)) {
-			return ($l___ > $r___ || (\abs($l___ - $r___) < numeric_limits_float::epsilon));
+			return ($l___ > $r___ || _X_real_equal($l___, $r___));
 		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) >= 0;
@@ -123,7 +123,7 @@ namespace std
 	function less_equal($l___, $r___)
 	{
 		if (\is_float($l___) || \is_float($r___)) {
-			return ($l___ < $r___ || (\abs($l___ - $r___) < numeric_limits_float::epsilon));
+			return ($l___ < $r___ || _X_real_equal($l___, $r___));
 		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) <= 0;
