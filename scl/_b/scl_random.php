@@ -32,8 +32,8 @@ namespace std
 
 		function __construct()
 		{
-			$this->_M_dev  = _X_random_slot($this->_M_ent);
-			reset();
+			$this->_M_dev = _X_random_slot($this->_M_ent);
+			$this->reset();
 		}
 
 		function seed()
@@ -41,8 +41,8 @@ namespace std
 
 		function reset()
 		{
-			$this->_M_ini  = \bin2hex(($this->_M_dev)(8));
-			for ($i = 0; $i < 16; $i++) {
+			$this->_M_ini = \bin2hex(($this->_M_dev)(32));
+			for ($i = 0; $i < 64; $i++) {
 				$this->_M_seed += \ord($this->_M_ini[$i]);
 			}
 		}
@@ -149,11 +149,8 @@ namespace std
 		function seed(int $x = -1)
 		{
 			if ($x < 1) {
-				$x = 0;
-				$hex = \bin2hex(($this->_M_dev)(8));
-				for ($i = 0; $i < \strlen($hex); $i++) {
-					$x += \ord($hex[$i]);
-				}
+				$this->_M_dev->reset();
+				$x = $this->_M_dev->seed();
 			}
 			@\mt_srand($x, \MT_RAND_MT19937);
 		}

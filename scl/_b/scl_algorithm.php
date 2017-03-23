@@ -434,6 +434,76 @@ namespace std
 		return $out___;
 	}
 
+	function lazy_copy(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $out___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			while ($first___ != $last___) {
+				$out___->_F_assign($first___->_F_this());
+				$out___->_F_next();
+				$first___->_F_next();
+			}
+		} else {
+			_X_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
+	function lazy_copy_if(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $out___
+		, callable       $unaryPredicate___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			while ($first___ != $last___) {
+				$v = $first___->_F_this();
+				if ($unaryPredicate___($v)) {
+					$out___->_F_assign($v);
+					$out___->_F_next();
+				}
+				$first___->_F_next();
+			}
+		} else {
+			_X_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
+	function lazy_copy_n(
+		  basic_iterator $first___
+		, int            $count___
+		, basic_iterator $out___
+	) {
+		$i = 0;
+		while ($i < $count___) {
+			$out___->_F_assign($first___->_F_this());
+			$out___->_F_next();
+			$first___->_F_next();
+			++$i;
+		}
+		return $out___;
+	}
+
+	function lazy_copy_backward(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $out___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			while ($first___ != $last___) {
+				$out___->_F_assign($last___->_F_this());
+				$last___->_F_prev();
+				$out___->_F_next();
+			}
+		} else {
+			_X_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
 	function fill(basic_iterator $first___, basic_iterator $last___, $val___)
 	{
 		while ($first___ != $last___) {

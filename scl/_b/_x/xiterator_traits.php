@@ -622,12 +622,12 @@ namespace std
 
 		function & _F_assign($val___)
 		{
-			if ($this->_M_init === 0) {
+			if ($this->_M_init == 0) {
 				$this->_M_init = 1;
 			} else if ($this->_M_have_sep) {
-				$this->_M_ostr($sep___);
+				($this->_M_ostr)($this->_M_sep);
 			}
-			$this->_M_ostr($val___);
+			($this->_M_ostr)($val___);
 			return $this;
 		}
 

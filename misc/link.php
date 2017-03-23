@@ -346,13 +346,20 @@ foreach ($v as $i) {
 }
 std\cout(std\endl);
 
-$d = new stdclass;
-$v = std\make_vector($d);
+$v = std\make_vector([1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 9.1, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 std\shuffle($v->begin(), $v->end());
 
 foreach ($v as $i) {
 	std\cout($i)(std\space);
 }
+std\cout(std\endl);
+
+std\lazy_copy(
+	  $v->begin()
+	, $v->end()
+	, std\stream_inserter(std\clog, ", ")
+);
+std\cout(std\endl);
 std\cout(std\endl);
 
 //std\bond('cmp_nocase')

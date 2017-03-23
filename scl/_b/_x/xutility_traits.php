@@ -95,31 +95,29 @@ namespace std
 			)) {
 				$ctor = $cls . "_2";
 				if (@\method_exists($this, $ctor)) {
-					@\call_user_func(array($this, $ctor), $argv___[0][0] , $argv___[0][1]);
-					return 1;
+					$this->{$ctor}($argv___[0][0], $argv___[0][1]);
+					return true;
 				}
 			} else {
 				$ctor = $cls . "_" . $argc___;
 				if (@\method_exists($this, $ctor)) {
 					if (@\count($argv___[0]) === 1 && \is_array($argv___[0][0])) {
-						@\call_user_func_array([ $this, $ctor ], $argv___[0]);
-						return 1;
+						$this->{$ctor}(...$argv___[0]);
+						return true;
 					}
-					@\call_user_func_array([ $this, $ctor ], $argv___);
-					return 1;
+					$this->{$ctor}(...$argv___);
+					return true;
 				}
-				return 0;
+				return false;
 			}
-			return 0;
+			return false;
 		}
 
 		function _F_multi_construct($argc___, $argv___)
 		{
-			if ($argc___) {
+			if ($argc___ > 0) {
 				if (!$this->_F_ctor_call($argc___, $argv___)) {
-					_X_throw_error(
-							"No matching constructor"
-					);
+					_X_throw_error("No matching constructor");
 				}
 			}
 		}

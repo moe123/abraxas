@@ -23,8 +23,16 @@ namespace std
 	function front_inserter(basic_iteratable $iterable___)
 	{ return new front_insert_iterator($iterable___); }
 
-	function stream_inserter(basic_ostream $ostream___, string $sep___ = '')
-	{ return new ostream_iterator($ostream___, $sep___ ); }
+	function stream_inserter(callable $ostream___, string $sep___ = '')
+	{
+		if (\is_string($ostream___)) {
+			$ostream___ = $ostream___();
+		}
+		if (!($ostream___ instanceof \std\basic_ostream)) {
+			_X_throw_invalid_argument("Invalid argument error");
+		}
+		return new ostream_iterator($ostream___, $sep___ );
+	}
 
 	function duotator(basic_iterator $first1___, basic_iterator $first2___)
 	{ return new duo_iterator($first1___, $first2___); }
