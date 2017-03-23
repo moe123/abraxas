@@ -19,9 +19,10 @@ namespace std
 {
 	final class random_device
 	{
-		var $_M_dev = null;
-		var $_M_ent = 0.0;
-		var $_M_ini = 0x0;
+		var $_M_dev  = null;
+		var $_M_ent  = 0.0;
+		var $_M_ini  = 0x0;
+		var $_M_seed = 0;
 
 		static function min() { return 0; }
 		static function max() { return 0x7FFFFFFF; }
@@ -31,18 +32,19 @@ namespace std
 
 		function __construct()
 		{
-			$this->_M_dev = _X_random_slot($this->_M_ent);
-			$this->_M_ini = \bin2hex(($this->_M_dev)(16));
+			$this->_M_dev  = _X_random_slot($this->_M_ent);
+			reset();
 		}
 
-		function ini()
+		function seed()
+		{ return $this->_M_seed; }
+
+		function reset()
 		{
-			$x = 0;
-			$hex = $this->_M_ini;
-			for ($i = 0; $i < \strlen($this->_M_ini); $i++) {
-				$x += \ord($this->_M_ini[$i]);
+			$this->_M_ini  = \bin2hex(($this->_M_dev)(8));
+			for ($i = 0; $i < 16; $i++) {
+				$this->_M_seed += \ord($this->_M_ini[$i]);
 			}
-			return $x;
 		}
 
 		function entropy()
