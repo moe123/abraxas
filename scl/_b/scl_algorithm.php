@@ -692,7 +692,7 @@ namespace std
 		return $out___;
 	}
 
-	function reverse(basic_iteratable &$c___)
+	function reverse(basic_iterable &$c___)
 	{ _X_reverse($c___); }
 
 	function reverse_r(basic_iterator $first___, basic_iterator $last___)
@@ -707,7 +707,7 @@ namespace std
 		}
 	}
 
-	function unique(basic_iteratable &$c___, callable $binaryPredicate___ = null)
+	function unique(basic_iterable &$c___, callable $binaryPredicate___ = null)
 	{ _X_unique($c___, $binaryPredicate___); }
 
 	function unique_r(
@@ -1562,7 +1562,7 @@ namespace std
 	) { return _X_compare_r($first1___, $last1___, $first2___, $last2___, $compare___); }
 
 	function sort(
-		  basic_iteratable &$c___
+		  basic_iterable &$c___
 		, callable          $compare___ = null
 	) { _X_sort($c___, $compare___); }
 

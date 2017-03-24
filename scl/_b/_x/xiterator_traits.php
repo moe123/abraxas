@@ -28,7 +28,7 @@ namespace std
 	{
 		use _T_basic_iterator;
 
-		function __construct(basic_iteratable &$iterable___)
+		function __construct(basic_iterable &$iterable___)
 		{
 			$this->_M_pos = 0;
 			$this->_M_ptr = &$iterable___;
@@ -60,7 +60,7 @@ namespace std
 	{
 		use _T_basic_iterator;
 
-		function __construct(basic_iteratable &$iterable___)
+		function __construct(basic_iterable &$iterable___)
 		{
 			$this->_M_pos = 0;
 			$this->_M_ptr = &$iterable___;
@@ -92,7 +92,7 @@ namespace std
 	{
 		use _T_basic_iterator;
 
-		function __construct(basic_iteratable &$iterable___)
+		function __construct(basic_iterable &$iterable___)
 		{
 			$this->_M_pos = 0;
 			$this->_M_ptr = &$iterable___;
@@ -143,7 +143,7 @@ namespace std
 
 	trait _T_forward_iterator
 	{
-		function __construct(basic_iteratable &$iterable___, int $start___)
+		function __construct(basic_iterable &$iterable___, int $start___)
 		{
 			$this->_M_ptr = &$iterable___;
 			$this->_M_pos = $start___;
@@ -293,7 +293,7 @@ namespace std
 
 	trait _T_inserter_iterator
 	{
-		function __construct(basic_iteratable &$iterable___)
+		function __construct(basic_iterable &$iterable___)
 		{
 			$this->_M_ptr = &$iterable___;
 			$this->_M_pos = 0;
@@ -356,7 +356,7 @@ namespace std
 
 		function & _F_assign($val___)
 		{
-			if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
+			if ($this->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
 				if (\is_object($val___) && $val___ instanceof \std\pair) {
 					if (static::iterator_category === basic_iterator_tag::front_insert_iterator) {
 						_X_push_front($this->_M_ptr, $val___->second, $val___->first);
@@ -381,9 +381,9 @@ namespace std
 
 		function _F_this()
 		{
-			if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
+			if ($this->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
 				return $this->_M_ptr->item_at($this->_M_pos);
-			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+			} else if ($this->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {
 				return $this->_M_ptr->_F_get_at($this->_M_pos);
 			}
 			return $this->_M_ptr->_M_container[$this->_M_pos];
@@ -392,8 +392,8 @@ namespace std
 		function _F_first()
 		{
 			if (
-				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
-				$this->_M_ptr::container_category === basic_iteratable_tag::basic_ordered_map
+				$this->_M_ptr::container_category === basic_iterable_tag::basic_dict ||
+				$this->_M_ptr::container_category === basic_iterable_tag::basic_ordered_map
 			) {
 				return $this->_M_ptr->item_at($this->_M_pos)->first;
 			}
@@ -403,11 +403,11 @@ namespace std
 		function _F_second()
 		{
 			if (
-				$this->_M_ptr::container_category === basic_iteratable_tag::basic_dict ||
-				$this->_M_ptr::container_category === basic_iteratable_tag::basic_ordered_map
+				$this->_M_ptr::container_category === basic_iterable_tag::basic_dict ||
+				$this->_M_ptr::container_category === basic_iterable_tag::basic_ordered_map
 			) {
 				return $this->_M_ptr->item_at($this->_M_pos)->second;
-			} else if ($this->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+			} else if ($this->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {
 				return $this->_M_ptr->_F_get_at($this->_M_pos);
 			}
 			return $this->_M_ptr->_M_container[$this->_M_pos];
@@ -416,7 +416,7 @@ namespace std
 
 	trait _T_reverse_iterator
 	{
-		function __construct(basic_iteratable &$iterable___, int $start___)
+		function __construct(basic_iterable &$iterable___, int $start___)
 		{
 			$this->_M_ptr = &$iterable___;
 			$this->_M_pos = $start___ -1;

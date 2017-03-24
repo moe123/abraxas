@@ -17,10 +17,10 @@
 
 namespace std
 {
-	function back_inserter(basic_iteratable $iterable___)
+	function back_inserter(basic_iterable $iterable___)
 	{ return new back_insert_iterator($iterable___); }
 
-	function front_inserter(basic_iteratable $iterable___)
+	function front_inserter(basic_iterable $iterable___)
 	{ return new front_insert_iterator($iterable___); }
 
 	function stream_inserter(callable $ostream___, string $sep___ = '')
@@ -84,16 +84,16 @@ namespace std
 		return $it___->_F_prev();
 	}
 
-	function begin(basic_iteratable &$iterable___, $offset___ = -1)
+	function begin(basic_iterable &$iterable___, $offset___ = -1)
 	{ return $iterable___->begin($offset___); }
 
-	function end(basic_iteratable &$iterable___, $offset___ = -1)
+	function end(basic_iterable &$iterable___, $offset___ = -1)
 	{ return $iterable___->end($offset___); }
 
-	function rbegin(basic_iteratable &$iterable___, $offset___ = -1)
+	function rbegin(basic_iterable &$iterable___, $offset___ = -1)
 	{ return $iterable___->rbegin($offset___); }
 
-	function rend(basic_iteratable &$iterable___, $offset___ = -1)
+	function rend(basic_iterable &$iterable___, $offset___ = -1)
 	{ return $iterable___->rend($offset___); }
 
 	function & begin_p(forward_iterator $it___, $offset___ = -1)

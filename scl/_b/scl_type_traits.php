@@ -37,7 +37,7 @@ namespace std
 	}
 
 	function is_array($v__)
-	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \std\basic_iteratable)); }
+	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \std\basic_iterable)); }
 
 	function is_string($v__)
 	{ return \is_string($v__) || (\is_object($v__) && ($v__ instanceof \std\u8string)); }
@@ -79,8 +79,8 @@ namespace std
 	function is_countable($v__)
 	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \Countable)); }
 
-	function is_iteratable($v__)
-	{ return (\is_object($v__) && ($v__ instanceof \std\basic_iteratable)); }
+	function is_iterable($v__)
+	{ return (\is_object($v__) && ($v__ instanceof \std\basic_iterable)); }
 
 	function is_same($l, $r) {
 		if (\is_resource($l) && \is_resource($r)) {

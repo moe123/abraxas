@@ -17,20 +17,20 @@
 
 namespace std
 {
-	abstract class basic_ordered_map extends basic_iteratable implements 
+	abstract class basic_ordered_map extends basic_iterable implements 
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable
 		, \Countable
 	{
-		const container_category = basic_iteratable_tag::basic_ordered_map;
+		const container_category = basic_iterable_tag::basic_ordered_map;
 
 		use _T_langarray_container;
 		use _T_langarray_int_operator;
 		use _T_langarray_debug;
 		use _T_langarray_serializable;
 		use _T_map_iterative;
-		use _T_map_iteratable;
+		use _T_map_iterable;
 		use _T_countable;
 
 		function __toArray()

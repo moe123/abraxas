@@ -257,12 +257,12 @@ namespace std
 				_X_throw_invalid_argument("Invalid type error");
 			}
 			if ($first::iterator_category === $last::iterator_category) {
-				if ($first->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
+				if ($first->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
 					while ($first != $last) {
 						$this->set($first->first(), $first->second());
 						$first->next();
 					}
-				} else if ($first->_M_ptr::container_category === basic_iteratable_tag::basic_ordered_map) {
+				} else if ($first->_M_ptr::container_category === basic_iterable_tag::basic_ordered_map) {
 					while ($first != $last) {
 						$this->set(
 							  $first->second()->first

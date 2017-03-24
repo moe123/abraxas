@@ -17,19 +17,19 @@
 
 namespace std
 {
-	class basic_forward_list extends basic_iteratable implements
+	class basic_forward_list extends basic_iterable implements
 		  \ArrayAccess
 		, \IteratorAggregate
 		, \JsonSerializable
 		, \Countable
 	{
-		const container_category = basic_iteratable_tag::basic_forward_list;
+		const container_category = basic_iterable_tag::basic_forward_list;
 
 		use _T_linkedlist_container;
 		use _T_linkedlist_int_operator;
 		use _T_linkedlist_serializable;
 		use _T_linkedlist_debug;
-		use _T_linkedlist_iteratable;
+		use _T_linkedlist_iterable;
 		use _T_linkedlist_iterative;
 		use _T_countable;
 

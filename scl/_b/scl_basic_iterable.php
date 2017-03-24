@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basic_iteratable.php
+// scl_basic_iterable.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -31,9 +31,9 @@ namespace
 
 namespace std
 {
-	abstract class basic_iteratable_tag
+	abstract class basic_iterable_tag
 	{
-		const basic_iteratable   = 0;
+		const basic_iterable   = 0;
 		const basic_forward_list = 3;
 		const basic_ordered_list = 1;
 		const basic_ordered_set  = 1;
@@ -44,9 +44,9 @@ namespace std
 		const basic_dict         = 9;
 	}
 
-	abstract class basic_iteratable
+	abstract class basic_iterable
 	{
-		const container_category = basic_iteratable_tag::basic_iteratable;
+		const container_category = basic_iterable_tag::basic_iterable;
 	} /* EOC */
 } /* EONS */
 

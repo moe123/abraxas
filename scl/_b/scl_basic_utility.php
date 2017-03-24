@@ -123,7 +123,7 @@ namespace std
 	{
 		if (\is_array($in___)) {
 			return \count($in___);
-		} else if (is_iteratable($in___)) {
+		} else if (is_iterable($in___)) {
 			return $in___->_M_size;
 		} else if (is_tuple($in___)()) {
 			return tuple_size($in___)();
@@ -418,7 +418,7 @@ namespace std
 	function make_quint($a1___, $a2___, $a3___, $a4___, $a5___)
 	{ return new quint($a1___, $a2___, $a3___, $a4___, $a5___); }
 
-	function iteratable_copy(basic_iteratable &$c___)
+	function iterable_copy(basic_iterable &$c___)
 	{ return clone $c___; }
 } /* EONS */
 

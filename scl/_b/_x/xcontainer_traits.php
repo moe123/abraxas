@@ -281,7 +281,7 @@ namespace std
 		{ return new _C_fwditer_sequential_adaptor($this); }
 	} /* EOT */
 
-	trait _T_langarray_iteratable
+	trait _T_langarray_iterable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -784,7 +784,7 @@ namespace std
 		{ return new _C_fwditer_linkedlist_adaptor($this); }
 	} /* EOT */
 
-	trait _T_linkedlist_iteratable
+	trait _T_linkedlist_iterable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -835,7 +835,7 @@ namespace std
 		{ return new _C_fwditer_associative_adaptor($this); }
 	}
 
-	trait _T_dict_iteratable
+	trait _T_dict_iterable
 	{
 		function begin(int $offset___ = -1)
 		{
@@ -886,7 +886,7 @@ namespace std
 		{ return new _C_fwditer_sequential_adaptor($this); }
 	} /* EOT */
 
-	trait _T_map_iteratable
+	trait _T_map_iterable
 	{
 		function begin(int $offset___ = -1)
 		{

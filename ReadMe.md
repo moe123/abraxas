@@ -402,7 +402,7 @@ PHP7 built with:
 > [scl_basic_forward_list](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_forward_list.php?ts=3)<br>
 > [scl_basic_ios](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_ios.php?ts=3)<br>
 > [scl_basic_irange](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_irange.php?ts=3)<br>
-> [scl_basic_iteratable](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_iteratable.php?ts=3)<br>
+> [scl_basic_iterable](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_iterable.php?ts=3)<br>
 > [scl_basic_iterator](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_iterator.php?ts=3)<br>
 > [scl_basic_ordered_list](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_ordered_list.php?ts=3)<br>
 > [scl_basic_ordered_map](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_basic_ordered_map.php?ts=3)<br>

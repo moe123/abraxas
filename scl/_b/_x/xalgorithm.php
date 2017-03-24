@@ -18,8 +18,8 @@
 namespace std
 {
 	function _X_compare(
-		  basic_iteratable &$c1___
-		, basic_iteratable &$c2___
+		  basic_iterable &$c1___
+		, basic_iterable &$c2___
 		, callable          $compare___ = null
 	) {
 		$r = _X_u8gh_cmp(\strval($s1___), \strval($s2___), $compare___);
@@ -58,8 +58,8 @@ namespace std
 				$first1___::iterator_category !== basic_iterator_tag::duo_iterator &&
 				$first2___::iterator_category !== basic_iterator_tag::insert_iterator
 			) && (
-				$first1___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string &&
-				$first2___->_M_ptr::container_category === basic_iteratable_tag::basic_u8string
+				$first1___->_M_ptr::container_category === basic_iterable_tag::basic_u8string &&
+				$first2___->_M_ptr::container_category === basic_iterable_tag::basic_u8string
 		)) {
 			$s1 = _X_u8gh_substr(
 				\strval($first1___->_M_ptr)
@@ -85,17 +85,17 @@ namespace std
 	}
 
 	function _X_sort(
-		  basic_iteratable &$c___
+		  basic_iterable &$c___
 		, callable $compare___ = null
 	) {
 		if ($c___->_M_size) {
-			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				if (!\is_null($compare___)) {
 					\uksort($c___->_M_container, $compare___);
 				} else {
 					\ksort($c___->_M_container);
 				}
-			} else if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			} else if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = $c___->_F_dump();
 				if (!\is_null($compare___)) {
 					\usort($a, $compare___);
@@ -125,11 +125,11 @@ namespace std
 			_X_throw_invalid_argument("Invalid type error");
 		}
 		if ($first___->_M_ptr->_M_size) {
-			if ($first___->_M_ptr::container_category === basic_iteratable_tag::basic_dict) {
+			if ($first___->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
 				_X_sort($first___->_M_ptr, $compare___);
 				$first___->_F_seek_end();
 				$last___->_F_seek_end();
-			} else if ($first___->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+			} else if ($first___->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {
 				$slice = array_slice(
 					  $first___->_M_ptr->_F_dump()
 					, $first___->_M_pos
@@ -168,7 +168,7 @@ namespace std
 	}
 
 	function _X_stable_sort(
-		  basic_iteratable &$c___
+		  basic_iterable &$c___
 		, callable $compare___ = null
 	) {
 		if ($c___->_M_size > 1) {
@@ -176,7 +176,7 @@ namespace std
 			if (\is_null($comp)) {
 				$comp = function($l, $r) { \strcmp(\strval($l), \strval($r)); };
 			}
-			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				$a1 = array_keys($c___->_M_container);
 				$a2 = [];
 				$c___->_M_size = _X_merge_usort(
@@ -188,7 +188,7 @@ namespace std
 					$a2[$k] = $c___->_M_container[$k];
 				}
 				$c___->_M_container = $a2;
-			} else if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			} else if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = $c___->_F_dump();
 				_X_merge_usort(
 					  $a
@@ -207,8 +207,8 @@ namespace std
 	}
 
 	function _X_intersection(
-		  basic_iteratable $c1___
-		, basic_iteratable $c2___
+		  basic_iterable $c1___
+		, basic_iterable $c2___
 		, insert_iterator $out_first___
 	) {
 		if (
@@ -220,13 +220,13 @@ namespace std
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
 			$c2 = null;
-			if ($c1___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c1___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c1 = $c1___->_F_dump();
 			}
-			if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c2___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c2 = $c2___->_F_dump();
 			}
-			if ($out_first___->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($out_first___->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = \array_values(
 					\array_intersect(
 						  \is_null($c1) ? $c1___->_M_container : $c1
@@ -252,8 +252,8 @@ namespace std
 	}
 
 	function _X_difference(
-		  basic_iteratable $c1___
-		, basic_iteratable $c2___
+		  basic_iterable $c1___
+		, basic_iterable $c2___
 		, insert_iterator $out_first___
 	) {
 		if (
@@ -265,13 +265,13 @@ namespace std
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
 			$c2 = null;
-			if ($c1___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c1___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c1 = $c1___->_F_dump();
 			}
-			if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c2___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c2 = $c2___->_F_dump();
 			}
-			if ($out_first___->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($out_first___->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = \array_values(
 					\array_diff(
 						  \is_null($c1) ? $c1___->_M_container : $c1
@@ -296,10 +296,10 @@ namespace std
 		return $out_first___;
 	}
 
-	function _X_unique(basic_iteratable &$c___, callable $binaryPredicate___ = null)
+	function _X_unique(basic_iterable &$c___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 1) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = \array_unique($c___->_F_dump(), SORT_REGULAR);
 				$c___->_F_from_array($a, true);
 			} else {
@@ -313,7 +313,7 @@ namespace std
 		}
 	}
 
-	function _X_unique_b(basic_iteratable &$c___, callable $binaryPredicate___ = null)
+	function _X_unique_b(basic_iterable &$c___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 1) {
 			$p = $binaryPredicate___;
@@ -338,10 +338,10 @@ namespace std
 		}
 	}
 
-	function _X_reverse(basic_iteratable &$c___)
+	function _X_reverse(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 1) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c___->_F_rev();
 			} else {
 				$c___->_M_container = \array_reverse($c___->_M_container);
@@ -349,9 +349,9 @@ namespace std
 		}
 	}
 
-	function _X_insert(basic_iteratable &$c___, int $pos___, $val___)
+	function _X_insert(basic_iterable &$c___, int $pos___, $val___)
 	{
-		if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+		if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 			$c___->_F_insert_at_index($pos___, $val___);
 		} else {
 			\array_splice($c___->_M_container, $position, 0, $val___);
@@ -359,11 +359,11 @@ namespace std
 		}
 	}
 
-	function _X_slice(basic_iteratable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
+	function _X_slice(basic_iterable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
 	{
 		if ($c___->_M_size > 0) {
 			$slice = null;
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				if ($len___ === numeric_limits_int::max) {
 					$slice = \array_slice($c___->_F_dump(), $pos___);
 				} else {
@@ -382,10 +382,10 @@ namespace std
 		}
 	}
 
-	function _X_splice(basic_iteratable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
+	function _X_splice(basic_iterable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = $c___->_F_dump();
 				if ($len___ === numeric_limits_int::max) {
 					\array_splice($a, $pos___);
@@ -444,9 +444,9 @@ namespace std
 		return $sz;
 	}
 
-	function _X_push_front(basic_iteratable &$c___, $val___, $key = null)
+	function _X_push_front(basic_iterable &$c___, $val___, $key = null)
 	{
-		if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+		if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 			$c___->_F_insert_first($val___);
 		} else {
 			if (\is_null($key)) {
@@ -467,9 +467,9 @@ namespace std
 		}
 	}
 
-	function _X_push_back(basic_iteratable &$c___, $val___, $key = null)
+	function _X_push_back(basic_iterable &$c___, $val___, $key = null)
 	{
-		if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+		if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 			$c___->_F_insert_last($val___);
 		} else {
 			if (\is_null($key)) {
@@ -485,10 +485,10 @@ namespace std
 		}
 	}
 
-	function _X_pop_front(basic_iteratable &$c___)
+	function _X_pop_front(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c___->_F_del_first();
 			} else {
 				\array_shift($c___->_M_container);
@@ -497,10 +497,10 @@ namespace std
 		}
 	}
 
-	function _X_pop_back(basic_iteratable &$c___)
+	function _X_pop_back(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c___->_F_del_last();
 			} else {
 				\array_pop($c___->_M_container);
@@ -509,10 +509,10 @@ namespace std
 		}
 	}
 	
-	function _X_offset_exists(basic_iteratable &$c___, $offset___, callable $binaryPredicate___ = null)
+	function _X_offset_exists(basic_iterable &$c___, $offset___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				if (\is_null($binaryPredicate___)) {
 					return \array_key_exists($c___->_M_container, $offset___);
 				} else {
@@ -531,12 +531,12 @@ namespace std
 		return false;
 	}
 
-	function _X_value_exists(basic_iteratable &$c___, $val___, callable $binaryPredicate___ = null)
+	function _X_value_exists(basic_iterable &$c___, $val___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 0) {
 			$p = $binaryPredicate___;
 			if (\is_null($p)) {
-				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+				if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 					return $c___->_F_find_data($val___) > 0 ? true : false;
 				} else {
 					/*
@@ -549,7 +549,7 @@ namespace std
 					return \in_array($val___, $c___->_M_container);
 				}
 			} else {
-				if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+				if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 					return $c___->_F_index_of_data($val___, $p) != -1 ? true : false;
 				} else {
 					foreach ($c___->_M_container as $k => $v) {
@@ -563,11 +563,11 @@ namespace std
 		return false;
 	}
 
-	function _X_offsets(basic_iteratable &$c1___, basic_iteratable &$c2___)
+	function _X_offsets(basic_iterable &$c1___, basic_iterable &$c2___)
 	{
 		if ($c1___->_M_size > 0) {
-			if ($c1___::container_category === basic_iteratable_tag::basic_dict) {
-				if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c1___::container_category === basic_iterable_tag::basic_dict) {
+				if ($c2___::container_category === basic_iterable_tag::basic_forward_list) {
 					$a = \array_keys($c1___->_M_container);
 					$c2___->_F_from_array($a, true);
 				} else {
@@ -575,7 +575,7 @@ namespace std
 					$c2___->_M_size = $c1___->_M_size;
 				}
 			} else {
-				if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
+				if ($c2___::container_category === basic_iterable_tag::basic_forward_list) {
 					$a = \range(0, $c1___->_M_size -1);
 					$c2___->_F_from_array($a, true);
 				} else {
@@ -586,11 +586,11 @@ namespace std
 		}
 	}
 
-	function _X_values(basic_iteratable &$c1___, basic_iteratable &$c2___)
+	function _X_values(basic_iterable &$c1___, basic_iterable &$c2___)
 	{
 		if ($c1___->_M_size > 0) {
-			if ($c1___::container_category === basic_iteratable_tag::basic_forward_list) {
-				if ($c2___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c1___::container_category === basic_iterable_tag::basic_forward_list) {
+				if ($c2___::container_category === basic_iterable_tag::basic_forward_list) {
 					$a = \array_values($c1___->_F_dump());
 					$c2___->_F_from_array($a, true);
 				} else {
@@ -604,24 +604,24 @@ namespace std
 		}
 	}
 
-	function _X_reindex(basic_iteratable &$c___)
+	function _X_reindex(basic_iterable &$c___)
 	{
-		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+		if ($c___::container_category === basic_iterable_tag::basic_dict) {
 			_X_throw_invalid_argument("Invalid type error");
 		} else {
-			if ($c___::container_category !== basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category !== basic_iterable_tag::basic_forward_list) {
 				$c___->_M_container = \array_values($c___->_M_container);
 			}
 		}
 	}
 
-	function _X_remove(basic_iteratable &$c___, $val___)
+	function _X_remove(basic_iterable &$c___, $val___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c___->_F_del_all_data($val___);
 			} else {
-				if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+				if ($c___::container_category === basic_iterable_tag::basic_dict) {
 					$keys = [];
 					foreach ($c___->_M_container as $k => &$v) {
 						if ($v == $val___) {
@@ -647,10 +647,10 @@ namespace std
 		}
 	}
 
-	function _X_remove_first_n(basic_iteratable &$c___, $val___, $n___)
+	function _X_remove_first_n(basic_iterable &$c___, $val___, $n___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				$keys = [];
 				$j = 0;
 				foreach ($c___->_M_container as $k => &$v) {
@@ -685,13 +685,13 @@ namespace std
 		}
 	}
 
-	function _X_remove_first(basic_iteratable &$c___, $val___)
+	function _X_remove_first(basic_iterable &$c___, $val___)
 	{ _X_remove_first_n($c___, $val___, 1); }
 
-	function _X_remove_last_n(basic_iteratable &$c___, $val___, $n___)
+	function _X_remove_last_n(basic_iterable &$c___, $val___, $n___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				_X_throw_invalid_argument("Invalid type error");
 			} else {
 				$idx = [];
@@ -712,13 +712,13 @@ namespace std
 		}
 	}
 
-	function _X_remove_last(basic_iteratable &$c___, $val___)
+	function _X_remove_last(basic_iterable &$c___, $val___)
 	{ _X_remove_last_n($c___, $val___, 1); }
 
-	function _X_remove_if(basic_iteratable &$c___, callable $unaryPredicate___)
+	function _X_remove_if(basic_iterable &$c___, callable $unaryPredicate___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				_X_throw_invalid_argument("Invalid type error");
 			} else {
 				$idx = [];
@@ -734,13 +734,13 @@ namespace std
 		}
 	}
 
-	function _X_reserve(basic_iteratable &$c___, int $sz___, $val___ = ignore)
+	function _X_reserve(basic_iterable &$c___, int $sz___, $val___ = ignore)
 	{
-		if ($c___::container_category === basic_iteratable_tag::basic_dict) {
+		if ($c___::container_category === basic_iterable_tag::basic_dict) {
 			_X_throw_invalid_argument("Invalid type error");
 		} else {
 			_X_clear_all($c___);
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				for ($i = 0 ; $i <= $sz___; $i++) {
 					$c___->_F_insert_last($val___);
 				}
@@ -754,10 +754,10 @@ namespace std
 		}
 	}
 
-	function _X_clear_all(basic_iteratable &$c___)
+	function _X_clear_all(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 0) {
-			if ($c___::container_category === basic_iteratable_tag::basic_forward_list) {
+			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$c___->_F_clear_all();
 			} else {
 				$c___->_M_container = [];
