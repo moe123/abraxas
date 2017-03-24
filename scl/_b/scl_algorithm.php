@@ -45,12 +45,6 @@ namespace std
 		$it2___->_F_assign($v1);
 	}
 
-	function iter_position(basic_iterator &$it___)
-	{ return $it___->_F_pos(); }
-
-	function iter_value(basic_iterator &$it___)
-	{ return $it___->_F_this(); }
-
 	function iter_swap_position(basic_iterator &$it___, int $pos1___, int $pos2___)
 	{
 		$pos = $it___->_F_pos();
@@ -125,6 +119,12 @@ namespace std
 		$it___->_F_assign(_X_copy($val___));
 		return $it___;
 	}
+
+	function iter_position(basic_iterator &$it___)
+	{ return $it___->_F_pos(); }
+
+	function iter_value(basic_iterator &$it___)
+	{ return $it___->_F_this(); }
 
 	function shuffle(
 		  basic_iterator $first___
