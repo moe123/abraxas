@@ -31,7 +31,7 @@ namespace std
 		if (!($ostream___ instanceof \std\basic_ostream)) {
 			_X_throw_invalid_argument("Invalid argument error");
 		}
-		return new ostream_iterator($ostream___, $sep___ );
+		return new ostream_iterator($ostream___, $sep___);
 	}
 
 	function duotator(basic_iterator $first1___, basic_iterator $first2___)
@@ -44,8 +44,8 @@ namespace std
 	{
 		$n = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			if ($first___->_M_offset >= $last___->_M_offset) {
-				$n = $last___->_M_offset - $first___->_M_offset;
+			if ($first___->_M_pos >= $last___->_M_pos) {
+				$n = $last___->_M_pos - $first___->_M_pos;
 			} else {
 				$it = clone $first___;
 				while ($it != $last___) {

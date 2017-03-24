@@ -132,7 +132,7 @@ namespace std
 			} else if ($first___->_M_ptr::container_category === basic_iteratable_tag::basic_forward_list) {
 				$slice = array_slice(
 					  $first___->_M_ptr->_F_dump()
-					, $first___->_M_offset
+					, $first___->_M_pos
 					, distance($first___, $last___)
 				);
 				if (!\is_null($compare___)) {
@@ -149,7 +149,7 @@ namespace std
 			} else {
 				$slice = \array_slice(
 					$first___->_M_ptr->_M_container
-					, $first___->_M_offset
+					, $first___->_M_pos
 					, distance($first___, $last___)
 				);
 				if (!\is_null($compare___)) {

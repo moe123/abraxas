@@ -63,8 +63,8 @@ namespace std
 
 		function & prev()
 		{
-			if ($this->_M_offset > 0) {
-				--$this->_M_offset;
+			if ($this->_M_pos > 0) {
+				--$this->_M_pos;
 			}
 			return $this;
 		}
@@ -104,8 +104,8 @@ namespace std
 
 		function & prev()
 		{
-			if ($this->_M_offset < $this->_M_ptr->_M_size -1) {
-				++$this->_M_offset;
+			if ($this->_M_pos < $this->_M_ptr->_M_size -1) {
+				++$this->_M_pos;
 			}
 			return $this;
 		}
@@ -142,8 +142,8 @@ namespace std
 
 		function & prev()
 		{
-			if ($this->_M_offset > 0) {
-				--$this->_M_offset;
+			if ($this->_M_pos > 0) {
+				--$this->_M_pos;
 			}
 			return $this;
 		}

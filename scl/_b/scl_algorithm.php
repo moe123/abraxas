@@ -45,6 +45,12 @@ namespace std
 		$it2___->_F_assign($v1);
 	}
 
+	function iter_position(basic_iterator &$it___)
+	{ return $it___->_F_pos(); }
+
+	function iter_value(basic_iterator &$it___)
+	{ return $it___->_F_this(); }
+
 	function iter_swap_position(basic_iterator &$it___, int $pos1___, int $pos2___)
 	{
 		$pos = $it___->_F_pos();
@@ -76,12 +82,47 @@ namespace std
 		return $it___;
 	}
 
-	function iter_position(basic_iterator &$it___)
-	{ return $it___->_F_pos(); }
+	function iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
+	{
+		$to___->_F_assign($from___->_F_this());
+		return $to___;
+	}
 
 	function & iter_assign(basic_iterator &$it___, $val___)
 	{
 		$it___->_F_assign($val___);
+		return $it___;
+	}
+
+	function iter_swap_copy(basic_iterator &$it1___, basic_iterator &$it2___)
+	{
+		$v1 = _X_copy($it1___->_F_this());
+		$v2 = _X_copy($it2___->_F_this());
+		$it1___->_F_assign($v2);
+		$it2___->_F_assign($v1);
+	}
+
+	function & iter_assign_copy_position(basic_iterator &$it___, int $pos___, $val___)
+	{
+		$pos = $it___->_F_pos();
+		
+		$it___->_F_seek($pos___);
+		$it___->_F_assign(_X_copy($val___));
+
+		$it___->_F_seek($pos);
+
+		return $it___;
+	}
+
+	function iter_assign_copy_to(basic_iterator &$from___, basic_iterator &$to___)
+	{
+		$to___->_F_assign(_X_copy($from___->_F_this()));
+		return $to___;
+	}
+
+	function & iter_assign_copy(basic_iterator &$it___, $val___)
+	{
+		$it___->_F_assign(_X_copy($val___));
 		return $it___;
 	}
 
