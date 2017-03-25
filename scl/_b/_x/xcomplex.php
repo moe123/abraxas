@@ -104,6 +104,20 @@ namespace std
 	function carg(complex_t $x)
 	{ return \atan2($x->_M_imag, $x->_M_real); }
 
+	function cpow(complex_t $x1, complex_t $x2) 
+	{
+		if (_X_real_zeroed($x1->_M_real, $x1->_M_imag)) {
+			return $x1;
+		}
+
+		$l = \log(\sqrt($x1->_M_real * $x1->_M_real + $x1->_M_imag * $x1->_M_imag));
+		$t = \atan2($x1->_M_imag, $x1->_M_real);
+		$r = \exp($l * $x2->_M_real - $x2->_M_imag * $t);
+		$b = $t * $x2->_M_real + $x2->_M_imag * $l;
+
+		return newcomplex($r * \cos($b), $r * \sin($b));
+	}
+
 	function cconj(complex_t $x)
 	{
 		return newcomplex(
