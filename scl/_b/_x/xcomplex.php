@@ -20,7 +20,7 @@ namespace std
 	final class complex_t
 	{
 		var $_M_real = 0.0;
-		var $_M_imag  = 0.0;
+		var $_M_imag = 0.0;
 		
 		function __construct(float $r___, float $i___)
 		{
