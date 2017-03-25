@@ -33,7 +33,9 @@ namespace std
 	} /* EOC */
 
 	abstract class basic_iterator
-	{ const iterator_category = basic_iterator_tag::basic_iterator; }
+	{
+		const iterator_category = basic_iterator_tag::basic_iterator;
+	} /* EOC */
 
 	abstract class forward_iterator extends basic_iterator
 		implements _I_bidirectional_iterator
@@ -193,7 +195,7 @@ namespace std
 
 		use _T_basic_iterator;
 		use _T_inserter_iterator;
-	}
+	} /* EOC */
 
 	final class ostream_iterator extends insert_iterator
 	{
@@ -231,7 +233,7 @@ namespace std
 			$this->_F_next();
 			return $this;
 		}
-	}
+	} /* EOC */
 
 	final class duo_iterator extends basic_iterator
 	{
@@ -269,7 +271,7 @@ namespace std
 			$this->_F_next();
 			return $this;
 		}
-	}
+	} /* EOC */
 } /* EONS */
 
 /* EOF */

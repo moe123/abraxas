@@ -18,7 +18,7 @@
 namespace std
 {
 	final class istream extends basic_istream
-	{ /* NOP */ } /* EOC */
+	{ /* NOP */ }
 } /* EONS */
 
 /* EOF */

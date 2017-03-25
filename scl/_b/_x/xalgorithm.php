@@ -410,7 +410,7 @@ namespace std
 	) {
 		$sz = \count($a___);
 		if ($sz > 1) {
-			$mid = \intval($sz / 2);
+			$mid = \intdiv($sz, 2);
 			$a_1 = \array_slice($a___, 0, $mid);
 			$a_2 = \array_slice($a___, $mid);
 

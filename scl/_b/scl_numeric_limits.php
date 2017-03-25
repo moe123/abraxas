@@ -24,7 +24,7 @@ namespace std
 		const max     = BUILTIN_FLT_MAX;
 		const lowest  = BUILTIN_FLT_LOWEST;
 		const min     = BUILTIN_FLT_MIN;
-	}
+	} /* EOC */
 
 	abstract class numeric_limits_double extends numeric_limits_float
 	{ /* NOP */ }
@@ -36,7 +36,7 @@ namespace std
 		const max     = BUILTIN_SINT_MAX;
 		const lowest  = BUILTIN_SINT_LOWEST;
 		const min     = BUILTIN_SINT_MIN;
-	}
+	} /* EOC */
 
 	abstract class numeric_limits_long extends numeric_limits_int
 	{ /* NOP */ }
