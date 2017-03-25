@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xcomplex.php
+// xcomplex_t.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -17,7 +17,7 @@
 
 namespace std
 {
-	final class complex
+	final class complex_t
 	{
 		var $_M_real = 0.0;
 		var $_M_imag  = 0.0;
@@ -29,63 +29,63 @@ namespace std
 		}
 	} /* EOC */
 
-	function cmplx(float $r___, float $i___)
-	{ return new complex($r___, $i___); }
+	function newcomplex(float $r___, float $i___)
+	{ return new complex_t($r___, $i___); }
 
-	function ccos(complex $x)
+	function ccos(complex_t $x)
 	{
-		return cmplx(
+		return newcomplex(
 			  \cos($x->_M_real) * \cosh($x->_M_imag)
 			, \sin($x->_M_real) * \sinh($x->_M_imag)
 		);
 	}
 
-	function csin(complex $x)
+	function csin(complex_t $x)
 	{
-		return cmplx(
+		return newcomplex(
 			  \sin($x->_M_real) * \cosh($x->_M_imag)
 			, \cos($x->_M_real) * \sinh($x->_M_imag)
 		);
 	}
 
-	function ctan(complex $x)
+	function ctan(complex_t $x)
 	{
 		$d = 1 + \pow(\tan($x->_M_real), 2) * \pow(\tanh($x->_M_imag), 2);
-		return cmplx(
+		return newcomplex(
 			  \pow((1 / \cosh($x->_M_imag)), 2) * \tan($x->_M_real) / $d
 			, \pow((1 / \cos($x->_M_real)), 2) * \tanh($x->_M_imag) / $d
 		);
 	}
 
-	function ccosh(complex $x)
+	function ccosh(complex_t $x)
 	{
-		return cmplx(
+		return newcomplex(
 			  \cosh($x->_M_real) * \cos($x->_M_imag)
 			, \sinh($x->_M_real) * \sin($x->_M_imag)
 		);
 	}
 
-	function csinh(complex $x)
+	function csinh(complex_t $x)
 	{
-		return cmplx(
+		return newcomplex(
 			  \sinh($x->_M_real) * \cos($x->_M_imag)
 			, \cosh($x->_M_real) * \sin($x->_M_imag)
 		);
 	}
 
-	function ctanh(complex $x)
+	function ctanh(complex_t $x)
 	{
 		$d = \cos($x->_M_imag) * \cos($x->_M_imag) + \sinh($x->_M_real) * \sinh($x->_M_real);
-		return cmplx(
+		return newcomplex(
 			  \sinh($x->_M_real) * \cosh($x->_M_real) / $d
 			, 0.5 * \sin(2 * $x->_M_imag) / $d
 		);
 	}
 
-	function creal(complex $x)
+	function creal(complex_t $x)
 	{ return $x->_M_real; }
 
-	function cimag(complex $x)
+	function cimag(complex_t $x)
 	{ return $x->_M_imag; }
 } /* EONS */
 
