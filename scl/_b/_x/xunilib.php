@@ -20,16 +20,19 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xerrno.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xendian.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xostype.php";
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xcomplex.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlocale.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xrandom.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xsignal.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xstring.php";
-	
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xio.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtime.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtimezone.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlib.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlocale.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xutsname.php";
+
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xio.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlib.php";
+	
 	
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xexception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xiterator_traits.php";
