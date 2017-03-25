@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xcomplex_t.php
+// xcomplex.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

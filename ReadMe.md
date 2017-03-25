@@ -379,6 +379,7 @@ PHP7 built with:
 
 ##### Bindings
 > [xalgorithm](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xalgorithm.php?ts=3)<br>
+> [xcomplex](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xcomplex.php?ts=3)<br>
 > [xcontainer_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xcontainer_traits.php?ts=3)<br>
 > [xendian](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xendian.php?ts=3)<br>
 > [xerrno](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xerrno.php?ts=3)<br>
