@@ -104,7 +104,7 @@ namespace std
 	function carg(complex_t $x)
 	{ return \atan2($x->_M_imag, $x->_M_real); }
 
-	function conj(complex_t $x)
+	function cconj(complex_t $x)
 	{
 		return newcomplex(
 			  $x->_M_real
