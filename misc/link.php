@@ -357,7 +357,7 @@ std\cout(std\endl);
 std\lazy_copy(
 	  $v->begin()
 	, $v->end()
-	, std\stream_inserter(std\clog, ", ")
+	, std\stream_inserter(std\cerr, ", ")
 );
 std\cout(std\endl);
 std\cout(std\endl);

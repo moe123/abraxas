@@ -82,6 +82,36 @@ namespace std
 		);
 	}
 
+	function cexp(complex_t $x)
+	{
+		return newcomplex(
+			  \exp($x->_M_real) * \cos($x->_M_imag)
+			, \exp($x->_M_real) * \sin($x->_M_imag)
+		);
+	}
+
+	function clog(complex_t $x)
+	{
+		return newcomplex(
+			  \log(\sqrt($x->_M_real * $x->_M_real + $x->_M_imag * $x->_M_imag))
+			, \atan2($x->_M_imag, $x->_M_real)
+		);
+	}
+
+	function cabs(complex_t $x)
+	{ return \sqrt($x->_M_real * $x->_M_real + $x->_M_imag * $x->_M_imag); }
+
+	function carg(complex_t $x)
+	{ return \atan2($x->_M_imag, $x->_M_real); }
+
+	function conj(complex_t $x)
+	{
+		return newcomplex(
+			  $x->_M_real
+			, $x->_M_imag * -1
+		);
+	}
+
 	function creal(complex_t $x)
 	{ return $x->_M_real; }
 

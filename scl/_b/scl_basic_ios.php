@@ -25,7 +25,6 @@ namespace std
 	const cin  = '\std\cin';
 	const cout = '\std\cout';
 	const cerr = '\std\cerr';
-	const clog = '\std\cerr';
 
 	abstract class char_utils
 	{
