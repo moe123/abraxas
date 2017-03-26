@@ -143,7 +143,7 @@ namespace std
 		} else if ($locmask___ & xlocale_mask::messages) {
 			$xloc->u_data[0]["^std@_u_cat"] = locale_category::messages;
 		}
-		$xloc->u_mask                  = $locmask___;
+		$xloc->u_mask                   = $locmask___;
 		$xloc->u_data[0]["^std@_u_nid"] = $locid___;
 		$xloc->u_data[0]["^std@_u_rst"] = 1;
 
