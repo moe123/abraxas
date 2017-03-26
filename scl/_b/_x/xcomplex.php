@@ -99,10 +99,22 @@ namespace std
 	}
 
 	function cabs(complex_t $z___)
-	{ return \sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag); }
+	{
+		/* return \sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag); */
+		return \hypot($z___->_M_real, $z___->_M_imag);
+	}
 
 	function carg(complex_t $z___)
-	{ return \atan2($z___->_M_imag, $z___->_M_real); }
+	{
+		if (\is_nan($z___->_M_real) || \is_nan($z___->_M_imag)) {
+			return \NAN;
+		}
+		$A = \atan2($z___->_M_imag, $z___->_M_real);
+		if (\M_PI < $A || $A < (\M_PI * - 1)) {
+			return \INF;
+		}
+		return $A;
+	}
 
 	function cpow(complex_t $z1___, complex_t $z2___) 
 	{
