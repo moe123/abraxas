@@ -154,6 +154,16 @@ namespace std
 		);
 	}
 
+	function cproj(complex_t $x___)
+	{
+		$z = clone $x___;
+		if (isinf($z->_M_real) || isinf($z->_M_imag)) {
+			$z->_M_real = \INF;
+			$z->_M_imag = copysign(0.0, $z->_M_imag);
+		}
+		return $z;
+	}
+
 	function creal(complex_t $x___)
 	{ return $x___->_M_real; }
 
