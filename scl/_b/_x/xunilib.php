@@ -250,6 +250,8 @@ namespace std
 	{
 		if (\function_exists('\posix_getppid')) {
 			return posix_getppid();
+		} else if (_X_os_windows()) {
+			return \intval(\exec("`wmic.exe process where (processid=" . \getmypid() . ") get parentprocessid"));
 		} else {
 			return \intval(\exec("`which ps` -o ppid= " . \getmypid() . " | xargs"));
 		}
