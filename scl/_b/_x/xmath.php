@@ -86,7 +86,7 @@ namespace std
 	{ return \intval($x___ < $y___ || _X_real_equal($x___, $y___)); }
 
 	function islessgreater(float $x___, float $y___)
-	{ return \intval($x___ > $y___ || $x___ < $y___); }
+	{ return \intval($y___ > $x___ || $x___ > $y___); }
 
 	function isunordered(float $x___, float $y___)
 	{ return \intval(\is_nan($x___) || \is_nan($y___)); }
