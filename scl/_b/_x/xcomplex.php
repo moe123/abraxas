@@ -6,9 +6,11 @@
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
- 
+
 /*!
  * @project    Abraxas (Standard Container Library).
+ * @brief      Complex numbers and associated mathematical functions:
+ *             hyperbolic, trigonometric, exponential, power.
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
