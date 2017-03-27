@@ -160,20 +160,15 @@ namespace std
 			);
 		}
 
-		$I = ($z___->_M_imag >= 0) ? $W : -($W);
+		$I = ($z___->_M_imag > 0.0 || _X_real_iszero($z___->_M_imag)) ? $W : -($W);
 		return newcomplex(
-			$z___->_M_imag / (2.0 * $I)
+			  $z___->_M_imag / (2.0 * $I)
 			, $I
 		);
 	}
 
 	function cconj(complex_t $z___)
-	{
-		return newcomplex(
-			  $z___->_M_real
-			, -($z___->_M_imag)
-		);
-	}
+	{ return newcomplex($z___->_M_real, -($z___->_M_imag)); }
 
 	function cproj(complex_t $z___)
 	{
@@ -207,12 +202,12 @@ namespace std
 
 		$R = $rho___ * \cos($theta___);
 		if (\is_nan($R)) {
-			$R = 0;
+			$R = 0.0;
 		}
 			
 		$I = $rho___ * \sin($theta___);
 		if (\is_nan($I)) {
-			$I = 0;
+			$I = 0.0;
 		}
 		return newcomplex($R, $I);
 	}
