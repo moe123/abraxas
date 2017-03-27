@@ -29,12 +29,12 @@ namespace std
 		}
 	} /* EOC */
 
-	function newcomplex(float $r___, float $i___)
+	function CMPLX(float $r___, float $i___)
 	{ return new complex_t($r___, $i___); }
 
 	function ccos(complex_t $z___)
 	{
-		return newcomplex(
+		return CMPLX(
 			  \cos($z___->_M_real) * \cosh($z___->_M_imag)
 			, \sin($z___->_M_real) * \sinh($z___->_M_imag)
 		);
@@ -42,7 +42,7 @@ namespace std
 
 	function csin(complex_t $z___)
 	{
-		return newcomplex(
+		return CMPLX(
 			  \sin($z___->_M_real) * \cosh($z___->_M_imag)
 			, \cos($z___->_M_real) * \sinh($z___->_M_imag)
 		);
@@ -51,7 +51,7 @@ namespace std
 	function ctan(complex_t $z___)
 	{
 		$d = 1 + \pow(\tan($z___->_M_real), 2) * \pow(\tanh($z___->_M_imag), 2);
-		return newcomplex(
+		return CMPLX(
 			  \pow((1 / \cosh($z___->_M_imag)), 2) * \tan($z___->_M_real) / $d
 			, \pow((1 / \cos($z___->_M_real)), 2) * \tanh($z___->_M_imag) / $d
 		);
@@ -59,7 +59,7 @@ namespace std
 
 	function ccosh(complex_t $z___)
 	{
-		return newcomplex(
+		return CMPLX(
 			  \cosh($z___->_M_real) * \cos($z___->_M_imag)
 			, \sinh($z___->_M_real) * \sin($z___->_M_imag)
 		);
@@ -67,7 +67,7 @@ namespace std
 
 	function csinh(complex_t $z___)
 	{
-		return newcomplex(
+		return CMPLX(
 			  \sinh($z___->_M_real) * \cos($z___->_M_imag)
 			, \cosh($z___->_M_real) * \sin($z___->_M_imag)
 		);
@@ -76,7 +76,7 @@ namespace std
 	function ctanh(complex_t $z___)
 	{
 		$d = \cos($z___->_M_imag) * \cos($z___->_M_imag) + \sinh($z___->_M_real) * \sinh($z___->_M_real);
-		return newcomplex(
+		return CMPLX(
 			  \sinh($z___->_M_real) * \cosh($z___->_M_real) / $d
 			, 0.5 * \sin(2 * $z___->_M_imag) / $d
 		);
@@ -84,7 +84,7 @@ namespace std
 
 	function cexp(complex_t $z___)
 	{
-		return newcomplex(
+		return CMPLX(
 			  \exp($z___->_M_real) * \cos($z___->_M_imag)
 			, \exp($z___->_M_real) * \sin($z___->_M_imag)
 		);
@@ -92,9 +92,19 @@ namespace std
 
 	function clog(complex_t $z___)
 	{
-		return newcomplex(
+		return CMPLX(
 			  \log(\sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag))
 			, \atan2($z___->_M_imag, $z___->_M_real)
+		);
+	}
+
+	function clog10(complex_t $z___)
+	{
+		$R = \log(\sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag));
+		$I = \atan2($z___->_M_imag, $z___->_M_real);
+		return CMPLX(
+			  $R * (1.0 / \log(10))
+			, $I * (1.0 / \log(10))
 		);
 	}
 
@@ -136,7 +146,7 @@ namespace std
 		$R = \exp($l * $z2___->_M_real - $z2___->_M_imag * $T);
 		$B = $T * $z2___->_M_real + $z2___->_M_imag * $l;
 
-		return newcomplex($R * \cos($B), $R * \sin($B));
+		return CMPLX($R * \cos($B), $R * \sin($B));
 	}
 
 	function csqrt(complex_t $z___) 
@@ -154,21 +164,21 @@ namespace std
 		);
 
 		if ($z___->_M_real > 0.0 || _X_real_iszero($z___->_M_real)) {
-			return newcomplex(
+			return CMPLX(
 				  $W
 				, $z___->_M_imag / (2.0 * $W)
 			);
 		}
 
 		$I = ($z___->_M_imag > 0.0 || _X_real_iszero($z___->_M_imag)) ? $W : -($W);
-		return newcomplex(
+		return CMPLX(
 			  $z___->_M_imag / (2.0 * $I)
 			, $I
 		);
 	}
 
 	function cconj(complex_t $z___)
-	{ return newcomplex($z___->_M_real, -($z___->_M_imag)); }
+	{ return CMPLX($z___->_M_real, -($z___->_M_imag)); }
 
 	function cproj(complex_t $z___)
 	{
@@ -183,21 +193,21 @@ namespace std
 	function cpolar(float $rho___, float $theta___ = 0.0)
 	{
 		if (\is_nan($rho___) || signbit($rho___)) {
-			return newcomplex(\NAN, \NAN);
+			return CMPLX(\NAN, \NAN);
 		}
 
 		if (\is_nan($theta___)) {
 			if (\is_infinite($rho___)) {
-					return newcomplex($rho___, $theta___);
+					return CMPLX($rho___, $theta___);
 			}
-			return newcomplex($theta___, $theta___);
+			return CMPLX($theta___, $theta___);
 		}
 
 		if (\is_infinite($theta___)) {
 			if (\is_infinite($rho___)) {
-					return newcomplex($rho___, \NAN);
+					return CMPLX($rho___, \NAN);
 			}
-			return newcomplex(\NAN, \NAN);
+			return CMPLX(\NAN, \NAN);
 		}
 
 		$R = $rho___ * \cos($theta___);
@@ -209,8 +219,33 @@ namespace std
 		if (\is_nan($I)) {
 			$I = 0.0;
 		}
-		return newcomplex($R, $I);
+		return CMPLX($R, $I);
 	}
+
+	function cinv(complex_t $z___) 
+	{
+		$h = \hypot($z___->_M_real, $z___->_M_imag);
+		if (_X_real_iszero($h)) {
+			return CMPLX(0.0, copysign(0.0, $z->_M_imag));
+		}
+		$t = (1.0 / $h);
+		return CMPLX(
+			  ($z___->_M_real * $t * $t)
+			, (-($z___->_M_imag) * $t * $t)
+		);
+	}
+
+	function cneg(complex_t $z___) 
+	{ return CMPLX(-($z___->_M_real), -($z->_M_imag)); }
+
+	function csec(complex_t $z___) 
+	{ return cinv(ccos($z___)); }
+
+	function ccosec(complex_t $z___) 
+	{ return cinv(csin($z___)); }
+
+	function ccotan(complex_t $z___) 
+	{ return cinv(ctan($z___)); }
 
 	function creal(complex_t $z___)
 	{ return $z___->_M_real; }
