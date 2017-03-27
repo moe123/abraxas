@@ -104,6 +104,15 @@ namespace std
 		return \hypot($z___->_M_real, $z___->_M_imag);
 	}
 
+	function cnorm(complex_t $z___)
+	{
+		if (\is_infinite($z___->_M_real))
+			return \abs($z___->_M_real);
+		if (\is_infinite($z___->_M_imag))
+			return \abs($z___->_M_imag);
+		return $z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag;
+	}
+
 	function carg(complex_t $z___)
 	{
 		if (\is_nan($z___->_M_real) || \is_nan($z___->_M_imag)) {
@@ -151,7 +160,7 @@ namespace std
 			);
 		}
 
-		$I = ($z___->_M_imag >= 0) ? $W : -1 * $W;
+		$I = ($z___->_M_imag >= 0) ? $W : -($W);
 		return newcomplex(
 			$z___->_M_imag / (2.0 * $I)
 			, $I
@@ -162,18 +171,50 @@ namespace std
 	{
 		return newcomplex(
 			  $z___->_M_real
-			, $z___->_M_imag * -1
+			, -($z___->_M_imag)
 		);
 	}
 
 	function cproj(complex_t $z___)
 	{
 		$z = clone $z___;
-		if (isinf($z->_M_real) || isinf($z->_M_imag)) {
+		if (\is_infinite($z->_M_real) || \is_infinite($z->_M_imag)) {
 			$z->_M_real = \INF;
 			$z->_M_imag = copysign(0.0, $z->_M_imag);
 		}
 		return $z;
+	}
+
+	function cpolar(float $rho___, float $theta___ = 0.0)
+	{
+		if (\is_nan($rho___) || signbit($rho___)) {
+			return newcomplex(\NAN, \NAN);
+		}
+
+		if (\is_nan($theta___)) {
+			if (\is_infinite($rho___)) {
+					return newcomplex($rho___, $theta___);
+			}
+			return newcomplex($theta___, $theta___);
+		}
+
+		if (\is_infinite($theta___)) {
+			if (\is_infinite($rho___)) {
+					return newcomplex($rho___, \NAN);
+			}
+			return newcomplex(\NAN, \NAN);
+		}
+
+		$R = $rho___ * \cos($theta___);
+		if (\is_nan($R)) {
+			$R = 0;
+		}
+			
+		$I = $rho___ * \sin($theta___);
+		if (\is_nan($I)) {
+			$I = 0;
+		}
+		return newcomplex($R, $I);
 	}
 
 	function creal(complex_t $z___)
