@@ -226,7 +226,7 @@ namespace std
 	{
 		$h = \hypot($z___->_M_real, $z___->_M_imag);
 		if (_X_real_iszero($h)) {
-			return CMPLX(0.0, copysign(0.0, $z->_M_imag));
+			return CMPLX(0.0, -(copysign(0.0, $z->_M_imag)));
 		}
 		$t = (1.0 / $h);
 		return CMPLX(
