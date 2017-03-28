@@ -232,17 +232,17 @@ namespace std
 
 	function get(int $i___, $v___)
 	{
-		if (\is_object($v___) && $v___ instanceof \std\tuple) {
+		if ($v___ instanceof \std\tuple) {
 			if ($v___->_M_size && $i___ < $v___->_M_size) {
 				return $v___->_M_container[$i___];
 			}
-		} else if (\is_object($v___) && $v___ instanceof \std\quint) {
+		} else if ($v___ instanceof \std\quint) {
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $i___ === 2 ? $v___->third : $i___ === 3 ? $v___->fourth : $v___->fifth;
-		} else if (\is_object($v___) && $v___ instanceof \std\quad) {
+		} else if ($v___ instanceof \std\quad) {
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $i___ === 2 ? $v___->third : $v___->fourth;
-		} else if (\is_object($v___) && $v___ instanceof \std\triad) {
+		} else if ($v___ instanceof \std\triad) {
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $v___->third;
-		} else if (\is_object($v___) && $v___ instanceof \std\pair) {
+		} else if ($v___ instanceof \std\pair) {
 			return $i___ === 0 ? $v___->first : $v___->second;
 		}
 		return null;
@@ -375,6 +375,9 @@ namespace std
 
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
+
+	function make_complex(float $real___, float $imag___)
+	{ return new complex($real___, $imag___); }
 
 	function make_ratio(...$args___)
 	{ return new ratio(...$args___); }

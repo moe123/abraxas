@@ -19,66 +19,83 @@ namespace std
 {
 	final class complex
 	{
-		var $_M_complex = null;
+		use _T_multi_construct;
 
-		//#! Base Arithmetic functions.
+		var $_M_real = 0.0;
+		var $_M_imag = 0.0;
 
-		static function abs(complex $c)
-		{ return cabs($c->_M_complex); }
+		function __construct()
+		{ $this->_F_multi_construct(func_num_args(), func_get_args()); }
 
-		static function arg(complex $c)
-		{ return carg($c->_M_complex); }
-
-		static function norm(complex $c)
-		{ return cnorm($c->_M_complex); }
-
-		static function conj(complex $c)
+		function complex_1(float $real)
 		{
-			$z = cconj($c->_M_complex);
-			return new complex(creal($z), cimag($z));
+			$this->_M_real = $real;
+			$this->_M_imag = 0.0;
 		}
 
-		static function proj(complex $c)
+		function complex_2(float $real, float $imag)
 		{
-			$z = proj($c->_M_complex);
-			return new complex(creal($z), cimag($z));
+			$this->_M_real = $real;
+			$this->_M_imag = $imag;
 		}
-
-		static function polar(float $rho, float $theta = 0.0)
-		{
-			$z = cpolar($rho, $theta);
-			return new complex(creal($z), cimag($z));
-		}
-
-		//#! Exponential functions.
-
-		static function exp(complex $c)
-		{
-			$z = cexp($c->_M_complex);
-			return new complex(creal($z), cimag($z));
-		}
-
-		static function log(complex $c)
-		{
-			$z = clog($c->_M_complex);
-			return new complex(creal($z), cimag($z));
-		}
-
-		static function log10(complex $c)
-		{
-			$z = clog10($c->_M_complex);
-			return new complex(creal($z), cimag($z));
-		}
-
-		function __construct(float $real, float $imag)
-		{ $this->_M_complex = cmplx($real, $imag); }
 
 		function real()
-		{ return creal($this->_M_complex); }
- 		
+		{ return $this->_M_real; }
+
 		function imag()
-		{ return cimag($this->_M_complex); }
+		{ return $this->_M_imag; }
 	} /* EOC */
+
+	function real($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return creal($x___);
+		}
+		return $x___;
+	}
+
+	function imag($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cimg($x___);
+		}
+		return 0.0;
+	}
+
+	function arg($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return carg($x___);
+		}
+		return \atan2(0.0, $x___);
+	}
+
+	function norm($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cnorm($x___);
+		}
+		return $x___ * $x___;
+	}
+
+	function conj($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cconj($x___);
+		}
+		return new complex($x___);
+	}
+
+	function proj($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cproj($x___);
+		}
+		return new complex(\is_infinite($x___) ? \abs($x___) : $x___);
+	}
+
+	function polar(float $rho___, float $theta___ = 0.0)
+	{ return cpolar($rho___, $theta___); }
 } /* EONS */
 
 /* EOF */

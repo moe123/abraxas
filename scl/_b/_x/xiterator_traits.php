@@ -251,7 +251,7 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (\is_object($val___) && $val___ instanceof \std\pair) {
+			if ($val___ instanceof \std\pair) {
 				$this->_M_ptr->set_item($val___);
 			} else {
 				$this->_M_ptr->set($this->_M_ptr->item_at($this->_M_pos)->first, $val___);
@@ -357,7 +357,7 @@ namespace std
 		function & _F_assign($val___)
 		{
 			if ($this->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
-				if (\is_object($val___) && $val___ instanceof \std\pair) {
+				if ($val___ instanceof \std\pair) {
 					if (static::iterator_category === basic_iterator_tag::front_insert_iterator) {
 						_X_push_front($this->_M_ptr, $val___->second, $val___->first);
 					} else if (static::iterator_category === basic_iterator_tag::back_insert_iterator) {
@@ -525,7 +525,7 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (\is_object($val___) && $val___ instanceof \std\pair) {
+			if ($val___ instanceof \std\pair) {
 				$this->_M_ptr->set_item($val___);
 			} else {
 				$this->_M_ptr->set($this->_M_ptr->item_at($this->_M_pos)->first, $val___);

@@ -115,38 +115,106 @@ namespace std
 	function hypot(float $x___, float $y___)
 	{ return \hypot($x___ , $y___); }
 
-	function abs(int $x___)
-	{ return \abs($x___); }
+	function abs($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cabs($x___);
+		}
+		return \abs($x___);
+	}
 
-	function exp(float $x___)
-	{ return \exp($x___); }
+	function exp($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cexp($x___);
+		}
+		return \exp($x___);
+	}
 
-	function log(float $x___)
-	{ return \log($x___); }
+	function pow($x___, $y___) {
+		if ($x___ instanceof \std\complex || $y___ instanceof \std\complex) {
+			if (!($x___ instanceof \std\complex)) {
+				$x___ = new complex($x___);
+			}
+			if (!($y___ instanceof \std\complex)) {
+				$y___ = new complex($y___);
+			}
+			return cpow($x___, $y___);
+		}
+		return \pow($x___, $y___);
+	}
 
-	function log10(float $x___)
-	{ return \log10($x___); }
+	function log($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return clog($x___);
+		}
+		return \log($x___);
+	}
 
-	function sqrt(float $x___)
-	{ return \sqrt($x___); }
+	function log10($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return clog10($x___);
+		}
+		return \log10($x___);
+	}
 
-	function cos(float $x___)
-	{ return \cos($x___); }
+	function sqrt($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return csqrt($x___);
+		}
+		return \sqrt($x___);
+	}
 
-	function cosh(float $x___)
-	{ return \cosh($x___); }
+	function cos($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ccos($x___);
+		}
+		return \cos($x___);
+	}
 
-	function sin(float $x___)
-	{ return \sin($x___); }
+	function cosh($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ccosh($x___);
+		}
+		return \cosh($x___);
+	}
 
-	function sinh(float $x___)
-	{ return \sinh($x___); }
+	function sin($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return csin($x___);
+		}
+		return \sin($x___);
+	}
 
-	function tan(float $x___)
-	{ return \tan($x___); }
+	function sinh($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return csinh($x___);
+		}
+		return \sinh($x___);
+	}
 
-	function tanh(float $x___)
-	{ return \tanh($x___); }
+	function tan($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ctan($x___);
+		}
+		return \tan($x___);
+	}
+
+	function tanh($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ctanh($x___);
+		}
+		return \tanh($x___);
+	}
 
 	function acos(float $x___)
 	{ return \acos($x___); }

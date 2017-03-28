@@ -30,17 +30,17 @@ namespace std
 
 	function is_floating_point($v__)
 	{
-		if (\is_object($v__) && ($v__ instanceof \std\basic_ratio)) {
+		if (($v__ instanceof \std\basic_ratio)) {
 			return (($v__->num() % $v__->$den()) !== 0);
 		}
 		return \is_float($v__);
 	}
 
 	function is_array($v__)
-	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \std\basic_iterable)); }
+	{ return \is_array($v__) || ($v__ instanceof \std\basic_iterable); }
 
 	function is_string($v__)
-	{ return \is_string($v__) || (\is_object($v__) && ($v__ instanceof \std\u8string)); }
+	{ return \is_string($v__) || ($v__ instanceof \std\u8string); }
 
 	function is_object($v__)
 	{ return \is_object($v__); }
@@ -67,20 +67,20 @@ namespace std
 
 	function is_tuple($v__)
 	{
-		return (\is_object($v__) && (
+		return (
 				$v__ instanceof \std\tuple
 			|| $v__ instanceof \std\pair
 			|| $v__ instanceof \std\triad
 			|| $v__ instanceof \std\quad
 			|| $v__ instanceof \std\quint
-		));
+		);
 	}
 	
 	function is_countable($v__)
-	{ return \is_array($v__) || (\is_object($v__) && ($v__ instanceof \Countable)); }
+	{ return \is_array($v__) || ($v__ instanceof \Countable); }
 
 	function is_iterable($v__)
-	{ return (\is_object($v__) && ($v__ instanceof \std\basic_iterable)); }
+	{ return ($v__ instanceof \std\basic_iterable); }
 
 	function is_same($l, $r) {
 		if (\is_resource($l) && \is_resource($r)) {

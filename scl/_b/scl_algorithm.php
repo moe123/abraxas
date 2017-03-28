@@ -325,8 +325,7 @@ namespace std
 	) {
 		$p = $compare___;
 		if (\is_null($p)) {
-			//$p = function ($l, $r) { return $l < $r; };
-			return \min($a___, $b___);
+			$p = function ($l, $r) { return $l < $r; };
 		}
 		return ($p($b___, $a___)) ? $b___ : $a___;
 	}
@@ -338,8 +337,7 @@ namespace std
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			//$p = function ($l, $r) { return $l < $r; };
-			return \max($a___, $b___);
+			$p = function ($l, $r) { return $l < $r; };
 		}
 		return ($p($a___, $b___)) ? $b___ : $a___;
 	}
