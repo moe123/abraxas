@@ -45,57 +45,6 @@ namespace std
 		function imag()
 		{ return $this->_M_imag; }
 	} /* EOC */
-
-	function real($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return creal($x___);
-		}
-		return $x___;
-	}
-
-	function imag($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return cimg($x___);
-		}
-		return 0.0;
-	}
-
-	function arg($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return carg($x___);
-		}
-		return \atan2(0.0, $x___);
-	}
-
-	function norm($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return cnorm($x___);
-		}
-		return $x___ * $x___;
-	}
-
-	function conj($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return cconj($x___);
-		}
-		return new complex($x___);
-	}
-
-	function proj($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return cproj($x___);
-		}
-		return new complex(\is_infinite($x___) ? \abs($x___) : $x___);
-	}
-
-	function polar(float $rho___, float $theta___ = 0.0)
-	{ return cpolar($rho___, $theta___); }
 } /* EONS */
 
 /* EOF */
