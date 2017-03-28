@@ -17,8 +17,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR .
-						 "_x" . DIRECTORY_SEPARATOR . "xunilib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "_x" . DIRECTORY_SEPARATOR . "xunilib.php";
 
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";

@@ -94,6 +94,9 @@ namespace std
 	function signbit($x___)
 	{ return \is_numeric($x___) ? \intval(\strval($x___)[0] == '-') : 0; }
 
+	function fabs(float $x___)
+	{ return floatval(\abs($x___)); }
+
 	function fmax(float $x___, float $y___)
 	{ return \max($x___, $y___); }
 
@@ -111,6 +114,60 @@ namespace std
 
 	function hypot(float $x___, float $y___)
 	{ return \hypot($x___ , $y___); }
+
+	function abs(int $x___)
+	{ return \abs($x___); }
+
+	function exp(float $x___)
+	{ return \exp($x___); }
+
+	function log(float $x___)
+	{ return \log($x___); }
+
+	function log10(float $x___)
+	{ return \log10($x___); }
+
+	function sqrt(float $x___)
+	{ return \sqrt($x___); }
+
+	function cos(float $x___)
+	{ return \cos($x___); }
+
+	function cosh(float $x___)
+	{ return \cosh($x___); }
+
+	function sin(float $x___)
+	{ return \sin($x___); }
+
+	function sinh(float $x___)
+	{ return \sinh($x___); }
+
+	function tan(float $x___)
+	{ return \tan($x___); }
+
+	function tanh(float $x___)
+	{ return \tanh($x___); }
+
+	function acos(float $x___)
+	{ return \acos($x___); }
+
+	function acosh(float $x___)
+	{ return \acosh($x___); }
+
+	function asin(float $x___)
+	{ return \asin($x___); }
+
+	function asinh(float $x___)
+	{ return \asinh($x___); }
+
+	function atan2(float $x___)
+	{ return \atan2($x___); }
+
+	function atan(float $x___)
+	{ return \atan($x___); }
+
+	function atanh(float $x___)
+	{ return \atanh($x___); }
 } /* EONS */
 
 /* EOF */

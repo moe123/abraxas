@@ -319,18 +319,29 @@ namespace std
 	}
 
 	function min(
-		           &$v1___
-		,          &$v2___
+		           &$a___
+		,          &$b___
+		, callable  $compare___ = null
+	) {
+		$p = $compare___;
+		if (\is_null($p)) {
+			//$p = function ($l, $r) { return $l < $r; };
+			return \min($a___, $b___);
+		}
+		return ($p($b___, $a___)) ? $b___ : $a___;
+	}
+
+	function max(
+		           &$a___
+		,          &$b___
 		, callable  $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
 		if (\is_null($p)) {
-			$p = function ($l, $r) { return $l < $r; };
+			//$p = function ($l, $r) { return $l < $r; };
+			return \max($a___, $b___);
 		}
-		if ($p($v2___, $v1___)) {
-			return $v2___;
-		}
-		return $v1___;
+		return ($p($a___, $b___)) ? $b___ : $a___;
 	}
 
 	function minmax(
