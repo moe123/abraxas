@@ -21,8 +21,7 @@ not happened before.</sup></sub>
 
 #### | Brief
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
-and the `C++ STL`. Providing the same six main components: `Algorithms`, `Containers`, `Iterators`, `Functional`,  `Streams` and `Locale`.
-(I/O and stream will come later i.e once the core-library is stable and meets the author expectations and satisfaction).
+and the `C++ STL`. Providing the same six main components: `Algorithms`, `Containers`, `Iterators`, `Functional`,  `I/O Streams` and `Locale`.
 
 ```php
 
