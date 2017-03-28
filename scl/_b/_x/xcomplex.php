@@ -127,11 +127,11 @@ namespace std
 		if (_X_real_zeroed($z1___->_M_real, $z1___->_M_imag)) {
 			return $x1;
 		}
-
+		//!# W (ϴ), R (ρ), B (β)
 		$l = \log(\sqrt($z1___->_M_real * $z1___->_M_real + $z1___->_M_imag * $z1___->_M_imag));
-		$T = \atan2($z1___->_M_imag, $z1___->_M_real);
-		$R = \exp($l * $z2___->_M_real - $z2___->_M_imag * $T);
-		$B = $T * $z2___->_M_real + $z2___->_M_imag * $l;
+		$W = \atan2($z1___->_M_imag, $z1___->_M_real);
+		$R = \exp($l * $z2___->_M_real - $z2___->_M_imag * $W);
+		$B = $W * $z2___->_M_real + $z2___->_M_imag * $l;
 
 		return new complex($R * \cos($B), $R * \sin($B));
 	}
