@@ -175,12 +175,6 @@ std\place_generate_n(
 
 std\place_generate_n(
 	  std\back_inserter($v)
-	, 5
-	, std\random_real_11
-);
-
-std\place_generate_n(
-	  std\back_inserter($v)
 	, 8
 	, std\random_real_generator(-1.2, 1.3)
 );

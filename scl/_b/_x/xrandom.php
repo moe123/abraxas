@@ -17,13 +17,16 @@
 
 namespace std
 {
-	const random_upper_bound  = '\std\random_upper_bound';
-	const random_real_01      = '\std\random_real_01';
-	const random_real_11      = '\std\random_real_11';
+	define('std\GRND_RANDOM'   , 1);
+	define('std\GRND_NONBLOCK' , 2);
 
-	const random              = '\std\random';
 	const random_uniform_int  = '\std\random_uniform_int';
 	const random_uniform_real = '\std\random_uniform_real';
+
+	const random              = '\std\random';
+	const srandom             = '\std\srandom';
+	const rand                = '\std\rand';
+	const rand                = '\std\srand';
 
 	function _X_random_dev_1(int $nbytes___)
 	{
@@ -93,24 +96,7 @@ namespace std
 		return  $_S_dev[0];
 	}
 
-	function random_upper_bound(int $upb___)
-	{
-		$x = \abs($upb___) + 1;
-		$r = \mt_rand(0, 0x7FFFFFFE) % $x;
-		$i = 0;
-		while($r >= $x) {
-			$r = \mt_rand(0, 0x7FFFFFFE) % $x;
-		}
-		return $r;
-	}
-
-	function random_real_01()
-	{ return (random_upper_bound(0x7FFFFFFE) / 0x7FFFFFFE) * 1.0; }
-
-	function random_real_11()
-	{ return (2.0 * (random_upper_bound(0x7FFFFFFE) / 0x7FFFFFFE)) - 1.0; }
-
-	function random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
+	function _X_random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
 	{
 		if ($seed___ != 0) {
 			\mt_srand($seed);
@@ -132,6 +118,23 @@ namespace std
 		return \mt_rand($min___, $max___);
 	}
 
+	function random_upper_bound(int $upb___)
+	{
+		$x = \abs($upb___) + 1;
+		$r = \mt_rand(0, 0x7FFFFFFE) % $x;
+		$i = 0;
+		while($r >= $x) {
+			$r = \mt_rand(0, 0x7FFFFFFE) % $x;
+		}
+		return $r;
+	}
+
+	function random_real_01()
+	{ return (random_upper_bound(0x7FFFFFFE) / 0x7FFFFFFE) * 1.0; }
+
+	function random_real_11()
+	{ return (2.0 * (random_upper_bound(0x7FFFFFFE) / 0x7FFFFFFE)) - 1.0; }
+
 	function random_uniform_int(int $min___ = 0, int $max___ = 0)
 	{
 		if ($min___ === 0 && $max___ === 0) {
@@ -143,6 +146,53 @@ namespace std
 
 	function random_uniform_real(float $min___ = 0.0, float $max___ = 1.0)
 	{ return $min___ + (\mt_rand() / \mt_getrandmax()) * ($max___ - $min___); }
+
+	function random()
+	{ return _X_random(0, \mt_rand(), 0); }
+
+	function srandom(int $seed___)
+	{ return _X_random(0, \mt_rand(), $seed___); }
+
+	function rand()
+	{ return _X_random(0, \mt_rand(), 0); }
+
+	function srand(int $seed___)
+	{ return _X_random(0, \mt_rand(), $seed___); }
+
+	function getrandom(&$dest___, int $dlen___, int $flgs___)
+	{
+		if ($dlen___ > 0) {
+			if (_X_os_nix()) {
+				$dest___ = _X_random_dev_1($dlen___);
+				if (\is_null($dest___)) {
+					$dest___ = _X_random_dev_2($dlen___);
+					if (\is_null($dest___)) {
+						$dest___ = _X_random_dev_3($dlen___);
+					}
+					if (\is_null($dest___)) {
+						seterrno(EFAULT);
+						return -1;
+					}
+				}
+			} else {
+				$entropy = 0;
+				$device = _X_random_slot($entropy);
+				$dest___ = $device($dlen___);
+			}
+			return 0;
+		}
+		seterrno(EIO);
+		return -1;
+	}
+
+	function getentropy(&$dest___, int $dlen___)
+	{
+		if ($dlen___ < 1 || $dlen___ > 256) {
+			seterrno(EIO);
+			return -1;
+		}
+		return getrandom($dest___, $dlen___, GRND_RANDOM);
+	}
 } /* EONS */
 
 /* EOF */
