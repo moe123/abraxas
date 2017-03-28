@@ -419,6 +419,7 @@ PHP7 built with:
 > [scl_algorithm](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_algorithm.php?ts=3)<br>
 > [scl_collation](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_collation.php?ts=3)<br>
 > [scl_collator](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_collator.php?ts=3)<br>
+> [scl_complex](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_complex.php?ts=3)<br>
 > [scl_dict](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_dict.php?ts=3)<br>
 > [scl_forward_list](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_forward_list.php?ts=3)<br>
 > [scl_functional](https://github.com/moe123/abraxas/blob/master/scl/_b/scl_functional.php?ts=3)<br>
@@ -447,6 +448,7 @@ PHP7 built with:
 ##### Public front-end
 > [algorithm](https://github.com/moe123/abraxas/blob/master/scl/algorithm.php?ts=3)<br>
 > [collator](https://github.com/moe123/abraxas/blob/master/scl/collator.php?ts=3)<br>
+> [complex](https://github.com/moe123/abraxas/blob/master/scl/complex.php?ts=3)<br>
 > [dict](https://github.com/moe123/abraxas/blob/master/scl/dict.php?ts=3)<br>
 > [exception](https://github.com/moe123/abraxas/blob/master/scl/exception.php?ts=3)<br>
 > [forward_list](https://github.com/moe123/abraxas/blob/master/scl/forward_list.php?ts=3)<br>
@@ -456,6 +458,7 @@ PHP7 built with:
 > [iterator](https://github.com/moe123/abraxas/blob/master/scl/iterator.php?ts=3)<br>
 > [limits](https://github.com/moe123/abraxas/blob/master/scl/limits.php?ts=3)<br>
 > [locale](https://github.com/moe123/abraxas/blob/master/scl/locale.php?ts=3)<br>
+> [math](https://github.com/moe123/abraxas/blob/master/scl/math.php?ts=3)<br>
 > [numeric](https://github.com/moe123/abraxas/blob/master/scl/numeric.php?ts=3)<br>
 > [ordered_list](https://github.com/moe123/abraxas/blob/master/scl/ordered_list.php?ts=3)<br>
 > [ordered_set](https://github.com/moe123/abraxas/blob/master/scl/ordered_set.php?ts=3)<br>
