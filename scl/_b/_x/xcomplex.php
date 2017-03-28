@@ -225,6 +225,38 @@ namespace std
 	function cneg(complex $z___) 
 	{ return new complex(-($z___->_M_real), -($z->_M_imag)); }
 
+	function cadd(complex $z1___, complex $z2___) 
+	{
+		$R = $z1___->_M_real + $z2___->_M_real;
+		$I = $z1___->_M_imag + $z2___->_M_imag;
+		return new complex($R, $I);
+	}
+
+	function csub(complex $z1___, complex $z2___) 
+	{
+		$R = $z1___->_M_real - $z2___->_M_real;
+		$I = $z1___->_M_imag - $z2___->_M_imag;
+		return new complex($R, $I);
+	}
+
+	function cmul(complex $z1___, complex $z2___) 
+	{
+		$R = ($z1___->_M_real * $z2___->_M_real) - ($z1___->_M_imag * $z2___->_M_imag);
+		$I = ($z1___->_M_real * $z2___->_M_imag) + ($z2___->_M_real * $z1___->_M_imag);
+		return new complex($R, $I);
+	}
+
+	function cdiv(complex $z1___, complex $z2___) 
+	{
+		$d = $z2___->_M_real * $z2___->_M_real + $z2___->_M_imag * $z2___->_M_imag;
+		if (_X_real_iszero($d)) {
+			return new complex(\NAN, \NAN);
+		}
+		$R = ($z1___->_M_real * $z2___->_M_real + $z1___->_M_imag * $z2___->_M_imag) / $d;
+		$I = ($z1___->_M_imag * $z2___->_M_real - $z1___->_M_real * $z2___->_M_imag) / $d;
+		return new complex($R, $I);
+	}
+
 	function csec(complex $z___) 
 	{ return cinv(ccos($z___)); }
 
@@ -239,6 +271,27 @@ namespace std
 
 	function cimag(complex $z___)
 	{ return $z___->_M_imag; }
+
+	function cacos(complex $z___)
+	{
+		$z1 = cmul($z___, $z___);
+		$z2 = csub(new complex(1.0 , 0.0), $z1);
+		$z1 = csqrt($z2);
+		$z2 = new complex(
+			  $z___->_M_real - $z1->_M_imag
+			, $z___->_M_imag + $z1->_M_real
+		);
+		$z1 = clog($z2);
+		return new complex($z1->_M_imag, -($z1->_M_real));
+	}
+
+	function cacosh(complex $z___)
+	{
+		$z = cacos($z___);
+		$R = -($z->_M_imag) * (($z->_M_imag > 0) ? 1.0 : -1.0);
+		$I = $z->_M_real * (($z->_M_imag > 0) ? 1.0 : -1.0);
+		return new complex($R, $I);
+	}
 } /* EONS */
 
 /* EOF */

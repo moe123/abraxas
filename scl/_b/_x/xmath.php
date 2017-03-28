@@ -267,11 +267,21 @@ namespace std
 		return \tanh($x___);
 	}
 
-	function acos(float $x___)
-	{ return \acos($x___); }
+	function acos($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cacos($x___);
+		}
+		return \acos($x___);
+	}
 
-	function acosh(float $x___)
-	{ return \acosh($x___); }
+	function acosh($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cacosh($x___);
+		}
+		return \acosh($x___);
+	}
 
 	function asin(float $x___)
 	{ return \asin($x___); }
