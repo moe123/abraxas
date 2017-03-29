@@ -321,11 +321,21 @@ namespace std
 		return \acosh($x___);
 	}
 
-	function asin(float $x___)
-	{ return \asin($x___); }
+	function asin($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return casin($x___);
+		}
+		return \asin($x___);
+	}
 
-	function asinh(float $x___)
-	{ return \asinh($x___); }
+	function asinh($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return casinh($x___);
+		}
+		return \asinh($x___);
+	}
 
 	function atan2(float $x___)
 	{ return \atan2($x___); }
