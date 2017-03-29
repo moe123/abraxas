@@ -20,7 +20,7 @@ namespace std
 	trait _T_basic_iterator
 	{
 		var $_M_pos = 0;
-		var $_M_ptr    = null;
+		var $_M_ptr = null;
 	}
 
 	final class _C_fwditer_sequential_adaptor
@@ -145,8 +145,8 @@ namespace std
 	{
 		function __construct(basic_iterable &$iterable___, int $start___)
 		{
+			$this->_M_pos = $start___ < 0 ? 0 : $start___;
 			$this->_M_ptr = &$iterable___;
-			$this->_M_pos = $start___;
 		}
 
 		function __destruct()
@@ -155,7 +155,7 @@ namespace std
 		function & _F_advance(int $dist___ = 1)
 		{
 			if ($dist___ < 1) {
-				return;
+				return $this;
 			}
 			for ($i = 0 ; $i < $dist___ ; $i++) {
 				$this->_M_pos++;
@@ -295,8 +295,8 @@ namespace std
 	{
 		function __construct(basic_iterable &$iterable___)
 		{
-			$this->_M_ptr = &$iterable___;
 			$this->_M_pos = 0;
+			$this->_M_ptr = &$iterable___;
 		}
 
 		function __destruct()
@@ -305,7 +305,7 @@ namespace std
 		function & _F_advance(int $dist___ = 1)
 		{
 			if ($dist___ < 1) {
-				return;
+				return $this;
 			}
 			for ($i = 0 ; $i < $dist___ ; $i++) {
 				$this->_M_pos++;
@@ -418,8 +418,8 @@ namespace std
 	{
 		function __construct(basic_iterable &$iterable___, int $start___)
 		{
+			$this->_M_pos = ($start___ < 0) ? -1 : ($start___ -1);
 			$this->_M_ptr = &$iterable___;
-			$this->_M_pos = $start___ -1;
 		}
 
 		function __destruct()
@@ -428,7 +428,7 @@ namespace std
 		function & _F_advance(int $dist___ = 1)
 		{
 			if ($dist___ < 1) {
-				return;
+				return $this;
 			}
 			for ($i = 0 ; $i < $dist___ ; $i++) {
 				--$this->_M_pos;

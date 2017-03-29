@@ -67,6 +67,7 @@ namespace std
 		$n1 = 0;
 		$n2 = 1;
 
+		$n = 0;
 		if ($x < 0) {
 			$n = -($x);
 			$sign = -1;

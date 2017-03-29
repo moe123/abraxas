@@ -19,11 +19,11 @@ namespace std
 {
 	abstract class numeric_limits_float
 	{
-		const epsilon = BUILTIN_FLT_EPSILON;
-		const size    = BUILTIN_FLT_SIZE;
-		const max     = BUILTIN_FLT_MAX;
-		const lowest  = BUILTIN_FLT_LOWEST;
-		const min     = BUILTIN_FLT_MIN;
+		const epsilon = FLT_EPSILON;
+		const size    = FLT_SIZE;
+		const max     = FLT_MAX;
+		const lowest  = FLT_LOWEST;
+		const min     = FLT_MIN;
 	} /* EOC */
 
 	abstract class numeric_limits_double extends numeric_limits_float
@@ -31,11 +31,11 @@ namespace std
 
 	abstract class numeric_limits_int
 	{
-		const epsilon = BUILTIN_SINT_EPSILON;
-		const size    = BUILTIN_SINT_SIZE;
-		const max     = BUILTIN_SINT_MAX;
-		const lowest  = BUILTIN_SINT_LOWEST;
-		const min     = BUILTIN_SINT_MIN;
+		const epsilon = SINT_EPSILON;
+		const size    = SINT_SIZE;
+		const max     = SINT_MAX;
+		const lowest  = SINT_LOWEST;
+		const min     = SINT_MIN;
 	} /* EOC */
 
 	abstract class numeric_limits_long extends numeric_limits_int

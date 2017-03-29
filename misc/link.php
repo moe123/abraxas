@@ -29,7 +29,6 @@ $dev = new std\random_device;
 $fn = std\bond('entropy', $dev);
 print_r($fn());
 print_r($dev);
-// std\stop(0);
 
 echo std\_X_formatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
@@ -38,16 +37,16 @@ echo std\_X_formatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
 std\make_pair(3, 4);
 
+
 $l = std\make_ratio(3, 4);
 $r = std\make_ratio(2, -3);
-
 $n = std\make_ratio(-0.66666666666667);
 
 print_r($l);
 print_r($r);
 print_r($n);
 
-//std\stop(0);
+// std\stop(0);
 
 $n1 = $l->num();
 $d1 = $l->den();
