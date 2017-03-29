@@ -287,16 +287,9 @@ namespace std
 			}
 
 			if ($z___->_M_real < 0.0) {
-				return new complex(
-						M_PI
-					, signbit($z___->_M_imag) ? -($z___->_M_real) : $z___->_M_real
-				);
+				return new complex(M_PI, signbit($z___->_M_imag) ? -($z___->_M_real) : $z___->_M_real);
 			}
-
-			return new complex(
-				  0.0
-				, signbit($z___->_M_imag) ? $z___->_M_real : -($z___->_M_real)
-			);
+			return new complex(0.0, signbit($z___->_M_imag) ? $z___->_M_real : -($z___->_M_real));
 		}
 
 		if (\is_nan($z___->_M_real)) {
