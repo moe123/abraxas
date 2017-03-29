@@ -15,29 +15,8 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	if (\intval(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
-		define('PHP_FLOAT_EPSILON', 0.000001);
-		define('PHP_FLOAT_MIN'    , \floatval(PHP_INT_MIN));
-		define('PHP_FLOAT_MAX'    , \floatval(PHP_INT_MAX));
-	}
-} /* EONS */
-
 namespace std
 {
-	define('BUILTIN_FLT_EPSILON'  , PHP_FLOAT_EPSILON);
-	define('BUILTIN_FLT_SIZE'     , PHP_INT_SIZE);
-	define('BUILTIN_FLT_MAX'      , PHP_FLOAT_MAX);
-	define('BUILTIN_FLT_LOWEST'   , -PHP_FLOAT_MAX);
-	define('BUILTIN_FLT_MIN'      , PHP_FLOAT_MIN);
-	
-	define('BUILTIN_SINT_EPSILON' , 0);
-	define('BUILTIN_SINT_SIZE'    , PHP_INT_SIZE);
-	define('BUILTIN_SINT_MAX'     , PHP_INT_MAX);
-	define('BUILTIN_SINT_LOWEST'  , -PHP_INT_MAX);
-	define('BUILTIN_SINT_MIN'     , PHP_INT_MIN);
-
 	function _X_copy($v___)
 	{
 		if (\is_resource($v___) || !\is_object($v___)) {
@@ -51,31 +30,6 @@ namespace std
 			return $a;
 		}
 		return clone $v___;
-	}
-
-	function _X_real_equal(float $l___, float $r___)
-	{
-		if (_X_real_iszero($l___) && _X_real_iszero($r___)) {
-			return true;
-		}
-		return ($l___ == $r___ || \abs($l___ - $r___) < BUILTIN_FLT_EPSILON);
-	}
-
-	function _X_real_iszero(float $x___)
-	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < BUILTIN_FLT_EPSILON); }
-
-	function _X_real_zeroed(...$args___)
-	{
-		$ret = false;
-		foreach ($args___ as $x) {
-			if (_X_real_iszero($x)) {
-				$ret = true;
-			} else {
-				$ret = false;
-				break;
-			}
-		}
-		return $ret;
 	}
 
 	trait _T_deep_copy

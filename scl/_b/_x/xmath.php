@@ -15,8 +15,29 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
+namespace
+{
+	if (\intval(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
+		define('PHP_FLOAT_EPSILON', 0.000001);
+		define('PHP_FLOAT_MIN'    , \floatval(PHP_INT_MIN));
+		define('PHP_FLOAT_MAX'    , \floatval(PHP_INT_MAX));
+	}
+} /* EONS */
+
 namespace std
 {
+	define('std\FLT_EPSILON'  , PHP_FLOAT_EPSILON);
+	define('std\FLT_SIZE'     , PHP_INT_SIZE);
+	define('std\FLT_MAX'      , PHP_FLOAT_MAX);
+	define('std\FLT_LOWEST'   , -PHP_FLOAT_MAX);
+	define('std\FLT_MIN'      , PHP_FLOAT_MIN);
+
+	define('std\SINT_EPSILON' , 0);
+	define('std\SINT_SIZE'    , PHP_INT_SIZE);
+	define('std\SINT_MAX'     , PHP_INT_MAX);
+	define('std\SINT_LOWEST'  , -PHP_INT_MAX);
+	define('std\SINT_MIN'     , PHP_INT_MIN);
+
 	define('std\FP_NAN'       , 1);
 	define('std\FP_INFINITE'  , 2);
 	define('std\FP_ZERO'      , 3);
@@ -50,6 +71,31 @@ namespace std
 			$_S_PI_const = \atan2(+0.0, -0.0);
 		}
 		return $_S_PI_const;
+	}
+
+	function _X_real_equal(float $l___, float $r___)
+	{
+		if (_X_real_iszero($l___) && _X_real_iszero($r___)) {
+			return true;
+		}
+		return ($l___ == $r___ || \abs($l___ - $r___) < std\FLT_EPSILON);
+	}
+
+	function _X_real_iszero(float $x___)
+	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < std\FLT_EPSILON); }
+
+	function _X_real_zeroed(...$args___)
+	{
+		$ret = false;
+		foreach ($args___ as $x) {
+			if (_X_real_iszero($x)) {
+				$ret = true;
+			} else {
+				$ret = false;
+				break;
+			}
+		}
+		return $ret;
 	}
 
 	function fpclassify(float $x___)

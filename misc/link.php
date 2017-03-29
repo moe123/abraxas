@@ -362,7 +362,7 @@ std\cout(std\copysign(0.0, -1.2));
 std\cout(std\endl);
 
 std\cout(std\M_PI)(std\endl);
-std\cout(std\FP_ILOGB0)(std\endl);
+std\cout(std\SINT_LOWEST)(std\endl);
 
 std\cout(std\endl);
 std\stop(0);
