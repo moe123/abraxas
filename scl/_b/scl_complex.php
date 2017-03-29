@@ -45,6 +45,38 @@ namespace std
 		function imag()
 		{ return $this->_M_imag; }
 	} /* EOC */
+
+
+	function & complex_copy(complex $z)
+	{
+		$x = new complex;
+		$this->_M_real = $z->_M_real;
+		$this->_M_imag = $z->_M_imag;
+		return $x;
+	}
+
+	function & complex_muliply(complex $l, complex $r)
+	{ return cmul($l, $r); }
+
+	function & complex_divide(complex $l, complex $r)
+	{ return cdiv($l, $r); }
+
+	function & complex_add(complex $l, complex $r)
+	{ return cadd($l, $r); }
+
+	function & complex_subtract(complex $l, complex $r)
+	{ return csub($l, $r); }
+
+	function complex_equal(complex $l, complex $r)
+	{
+		return (
+			_X_real_equal($l->_M_real, $r->_M_real) &&
+			_X_real_equal($l->_M_imag, $r->_M_imag)
+		);
+	}
+
+	function complex_not_equal(complex $l, complex $r)
+	{ return (!complex_equal($l, $r)); }
 } /* EONS */
 
 /* EOF */

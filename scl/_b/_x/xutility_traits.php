@@ -54,16 +54,21 @@ namespace std
 	}
 
 	function _X_real_equal(float $l___, float $r___)
-	{ return (\abs($l___ - $r___) < BUILTIN_FLT_EPSILON); }
+	{
+		if (_X_real_iszero($l___) && _X_real_iszero($r___)) {
+			return true;
+		}
+		return ($l___ == $r___ || \abs($l___ - $r___) < BUILTIN_FLT_EPSILON);
+	}
 
 	function _X_real_iszero(float $x___)
-	{ return ($x___ == 0.0 || \abs($x___) < BUILTIN_FLT_EPSILON); }
+	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < BUILTIN_FLT_EPSILON); }
 
 	function _X_real_zeroed(...$args___)
 	{
 		$ret = false;
 		foreach ($args___ as $x) {
-			if ($x == 0.0 || \abs($x) < BUILTIN_FLT_EPSILON) {
+			if (_X_real_iszero($x)) {
 				$ret = true;
 			} else {
 				$ret = false;

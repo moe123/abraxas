@@ -303,17 +303,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() == $r->num());
 		}
-		/*
-		// reducing or not reducing greedy? else let php 
-		// handling floating-point equality which seems to be fine-ish.
-		$n1 = $l->num();
-		$d1 = $l->den();
-		$n2 = $r->num();
-		$d2 = $r->den();
-		_X_ratio_reduce($n1, $d1, $n2, $d2);
-		return $n1 == $n2;
-		*/
-		return (\abs($l->mir() - $r->mir()) < numeric_limits_float::epsilon);
+		return _X_real_equal($l->mir(), $r->mir());
 	}
 
 	function ratio_not_equal(basic_ratio $l, basic_ratio $r)
@@ -332,7 +322,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() <= $r->num());
 		}
-		return ($l->mir() <= $r->mir());
+		return ($l->mir() < $r->mir() || _X_real_equal($l->mir(), $r->mir()));
 	}
 
 	function ratio_greater(basic_ratio $l, basic_ratio $r)
@@ -348,7 +338,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() >= $r->num());
 		}
-		return ($l->mir() >= $r->mir());
+		return ($l->mir() > $r->mir() || _X_real_equal($l->mir(), $r->mir()));
 	}
 } /* EONS */
 
