@@ -689,12 +689,12 @@ namespace std
 			return null;
 		}
 
-		function _F_del_if(callable $f__)
+		function _F_del_if(callable $f___)
 		{
 			$ret = false;
 			$idx = [];
 			for ($i = 0; $i < $this->_M_size; $i++) {
-				$idx[] = $this->_F_index_of_data_if($f__);
+				$idx[] = $this->_F_index_of_data_if($f___);
 			}
 			foreach ($idx as &$v) {
 				if ($v !== -1) {

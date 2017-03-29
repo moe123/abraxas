@@ -541,7 +541,7 @@ namespace std
 				} else {
 					/*
 					foreach ($c___->_M_container as $k => $v) {
-						if ($v == $val__) {
+						if ($v == $val___) {
 							return true;
 						}
 					}

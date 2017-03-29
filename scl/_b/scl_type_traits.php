@@ -17,70 +17,70 @@
 
 namespace std
 {
-	function is_null($v__)
-	{ return \is_null($v__) || (\is_string($v__) && $v__ === ignore); }
+	function is_null($v___)
+	{ return \is_null($v___) || (\is_string($v___) && $v___ === ignore); }
 
-	function is_integral($v__)
+	function is_integral($v___)
 	{
-		if (\is_object($v__) && ($v__ instanceof \std\basic_ratio)) {
-			return (($v__->num() % $v__->$den()) === 0);
+		if (\is_object($v___) && ($v___ instanceof \std\basic_ratio)) {
+			return (($v___->num() % $v___->$den()) === 0);
 		}
-		return \is_integer($v__);
+		return \is_integer($v___);
 	}
 
-	function is_floating_point($v__)
+	function is_floating_point($v___)
 	{
-		if (($v__ instanceof \std\basic_ratio)) {
-			return (($v__->num() % $v__->$den()) !== 0);
+		if (($v___ instanceof \std\basic_ratio)) {
+			return (($v___->num() % $v___->$den()) !== 0);
 		}
-		return \is_float($v__);
+		return \is_float($v___);
 	}
 
-	function is_array($v__)
-	{ return \is_array($v__) || ($v__ instanceof \std\basic_iterable); }
+	function is_array($v___)
+	{ return \is_array($v___) || ($v___ instanceof \std\basic_iterable); }
 
-	function is_string($v__)
-	{ return \is_string($v__) || ($v__ instanceof \std\u8string); }
+	function is_string($v___)
+	{ return \is_string($v___) || ($v___ instanceof \std\u8string); }
 
-	function is_object($v__)
-	{ return \is_object($v__); }
+	function is_object($v___)
+	{ return \is_object($v___); }
 
-	function is_callable($v__)
+	function is_callable($v___)
 	{
-		if (\is_string($v__) && $v__ == ignore) {
+		if (\is_string($v___) && $v___ == ignore) {
 			return false;
 		}
-		return \is_callable($v__);
+		return \is_callable($v___);
 	}
 
-	function is_scalar($v__)
-	{ return \is_scalar($v__); }
+	function is_scalar($v___)
+	{ return \is_scalar($v___); }
 
-	function is_function($v__)
-	{ return (\is_string($v__) && \function_exists($v__)) || (\is_object($v__) && ($v__ instanceof Closure)); }
+	function is_function($v___)
+	{ return (\is_string($v___) && \function_exists($v___)) || (\is_object($v___) && ($v___ instanceof Closure)); }
 
-	function is_arithmetic($v__)
-	{ return \is_float($v__) || \is_integer($v__) || \is_bool($v__); }
+	function is_arithmetic($v___)
+	{ return \is_float($v___) || \is_integer($v___) || \is_bool($v___); }
 
-	function is_compound($v__)
-	{ return \is_resource($v__) || is_function($v__) || \is_object($v__) || \is_callable($v__); }
+	function is_compound($v___)
+	{ return \is_resource($v___) || is_function($v___) || \is_object($v___) || \is_callable($v___); }
 
-	function is_tuple($v__)
+	function is_tuple($v___)
 	{
 		return (
-				$v__ instanceof \std\tuple
-			|| $v__ instanceof \std\pair
-			|| $v__ instanceof \std\triad
-			|| $v__ instanceof \std\quad
-			|| $v__ instanceof \std\quint
+				$v___ instanceof \std\tuple
+			|| $v___ instanceof \std\pair
+			|| $v___ instanceof \std\triad
+			|| $v___ instanceof \std\quad
+			|| $v___ instanceof \std\quint
 		);
 	}
 	
-	function is_countable($v__)
-	{ return \is_array($v__) || ($v__ instanceof \Countable); }
+	function is_countable($v___)
+	{ return \is_array($v___) || ($v___ instanceof \Countable); }
 
-	function is_iterable($v__)
-	{ return ($v__ instanceof \std\basic_iterable); }
+	function is_iterable($v___)
+	{ return ($v___ instanceof \std\basic_iterable); }
 
 	function is_same($l, $r) {
 		if (\is_resource($l) && \is_resource($r)) {
