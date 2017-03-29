@@ -274,23 +274,86 @@ namespace std
 
 	function cacos(complex $z___)
 	{
-		$z1 = cmul($z___, $z___);
-		$z2 = csub(new complex(1.0 , 0.0), $z1);
-		$z1 = csqrt($z2);
-		$z2 = new complex(
-			  $z___->_M_real - $z1->_M_imag
-			, $z___->_M_imag + $z1->_M_real
-		);
-		$z1 = clog($z2);
-		return new complex($z1->_M_imag, -($z1->_M_real));
+		if (\is_infinite($z___->_M_real)) {
+			if (\is_nan($z___->_M_imag)) {
+					return new complex($z___->_M_imag, $z___->_M_real);
+			}
+
+			if (\is_infinite($z___->_M_imag)) {
+					if ($z___->_M_real < 0.0) {
+						return new complex(0.75 * M_PI, -($z___->_M_imag));
+					}
+					return new complex(0.25 * M_PI, -($z___->_M_imag));
+			}
+
+			if ($z___->_M_real < 0.0) {
+					return new complex(
+						  M_PI
+						, signbit($z___->_M_imag) ? -($z___->_M_real) : $z___->_M_real
+					);
+			}
+
+			return new complex(
+				  0.0
+				, signbit($z___->_M_imag) ? $z___->_M_real : -($z___->_M_real)
+			);
+		}
+
+		if (\is_nan($z___->_M_real)) {
+			if (\is_infinite($z___->_M_imag)) {
+					return new complex($z___->_M_real, -($z___->_M_imag));
+			}
+			return new complex($z___->_M_real, $z___->_M_real);
+		}
+
+		if (\is_infinite($z___->_M_imag)) {
+			return new complex(M_PI_2, -($z___->_M_imag));
+		}
+
+		if (_X_real_iszero($z___->_M_real)) {
+			return new complex(M_PI_2, -($z___->_M_imag));
+		}
+
+		$z = clog(cadd($x___, csqrt(csub(cpow($x___, new complex(2.0)), new complex(1.0)))));
+		if (signbit($z___->_M_imag)) {
+			return new complex(abs($z->_M_imag), \abs($z->_M_real));
+		}
+		return new complex(\abs($z->_M_imag), -(\abs($z->_M_real)));
 	}
 
 	function cacosh(complex $z___)
 	{
-		$z = cacos($z___);
-		$R = -($z->_M_imag) * (($z->_M_imag > 0) ? 1.0 : -1.0);
-		$I = $z->_M_real * (($z->_M_imag > 0) ? 1.0 : -1.0);
-		return new complex($R, $I);
+		if (\is_infinite($z___->_M_real)) {
+			if (\is_nan($z___->_M_imag)) {
+					return new complex(\abs($z___->_M_real), $z___->_M_imag);
+			}
+
+			if (\is_infinite($z___->_M_imag)) {
+				if ($z___->_M_real > 0.0) {
+					return new complex($z___->_M_real, copysign(M_PI * 0.25, $z___->_M_imag));
+				}
+				return new complex(-($z___->_M_real), copysign(M_PI * 0.75, $z___->_M_imag));
+			}
+
+			if ($z___->_M_real < 0.0) {
+					return new complex(-($z___->_M_real), copysign(M_PI, $z___->_M_imag));
+			}
+			return new complex($z___->_M_real, copysign(0.0, $z___->_M_imag));
+		}
+
+		if (\is_nan($z___->_M_real)) {
+			if (\is_infinite($z___->_M_imag)) {
+				return new complex(\abs($z___->_M_imag), $z___->_M_real);
+			}
+			return new complex($z___->_M_real, $z___->_M_real);
+		}
+		if (\is_infinite($z___->_M_imag)) {
+			return new complex(\abs($z___->_M_imag), copysign(M_PI_2, $z___->_M_imag));
+		}
+		
+		$z = clog(cadd($x___, csqrt(csub(cpow($x___, new complex(2.0)), new complex(1.0)))));
+		
+		return new complex(copysign($z->_M_real, 0), copysign($z->_M_imag, $z___->_M_imag));
 	}
 } /* EONS */
 
