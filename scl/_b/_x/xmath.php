@@ -43,7 +43,7 @@ namespace std
 	define('std\FP_ILOGB0'   , (-2147483647 - 1));
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
 
-	function _X_pi()
+	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
 		if (\is_null($_S_PI_const)) {
@@ -341,10 +341,20 @@ namespace std
 	{ return \atan2($x___); }
 
 	function atan(float $x___)
-	{ return \atan($x___); }
+	{
+		if ($x___ instanceof \std\complex) {
+			return catan($x___);
+		}
+		return \atan($x___);
+	}
 
 	function atanh(float $x___)
-	{ return \atanh($x___); }
+	{
+		if ($x___ instanceof \std\complex) {
+			return catanh($x___);
+		}
+		return \atanh($x___);
+	}
 } /* EONS */
 
 /* EOF */

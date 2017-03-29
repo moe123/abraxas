@@ -22,6 +22,9 @@ namespace std
 		var $_M_val  = null;
 		var $_M_type = null;
 
+		function __toString()
+		{ return \strval($_M_type); }
+
 		function __construct($val = null)
 		{
 			$this->_M_val  = ($val instanceof \std\any) ? $val->_M_val : $val;

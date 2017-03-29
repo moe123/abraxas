@@ -388,6 +388,43 @@ namespace std
 
 		return new complex(copysign($z->_M_real, $z__->_M_real), copysign($z->_M_imag, $z__->_M_imag));
 	}
+
+	function catan(complex $z__)
+	{
+		$z = catanh(new complex(-($z__->_M_imag), $z__->_M_real));
+		return new complex($z->_M_imag, -($z->_M_real));
+	}
+
+	function catanh(complex $z___)
+	{
+		if (\is_infinite($z___->_M_imag))
+		{
+			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
+		}
+
+		if (\is_nan($z___->_M_imag)) {
+			if (\is_infinite($z___->_M_real) || $z___->_M_real == 0) {
+				return new complex(copysign(0.0, $z___->_M_real), $z___->_M_imag);
+			}
+			return new complex($z___->_M_imag, $z___->_M_imag);
+		}
+
+		if (\is_nan($z___->_M_real)) {
+			return new complex($z___->_M_real, $z___->_M_real);
+		}
+
+		if (\is_infinite($z___->_M_real)) {
+			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
+		}
+
+		if (\abs($z___->_M_real) == _Tp(1) && $z___->_M_imag == 0.0) {
+			return new complex(copysign(\INF, $z___->_M_real), copysign(0.0, $z___->_M_imag));
+		}
+
+		$z = cdiv(clog(cdiv(cadd(new complex(1.0), $z___) , csub(new complex(1.0), $z___))), new complex(2.0));
+
+		return new complex(copysign($z->_M_real, $z___->_M_real), copysign($z->_M_imag, $z___->_M_imag));
+	}
 } /* EONS */
 
 /* EOF */

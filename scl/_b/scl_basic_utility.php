@@ -244,6 +244,10 @@ namespace std
 			return $i___ === 0 ? $v___->first : $i___ === 1 ? $v___->second : $v___->third;
 		} else if ($v___ instanceof \std\pair) {
 			return $i___ === 0 ? $v___->first : $v___->second;
+		} else if ($v___ instanceof \std\any) {
+			return $i___ === 0 ? $v___->_M_val : $v___->_M_type;
+		} else if ($v___ instanceof \std\complex) {
+			return $i___ === 0 ? $v___->_M_real : $v___->_M_img;
 		}
 		return null;
 	}
@@ -376,11 +380,14 @@ namespace std
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
 
-	function make_complex(float $real___, float $imag___)
+	function make_complex(float $real___, float $imag___ = 0.0)
 	{ return new complex($real___, $imag___); }
 
 	function make_ratio(...$args___)
 	{ return new ratio(...$args___); }
+
+	function make_any($x___ = null)
+	{ return new any($x___); }
 
 	function make_irange(int $a___ , int $b___ = null, int $s___ = 1)
 	{
