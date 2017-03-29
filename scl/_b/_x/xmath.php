@@ -78,11 +78,11 @@ namespace std
 		if (_X_real_iszero($l___) && _X_real_iszero($r___)) {
 			return true;
 		}
-		return ($l___ == $r___ || \abs($l___ - $r___) < std\FLT_EPSILON);
+		return ($l___ == $r___ || \abs($l___ - $r___) < FLT_EPSILON);
 	}
 
 	function _X_real_iszero(float $x___)
-	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < std\FLT_EPSILON); }
+	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < FLT_EPSILON); }
 
 	function _X_real_zeroed(...$args___)
 	{
@@ -401,6 +401,23 @@ namespace std
 		}
 		return \atanh($x___);
 	}
+
+	function cbrt(float $x___)
+	{ return nthrt($x___, 3); }
+
+	function ftrt(float $x___)
+	{ return nthrt($x___, 4); }
+
+	function nthrt(float $x___, int $n___)
+	{
+		if (_X_real_iszero($x___) || $n___ < 1) {
+			return $x___;
+		}
+		$rt = \pow(\abs($x___), 1.0 / \abs($n___));
+		return $x___ < 0 ? -($rt) : $rt;
+	}
+
+	
 } /* EONS */
 
 /* EOF */
