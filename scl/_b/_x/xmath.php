@@ -81,20 +81,15 @@ namespace std
 	function copysign($x___, $y___)
 	{
 		if (\is_numeric($x___)  && \is_numeric($x___)) {
-			if (\is_nan(\floatval($x___))) {
-				return \NAN;
-			}
 			$y = \strval($y___);
-			if ($y[0] == '-') {
-				$x = \strval($x___);
-				if ($x[0] == '+') {
-					$x = \substr($x, 1);
-				}
-				if ($x[0] != '-') {
-					return \floatval('-' . $x);
-				}
+			$x = \strval($x___);
+			if ($x[0] == '-' || $x[0] == '+') {
+				$x = \substr($x, 1);
 			}
-			return $x___;
+			if ($y[0] == '-') {
+				return \floatval('-' . $x);
+			}
+			return \floatval($x);
 		}
 		return \NAN;
 	}

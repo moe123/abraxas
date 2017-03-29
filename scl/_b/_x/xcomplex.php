@@ -347,7 +347,7 @@ namespace std
 
 		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
 
-		return new complex(copysign($z->_M_real, 0), copysign($z->_M_imag, $z___->_M_imag));
+		return new complex(copysign($z->_M_real, 0.0), copysign($z->_M_imag, $z___->_M_imag));
 	}
 } /* EONS */
 
