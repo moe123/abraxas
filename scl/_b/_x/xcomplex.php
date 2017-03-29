@@ -314,7 +314,7 @@ namespace std
 			return new complex(M_PI_2, -($z___->_M_imag));
 		}
 
-		$z = clog(cadd($x___, csqrt(csub(cpow($x___, new complex(2.0)), new complex(1.0)))));
+		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
 		if (signbit($z___->_M_imag)) {
 			return new complex(\abs($z->_M_imag), \abs($z->_M_real));
 		}
@@ -352,7 +352,7 @@ namespace std
 			return new complex(\abs($z___->_M_imag), copysign(M_PI_2, $z___->_M_imag));
 		}
 
-		$z = clog(cadd($x___, csqrt(csub(cpow($x___, new complex(2.0)), new complex(1.0)))));
+		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
 
 		return new complex(copysign($z->_M_real, 0), copysign($z->_M_imag, $z___->_M_imag));
 	}
