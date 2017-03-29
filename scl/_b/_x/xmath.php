@@ -416,8 +416,6 @@ namespace std
 		$rt = \pow(\abs($x___), 1.0 / \abs($n___));
 		return $x___ < 0 ? -($rt) : $rt;
 	}
-
-	
 } /* EONS */
 
 /* EOF */
