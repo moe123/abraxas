@@ -75,7 +75,7 @@ namespace std
 			$n = ($x);
 			$sign = 1;
 		}
-		if ($n < numeric_limits_float::epsilon) {
+		if ($n < FLT_EPSILON) {
 			$num___ = 0;
 			$den___ = 1;
 			return;
@@ -95,7 +95,7 @@ namespace std
 			$n1 = (($a * $n1) + $n2);
 			$n2 = $p;
 			$b = $b - $a;
-		} while (\abs($n - $m1 / $n1) > ($n * numeric_limits_float::epsilon));
+		} while (\abs($n - $m1 / $n1) > ($n * FLT_EPSILON));
 
 		$num___ = $m1 * $sign;
 		$den___ = $n1;

@@ -46,7 +46,6 @@ namespace std
 		{ return $this->_M_imag; }
 	} /* EOC */
 
-
 	function & complex_copy(complex $z)
 	{
 		$x = new complex;
@@ -70,8 +69,8 @@ namespace std
 	function complex_equal(complex $l, complex $r)
 	{
 		return (
-			_X_real_equal($l->_M_real, $r->_M_real) &&
-			_X_real_equal($l->_M_imag, $r->_M_imag)
+			_X_FP_equal($l->_M_real, $r->_M_real) &&
+			_X_FP_equal($l->_M_imag, $r->_M_imag)
 		);
 	}
 

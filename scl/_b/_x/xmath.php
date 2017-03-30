@@ -73,22 +73,22 @@ namespace std
 		return $_S_PI_const;
 	}
 
-	function _X_real_equal(float $l___, float $r___)
+	function _X_FP_equal(float $l___, float $r___)
 	{
-		if (_X_real_iszero($l___) && _X_real_iszero($r___)) {
+		if (_X_FP_iszero($l___) && _X_FP_iszero($r___)) {
 			return true;
 		}
 		return ($l___ == $r___ || \abs($l___ - $r___) < FLT_EPSILON);
 	}
 
-	function _X_real_iszero(float $x___)
+	function _X_FP_iszero(float $x___)
 	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < FLT_EPSILON); }
 
-	function _X_real_zeroed(...$args___)
+	function _X_FP_zeroed(...$args___)
 	{
 		$ret = false;
 		foreach ($args___ as $x) {
-			if (_X_real_iszero($x)) {
+			if (_X_FP_iszero($x)) {
 				$ret = true;
 			} else {
 				$ret = false;
@@ -106,7 +106,7 @@ namespace std
 			return FP_NAN;
 		} else if (!\is_finite($x___)) {
 			return FP_SUBNORMAL;
-		} else if (_X_real_iszero($x___)) {
+		} else if (_X_FP_iszero($x___)) {
 			return FP_ZERO;
 		}
 		return FP_NORMAL;
@@ -144,13 +144,13 @@ namespace std
 	{ return \intval($x___ > $y___); }
 	
 	function isgreaterequal(float $x___, float $y___)
-	{ return \intval($x___ > $y___ || _X_real_equal($x___, $y___)); }
+	{ return \intval($x___ > $y___ || _X_FP_equal($x___, $y___)); }
 
 	function isless(float $x___, float $y___)
 	{ return \intval($x___ < $y___); }
 
 	function islessequal(float $x___, float $y___)
-	{ return \intval($x___ < $y___ || _X_real_equal($x___, $y___)); }
+	{ return \intval($x___ < $y___ || _X_FP_equal($x___, $y___)); }
 
 	function islessgreater(float $x___, float $y___)
 	{ return \intval($y___ > $x___ || $x___ > $y___); }
@@ -386,7 +386,7 @@ namespace std
 	function atan2(float $x___)
 	{ return \atan2($x___); }
 
-	function atan(float $x___)
+	function atan($x___)
 	{
 		if ($x___ instanceof \std\complex) {
 			return catan($x___);
@@ -394,7 +394,7 @@ namespace std
 		return \atan($x___);
 	}
 
-	function atanh(float $x___)
+	function atanh($x___)
 	{
 		if ($x___ instanceof \std\complex) {
 			return catanh($x___);
@@ -410,11 +410,34 @@ namespace std
 
 	function nthrt(float $x___, int $n___)
 	{
-		if (_X_real_iszero($x___) || $n___ < 1) {
+		if (_X_FP_iszero($x___) || $n___ < 1) {
 			return $x___;
 		}
 		$rt = \pow(\abs($x___), 1.0 / \abs($n___));
 		return $x___ < 0 ? -($rt) : $rt;
+	}
+
+	function ceil(float $x___)
+	{ return \ceil($x___); }
+
+	function floor(float $x___)
+	{ return \floor($x___); }
+
+	function round(float $x___)
+	{ return \round($x___); }
+
+	function logb(float $x___) {
+		if (\is_infinite($x___)) {
+			return -(\INF);
+		}
+		if (\is_nan($x___)) {
+			return \NAN;
+		}
+		if (_X_FP_iszero($x___)) {
+			return \INF;
+		}
+		// TODO
+		return $x___;
 	}
 } /* EONS */
 
