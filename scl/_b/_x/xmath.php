@@ -31,6 +31,7 @@ namespace std
 	define('std\FLT_MAX'      , PHP_FLOAT_MAX);
 	define('std\FLT_LOWEST'   , -PHP_FLOAT_MAX);
 	define('std\FLT_MIN'      , PHP_FLOAT_MIN);
+	define('std\FLT_RADIX'    , 2);
 
 	define('std\SINT_EPSILON' , 0);
 	define('std\SINT_SIZE'    , PHP_INT_SIZE);
@@ -436,8 +437,7 @@ namespace std
 		if (_X_FP_iszero($x___)) {
 			return \INF;
 		}
-		// TODO
-		return $x___;
+		return \log(\abs($x___), FLT_RADIX);
 	}
 } /* EONS */
 
