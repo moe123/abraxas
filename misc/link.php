@@ -364,6 +364,15 @@ std\cout(std\M_PI)(std\endl);
 std\cout(std\SINT_LOWEST)(std\endl);
 std\cout(std\logb(1024.0))(std\endl);
 std\cout(std\endl);
+
+std\cout(std\remainder(+5.1, +3.0))(std\endl);
+std\cout(std\remainder(-5.1, +3.0))(std\endl);
+std\cout(std\remainder(+5.1, -3.0))(std\endl);
+std\cout(std\remainder(-5.1, -3.0))(std\endl);
+std\cout(std\remainder(-0.0, 1.0))(std\endl);
+std\cout(std\remainder(5.1, std\INFINITY))(std\endl);
+std\cout(std\remainder(+5.1, 0.0))(std\endl);
+
 std\stop(0);
 
 $v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);

@@ -165,6 +165,9 @@ namespace std
 	function fabs(float $x___)
 	{ return \floatval(\abs($x___)); }
 
+	function fmod(float $x___, float $y___)
+	{ return \fmod($x___, $y___); }
+
 	function fmax(float $x___, float $y___)
 	{ return \max($x___, $y___); }
 
@@ -177,8 +180,17 @@ namespace std
 	function trunc(float $x___)
 	{ return \intval(\round($x___ * 2) / 2); }	
 
-	function fmod(float $x___, float $y___)
-	{ return \fmod($x___, $y___); }
+	function remainder($x, $y)
+	{
+		if (\is_infinite($y)) {
+			return $x;
+		}
+		if (_X_FP_iszero($y)) {
+			return -(\NAN);
+		}
+		$a = copysign($y, $x);
+		return ($x - (\ceil($x / $a) * $a));
+	}
 
 	function hypot(float $x___, float $y___)
 	{ return \hypot($x___ , $y___); }
