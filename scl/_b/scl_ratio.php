@@ -9,6 +9,8 @@
  
 /*!
  * @project    Abraxas (Standard Container Library).
+ * @brief      The ratio library implements the ratio (rational number) class to express 
+ *             any number as a quotient or fraction p/q of two integers.
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *

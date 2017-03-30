@@ -9,6 +9,9 @@
  
 /*!
  * @project    Abraxas (Standard Container Library).
+ * @brief      The complex library implements the complex class to contain
+ *             complex numbers in cartesian form and several functions and overloads
+ *             to operate with them: hyperbolic, trigonometric, exponential, power.
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
