@@ -202,6 +202,23 @@ namespace std
 		return new complex($R, $I);
 	}
 
+	function cmuls(complex $z___, float $x___)
+	{
+		if (\is_infinite($x___)) {
+			return new complex(\INF, \INF);
+		}
+
+		if (\is_nan($x___)) {
+			return new complex(\NAN, \NAN);
+		}
+
+		if (_X_FP_iszero($x___)) {
+			return new complex(0.0, 0.0);
+		}
+
+		return new complex($z___->_M_real * x___, $z___->_M_imag * x___);
+	}
+
 	function cdiv(complex $z1___, complex $z2___) : complex 
 	{
 		$d = $z2___->_M_real * $z2___->_M_real + $z2___->_M_imag * $z2___->_M_imag;
@@ -211,6 +228,23 @@ namespace std
 		$R = ($z1___->_M_real * $z2___->_M_real + $z1___->_M_imag * $z2___->_M_imag) / $d;
 		$I = ($z1___->_M_imag * $z2___->_M_real - $z1___->_M_real * $z2___->_M_imag) / $d;
 		return new complex($R, $I);
+	}
+
+	function cdivs(complex $z___, float $x___)
+	{
+		if (\is_infinite($x___)) {
+			return new complex(\INF, \INF);
+		}
+
+		if (\is_nan($x___)) {
+			return new complex(\NAN, \NAN);
+		}
+
+		if (_X_FP_iszero($x___)) {
+			return new complex(0.0, 0.0);
+		}
+
+		return new complex($z___->_M_real / x___, $z___->_M_imag / x___);
 	}
 
 	function csec(complex $z___) : complex 
