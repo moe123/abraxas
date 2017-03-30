@@ -397,8 +397,7 @@ namespace std
 
 	function catanh(complex $z___) : complex
 	{
-		if (\is_infinite($z___->_M_imag))
-		{
+		if (\is_infinite($z___->_M_imag)) {
 			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
 		}
 
