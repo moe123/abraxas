@@ -427,7 +427,8 @@ namespace std
 	function round(float $x___)
 	{ return \round($x___); }
 
-	function logb(float $x___) {
+	function logb(float $x___)
+	{
 		if (\is_infinite($x___)) {
 			return -(\INF);
 		}
