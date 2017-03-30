@@ -54,6 +54,12 @@ namespace std
 		return $x;
 	}
 
+	function & complex_inverse(complex $z)
+	{ return cinv($z); }
+
+	function & complex_negate(complex $z)
+	{ return cneg($z); }
+
 	function & complex_muliply(complex $l, complex $r)
 	{ return cmul($l, $r); }
 

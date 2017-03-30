@@ -380,7 +380,7 @@ namespace std
 	function make_comparator(callable $f___)
 	{ return new comparator($f___); }
 
-	function make_complex(float $real___, float $imag___ = 0.0)
+	function make_complex(float $real___ = 0.0, float $imag___ = 0.0)
 	{ return new complex($real___, $imag___); }
 
 	function make_ratio(...$args___)
