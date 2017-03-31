@@ -66,7 +66,7 @@ namespace std
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
 
 	//#! π was not known as `π until recent years 
-	//#! @see William Jones, π is not a decimal number. 
+	//#! @see William Jones, π is not a decimal number or simply digit.
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
@@ -76,7 +76,7 @@ namespace std
 		return $_S_PI_const;
 	}
 
-	//#! @see Euler–Mascheroni constant.
+	//#! @see Euler–Mascheroni constant, E is not a decimal number or simply digit. 
 	function _X_compute_e()
 	{
 		static $_S_E_const = null;
