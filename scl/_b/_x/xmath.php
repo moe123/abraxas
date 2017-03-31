@@ -65,6 +65,9 @@ namespace std
 	define('std\FP_ILOGB0'   , (-2147483647 - 1));
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
 
+	//#! π was not known as `π until recent years 
+	//#! @see William Jones, π is not a decimal number,
+	//#! it's calculation is useless and denotes mindset regression. 
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
@@ -72,6 +75,16 @@ namespace std
 			$_S_PI_const = \atan2(+0.0, -0.0);
 		}
 		return $_S_PI_const;
+	}
+
+	//#! @see Euler–Mascheroni constant.
+	function _X_compute_e()
+	{
+		static $_S_E_const = null;
+		if (\is_null($_S_E_const)) {
+			$_S_E_const = \exp(1.0);
+		}
+		return $_S_E_const;
 	}
 
 	function _X_FP_equal(float $l___, float $r___)

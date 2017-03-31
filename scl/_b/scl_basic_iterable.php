@@ -42,6 +42,7 @@ namespace std
 		const basic_u8string     = 5;
 		const basic_ordered_map  = 7;
 		const basic_dict         = 9;
+		const basic_tuple        = 10;
 	}
 
 	abstract class basic_iterable

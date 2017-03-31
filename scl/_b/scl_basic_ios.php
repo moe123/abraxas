@@ -85,6 +85,8 @@ namespace std
 		const oct         = 1 << 7;
 		const fixed       = 1 << 8;
 		const scientific  = 1 << 9;
+		const currency    = 1 << 10;
+		const showbase    = 1 << 11;
 	} /* EOC */
 
 	abstract class basic_ios
@@ -111,10 +113,21 @@ namespace std
 					$numfmt = \numfmt_create('en_US', \NumberFormatter::DECIMAL);
 					\numfmt_set_attribute($numfmt, \NumberFormatter::MAX_FRACTION_DIGITS, 20);
 					$v___ = \numfmt_format($numfmt, $v___);
+				} else if (\is_numeric($v___) && (($this->_M_fmtflags & ios_base::currency) != 0)) {
+					$numfmt = \numfmt_create('en_US', \NumberFormatter::CURRENCY);
+					$v___ = \numfmt_format_currency($numfmt, $v___, 'USD');
 				} else if (\is_float($v___) && (($this->_M_fmtflags & ios_base::hex) != 0)) {
-					$v___ = "0x" . \bin2hex(\pack('f', $v___));
+					if (($this->_M_fmtflags & ios_base::showbase) != 0) {
+						$v___ = "0x" . \bin2hex(\pack('f', $v___));
+					} else {
+						$v___ = \bin2hex(\pack('f', $v___));
+					}
 				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::hex) != 0)) {
-					$v___ = "0x" . \dechex($v___);
+					if (($this->_M_fmtflags & ios_base::showbase) != 0) {
+						$v___ = \dechex($v___);
+					} else {
+						$v___ = "0x" . \dechex($v___);
+					}
 				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::oct) != 0)) {
 					$v___ = \decoct($v___);
 				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::alpha) != 0)) {
@@ -169,6 +182,9 @@ namespace std
 
 		function imbue(locale &$locale___)
 		{ $this->_M_locale = $locale___; }
+
+		function unset_imbue()
+		{ $this->_M_locale = null; }
 
 		function getloc()
 		{ return $this->_M_locale; }
