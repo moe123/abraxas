@@ -23,6 +23,15 @@ not happened before.</sup></sub>
 A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ Standard Library` 
 and the `C++ STL`. Providing the same six main components: `Algorithms`, `Containers`, `Iterators`, `Functional`,  `I/O Streams` and `Locale`.
 
+Sub-components:
+- Utility library.
+- Strings (binary and UTF-8).
+- Math Numerics library (integral, real-floating-point, complex, rational)
+- Localization and formatting (future).
+- Binary Data container (packed-array) (future).
+- Date and time (future).
+- Filesystem (future).
+
 ```php
 
 $buf = "";
