@@ -66,8 +66,7 @@ namespace std
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
 
 	//#! π was not known as `π until recent years 
-	//#! @see William Jones, π is not a decimal number,
-	//#! its calculation is useless and denotes mindset regression. 
+	//#! @see William Jones, π is not a decimal number. 
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
