@@ -369,8 +369,16 @@ std\cout("remainder(+5.1, +3.0) = ")(std\remainder(+5.1, +3.0))(std\endl);
 std\cout("remainder(-5.1, +3.0) = ")(std\remainder(-5.1, +3.0))(std\endl);
 std\cout("remainder(+5.1, -3.0) = ")(std\remainder(+5.1, -3.0))(std\endl);
 std\cout("remainder(-5.1, -3.0) = ")(std\remainder(-5.1, -3.0))(std\endl);
+std\cout("remainder(+1.0, +2.0) = ")(std\remainder(1.0, 2.0))(std\endl);
 std\cout("remainder(+5.0, +2.0) = ")(std\remainder(5.0, 2.0))(std\endl);
+std\cout("remainder(+6.0, +2.0) = ")(std\remainder(6.0, 2.0))(std\endl);
+std\cout("remainder(+6.0, +3.0) = ")(std\remainder(6.0, 3.0))(std\endl);
+std\cout("remainder(+7.0, +2.0) = ")(std\remainder(7.0, 2.0))(std\endl);
+std\cout("remainder(+9.0, +2.0) = ")(std\remainder(9.0, 2.0))(std\endl);
+
+
 std\cout("remainder(-0.0, +1.0) = ")(std\remainder(-0.0, 1.0))(std\endl);
+std\cout("remainder(0.0, -1.0) = ")(std\remainder(0.0, -1.0))(std\endl);
 std\cout("remainder(+5.1, +Inf) = ")(std\remainder(5.1, std\INFINITY))(std\endl);
 std\cout("remainder(+5.1, 0.0) = ")(std\remainder(5.1, 0.0))(std\endl);
 

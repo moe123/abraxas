@@ -123,15 +123,15 @@ namespace std
 	function _X_FP_nearest_int(float $x___)
 	{
 		if (_X_FP_ishalf($x___)) {
-			if (\ceil($x___) % 2) {
-				$x___ = \ceil($x___);
+			if (\fmod(\ceil($x___), 2.0) == 0) {
+				$x = \ceil($x___);
 			} else {
-				$x___ = \floor($x___);
+				$x = \floor($x___);
 			}
 		} else {
-			$x___ = \ceil($x___);
+			$x = \ceil($x___);
 		}
-		return $x___;
+		return $x;
 	}
 
 	function _X_FP_extract_sign($x___)
@@ -257,7 +257,10 @@ namespace std
 		$n = _X_FP_nearest_int($x / $a);
 		$r = $x - $n * $a;
 
-		return copysign($r, $x);
+		if (_X_FP_iszero($r)) {
+			return copysign($r, $a);
+		}
+		return $r;
 	}
 
 	function hypot(float $x___, float $y___)
