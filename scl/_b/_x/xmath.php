@@ -65,6 +65,12 @@ namespace std
 	define('std\FP_ILOGB0'   , (-2147483647 - 1));
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
 
+	function _X_compute_nan()
+	{ return @(0.0/0.0); }
+
+	function _X_compute_inf()
+	{ return @(1.0/0.0); }
+
 	//#! π was not known as `π until recent years 
 	//#! @see William Jones, π is not a decimal number or simply digit.
 	function _X_compute_pi()
@@ -109,6 +115,33 @@ namespace std
 			}
 		}
 		return $ret;
+	}
+
+	function _X_FP_ishalf(float $x___)
+	{ return \abs($x___) - \intval(\abs($x___)) == 0.5; }
+
+	function _X_FP_nearest_int(float $x___)
+	{
+		if (_X_FP_ishalf($x___)) {
+			if (\ceil($x___) % 2) {
+				$x___ = \ceil($x___);
+			} else {
+				$x___ = \floor($x___);
+			}
+		} else {
+			$x___ = \ceil($x___);
+		}
+		return $x___;
+	}
+
+	function _X_FP_extract_sign($x___)
+	{ $x = \strval($x___); return ($x[0] == '-' || $x[0] == '+') ? $x[0] : '+'; }
+
+	function _X_FP_have_same_sign(float $x___, float $y___)
+	{
+		$sx = _X_FP_extract_sign($x___);
+		$sy = _X_FP_extract_sign($y___);
+		return ($sx === $sy);
 	}
 
 	function fpclassify(float $x___)
@@ -189,19 +222,42 @@ namespace std
 	function fdim(float $x___, float $y___)
 	{ return \max(($x___ - $y___), 0.0); }
 
-	function trunc(float $x___)
-	{ return \intval(\round($x___ * 2) / 2); }	
+	function fma(float $x___, float $y___, float $z___)
+	{
+		if (\is_infinite($x___) && _X_FP_iszero($y___) && \is_nan($z___)) {
+			return \NAN;
+		}
 
-	function remainder($x, $y)
+		if (\is_infinite($y___) && _X_FP_iszero($x___) && \is_nan($z___)) {
+			return \NAN;
+		}
+
+		return \round(($x___ * $y___) + $z___);
+	}
+
+	function trunc(float $x___)
+	{ return \intval(\round($x___ * 2) / 2); }
+
+	function remainder(float $x, float $y)
 	{
 		if (\is_infinite($y)) {
 			return $x;
 		}
+
 		if (_X_FP_iszero($y)) {
 			return -(\NAN);
 		}
-		$a = copysign($y, $x);
-		return ($x - (\ceil($x / $a) * $a));
+
+		if (!_X_FP_have_same_sign($x, $y)) {
+			$a = copysign($y, $x);
+		} else {
+			$a = $y;
+		}
+
+		$n = _X_FP_nearest_int($x / $a);
+		$r = $x - $n * $a;
+
+		return copysign($r, $x);
 	}
 
 	function hypot(float $x___, float $y___)
