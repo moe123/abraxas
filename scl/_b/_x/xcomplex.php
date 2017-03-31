@@ -264,11 +264,26 @@ namespace std
 	function csec(complex $z___) : complex 
 	{ return cinv(ccos($z___)); }
 
-	function ccosec(complex $z___) : complex 
+	function csech(complex $z___) : complex 
+	{ return cinv(ccosh($z___)); }
+
+	function ccsec(complex $z___) : complex 
 	{ return cinv(csin($z___)); }
 
-	function ccotan(complex $z___) : complex 
+	function ccsech(complex $z___) : complex 
+	{ return cinv(csinh($z___)); }
+
+	function ccot(complex $z___) : complex 
 	{ return cinv(ctan($z___)); }
+
+	function ccoth(complex $z___) : complex 
+	{ return cinv(ctanh($z___)); }
+
+	function cacot(complex $z___) : complex 
+	{ return catan(cinv($z___)); }
+
+	function cacoth(complex $z___) : complex 
+	{ return catanh(cinv($z___)); }
 
 	function ccos(complex $z___) : complex
 	{
