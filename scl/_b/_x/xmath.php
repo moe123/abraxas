@@ -9,6 +9,9 @@
  
 /*!
  * @project    Abraxas (Standard Container Library).
+ * @brief      Numerics library declares a set of functions to compute 
+ *             common mathematical operations and transformations on 
+ *             integral, real and complex type (@todo rational numbers support).
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
