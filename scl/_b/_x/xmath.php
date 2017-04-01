@@ -255,8 +255,7 @@ namespace std
 	{ return 1.0 / \sin($x___); }
 
 	function fcot(float $x___)
-	{ 
-		return 1.0 / \tan($x___); }
+	{ return 1.0 / \tan($x___); }
 
 	function fsech(float $x___)
 	{ return 1.0 / \cosh($x___); }

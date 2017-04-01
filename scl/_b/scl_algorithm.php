@@ -76,7 +76,7 @@ namespace std
 		return $it___;
 	}
 
-	function iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
+	function & iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
 	{
 		$to___->_F_assign($from___->_F_this());
 		return $to___;
