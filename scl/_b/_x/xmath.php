@@ -668,7 +668,15 @@ namespace std
 		return \log(\abs($x___), FLT_RADIX);
 	}
 
-	function lgamma(float $x___)
+	$GLOBALS["^std@_g_errno"] = 1;
+
+	function setsigngam(int $signgam___)
+	{ $GLOBALS["^std@_g_signgam"] = $signgam___; }
+
+	function & signgam()
+	{ return $GLOBALS["^std@_g_signgam"]; }
+
+	function lgamma_s(float $x___)
 	{
 		if (\is_infinite($x___)) {
 			return \INF;
@@ -719,11 +727,19 @@ namespace std
 				$s = -($s);
 			}
 
-			return 1.1447298858494001741 - \log($s) - \lgamma(1 - $x___);
+			return 1.1447298858494001741 - \log($s) - lgamma_s(1 - $x___);
 		}
 
 		$signp___ = 1;
-		return lgamma($x___);
+		return lgamma_s($x___);
+	}
+
+	function lgamma(float $x___)
+	{
+		$sign = 1;
+		$g = lgamma_r($x___, $sign);
+		setsigngam($sign);
+		return $g;
 	}
 
 	function tgamma(float $x___)
