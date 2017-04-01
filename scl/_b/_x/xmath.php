@@ -705,11 +705,12 @@ namespace std
 	{
 		if ($x___ < 0.0 || _X_FP_iszero($x___)) {
 			$intp = 0.0;
+
 			$f = modf(-($x___), $intp);
 			if (_X_FP_iszero($f)) {
-					$signp___ = signbit($x___) ? -1 : 1;
-					seterrno(ERANGE);
-					return HUGE_VAL;
+				$signp___ = signbit($x___) ? -1 : 1;
+				seterrno(ERANGE);
+				return HUGE_VAL;
 			}
 
 			$signp___ = (!_X_FP_iszero(\fmod($intp, 2.0))) ? 1 : -1;
