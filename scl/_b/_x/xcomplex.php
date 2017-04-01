@@ -213,13 +213,13 @@ namespace std
 		return new complex($R, $I);
 	}
 
-	function cadd_real(complex $z___, float $x___) : complex 
+	function cfadd(complex $z___, float $x___) : complex 
 	{ return new complex(($z___->_M_real + $x___), $z___->_M_imag); }
 
-	function csub_real(complex $z___, float $x___) : complex 
+	function cfsub(complex $z___, float $x___) : complex 
 	{ return new complex(($z___->_M_real - $x___), $z___->_M_imag); }
 
-	function cmul_real(complex $z___, float $x___) : complex
+	function cfmul(complex $z___, float $x___) : complex
 	{
 		if (\is_infinite($x___)) {
 			return new complex(\INF, \INF);
@@ -236,7 +236,7 @@ namespace std
 		return new complex($z___->_M_real * x___, $z___->_M_imag * x___);
 	}
 
-	function cdiv_real(complex $z___, float $x___) : complex
+	function cfdiv(complex $z___, float $x___) : complex
 	{
 		if (\is_infinite($x___)) {
 			return new complex(\INF, \INF);
@@ -253,7 +253,7 @@ namespace std
 		return new complex($z___->_M_real / x___, $z___->_M_imag / x___);
 	}
 
-	function csqrt_real(float $x___) : complex
+	function cfsqrt(float $x___) : complex
 	{
 		if ($x___ < 0.0) {
 			return new complex(0.0, \sqrt(-($x___)));
@@ -267,10 +267,10 @@ namespace std
 	function csech(complex $z___) : complex 
 	{ return cinv(ccosh($z___)); }
 
-	function ccsec(complex $z___) : complex 
+	function ccsc(complex $z___) : complex 
 	{ return cinv(csin($z___)); }
 
-	function ccsech(complex $z___) : complex 
+	function ccsch(complex $z___) : complex 
 	{ return cinv(csinh($z___)); }
 
 	function ccot(complex $z___) : complex 

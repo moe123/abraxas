@@ -238,6 +238,51 @@ namespace std
 		return \round(($x___ * $y___) + $z___);
 	}
 
+	function ffact(float $x___)
+	{
+		$v = 1.0;
+		for($i = 2; $i <= $x___; $i++) {
+			$v *= $i;
+		}
+		return $v;
+	}
+
+	function fcsc(float $x___)
+	{ return 1.0 / \sin($x___); }
+
+	function fsec(float $x___)
+	{ return 1.0 / \cos($x___); }
+
+	function fcot(float $x___)
+	{ return 1.0 / \tan($x___); }
+
+	function fcsch(float $x___)
+	{ return 1.0 / \sinh($x___); }
+
+	function fsech(float $x___)
+	{ return 1.0 / \cosh($x___); }
+
+	function fcoth(float $x___)
+	{ return 1.0 / \tanh($x___); }
+
+	function facsc(float $x___)
+	{ return 1.0 / \asin($x___); }
+
+	function fasec(float $x___)
+	{ return 1.0 / \acos($x___); }
+
+	function facot(float $x___)
+	{ return 1.0 / \atan($x___); }
+
+	function facsch(float $x___)
+	{ return 1.0 / \asinh($x___); }
+
+	function fasech(float $x___)
+	{ return 1.0 / \acosh($x___); }
+
+	function facoth(float $x___)
+	{ return 1.0 / \atanh($x___); }
+
 	function trunc(float $x___)
 	{ return \intval(\round($x___ * 2) / 2); }
 
@@ -268,6 +313,15 @@ namespace std
 
 	function hypot(float $x___, float $y___)
 	{ return \hypot($x___ , $y___); }
+
+	function fact(int $x___)
+	{
+		$v = 1;
+		for($i = 2; $i <= $x___; $i++) {
+			$v *= $i;
+		}
+		return $v;
+	}
 
 	function abs($x___)
 	{
