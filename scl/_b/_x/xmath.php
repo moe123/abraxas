@@ -75,7 +75,7 @@ namespace std
 	{ return @(1.0/0.0); }
 
 	//#! π was not known as `π until recent years 
-	//#! @see William Jones, π is not a decimal number or simply digit.
+	//#! @see William Jones, π is not a decimal `number` or simply digit.
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
@@ -85,7 +85,7 @@ namespace std
 		return $_S_PI_const;
 	}
 
-	//#! @see Euler–Mascheroni constant, E is not a decimal number or simply digit. 
+	//#! @see Euler–Mascheroni constant, E is not a decimal `number` or simply digit. 
 	function _X_compute_e()
 	{
 		static $_S_E_const = null;
@@ -138,13 +138,25 @@ namespace std
 	}
 
 	function _X_FP_extract_sign($x___)
-	{ $x = \strval($x___); return ($x[0] == '-' || $x[0] == '+') ? $x[0] : '+'; }
+	{
+		$x = \strval($x___);
+		return ($x[0] == '-' || $x[0] == '+') ? $x[0] : '+';
+	}
 
-	function _X_FP_have_same_sign(float $x___, float $y___)
+	function _X_FP_same_sign(float $x___, float $y___)
 	{
 		$sx = _X_FP_extract_sign($x___);
 		$sy = _X_FP_extract_sign($y___);
 		return ($sx === $sy);
+	}
+
+	function _X_get_sign($x___)
+	{
+		if (\is_numeric($x___)) {
+			$x = \strval($x___);
+			return ($x[0] == '-') ? -1 : ($x[0] == '+') ? 1 : 0;
+		}
+		return SINT_MAX;
 	}
 
 	function fpclassify(float $x___)
@@ -238,29 +250,21 @@ namespace std
 		return \round(($x___ * $y___) + $z___);
 	}
 
-	function ffact(float $x___)
-	{
-		$v = 1.0;
-		for($i = 2; $i <= $x___; $i++) {
-			$v *= $i;
-		}
-		return $v;
-	}
+	function fsec(float $x___)
+	{ return 1.0 / \cos($x___); }
 
 	function fcsc(float $x___)
 	{ return 1.0 / \sin($x___); }
 
-	function fsec(float $x___)
-	{ return 1.0 / \cos($x___); }
-
 	function fcot(float $x___)
-	{ return 1.0 / \tan($x___); }
-
-	function fcsch(float $x___)
-	{ return 1.0 / \sinh($x___); }
+	{ 
+		return 1.0 / \tan($x___); }
 
 	function fsech(float $x___)
 	{ return 1.0 / \cosh($x___); }
+
+	function fcsch(float $x___)
+	{ return 1.0 / \sinh($x___); }
 
 	function fcoth(float $x___)
 	{ return 1.0 / \tanh($x___); }
@@ -274,11 +278,11 @@ namespace std
 	function facot(float $x___)
 	{ return 1.0 / \atan($x___); }
 
-	function facsch(float $x___)
-	{ return 1.0 / \asinh($x___); }
-
 	function fasech(float $x___)
 	{ return 1.0 / \acosh($x___); }
+
+	function facsch(float $x___)
+	{ return 1.0 / \asinh($x___); }
 
 	function facoth(float $x___)
 	{ return 1.0 / \atanh($x___); }
@@ -296,7 +300,7 @@ namespace std
 			return -(\NAN);
 		}
 
-		if (!_X_FP_have_same_sign($x, $y)) {
+		if (!_X_FP_same_sign($x, $y)) {
 			$a = copysign($y, $x);
 		} else {
 			$a = $y;
@@ -356,6 +360,54 @@ namespace std
 			return carg($x___);
 		}
 		return \atan2(0.0, $x___);
+	}
+
+	function sec($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return csec($x___);
+		}
+		return fsec($x___);
+	}
+
+	function csc($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ccsc($x___);
+		}
+		return fcsc($x___);
+	}
+
+	function cot($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ccot($x___);
+		}
+		return fcot($x___);
+	}
+
+	function sech(float $x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return csech($x___);
+		}
+		return fsech($x___);
+	}
+
+	function csch($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ccsch($x___);
+		}
+		return fcsch($x___);
+	}
+
+	function coth($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return ccoth($x___);
+		}
+		return fcoth($x___);
 	}
 
 	function norm($x___)
