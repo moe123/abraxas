@@ -78,8 +78,8 @@ namespace std
 	//#! π was not known as `π until recent years 
 	//#! @see William Jones. π is not a `decimal number` or simply a non-finite suite of digits.
 	//#! numbers are `integral` by nature, calculating their infinitesimal value is mathematically
-	//#! pointless and just denotes a lack of understanding about the difference between a number
-	//#! and its infinitesimal possible representation (digits).
+	//#! pointless and just denotes a lack of  simple understanding about the difference between
+	//#! a number and its possible representation (digits).
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
