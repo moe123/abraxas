@@ -21,7 +21,7 @@
 namespace
 {
 	if (\intval(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
-		define('PHP_FLOAT_EPSILON', 0.000001);
+		define('PHP_FLOAT_EPSILON', 0.00000011920928955078125);
 		define('PHP_FLOAT_MIN'    , \floatval(PHP_INT_MIN));
 		define('PHP_FLOAT_MAX'    , \floatval(PHP_INT_MAX));
 	}
@@ -236,7 +236,7 @@ namespace std
 
 	function modf(float $x___, float &$iptr___)
 	{
-		$iptr___ = \floatval(\intval($x___));
+		$iptr___ = trunc($x___);
 		return \fmod($x___, 1.0);
 	}
 
@@ -305,7 +305,25 @@ namespace std
 	{ return 1.0 / \atanh($x___); }
 
 	function trunc(float $x___)
-	{ return \intval(\round($x___ * 2) / 2); }
+	{
+		if (\is_infinite($x___)) {
+			return $x___;
+		}
+
+		if (\is_nan($x___)) {
+			return \NAN;
+		}
+
+		if (_X_FP_iszero($x___)) {
+			return copysign(0.0, $x___);
+		}
+
+		if ($x___ > 0.0 ) {
+			return \floor($x___);
+		}
+
+		return \ceil($x___);
+	}
 
 	function remainder(float $x, float $y)
 	{
@@ -675,10 +693,10 @@ namespace std
 		}
 
 		$ix2 = 1.0 / ($x___ * $x___);
-		return (((((((((-7.0921568627451 / (16 * 15))  * $ix2 + (1.1666666666667 / (14 * 13))) * $ix2
-			+ (-0.25311355311355  / (12 * 11))) * $ix2 + (0.075757575757576  / (10 *  9))) * $ix2
-			+ (-0.033333333333333 / ( 8 *  7))) * $ix2 + (0.023809523809524  / ( 6 *  5))) * $ix2
-			+ (-0.033333333333333 / ( 4 *  3))) * $ix2 + (0.16666666666667   / ( 2 *  1))) / $x___
+		return (((((((((-7.0921568627451 / 240)  * $ix2 + (1.1666666666667 / 182))   * $ix2
+			+ (-0.25311355311355  / 132))         * $ix2 + (0.075757575757576  / 90)) * $ix2
+			+ (-0.033333333333333 / 56))          * $ix2 + (0.023809523809524  / 30)) * $ix2
+			+ (-0.033333333333333 / 12))          * $ix2 + (0.16666666666667   / 2))  / $x___
 			+ 0.5 * 1.83787706640934548 - \log($e) - $x___ + ($x___ - 0.5) * \log($x___)
 		);
 	}
@@ -709,7 +727,7 @@ namespace std
 
 	function tgamma(float $x___)
 	{
-		$sign = 0.0;
+		$sign = 1;
 
 		if (_X_FP_iszero($x___)) {
 			seterrno(ERANGE);

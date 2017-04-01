@@ -382,6 +382,9 @@ std\cout("remainder(0.0, -1.0) = ")(std\remainder(0.0, -1.0))(std\endl);
 std\cout("remainder(+5.1, +Inf) = ")(std\remainder(5.1, std\INFINITY))(std\endl);
 std\cout("remainder(+5.1, 0.0) = ")(std\remainder(5.1, 0.0))(std\endl);
 
+$intp = 0;
+std\cout("std\modf(145.8, &intp) = ")(std\modf(145.8, $intp))(" ")($intp)(std\endl);
+
 std\stop(0);
 
 $v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
