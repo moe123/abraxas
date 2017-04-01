@@ -51,13 +51,15 @@ namespace std
 	define('std\NAN'      , \NAN);
 	define('std\INFINITY' , \INF);
 
+	define('std\HUGE_VAL' , 1e308);
+
 	define('std\M_E'        , 2.71828182845904523536028747135266250 ); /* e              */
 	define('std\M_LOG2E'    , 1.44269504088896340735992468100189214 ); /* log2(e)        */
 	define('std\M_LOG10E'   , 0.434294481903251827651128918916605082); /* log10(e)       */
 	define('std\M_LN2'      , 0.693147180559945309417232121458176568); /* loge(2)        */
 	define('std\M_LN10'     , 2.30258509299404568401799145468436421 ); /* loge(10)       */
 	define('std\M_PI'       , 3.14159265358979323846264338327950288 ); /* pi             */
-	define('std\M_2PI'      , 6.28318530717958647692528676655910060 ); /* 2*pi           */
+	define('std\M_2PI'      , 6.28318530717958647692528676655910060 ); /* 2pi            */
 	define('std\M_PI_2'     , 1.57079632679489661923132169163975144 ); /* pi/2           */
 	define('std\M_PI_4'     , 0.785398163397448309615660845819875721); /* pi/4           */
 	define('std\M_1_PI'     , 0.318309886183790671537767526745028724); /* 1/pi           */
@@ -100,6 +102,12 @@ namespace std
 		}
 		return ($l___ == $r___ || \abs($l___ - $r___) < FLT_EPSILON);
 	}
+
+	function _X_FP_istwo(float $x___)
+	{ return ($x___ == 2.0 || _X_FP_equal($x___, 2.0)); }
+
+	function _X_FP_isone(float $x___)
+	{ return ($x___ == 1.0 || _X_FP_equal($x___, 1.0)); }
 
 	function _X_FP_iszero(float $x___)
 	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < FLT_EPSILON); }
@@ -226,6 +234,12 @@ namespace std
 	function fmod(float $x___, float $y___)
 	{ return \fmod($x___, $y___); }
 
+	function modf(float $x___, float &$iptr___)
+	{
+		$iptr___ = \floatval(\intval($x___));
+		return \fmod($x___, 1.0);
+	}
+
 	function fmax(float $x___, float $y___)
 	{ return \max($x___, $y___); }
 
@@ -247,6 +261,12 @@ namespace std
 
 		return \round(($x___ * $y___) + $z___);
 	}
+
+	function fdeg2rad(float $x___)
+	{ return \deg2rad($x___); }
+
+	function frad2deg(float $x___)
+	{ return \rad2deg($x___); }
 
 	function fsec(float $x___)
 	{ return 1.0 / \cos($x___); }
@@ -628,6 +648,87 @@ namespace std
 			return \INF;
 		}
 		return \log(\abs($x___), FLT_RADIX);
+	}
+
+	function lgamma(float $x___)
+	{
+		if (\is_infinite($x___)) {
+			return \INF;
+		}
+
+		if (\is_nan($x___)) {
+			return \NAN;
+		}
+
+		if ($x___ < 0.0 || _X_FP_iszero($x___)) {
+			return \INF;
+		}
+
+		if (_X_FP_isone($x___) || _X_FP_istwo($x___)) {
+			return 0.0;
+		}
+
+		$e = 1.0;
+		while ($x___ < 8) {
+			$e *= $x___;
+			$x___++; 
+		}
+
+		$ix2 = 1.0 / ($x___ * $x___);
+		return (((((((((-7.0921568627451 / (16 * 15))  * $ix2 + (1.1666666666667 / (14 * 13))) * $ix2
+			+ (-0.25311355311355  / (12 * 11))) * $ix2 + (0.075757575757576  / (10 *  9))) * $ix2
+			+ (-0.033333333333333 / ( 8 *  7))) * $ix2 + (0.023809523809524  / ( 6 *  5))) * $ix2
+			+ (-0.033333333333333 / ( 4 *  3))) * $ix2 + (0.16666666666667   / ( 2 *  1))) / $x___
+			+ 0.5 * 1.83787706640934548 - \log($e) - $x___ + ($x___ - 0.5) * \log($x___)
+		);
+	}
+
+	function lgamma_r(float $x___, int &$signp___)
+	{
+		if ($x___ < 0.0 || _X_FP_iszero($x___)) {
+			$intp = 0.0;
+			$f = modf(-($x___), $intp);
+			if (_X_FP_iszero($f)) {
+					$signp___ = signbit($x___) ? -1 : 1;
+					seterrno(ERANGE);
+					return HUGE_VAL;
+			}
+
+			$signp___ = (!_X_FP_iszero(\fmod($intp, 2.0))) ? 1 : -1;
+			$s = \sin(\M_PI * $f);
+			if ($s < 0.0) {
+				$s = -($s);
+			}
+
+			return 1.1447298858494001741 - \log($s) - \lgamma(1 - $x___);
+		}
+
+		$signp___ = 1;
+		return lgamma($x___);
+	}
+
+	function tgamma(float $x___)
+	{
+		$sign = 0.0;
+
+		if (_X_FP_iszero($x___)) {
+			seterrno(ERANGE);
+			return (1.0 / $x___) < 0 ? -(HUGE_VAL) : HUGE_VAL;
+		}
+
+		if ($x___ < 0.0) {
+			$intp = 0.0;
+
+			$f = modf(-($x___), $intp);
+			if (_X_FP_iszero($f)) {
+				seterrno(EDOM);
+				return \NAN;
+			}
+		}
+
+		$g = lgamma_r($x___, $sign);
+
+		return $sign * \exp($g);
 	}
 } /* EONS */
 
