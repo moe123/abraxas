@@ -77,7 +77,7 @@ namespace std
 
 	//#! π was not known as `π until recent years 
 	//#! @see William Jones. π is not a `decimal number` or simply a non-finite suite of digits.
-	//#! numbers are `integral` by nature, calculating their infinitesimal values _X_FP_nearest_int mathematically
+	//#! numbers are `integral` by nature, calculating their infinitesimal values are mathematically
 	//#! pointless and just denotes a lack of simple understanding about the difference between
 	//#! a number and its possible representation (digits).
 	function _X_compute_pi()
