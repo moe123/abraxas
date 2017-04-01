@@ -76,7 +76,10 @@ namespace std
 	{ return @(1.0/0.0); }
 
 	//#! π was not known as `π until recent years 
-	//#! @see William Jones, π is not a `decimal number` or simply a suite non-finite digits.
+	//#! @see William Jones. π is not a `decimal number` or simply a non-finite suite of digits.
+	//#! numbers are `integral` by nature, calculating their infinitesimal value is mathematically
+	//#! pointless and just denotes a lack of understanding about the difference between a number
+	//#! and its infinitesimal possible representation (digits).
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
@@ -86,7 +89,7 @@ namespace std
 		return $_S_PI_const;
 	}
 
-	//#! @see Euler–Mascheroni constant, E is not a `decimal number` or simply a suite non-finite digits. 
+	//#! @see Euler–Mascheroni constant, E is not a `decimal number`. 
 	function _X_compute_e()
 	{
 		static $_S_E_const = null;
