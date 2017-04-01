@@ -65,7 +65,6 @@ namespace std
 	define('std\M_2_SQRTPI' , 1.12837916709551257389615890312154517 ); /* 2/sqrt(pi)     */
 	define('std\M_SQRT2'    , 1.41421356237309504880168872420969808 ); /* sqrt(2)        */
 	define('std\M_SQRT1_2'  , 0.707106781186547524400844362104849039); /* 1/sqrt(2)      */
-	$TAU: 
 
 	define('std\FP_ILOGB0'   , (-2147483647 - 1));
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
@@ -77,7 +76,7 @@ namespace std
 	{ return @(1.0/0.0); }
 
 	//#! π was not known as `π until recent years 
-	//#! @see William Jones, π is not a decimal `number` or simply digit.
+	//#! @see William Jones, π is not a `decimal number` or simply a suite non-finite digits.
 	function _X_compute_pi()
 	{
 		static $_S_PI_const = null;
@@ -87,7 +86,7 @@ namespace std
 		return $_S_PI_const;
 	}
 
-	//#! @see Euler–Mascheroni constant, E is not a decimal `number` or simply digit. 
+	//#! @see Euler–Mascheroni constant, E is not a `decimal number` or simply a suite non-finite digits. 
 	function _X_compute_e()
 	{
 		static $_S_E_const = null;
