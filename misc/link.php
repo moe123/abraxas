@@ -382,8 +382,13 @@ std\cout("remainder(0.0, -1.0) = ")(std\remainder(0.0, -1.0))(std\endl);
 std\cout("remainder(+5.1, +Inf) = ")(std\remainder(5.1, std\INFINITY))(std\endl);
 std\cout("remainder(+5.1, 0.0) = ")(std\remainder(5.1, 0.0))(std\endl);
 
+std\cout("trunc(+2.7) = ")(std\trunc(+2.7))(std\endl);
+std\cout("trunc(-2.9) = ")(std\trunc(-2.9))(std\endl);
+std\cout("trunc(-0.0) = ")(std\trunc(-0.0))(std\endl);
+std\cout("trunc(-Inf) = ")(std\trunc(-(std\INFINITY)))(std\endl);
+
 $intp = 0;
-std\cout("std\modf(145.8, &intp) = ")(std\modf(145.8, $intp))(" ")($intp)(std\endl);
+std\cout("modf(145.8, &intp) = ")(std\modf(145.8, $intp))(" ")($intp)(std\endl);
 
 std\stop(0);
 
