@@ -359,23 +359,8 @@ namespace std
 
 	function nearbyint(float $x___)
 	{
-		if (\is_infinite($x___)) {
-			return $x___;
-		}
-
-		if (\is_nan($x___)) {
-			return \NAN;
-		}
-
-		if (_X_FP_iszero($x___)) {
-			return copysign(0.0, $x___);
-		}
-
-		if ($x___ > 0.0 ) {
-			return \floor($x___);
-		}
-
-		return \ceil($x___);
+		// $rnd = fegetround();
+		return trunc($x___);
 	}
 
 	function remainder(float $x, float $y)
