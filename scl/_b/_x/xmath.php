@@ -10,8 +10,8 @@
 /*!
  * @project    Abraxas (Standard Container Library).
  * @brief      The Math numerics library declares a set of functions to compute 
- *             common mathematical operations and transformations on 
- *             integral, real and complex type (@todo rational numbers support).
+ *             common mathematical operations and transformations on integral, 
+ *             real-floating-point and complex type (@todo rational numbers support).
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
@@ -164,6 +164,14 @@ namespace std
 		}
 		return SINT_MAX;
 	}
+
+	$GLOBALS["^std@_g_signgam"] = 1;
+
+	function setsigngam(int $signgam___)
+	{ $GLOBALS["^std@_g_signgam"] = $signgam___; }
+
+	function & signgam()
+	{ return $GLOBALS["^std@_g_signgam"]; }
 
 	function fpclassify(float $x___)
 	{
@@ -480,6 +488,9 @@ namespace std
 		return \exp($x___);
 	}
 
+	function expm1(float $x___)
+	{ return \expm1($x___); }
+
 	function pow($x___, $y___) {
 		if ($x___ instanceof \std\complex || $y___ instanceof \std\complex) {
 			if (!($x___ instanceof \std\complex)) {
@@ -667,14 +678,6 @@ namespace std
 		}
 		return \log(\abs($x___), FLT_RADIX);
 	}
-
-	$GLOBALS["^std@_g_errno"] = 1;
-
-	function setsigngam(int $signgam___)
-	{ $GLOBALS["^std@_g_signgam"] = $signgam___; }
-
-	function & signgam()
-	{ return $GLOBALS["^std@_g_signgam"]; }
 
 	function lgamma_s(float $x___)
 	{
