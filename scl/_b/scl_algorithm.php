@@ -668,27 +668,29 @@ namespace std
 	function sigma(
 		  basic_iterator $first___
 		, basic_iterator $last___
+		, bool $unbiased___ = true
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$pos  = $first___->_F_pos();
 			$dist = distance($first___, $last___);
-
-			$buf  = 0.0;
+			$sum  = 0.0;
 			while ($first___ != $last___) {
-				$buf += $first___->_F_this();
+				$sum += $first___->_F_this();
 				$first___->_F_next();
 			}
-
-			$mean = $buf / $dist;
 			$first___->_F_seek($pos);
 
-			$buf = 0.0;
+			$mean = $sum / $dist;
+			$sum = 0.0;
 			while ($first___ != $last___) {
-				$v = $first___->_F_this();
-				$buf += ($v - $mean) * ($v - $mean);
+				$sum += \pow($first___->_F_this() - $mean, 2);
 				$first___->_F_next();
 			}
-			return \sqrt($buf / ($dist - 1));
+
+			if ($unbiased___) {
+				\sqrt($sum / ($dist - 1));
+			}
+			return \sqrt($sum / ($dist));
 		} else {
 			_X_throw_invalid_argument("Invalid type error");
 		}
