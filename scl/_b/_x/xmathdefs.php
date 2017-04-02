@@ -427,7 +427,7 @@ namespace std
 		} else {
 			$x___ = ($x___ * _N_pow2_tab(1024 -1)) * _N_pow2_tab($n___ - (1024 -1));
 		}
-		return $n___;
+		return $x___;
 	}
 }
 
