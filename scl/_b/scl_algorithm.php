@@ -694,7 +694,7 @@ namespace std
 		} else {
 			_X_throw_invalid_argument("Invalid type error");
 		}
-		return 0;
+		return \NAN;
 	}
 
 	function merge_r(
