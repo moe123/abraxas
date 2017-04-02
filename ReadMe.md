@@ -395,6 +395,7 @@ PHP7 built with:
 > [xiterator_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xiterator_traits.php?ts=3)<br>
 > [xlocale](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xlocale.php?ts=3)<br>
 > [xmath](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xmath.php?ts=3)<br>
+> [xmathdefs](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xmathdefs.php?ts=3)<br>
 > [xnumeric](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xnumeric.php?ts=3)<br>
 > [xoperator_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xoperator_traits.php?ts=3)<br>
 > [xostype](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xostype.php?ts=3)<br>
