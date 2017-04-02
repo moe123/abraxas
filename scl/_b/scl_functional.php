@@ -52,7 +52,55 @@ namespace std
 		const _18 = "^std@_17";
 		const _19 = "^std@_18";
 		const _20 = "^std@_19";
-	};
+	} /* EOC */
+
+	abstract class unary_function
+	{
+		function __invoke($x___)
+		{
+			_X_throw_logic_error("No match for 'operator()'");
+			return null;
+		}
+	} /* EOC */
+
+	abstract class binary_function
+	{
+		function __invoke($x___, $y___)
+		{
+			_X_throw_logic_error("No match for 'operator()'");
+			return null;
+		}
+	} /* EOC */
+
+	final class _C_binder1st extends unary_function
+	{
+		var $_M_fn  = null;
+		var $_M_val = null;
+
+		function __invoke($x___)
+		{ return ($this->_M_op)($this->_M_val, $x___); }
+
+		function __construct(callable $f___, $v___)
+		{
+			$this->_M_op  = $f___;
+			$this->_M_val = $v___;
+		}
+	} /* EOC */
+
+	final class _C_binder2nd extends unary_function
+	{
+		var $_M_fn  = null;
+		var $_M_val = null;
+
+		function __invoke($x___)
+		{ return ($this->_M_op)($x___, $this->_M_val); }
+
+		function __construct(callable $f___, $v___)
+		{
+			$this->_M_op  = $f___;
+			$this->_M_val = $v___;
+		}
+	} /* EOC */
 
 	function greater($l___, $r___)
 	{
@@ -207,6 +255,22 @@ namespace std
 		};
 	}
 
+	/*! callable */
+	function bind1st(callable $f___, $v___)
+	{
+		// similar to: return bind($f___, $v___, placeholder::_2);
+		// avoiding unnecessary parsing.
+		return new _C_binder1st($f___, $v___);
+	}
+
+	/*! callable */
+	function bind2nd(callable $f___, $v___)
+	{
+		// similar to: return bind($f___, placeholder::_1, $v___);
+		// avoiding unnecessary parsing.
+		return new _C_binder2nd($f___, $v___);
+	}
+
 	function invoke(callable $f___, ...$args___)
 	{
 		try {
@@ -217,7 +281,7 @@ namespace std
 		return null;
 	}
 
-	function invoke_v(callable $f___, array &$args___) 
+	function invokev(callable $f___, array &$args___) 
 	{
 		try {
 			return $f___(...$args___);
@@ -256,15 +320,18 @@ namespace std
 
 	function count_args(callable $f___)
 	{
-		$r = \is_array($f___) ? new \ReflectionMethod($f___[0], $f___[1]) : new \ReflectionFunction($f___);
+		$r = (\is_array($f___)
+			? new \ReflectionMethod($f___[0], $f___[1])
+			: new \ReflectionFunction($f___)
+		);
 		return $r->getNumberOfParameters();
 	}
 
 	function is_unary_function(callable $f___)
-	{ return count_args($f___) == 1; }
+	{ return (($f___ instanceof \std\unary_function) || count_args($f___) == 1); }
 
 	function is_binary_function(callable $f___)
-	{ return count_args($f___) == 2; }
+	{ return (($f___ instanceof \std\binary_function) || count_args($f___) == 2); }
 } /* EONS */
 
 /* EOF */
