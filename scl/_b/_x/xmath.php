@@ -36,6 +36,11 @@ namespace std
 	define('std\FLT_MIN'      , PHP_FLOAT_MIN);
 	define('std\FLT_RADIX'    , 2);
 
+	define('std\FE_DOWNWARD'   , 10);
+	define('std\FE_TONEAREST'  , 20);
+	define('std\FE_TOWARDZERO' , 30);
+	define('std\FE_UPWARD'     , 40);
+
 	define('std\SINT_EPSILON' , 0);
 	define('std\SINT_SIZE'    , PHP_INT_SIZE);
 	define('std\SINT_MAX'     , PHP_INT_MAX);
@@ -166,12 +171,31 @@ namespace std
 	}
 
 	$GLOBALS["^std@_g_signgam"] = 1;
+	$GLOBALS["^std@_g_rndmode"] = FE_TONEAREST;
 
 	function setsigngam(int $signgam___)
 	{ $GLOBALS["^std@_g_signgam"] = $signgam___; }
 
 	function & signgam()
 	{ return $GLOBALS["^std@_g_signgam"]; }
+
+	function fesetround(int $rndmode___)
+	{
+		switch ($rndmode___) {
+			case FE_DOWNWARD:
+			case FE_TONEAREST:
+			case FE_TOWARDZERO:
+			case FE_UPWARD:
+			{
+				$GLOBALS["^std@_g_rndmode"] = $rndmode___;
+				return 0;
+			}
+		}
+		return -1;
+	}
+
+	function fegetround()
+	{ return $GLOBALS["^std@_g_rndmode"]; }
 
 	function fpclassify(float $x___)
 	{
@@ -313,6 +337,27 @@ namespace std
 	{ return 1.0 / \atanh($x___); }
 
 	function trunc(float $x___)
+	{
+		if (\is_infinite($x___)) {
+			return $x___;
+		}
+
+		if (\is_nan($x___)) {
+			return \NAN;
+		}
+
+		if (_X_FP_iszero($x___)) {
+			return copysign(0.0, $x___);
+		}
+
+		if ($x___ > 0.0 ) {
+			return \floor($x___);
+		}
+
+		return \ceil($x___);
+	}
+
+	function nearbyint(float $x___)
 	{
 		if (\is_infinite($x___)) {
 			return $x___;
