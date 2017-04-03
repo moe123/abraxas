@@ -35,7 +35,7 @@ namespace std
 		}
 
 		function ordered_list_2(basic_iterator $first, basic_iterator $last)
-		{ $this->range_assign($first, $last); }
+		{ $this->assign($first, $last); }
 
 		function & reserve(int $size, $fill = null)
 		{
@@ -94,7 +94,7 @@ namespace std
 			return $this;
 		}
 
-		function & insert(int $index, $val)
+		function & insert_at(int $index, $val)
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
 				_F_insert($this, $index, $val);
@@ -104,7 +104,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_insert(basic_iterator $first, basic_iterator $last)
+		function & insert(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -131,7 +131,7 @@ namespace std
 			return $this;
 		}
 
-		function & assign(ordered_list &$olist)
+		function & assign_from(ordered_list &$olist)
 		{
 			_F_clear_all($this);
 			foreach ($olist->_M_container as &$val) {
@@ -140,14 +140,14 @@ namespace std
 			return $this;
 		}
 
-		function & range_assign(basic_iterator $first, basic_iterator $last)
+		function & assign(basic_iterator $first, basic_iterator $last)
 		{
 			_F_clear_all($this);
-			$this->range_merge($first, $last);
+			$this->merge($first, $last);
 			return $this;
 		}
 
-		function & merge(ordered_list &$olist)
+		function & merge_from(ordered_list &$olist)
 		{
 			foreach ($olist->_M_container as &$val) {
 				$this->push_back($val);
@@ -155,7 +155,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_merge(basic_iterator $first, basic_iterator $last)
+		function & merge(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -181,7 +181,7 @@ namespace std
 		) {
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->insert($start, $first->_F_this());
+					$this->insert_at($start, $first->_F_this());
 					$first->next();
 				}
 			} else {
@@ -263,7 +263,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_erase(basic_iterator $first, basic_iterator $last)
+		function & erase(basic_iterator $first, basic_iterator $last)
 		{
 			_F_splice($this, $first, distance($first, $last));
 			return $this;

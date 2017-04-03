@@ -239,7 +239,7 @@ std\sort($v->begin(), $v->end());
 $last = std\unique($v->begin(), $v->end());
 // [ 1, 2, 3, 4, 5, 6, 7, x, x, x, x, x, x ]
 
-$v->range_erase($last, $v->end());
+$v->erase($last, $v->end());
 
 std\cout($v)(std\endl);
 // [ 1, 2, 3, 4, 5, 6, 7 ]
@@ -382,104 +382,5 @@ A mixture of existing features and overloads, inspired by Boost.Locale.
 PHP7 built with:
 - Internationalization Functions (`ICU`).
 - Multibyte String Functions (`mb_string`).
-
-### Files
-
-##### API
-> [api_baselib](https://github.com/moe123/abraxas/blob/master/scl/base/api_baselib.php?ts=3)<br>
-> [api_complex](https://github.com/moe123/abraxas/blob/master/scl/base/api_complex.php?ts=3)<br>
-> [api_endian](https://github.com/moe123/abraxas/blob/master/scl/base/api_endian.php?ts=3)<br>
-> [api_errno](https://github.com/moe123/abraxas/blob/master/scl/base/api_errno.php?ts=3)<br>
-> [api_io](https://github.com/moe123/abraxas/blob/master/scl/base/api_io.php?ts=3)<br>
-> [api_locale](https://github.com/moe123/abraxas/blob/master/scl/base/api_locale.php?ts=3)<br>
-> [api_math](https://github.com/moe123/abraxas/blob/master/scl/base/api_math.php?ts=3)<br>
-> [api_mathdefs](https://github.com/moe123/abraxas/blob/master/scl/base/api_mathdefs.php?ts=3)<br>
-> [api_numeric](https://github.com/moe123/abraxas/blob/master/scl/base/api_numeric.php?ts=3)<br>
-> [api_ostype](https://github.com/moe123/abraxas/blob/master/scl/base/api_ostype.php?ts=3)<br>
-> [api_random](https://github.com/moe123/abraxas/blob/master/scl/base/api_random.php?ts=3)<br>
-> [api_signal](https://github.com/moe123/abraxas/blob/master/scl/base/api_signal.php?ts=3)<br>
-> [api_string](https://github.com/moe123/abraxas/blob/master/scl/base/api_string.php?ts=3)<br>
-> [api_time](https://github.com/moe123/abraxas/blob/master/scl/base/api_time.php?ts=3)<br>
-> [api_timezone](https://github.com/moe123/abraxas/blob/master/scl/base/api_timezone.php?ts=3)<br>
-> [api_unilib](https://github.com/moe123/abraxas/blob/master/scl/base/api_unilib.php?ts=3)<br>
-> [api_utsname](https://github.com/moe123/abraxas/blob/master/scl/base/api_utsname.php?ts=3)<br>
-> [api_algorithm](https://github.com/moe123/abraxas/blob/master/scl/base/api_algorithm.php?ts=3)<br>
-> [api_container_traits](https://github.com/moe123/abraxas/blob/master/scl/base/api_container_traits.php?ts=3)<br>
-> [api_exception](https://github.com/moe123/abraxas/blob/master/scl/base/api_exception.php?ts=3)<br>
-> [api_iterator_traits](https://github.com/moe123/abraxas/blob/master/scl/base/api_iterator_traits.php?ts=3)<br>
-> [api_operator_traits](https://github.com/moe123/abraxas/blob/master/scl/base/api_operator_traits.php?ts=3)<br>
-> [api_utility_traits](https://github.com/moe123/abraxas/blob/master/scl/base/api_utility_traits.php?ts=3)<br>
-
-##### Basic implementation
-
-> [scl_basic_dict](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_dict.php?ts=3)<br>
-> [scl_basic_exception](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_exception.php?ts=3)<br>
-> [scl_basic_forward_list](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_forward_list.php?ts=3)<br>
-> [scl_basic_ios](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_ios.php?ts=3)<br>
-> [scl_basic_irange](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_irange.php?ts=3)<br>
-> [scl_basic_iterable](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_iterable.php?ts=3)<br>
-> [scl_basic_iterator](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_iterator.php?ts=3)<br>
-> [scl_basic_ordered_list](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_ordered_list.php?ts=3)<br>
-> [scl_basic_ordered_map](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_ordered_map.php?ts=3)<br>
-> [scl_basic_ordered_set](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_ordered_set.php?ts=3)<br>
-> [scl_basic_ratio](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_ratio.php?ts=3)<br>
-> [scl_basic_tuple](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_tuple.php?ts=3)<br>
-> [scl_basic_u8string](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_u8string.php?ts=3)<br>
-> [scl_basic_utility](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_utility.php?ts=3)<br>
-> [scl_basic_vector](https://github.com/moe123/abraxas/blob/master/scl/base/scl_basic_vector.php?ts=3)<br>
-
-##### Implementation
-
-> [scl_algorithm](https://github.com/moe123/abraxas/blob/master/scl/base/scl_algorithm.php?ts=3)<br>
-> [scl_any](https://github.com/moe123/abraxas/blob/master/scl/base/scl_any.php?ts=3)<br>
-> [scl_collation](https://github.com/moe123/abraxas/blob/master/scl/base/scl_collation.php?ts=3)<br>
-> [scl_collator](https://github.com/moe123/abraxas/blob/master/scl/base/scl_collator.php?ts=3)<br>
-> [scl_complex](https://github.com/moe123/abraxas/blob/master/scl/base/scl_complex.php?ts=3)<br>
-> [scl_dict](https://github.com/moe123/abraxas/blob/master/scl/base/scl_dict.php?ts=3)<br>
-> [scl_forward_list](https://github.com/moe123/abraxas/blob/master/scl/base/scl_forward_list.php?ts=3)<br>
-> [scl_functional](https://github.com/moe123/abraxas/blob/master/scl/base/scl_functional.php?ts=3)<br>
-> [scl_iostream](https://github.com/moe123/abraxas/blob/master/scl/base/scl_iostream.php?ts=3)<br>
-> [scl_irange](https://github.com/moe123/abraxas/blob/master/scl/base/scl_irange.php?ts=3)<br>
-> [scl_istream](https://github.com/moe123/abraxas/blob/master/scl/base/scl_istream.php?ts=3)<br>
-> [scl_iterator](https://github.com/moe123/abraxas/blob/master/scl/base/scl_iterator.php?ts=3)<br>
-> [scl_locale](https://github.com/moe123/abraxas/blob/master/scl/base/scl_locale.php?ts=3)<br>
-> [scl_numeric_limits](https://github.com/moe123/abraxas/blob/master/scl/base/scl_numeric_limits.php?ts=3)<br>
-> [scl_numeric](https://github.com/moe123/abraxas/blob/master/scl/base/scl_numeric.php?ts=3)<br>
-> [scl_ordered_list](https://github.com/moe123/abraxas/blob/master/scl/base/scl_ordered_list.php?ts=3)<br>
-> [scl_ordered_set](https://github.com/moe123/abraxas/blob/master/scl/base/scl_ordered_set.php?ts=3)<br>
-> [scl_ostream](https://github.com/moe123/abraxas/blob/master/scl/base/scl_ostream.php?ts=3)<br>
-> [scl_pair](https://github.com/moe123/abraxas/blob/master/scl/base/scl_pair.php?ts=3)<br>
-> [scl_quad](https://github.com/moe123/abraxas/blob/master/scl/base/scl_quad.php?ts=3)<br>
-> [scl_quint](https://github.com/moe123/abraxas/blob/master/scl/base/scl_quint.php?ts=3)<br>
-> [scl_random](https://github.com/moe123/abraxas/blob/master/scl/base/scl_random.php?ts=3)<br>
-> [scl_ratio](https://github.com/moe123/abraxas/blob/master/scl/base/scl_ratio.php?ts=3)<br>
-> [scl_system_error](https://github.com/moe123/abraxas/blob/master/scl/base/scl_system_error.php?ts=3)<br>
-> [scl_triad](https://github.com/moe123/abraxas/blob/master/scl/base/scl_triad.php?ts=3)<br>
-> [scl_tuple](https://github.com/moe123/abraxas/blob/master/scl/base/scl_tuple.php?ts=3)<br>
-> [scl_type_traits](https://github.com/moe123/abraxas/blob/master/scl/base/scl_type_traits.php?ts=3)<br>
-> [scl_u8string](https://github.com/moe123/abraxas/blob/master/scl/base/scl_u8string.php?ts=3)<br>
-> [scl_vector](https://github.com/moe123/abraxas/blob/master/scl/base/scl_vector.php?ts=3)<br>
-
-##### Public front-end
-> [algorithm](https://github.com/moe123/abraxas/blob/master/scl/algorithm.php?ts=3)<br>
-> [collator](https://github.com/moe123/abraxas/blob/master/scl/collator.php?ts=3)<br>
-> [complex](https://github.com/moe123/abraxas/blob/master/scl/complex.php?ts=3)<br>
-> [dict](https://github.com/moe123/abraxas/blob/master/scl/dict.php?ts=3)<br>
-> [exception](https://github.com/moe123/abraxas/blob/master/scl/exception.php?ts=3)<br>
-> [forward_list](https://github.com/moe123/abraxas/blob/master/scl/forward_list.php?ts=3)<br>
-> [functional](https://github.com/moe123/abraxas/blob/master/scl/functional.php?ts=3)<br>
-> [iostream](https://github.com/moe123/abraxas/blob/master/scl/iostream.php?ts=3)<br>
-> [irange](https://github.com/moe123/abraxas/blob/master/scl/irange.php?ts=3)<br>
-> [iterator](https://github.com/moe123/abraxas/blob/master/scl/iterator.php?ts=3)<br>
-> [limits](https://github.com/moe123/abraxas/blob/master/scl/limits.php?ts=3)<br>
-> [locale](https://github.com/moe123/abraxas/blob/master/scl/locale.php?ts=3)<br>
-> [math](https://github.com/moe123/abraxas/blob/master/scl/math.php?ts=3)<br>
-> [numeric](https://github.com/moe123/abraxas/blob/master/scl/numeric.php?ts=3)<br>
-> [ordered_list](https://github.com/moe123/abraxas/blob/master/scl/ordered_list.php?ts=3)<br>
-> [ordered_set](https://github.com/moe123/abraxas/blob/master/scl/ordered_set.php?ts=3)<br>
-> [random](https://github.com/moe123/abraxas/blob/master/scl/random.php?ts=3)<br>
-> [ratio](https://github.com/moe123/abraxas/blob/master/scl/ratio.php?ts=3)<br>
-> [tuple](https://github.com/moe123/abraxas/blob/master/scl/tuple.php?ts=3)<br>
-> [vector](https://github.com/moe123/abraxas/blob/master/scl/vector.php?ts=3)<br>
 
 # EOF

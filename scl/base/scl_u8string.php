@@ -55,19 +55,19 @@ namespace std
 		}
 
 		function u8string_1(u8string &$u8)
-		{ $this->assign($u8); }
+		{ $this->assign_from($u8); }
 
 		function u8string_2(string $s, int $encoding)
 		{ $this->string_assign($s, $encoding); }
 
-		function & assign(u8string &$u8)
+		function & assign_from(u8string &$u8)
 		{
 			$this->_M_container = $u8->_M_container;
 			$this->_M_size      = $u8->_M_size;
 			return $this;
 		}
 
-		function & string_assign(string $s, int $encoding = basic_encoding::utf8)
+		function & string_assign_from(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
@@ -96,7 +96,7 @@ namespace std
 			return $this;
 		}
 
-		function & string_insert(string $s, int $pos, int $encoding = basic_encoding::utf8)
+		function & string_insert_at(int $pos, string $s, int $encoding = basic_encoding::utf8)
 		{
 			$u8 = new u8string($s, $encoding);
 			$this->insert($u8, $pos);

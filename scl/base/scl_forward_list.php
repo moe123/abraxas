@@ -35,7 +35,7 @@ namespace std
 		}
 
 		function forward_list_2(basic_iterator $first, basic_iterator $last)
-		{ $this->range_assign($first, $last); }
+		{ $this->assign($first, $last); }
 
 		function & reserve(int $size, $fill = null)
 		{
@@ -76,17 +76,17 @@ namespace std
 			return null;
 		}
 
-		function & insert(int $index, $val)
+		function & insert_at(int $index, $val)
 		{
 			$this->_F_insert_at_index($index, $val);
 			return $this;
 		}
 
-		function & range_insert(basic_iterator $first, basic_iterator $last)
+		function & insert(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					$this->insert($first->_F_pos(), $first->_F_this());
+					$this->insert_at($first->_F_pos(), $first->_F_this());
 					$first->next();
 				}
 			} else {
@@ -95,13 +95,13 @@ namespace std
 			return $this;
 		}
 
-		function & insert_after(int $index, $val)
+		function & insert_after_at(int $index, $val)
 		{
 			$this->_F_insert_after_index($index, $val);
 			return $this;
 		}
 		
-		function & range_insert_after(basic_iterator $first, basic_iterator $last)
+		function & insert_after(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -120,27 +120,27 @@ namespace std
 			return $this;
 		}
 
-		function & assign(forward_list &$fwdl)
+		function & assign_from(forward_list &$fwdl)
 		{
 			_F_clear_all($this);
 			$this->_F_merge($fwdl, $val);
 			return $this;
 		}
 
-		function & range_assign(basic_iterator $first, basic_iterator $last)
+		function & assign(basic_iterator $first, basic_iterator $last)
 		{
 			$this->_F_clear_all();
-			$this->range_merge($first, $last);
+			$this->merge($first, $last);
 			return $this;
 		}
 
-		function & merge(forward_list &$fwdl)
+		function & merge_from(forward_list &$fwdl)
 		{
 			$this->_F_merge($fwdl, $val);
 			return $this;
 		}
 
-		function & range_merge(basic_iterator $first, basic_iterator $last)
+		function & merge(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {

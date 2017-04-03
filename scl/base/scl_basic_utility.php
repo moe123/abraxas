@@ -17,14 +17,14 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_unilib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_unilib.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_exception.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_algorithm.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_container_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_operator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_iterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_utility_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_exception.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_algorithm.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_container_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_operator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_iterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_utility_traits.php";
 	
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";

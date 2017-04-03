@@ -42,7 +42,7 @@ namespace std
 		}
 
 		function dict_2(basic_iterator $first, basic_iterator $last)
-		{ $this->range_assign($first, $last); }
+		{ $this->assign($first, $last); }
 
 		function keys()
 		{
@@ -224,7 +224,7 @@ namespace std
 			return $this;
 		}
 
-		function & assign(dict &$dict)
+		function & assign_from(dict &$dict)
 		{
 			$this->clear();
 			foreach ($dict->_M_container as $k => &$val) {
@@ -233,7 +233,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_assign(basic_iterator $first, basic_iterator $last)
+		function & assign(basic_iterator $first, basic_iterator $last)
 		{
 			$this->clear();
 			$this->range_update($first, $last);

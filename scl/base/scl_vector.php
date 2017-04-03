@@ -35,7 +35,7 @@ namespace std
 		}
 
 		function vector_2(basic_iterator $first, basic_iterator $last)
-		{ $this->range_assign($first, $last); }
+		{ $this->assign($first, $last); }
 
 		function & reserve(int $size, $fill = null)
 		{
@@ -82,7 +82,7 @@ namespace std
 			return $this;
 		}
 
-		function & insert(int $index, $val)
+		function & insert_at(int $index, $val)
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
 				_F_insert($this, $index, $val);
@@ -107,7 +107,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_insert(basic_iterator $first, basic_iterator $last)
+		function & insert(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -134,7 +134,7 @@ namespace std
 			return $this;
 		}
 
-		function & assign(vector &$vec)
+		function & assign_from(vector &$vec)
 		{
 			_F_clear_all($this);
 			foreach ($vec->_M_container as &$val) {
@@ -143,14 +143,14 @@ namespace std
 			return $this;
 		}
 
-		function & range_assign(basic_iterator $first, basic_iterator $last)
+		function & assign(basic_iterator $first, basic_iterator $last)
 		{
 			_F_clear_all($this);
-			$this->range_merge($first, $last);
+			$this->merge($first, $last);
 			return $this;
 		}
 
-		function & merge(vector &$vec)
+		function & merge_from(vector &$vec)
 		{
 			foreach ($vec->_M_container as &$val) {
 				_F_push_back($this, $val);
@@ -158,7 +158,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_merge(basic_iterator $first, basic_iterator $last)
+		function & merge(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -184,7 +184,7 @@ namespace std
 			return $this;
 		}
 
-		function & range_erase(basic_iterator $first, basic_iterator $last)
+		function & erase(basic_iterator $first, basic_iterator $last)
 		{
 			_F_splice($this, $first, distance($first, $last));
 			return $this;
