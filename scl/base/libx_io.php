@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xio.php
+// libx_io.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

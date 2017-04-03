@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xtime.php
+// libx_time.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

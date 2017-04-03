@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xmathdefs.php
+// libx_mathdefs.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

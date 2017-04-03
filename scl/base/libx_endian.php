@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xendian.php
+// libx_endian.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

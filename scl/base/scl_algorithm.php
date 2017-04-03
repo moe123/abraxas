@@ -45,12 +45,12 @@ namespace std
 		$it2___->_F_assign($v1);
 	}
 
-	function iter_iter_distance(basic_iterator $first___, basic_iterator $last___)
+	function iter_distance(basic_iterator $first___, basic_iterator $last___)
 	{
 		$n = 0;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			if ($first___->_M_pos >= $last___->_M_pos) {
-				$n = $last___->_M_pos - $first___->_M_pos;
+			if ($first___->_F_pos() >= $last___->_F_pos()) {
+				$n = $last___->_F_pos() - $first___->_F_pos();
 			} else {
 				$it = clone $first___;
 				while ($it != $last___) {
@@ -1578,202 +1578,11 @@ namespace std
 		return ($first1___ == $last1___) && ($first2___ != $last2___);
 	}
 
-	function compare(
-		  basic_u8string &$c1___
-		, basic_u8string &$c2___
-		, callable        $compare___ = null
-	) { return _F_compare($c1___, $c2___, $compare___); }
-
-	function string_compare(
-		  string   $u8s1___
-		, string   $u8s2___
-		, callable $compare___ = null
-	) { return _F_string_compare($u8s1___, $u8s2___, $compare___); }
-
-	function range_compare(
-		  basic_iterator $first1___
-		, basic_iterator $last1___
-		, basic_iterator $first2___
-		, basic_iterator $last2___
-		, callable       $compare___ = null
-	) { return _F_range_compare($first1___, $last1___, $first2___, $last2___, $compare___); }
-
 	function sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $compare___ = null
 	) { _F_range_sort($first___, $last___, $compare___); }
-
-	function median(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			if (1 < ($dist = iter_distance($first___, $last___))) {
-				$med  = 0.0;
-				if (($dist % 2) == 0) {
-					$med  = iter_value_at_position($first___, \intval($dist / 2));
-					$med += iter_value_at_position($first___, \intval($dist / 2) - 1);
-					$med /= 2.0;
-				} else {
-					$med = iter_value_at_position($first___, \intval($dist / 2));
-				}
-				return $med;
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function mode(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$pos = $first->_F_pos();
-			$cnt = function ($v) use($pos, $first___, $last___)
-			{
-				$ret = 0;
-				$cur = $first____F_pos();
-				$first___->_F_seek($pos);
-				while ($first___ != $last___) {
-				if ($first___->_F_this() == $v) {
-						$ret++;
-					}
-					$first___->_F_next();
-				}
-				$first___->_F_seek($cur);
-				return $ret;
-			};
-			return max_element($first___, $last___, $cnt);
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function mid_range(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$pos      = $first___->_F_pos();
-			$largest  = max_element($first___, $last___);
-			$first___->_F_seek($pos);
-			$smallest = min_element($first___, $last___);
-			$first___->_F_seek($pos);
-			return ($largest->_F_this() - $smallest->_F_this());
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function mean(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = iter_distance($first___, $last___);
-			if (0 < $dist) {
-				$sum  = 0.0;
-				while ($first___ != $last___) {
-					$sum += $first___->_F_this();
-					$first___->_F_next();
-				}
-				return $sum / $dist;
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function summation(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$sum  = 0.0;
-			while ($first___ != $last___) {
-				$sum += $first___->_F_this();
-				$first___->_F_next();
-			}
-			return $sum;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function variance(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, bool           $unbiased___ = true
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = iter_distance($first___, $last___);
-			if (0 < $dist) {
-				$mean = mean((clone $first___), $last___);
-				$sum  = 0.0;
-				while ($first___ != $last___) {
-					$sum += \pow($first___->_F_this() - $mean, 2);
-					$first___->_F_next();
-				}
-				if (1 < $dist && $unbiased___) {
-					return ($sum / ($dist - 1));
-				}
-				return ($sum / $dist);
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function covariance(
-		  basic_iterator $first1___
-		, basic_iterator $last1___
-		, basic_iterator $first2___
-		, basic_iterator $last2___
-		, bool           $unbiased___ = true
-	) {
-		if (
-			$first1___::iterator_category === $last1___::iterator_category &&
-			$first2___::iterator_category === $last2___::iterator_category
-		) {
-			$dist  = max(
-				  iter_distance($first1___, $last1___)
-				, iter_distance($first2___, $last2___)
-			);
-			if (0 < $dist) {
-				$mean1 = mean((clone $first1___), $last1___);
-				$mean2 = mean((clone $first2___), $last2___);
-				$sum   = 0.0;
-				while ($first1___ != $last1___ && $first2___ != $last2___) {
-					$sum += ($first1___->_F_this() - $mean1) * ($first2___->_F_this() - $mean2);
-				}
-				if (1 < $dist && $unbiased___) {
-					return ($sum / ($dist - 1));
-				}
-				return ($sum / $dist);
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function standard_deviation(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, bool           $unbiased___ = true
-	) { return \sqrt(variance($first___, $last___, $unbiased___)); }
 } /* EONS */
 
 /* EOF */

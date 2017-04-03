@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xrandom.php
+// libx_random.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

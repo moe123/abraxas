@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_base_utility_traits.php
+// api_utility_traits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

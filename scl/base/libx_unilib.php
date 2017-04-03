@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xunilib.php
+// libx_unilib.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -17,24 +17,24 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xerrno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xendian.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xostype.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_errno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_endian.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_ostype.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xmath.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xnumeric.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xcomplex.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_math.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_numeric.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_complex.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlocale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xrandom.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xsignal.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xstring.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtime.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xtimezone.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xutsname.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_random.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_signal.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_string.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_time.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_timezone.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_utsname.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xio.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_io.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_baselib.php";
 } /* EONS */
 
 namespace std

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xostype.php
+// libx_ostype.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

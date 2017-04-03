@@ -17,10 +17,10 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_collation.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_collator.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_basic_utility.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_collation.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_collator.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_locale.php";
 } /* EONS */
 
 /* EOF */

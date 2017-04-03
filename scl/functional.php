@@ -17,7 +17,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "_b" . DIRECTORY_SEPARATOR . "scl_functional.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_functional.php";
 } /* EONS */
 
 /* EOF */

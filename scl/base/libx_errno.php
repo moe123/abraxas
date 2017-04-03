@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xerrno.php
+// libx_errno.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

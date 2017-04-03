@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xtimezone.php
+// libx_timezone.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
