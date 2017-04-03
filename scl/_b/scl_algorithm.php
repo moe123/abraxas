@@ -668,7 +668,7 @@ namespace std
 		}
 	}
 
-	function merge_r(
+	function merge(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
@@ -704,10 +704,7 @@ namespace std
 		return $out___;
 	}
 
-	function reverse(basic_iterable &$c___)
-	{ _F_reverse($c___); }
-
-	function reverse_r(basic_iterator $first___, basic_iterator $last___)
+	function reverse(basic_iterator $first___, basic_iterator $last___)
 	{
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___ && ($first___ != $last___->_F_prev())) {
@@ -719,10 +716,7 @@ namespace std
 		}
 	}
 
-	function unique(basic_iterable &$c___, callable $binaryPredicate___ = null)
-	{ _F_unique($c___, $binaryPredicate___); }
-
-	function unique_r(
+	function unique(
 		  basic_iterator $first___
 		, basic_iterator $last___
 	) {
@@ -1245,7 +1239,7 @@ namespace std
 		return false;
 	}
 
-	function count(
+	function count_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		,                $val___
@@ -1264,7 +1258,7 @@ namespace std
 		return $ret;
 	}
 
-	function count_if(
+	function count_element_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
@@ -1282,6 +1276,18 @@ namespace std
 		}
 		return $ret;
 	}
+
+	function count(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		,                $val___
+	) { return count_element($first___, $last___, $val___); }
+
+	function count_if(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $unaryPredicate___
+	) { return count_element_if($first___, $last___, $unaryPredicate___); }
 
 	function set_intersection(
 		  basic_iterator $first1___
@@ -1559,30 +1565,25 @@ namespace std
 		, callable        $compare___ = null
 	) { return _F_compare($c1___, $c2___, $compare___); }
 
-	function compare_s(
+	function string_compare(
 		  string   $u8s1___
 		, string   $u8s2___
 		, callable $compare___ = null
-	) { return _F_compare_s($u8s1___, $u8s2___, $compare___); }
+	) { return _F_string_compare($u8s1___, $u8s2___, $compare___); }
 
-	function compare_r(
+	function range_compare(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
 		, basic_iterator $last2___
 		, callable       $compare___ = null
-	) { return _F_compare_r($first1___, $last1___, $first2___, $last2___, $compare___); }
+	) { return _F_range_compare($first1___, $last1___, $first2___, $last2___, $compare___); }
 
 	function sort(
-		  basic_iterable &$c___
-		, callable          $compare___ = null
-	) { _F_sort($c___, $compare___); }
-
-	function sort_r(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $compare___ = null
-	) { _F_sort_r($first___, $last___, $compare___); }
+	) { _F_range_sort($first___, $last___, $compare___); }
 
 	function median(
 		  basic_iterator $first___
@@ -1592,11 +1593,11 @@ namespace std
 			if (1 < ($dist = distance($first___, $last___))) {
 				$med  = 0.0;
 				if (($dist % 2) == 0) {
-					$med  = iter_value_at_position($first___, $dist / 2);
-					$med += iter_value_at_position($first___, (($dist / 2) - 1));
+					$med  = iter_value_at_position($first___, \intval($dist / 2));
+					$med += iter_value_at_position($first___, \intval($dist / 2) - 1);
 					$med /= 2.0;
 				} else {
-					$med = iter_value_at_position($first___, $dist / 2);
+					$med = iter_value_at_position($first___, \intval($dist / 2));
 				}
 				return $med;
 			}
@@ -1612,17 +1613,22 @@ namespace std
 		, basic_iterator $last___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = distance($first___, $last___);
-			if (0 < $dist) {
-				$it = clone $first___;
-				return max_element(
-					  $first___
-					, $last___
-					, function ($v) use($it, $last___) {
-						return count(clone $it, $last___, $v);
+			$pos = $first->_F_pos();
+			$cnt = function ($v) use($pos, $first___, $last___)
+			{
+				$ret = 0;
+				$cur = $first____F_pos();
+				$first___->_F_seek($pos);
+				while ($first___ != $last___) {
+				if ($first___->_F_this() == $v) {
+						$ret++;
 					}
-				);
-			}
+					$first___->_F_next();
+				}
+				$first___->_F_seek($cur);
+				return $ret;
+			};
+			return max_element($first___, $last___, $cnt);
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
@@ -1634,8 +1640,11 @@ namespace std
 		, basic_iterator $last___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			$largest  = max_element(clone $first___, $last___);
+			$pos      = $first___->_F_pos();
+			$largest  = max_element($first___, $last___);
+			$first___->_F_seek($pos);
 			$smallest = min_element($first___, $last___);
+			$first___->_F_seek($pos);
 			return ($largest->_F_this() - $smallest->_F_this());
 		} else {
 			_F_throw_invalid_argument("Invalid type error");

@@ -35,7 +35,7 @@ namespace std
 		}
 
 		function forward_list_2(basic_iterator $first, basic_iterator $last)
-		{ $this->assign_r($first, $last); }
+		{ $this->range_assign($first, $last); }
 
 		function & reserve(int $size, $fill = null)
 		{
@@ -82,7 +82,7 @@ namespace std
 			return $this;
 		}
 
-		function & insert_r(basic_iterator $first, basic_iterator $last)
+		function & range_insert(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -101,7 +101,7 @@ namespace std
 			return $this;
 		}
 		
-		function & insert_after_r(basic_iterator $first, basic_iterator $last)
+		function & range_insert_after(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -127,10 +127,10 @@ namespace std
 			return $this;
 		}
 
-		function & assign_r(basic_iterator $first, basic_iterator $last)
+		function & range_assign(basic_iterator $first, basic_iterator $last)
 		{
 			$this->_F_clear_all();
-			$this->merge_r($first, $last);
+			$this->range_merge($first, $last);
 			return $this;
 		}
 
@@ -140,7 +140,7 @@ namespace std
 			return $this;
 		}
 
-		function & merge_r(basic_iterator $first, basic_iterator $last)
+		function & range_merge(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -189,7 +189,7 @@ namespace std
 		function & sort(callable $compare = null)
 		{
 			if ($this->_M_size) {
-				_F_sort($this, $compare);
+				_F_sort_all($this, $compare);
 			}
 			return $this;
 		}

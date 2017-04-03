@@ -101,7 +101,7 @@ $l  = std\make_ordered_list(
 	, "Magnétite"
 );
 
-std\sort_r(std\begin($l), std\end($l), std\make_locale("fr_FR.UTF-8"));
+std\sort(std\begin($l), std\end($l), std\make_locale("fr_FR.UTF-8"));
 
 foreach ($l as $item) {
 	std\cerr($item)(std\endl);
@@ -230,17 +230,17 @@ or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` o
 
 ```php
 ...
-// unique_r
+// unique
 
 $v = std\make_vector(1, 2, 3, 1, 2, 3, 3, 4, 5, 4, 5, 6, 7);
 
-std\sort_r($v->begin(), $v->end());
+std\sort($v->begin(), $v->end());
 // [ 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 7 ]
 
-$last = std\unique_r($v->begin(), $v->end());
+$last = std\unique($v->begin(), $v->end());
 // [ 1, 2, 3, 4, 5, 6, 7, x, x, x, x, x, x ]
 
-$v->erase_r($last, $v->end());
+$v->range_erase($last, $v->end());
 
 std\cout($v)(std\endl);
 // [ 1, 2, 3, 4, 5, 6, 7 ]
@@ -265,7 +265,7 @@ std\cout($dv)(std\endl);
 // [ 3 4 5 1 2 ]
 
 $v = std\make_vector(2, 7, 3, 9, 4);
-$lcm = std\lcm_r($v->begin(), $v->end());
+$lcm = std\range_lcm($v->begin(), $v->end());
 std\cout($lcm)(std\endl);
 
 ...

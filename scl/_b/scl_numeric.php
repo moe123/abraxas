@@ -36,7 +36,7 @@ namespace std
 		return _F_lcm($m___, $n___);
 	}
 
-	function lcm_r(
+	function range_lcm(
 		  basic_iterator $first___
 		, basic_iterator $last___
 	) {

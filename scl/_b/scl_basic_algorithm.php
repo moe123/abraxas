@@ -32,7 +32,7 @@ namespace std
 		return comparison_result::same;
 	}
 
-	function _F_compare_s(
+	function _F_string_compare(
 		  string   $u8s1___
 		, string   $u8s2___
 		, callable $compare___ = null
@@ -47,7 +47,7 @@ namespace std
 		return comparison_result::same;
 	}
 
-	function _F_compare_r(
+	function _F_range_compare(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
@@ -84,7 +84,7 @@ namespace std
 		return comparison_result::ascending;
 	}
 
-	function _F_sort(
+	function _F_sort_all(
 		  basic_iterable &$c___
 		, callable $compare___ = null
 	) {
@@ -113,7 +113,7 @@ namespace std
 		}
 	}
 
-	function _F_sort_r(
+	function _F_range_sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $compare___ = null
@@ -126,7 +126,7 @@ namespace std
 		}
 		if ($first___->_M_ptr->_M_size) {
 			if ($first___->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
-				_F_sort($first___->_M_ptr, $compare___);
+				_F_sort_all($first___->_M_ptr, $compare___);
 				$first___->_F_seek_end();
 				$last___->_F_seek_end();
 			} else if ($first___->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {

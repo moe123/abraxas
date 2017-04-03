@@ -225,7 +225,7 @@ print_r($v->rbegin());
 //print_r($v->end());
 print_r($v->rend());
 std\cout(
-	std\lcm_r($v->begin(), $v->end(5))
+	std\range_lcm($v->begin(), $v->end(5))
 )(std\endl);
 
 $v  = std\make_vector(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3);

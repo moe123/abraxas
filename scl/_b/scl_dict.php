@@ -42,7 +42,7 @@ namespace std
 		}
 
 		function dict_2(basic_iterator $first, basic_iterator $last)
-		{ $this->assign_r($first, $last); }
+		{ $this->range_assign($first, $last); }
 
 		function keys()
 		{
@@ -233,10 +233,10 @@ namespace std
 			return $this;
 		}
 
-		function & assign_r(basic_iterator $first, basic_iterator $last)
+		function & range_assign(basic_iterator $first, basic_iterator $last)
 		{
 			$this->clear();
-			$this->update_r($first, $last);
+			$this->range_update($first, $last);
 			return $this;
 		}
 
@@ -248,7 +248,7 @@ namespace std
 			return $this;
 		}
 
-		function & update_r(basic_iterator $first, basic_iterator $last)
+		function & range_update(basic_iterator $first, basic_iterator $last)
 		{
 			if (
 				$first::iterator_category === basic_iterator_tag::duo_iterator ||

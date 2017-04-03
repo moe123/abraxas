@@ -58,7 +58,7 @@ namespace std
 		{ $this->assign($u8); }
 
 		function u8string_2(string $s, int $encoding)
-		{ $this->assign_s($s, $encoding); }
+		{ $this->string_assign($s, $encoding); }
 
 		function & assign(u8string &$u8)
 		{
@@ -67,7 +67,7 @@ namespace std
 			return $this;
 		}
 
-		function & assign_s(string $s, int $encoding = basic_encoding::utf8)
+		function & string_assign(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
@@ -96,7 +96,7 @@ namespace std
 			return $this;
 		}
 
-		function & insert_s(string $s, int $pos, int $encoding = basic_encoding::utf8)
+		function & string_insert(string $s, int $pos, int $encoding = basic_encoding::utf8)
 		{
 			$u8 = new u8string($s, $encoding);
 			$this->insert($u8, $pos);
@@ -132,7 +132,7 @@ namespace std
 		function substr_compare(u8string &$u8, $pos, $len = -1)
 		{ return _F_u8gh_substr_cmp($this, $u8, $pos, $len); }
 
-		function substr_localized_compare(u8string &$u8, locale &$loc, $pos, $len = -1)
+		function localized_substr_compare(u8string &$u8, locale &$loc, $pos, $len = -1)
 		{ return _F_u8gh_substr_cmp($this, $u8, $pos, $len, $loc); }
 
 		function compare(u8string &$u8)
@@ -141,15 +141,15 @@ namespace std
 		function localized_compare(u8string &$u8, locale &$loc)
 		{ return _F_u8_cmp($this, $u8, $loc); }
 
-		function compare_s(string $s8)
+		function string_compare(string $s8)
 		{
-			$u8 = (new u8string)->assign_s($s, $encoding);
+			$u8 = (new u8string)->string_assign($s, $encoding);
 			return _F_u8_cmp($this, $u8);
 		}
 
-		function localized_compare_s(string $s8, locale &$loc)
+		function localized_string_compare(string $s8, locale &$loc)
 		{
-			$u8 = (new u8string)->assign_s($s, $encoding);
+			$u8 = (new u8string)->string_assign($s, $encoding);
 			return _F_u8_cmp($this, $u8, $loc);
 		}
 
@@ -175,7 +175,7 @@ namespace std
 			return $this;
 		}
 
-		function & append_s(string $s, int $encoding = basic_encoding::utf8)
+		function & string_append(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
@@ -213,7 +213,7 @@ namespace std
 			return $this;
 		}
 
-		function & prepend_s(string $s, int $encoding = basic_encoding::utf8)
+		function & string_prepend(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);

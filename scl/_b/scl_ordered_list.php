@@ -35,7 +35,7 @@ namespace std
 		}
 
 		function ordered_list_2(basic_iterator $first, basic_iterator $last)
-		{ $this->assign_r($first, $last); }
+		{ $this->range_assign($first, $last); }
 
 		function & reserve(int $size, $fill = null)
 		{
@@ -104,7 +104,7 @@ namespace std
 			return $this;
 		}
 
-		function & insert_r(basic_iterator $first, basic_iterator $last)
+		function & range_insert(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -140,10 +140,10 @@ namespace std
 			return $this;
 		}
 
-		function & assign_r(basic_iterator $first, basic_iterator $last)
+		function & range_assign(basic_iterator $first, basic_iterator $last)
 		{
 			_F_clear_all($this);
-			$this->merge_r($first, $last);
+			$this->range_merge($first, $last);
 			return $this;
 		}
 
@@ -155,7 +155,7 @@ namespace std
 			return $this;
 		}
 
-		function & merge_r(basic_iterator $first, basic_iterator $last)
+		function & range_merge(basic_iterator $first, basic_iterator $last)
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
@@ -259,7 +259,7 @@ namespace std
 			return $this;
 		}
 
-		function & erase_r(basic_iterator $first, basic_iterator $last)
+		function & range_erase(basic_iterator $first, basic_iterator $last)
 		{
 			_F_splice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
