@@ -128,24 +128,6 @@ namespace std
 			return $this;
 		}
 
-		function erase_one(int $index)
-		{
-			$this->erase_at($index);
-			return $this;
-		}
-
-		function & erase_from(basic_iterator $first)
-		{
-			_F_splice($this, $first->_F_pos());
-			return $this;
-		}
-
-		function & range_erase(basic_iterator $first, basic_iterator $last)
-		{
-			_F_splice($this, $first->_F_pos(), distance($first, $last));
-			return $this;
-		}
-
 		function & clear()
 		{
 			_F_clear_all($this);

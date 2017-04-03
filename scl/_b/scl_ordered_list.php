@@ -168,15 +168,9 @@ namespace std
 			return $this;
 		}
 
-		function & slice(int $pos, int $len)
+		function & slice(int $start, int $end)
 		{
-			_F_slice($this, $pos, $len);
-			return $this;
-		}
-
-		function & range_slice(basic_iterator $first, basic_iterator $last)
-		{
-			_F_slice($this, $first->_F_pos(), distance($first, $last));
+			_F_slice($this, $start, ($$end - $start));
 			return $this;
 		}
 
@@ -271,7 +265,7 @@ namespace std
 
 		function & slice_erase(int $start, int $end)
 		{
-			_F_splice($this, $start, $end);
+			_F_splice($this, $start, ($end - $start));
 			return $this;
 		}
 
