@@ -45,6 +45,25 @@ namespace std
 		$it2___->_F_assign($v1);
 	}
 
+	function iter_iter_distance(basic_iterator $first___, basic_iterator $last___)
+	{
+		$n = 0;
+		if ($first___::iterator_category === $last___::iterator_category) {
+			if ($first___->_M_pos >= $last___->_M_pos) {
+				$n = $last___->_M_pos - $first___->_M_pos;
+			} else {
+				$it = clone $first___;
+				while ($it != $last___) {
+					$it->_F_next();
+					++$n;
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $n;
+	}
+
 	function iter_swap_position(basic_iterator &$it___, int $pos1___, int $pos2___)
 	{
 		$pos = $it___->_F_pos();
@@ -151,7 +170,7 @@ namespace std
 		,                $val___
 		, callable       $binaryPredicate___ = null
 	) {
-		$cnt = distance($first___, $last___);
+		$cnt = iter_distance($first___, $last___);
 		if ($cnt > 0) {
 			$step  = 1;
 			$p = $binaryPredicate___;
@@ -184,7 +203,7 @@ namespace std
 		,                $val___
 		, callable       $binaryPredicate___ = null
 	) {
-		$cnt = distance($first___, $last___);
+		$cnt = iter_distance($first___, $last___);
 		if ($cnt > 0) {
 			$step  = 1;
 			$p = $binaryPredicate___;
@@ -305,7 +324,7 @@ namespace std
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
 	) {
-		$dist = distance($first___, $last___);
+		$dist = iter_distance($first___, $last___);
 		while ($dist > 0)
 		{
 			$it = clone $first___;
@@ -1590,7 +1609,7 @@ namespace std
 		, basic_iterator $last___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			if (1 < ($dist = distance($first___, $last___))) {
+			if (1 < ($dist = iter_distance($first___, $last___))) {
 				$med  = 0.0;
 				if (($dist % 2) == 0) {
 					$med  = iter_value_at_position($first___, \intval($dist / 2));
@@ -1657,7 +1676,7 @@ namespace std
 		, basic_iterator $last___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = distance($first___, $last___);
+			$dist = iter_distance($first___, $last___);
 			if (0 < $dist) {
 				$sum  = 0.0;
 				while ($first___ != $last___) {
@@ -1696,7 +1715,7 @@ namespace std
 		, bool           $unbiased___ = true
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = distance($first___, $last___);
+			$dist = iter_distance($first___, $last___);
 			if (0 < $dist) {
 				$mean = mean((clone $first___), $last___);
 				$sum  = 0.0;
@@ -1728,8 +1747,8 @@ namespace std
 			$first2___::iterator_category === $last2___::iterator_category
 		) {
 			$dist  = max(
-				  distance($first1___, $last1___)
-				, distance($first2___, $last2___)
+				  iter_distance($first1___, $last1___)
+				, iter_distance($first2___, $last2___)
 			);
 			if (0 < $dist) {
 				$mean1 = mean((clone $first1___), $last1___);

@@ -41,23 +41,7 @@ namespace std
 	{ return clone $it___; }
 
 	function distance(basic_iterator $first___, basic_iterator $last___)
-	{
-		$n = 0;
-		if ($first___::iterator_category === $last___::iterator_category) {
-			if ($first___->_M_pos >= $last___->_M_pos) {
-				$n = $last___->_M_pos - $first___->_M_pos;
-			} else {
-				$it = clone $first___;
-				while ($it != $last___) {
-					$it->_F_next();
-					++$n;
-				}
-			}
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return $n;
-	}
+	{ return iter_distance($first___, $last___); }
 
 	function advance(basic_iterator $it___, int $dist___)
 	{ $it___->_F_advance($dist___); }

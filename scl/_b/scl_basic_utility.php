@@ -19,12 +19,12 @@ namespace
 {
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "_x" . DIRECTORY_SEPARATOR . "xunilib.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_container_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_operator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_iterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_utility_traits.php";
-
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_algorithm.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_algorithm.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_container_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_operator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_iterator_traits.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_base_utility_traits.php";
+	
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_basic_exception.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_numeric_limits.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_type_traits.php";

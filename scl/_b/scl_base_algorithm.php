@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// scl_basic_algorithm.php
+// scl_base_algorithm.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -76,12 +76,12 @@ namespace std
 			$s1 = _F_u8gh_substr(
 				\strval($first1___->_M_ptr)
 				, $first1___->_F_pos()
-				, distance($first1___, $last1___)
+				, iter_distance($first1___, $last1___)
 			);
 			$s2 = _F_u8gh_substr(
 				\strval($first2___->_M_ptr)
 				, $first2___->_F_pos()
-				, distance($first2___, $last2___)
+				, iter_distance($first2___, $last2___)
 			);
 			$r = _F_u8gh_cmp($s1, $s2, $compare___);
 			if ($r < 0) {
@@ -145,7 +145,7 @@ namespace std
 				$slice = array_slice(
 					  $first___->_M_ptr->_F_dump()
 					, $first___->_M_pos
-					, distance($first___, $last___)
+					, iter_distance($first___, $last___)
 				);
 				if (!\is_null($compare___)) {
 					\usort($slice, $compare___);
@@ -162,7 +162,7 @@ namespace std
 				$slice = \array_slice(
 					$first___->_M_ptr->_M_container
 					, $first___->_M_pos
-					, distance($first___, $last___)
+					, iter_distance($first___, $last___)
 				);
 				if (!\is_null($compare___)) {
 					\usort($slice, $compare___);
