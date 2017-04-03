@@ -22,11 +22,23 @@ namespace std
 		, basic_iterable &$c2___
 		, callable          $compare___ = null
 	) {
-		$r = _F_u8gh_cmp(\strval($s1___), \strval($s2___), $compare___);
-		if ($r < 0) {
+		if (
+			$c1___::container_category === basic_iterable_tag::basic_u8string &&
+			$c2___::container_category === basic_iterable_tag::basic_u8string
+		) {
+			$r = _F_u8gh_cmp(\strval($c1__), \strval($c2___), $compare___);
+			if ($r < 0) {
+				return comparison_result::ascending;
+			}
+			if ($r > 0) {
+				return comparison_result::descending;
+			}
+			return comparison_result::same;
+		}
+		if ($c1___ < $c2___) {
 			return comparison_result::ascending;
 		}
-		if ($r > 0) {
+		if ($c1___ > $c2___) {
 			return comparison_result::descending;
 		}
 		return comparison_result::same;
