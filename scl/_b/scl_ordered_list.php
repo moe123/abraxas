@@ -174,32 +174,54 @@ namespace std
 			return $this;
 		}
 
-		function & slice_r(basic_iterator $first, basic_iterator $last)
+		function & range_slice(basic_iterator $first, basic_iterator $last)
 		{
 			_F_slice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
 		}
 
 		function & splice(
-			  basic_iterator $pos
-			, ordered_list &$olist
-			, basic_iterator $first = null
-			, basic_iterator $last = null
+			  int            $start
+			, basic_iterator $first
+			, basic_iterator $last
 		) {
-			if ($first === null) {
-				$first = $olist->begin();
-			}
-			if ($last === null) {
-				$first = $olist->end();
-			}
 			if ($first::iterator_category === $last::iterator_category) {
-				$index = $pos->_F_pos();
 				while ($first != $last) {
-					$this->insert($index, $first->_F_this());
+					$this->insert($start, $first->_F_this());
 					$first->next();
 				}
 			} else {
 				_F_throw_invalid_argument("Invalid type error");
+			}
+			return $this;
+		}
+
+		function & slice_sort(int $start, int $end, callable $compare = null)
+		{
+			if ($this->_M_size) {
+				_F_range_sort(
+					  $this
+					, $this->begin($start)
+					, $this->end($end)
+					, $compare
+				);
+			}
+			return $this;
+		}
+
+		function & sort(callable $compare = null)
+		{
+			if ($this->_M_size) {
+				_F_sort_all($this, $compare);
+			}
+			return $this;
+		}
+
+		function & reverse_sort(callable $compare = null)
+		{
+			if ($this->_M_size) {
+				_F_reverse($this);
+				_F_sort_all($this, $compare);
 			}
 			return $this;
 		}
@@ -247,21 +269,9 @@ namespace std
 			return $this;
 		}
 
-		function erase_one(int $index)
+		function & slice_erase(int $start, int $end)
 		{
-			$this->erase_at($index);
-			return $this;
-		}
-
-		function & erase_from(basic_iterator $first)
-		{
-			_F_splice($this, $first->_F_pos());
-			return $this;
-		}
-
-		function & range_erase(basic_iterator $first, basic_iterator $last)
-		{
-			_F_splice($this, $first->_F_pos(), distance($first, $last));
+			_F_splice($this, $start, $end);
 			return $this;
 		}
 
