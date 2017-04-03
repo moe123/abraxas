@@ -21,6 +21,11 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $last___
 	) { return statistic\mean($first___, $last___); }
+
+	function sigma(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) { return statistic\standard_deviation($first___, $last___); }
 } /* EONS */
 
 namespace std\statistic
