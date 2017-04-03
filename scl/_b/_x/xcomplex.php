@@ -17,7 +17,7 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace std
+namespace std\math
 {
 	function _X_cabs(complex $z___) : float
 	{ return \sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag); }

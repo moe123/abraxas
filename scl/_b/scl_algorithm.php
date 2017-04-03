@@ -665,38 +665,6 @@ namespace std
 		}
 	}
 
-	function sigma(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, bool           $unbiased___ = true
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$pos  = $first___->_F_pos();
-			$dist = distance($first___, $last___);
-			$sum  = 0.0;
-			while ($first___ != $last___) {
-				$sum += $first___->_F_this();
-				$first___->_F_next();
-			}
-			$first___->_F_seek($pos);
-
-			$mean = $sum / $dist;
-			$sum  = 0.0;
-			while ($first___ != $last___) {
-				$sum += \pow($first___->_F_this() - $mean, 2);
-				$first___->_F_next();
-			}
-
-			if ($unbiased___) {
-				\sqrt($sum / ($dist - 1));
-			}
-			return \sqrt($sum / ($dist));
-		} else {
-			_X_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
 	function merge_r(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
