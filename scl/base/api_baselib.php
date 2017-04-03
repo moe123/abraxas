@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// libx_baselib.php
+// api_baselib.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //

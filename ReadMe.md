@@ -24,7 +24,6 @@ A Standard Container Library (`SCL`) influenced and freely inspired by the `C++ 
 and the `C++ STL`. Providing the same six main components: `Algorithms`, `Containers`, `Iterators`, `Functional`,  `I/O Streams` and `Locale`.
 
 Extended functionalities:
-- X library.
 - Utility library.
 - Strings (binary and UTF-8).
 - Math Numerics library (integral, real-floating-point, complex, rational)
@@ -386,27 +385,24 @@ PHP7 built with:
 
 ### Files
 
-##### API bindings
-> [libx_baselib](https://github.com/moe123/abraxas/blob/master/scl/base/libx_baselib.php?ts=3)<br>
-> [libx_complex](https://github.com/moe123/abraxas/blob/master/scl/base/libx_complex.php?ts=3)<br>
-> [libx_endian](https://github.com/moe123/abraxas/blob/master/scl/base/libx_endian.php?ts=3)<br>
-> [libx_errno](https://github.com/moe123/abraxas/blob/master/scl/base/libx_errno.php?ts=3)<br>
-> [libx_io](https://github.com/moe123/abraxas/blob/master/scl/base/libx_io.php?ts=3)<br>
-> [libx_locale](https://github.com/moe123/abraxas/blob/master/scl/base/libx_locale.php?ts=3)<br>
-> [libx_math](https://github.com/moe123/abraxas/blob/master/scl/base/libx_math.php?ts=3)<br>
-> [libx_mathdefs](https://github.com/moe123/abraxas/blob/master/scl/base/libx_mathdefs.php?ts=3)<br>
-> [libx_numeric](https://github.com/moe123/abraxas/blob/master/scl/base/libx_numeric.php?ts=3)<br>
-> [libx_ostype](https://github.com/moe123/abraxas/blob/master/scl/base/libx_ostype.php?ts=3)<br>
-> [libx_random](https://github.com/moe123/abraxas/blob/master/scl/base/libx_random.php?ts=3)<br>
-> [libx_signal](https://github.com/moe123/abraxas/blob/master/scl/base/libx_signal.php?ts=3)<br>
-> [libx_string](https://github.com/moe123/abraxas/blob/master/scl/base/libx_string.php?ts=3)<br>
-> [libx_time](https://github.com/moe123/abraxas/blob/master/scl/base/libx_time.php?ts=3)<br>
-> [libx_timezone](https://github.com/moe123/abraxas/blob/master/scl/base/libx_timezone.php?ts=3)<br>
-> [libx_unilib](https://github.com/moe123/abraxas/blob/master/scl/base/libx_unilib.php?ts=3)<br>
-> [libx_utsname](https://github.com/moe123/abraxas/blob/master/scl/base/libx_utsname.php?ts=3)<br>
-
 ##### API
-
+> [api_baselib](https://github.com/moe123/abraxas/blob/master/scl/base/api_baselib.php?ts=3)<br>
+> [api_complex](https://github.com/moe123/abraxas/blob/master/scl/base/api_complex.php?ts=3)<br>
+> [api_endian](https://github.com/moe123/abraxas/blob/master/scl/base/api_endian.php?ts=3)<br>
+> [api_errno](https://github.com/moe123/abraxas/blob/master/scl/base/api_errno.php?ts=3)<br>
+> [api_io](https://github.com/moe123/abraxas/blob/master/scl/base/api_io.php?ts=3)<br>
+> [api_locale](https://github.com/moe123/abraxas/blob/master/scl/base/api_locale.php?ts=3)<br>
+> [api_math](https://github.com/moe123/abraxas/blob/master/scl/base/api_math.php?ts=3)<br>
+> [api_mathdefs](https://github.com/moe123/abraxas/blob/master/scl/base/api_mathdefs.php?ts=3)<br>
+> [api_numeric](https://github.com/moe123/abraxas/blob/master/scl/base/api_numeric.php?ts=3)<br>
+> [api_ostype](https://github.com/moe123/abraxas/blob/master/scl/base/api_ostype.php?ts=3)<br>
+> [api_random](https://github.com/moe123/abraxas/blob/master/scl/base/api_random.php?ts=3)<br>
+> [api_signal](https://github.com/moe123/abraxas/blob/master/scl/base/api_signal.php?ts=3)<br>
+> [api_string](https://github.com/moe123/abraxas/blob/master/scl/base/api_string.php?ts=3)<br>
+> [api_time](https://github.com/moe123/abraxas/blob/master/scl/base/api_time.php?ts=3)<br>
+> [api_timezone](https://github.com/moe123/abraxas/blob/master/scl/base/api_timezone.php?ts=3)<br>
+> [api_unilib](https://github.com/moe123/abraxas/blob/master/scl/base/api_unilib.php?ts=3)<br>
+> [api_utsname](https://github.com/moe123/abraxas/blob/master/scl/base/api_utsname.php?ts=3)<br>
 > [api_algorithm](https://github.com/moe123/abraxas/blob/master/scl/base/api_algorithm.php?ts=3)<br>
 > [api_container_traits](https://github.com/moe123/abraxas/blob/master/scl/base/api_container_traits.php?ts=3)<br>
 > [api_exception](https://github.com/moe123/abraxas/blob/master/scl/base/api_exception.php?ts=3)<br>

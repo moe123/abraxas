@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// libx_unilib.php
+// api_unilib.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -17,24 +17,24 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_errno.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_endian.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_ostype.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_errno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_endian.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_ostype.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_math.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_numeric.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_complex.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_math.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_numeric.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_complex.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_locale.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_random.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_signal.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_string.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_time.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_timezone.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_utsname.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_locale.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_random.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_signal.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_string.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_time.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_timezone.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_utsname.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_io.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "libx_baselib.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_io.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "api_baselib.php";
 } /* EONS */
 
 namespace std
