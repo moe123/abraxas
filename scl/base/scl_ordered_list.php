@@ -263,6 +263,12 @@ namespace std
 			return $this;
 		}
 
+		function & range_erase(basic_iterator $first, basic_iterator $last)
+		{
+			_F_splice($this, $first, distance($first, $last));
+			return $this;
+		}
+
 		function & slice_erase(int $start, int $end)
 		{
 			_F_splice($this, $start, ($end - $start));

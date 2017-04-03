@@ -128,6 +128,12 @@ namespace std
 			return $this;
 		}
 
+		function & range_erase(basic_iterator $first, basic_iterator $last)
+		{
+			_F_splice($this, $first, distance($first, $last));
+			return $this;
+		}
+
 		function & clear()
 		{
 			_F_clear_all($this);
