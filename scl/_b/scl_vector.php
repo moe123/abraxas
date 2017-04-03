@@ -184,12 +184,6 @@ namespace std
 			return $this;
 		}
 
-		function & slice_erase(int $start, int $end)
-		{
-			_F_splice($this, $start, ($end - $start));
-			return $this;
-		}
-
 		function & clear()
 		{
 			_F_clear_all($this);
