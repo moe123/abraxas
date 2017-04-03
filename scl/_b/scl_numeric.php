@@ -25,7 +25,7 @@ namespace std
 		if ($n___ === 0) {
 			return $m___;
 		}
-		return _X_gcd($m___, $n___);
+		return _F_gcd($m___, $n___);
 	}
 	
 	function lcm(int $m___, int $n___)
@@ -33,7 +33,7 @@ namespace std
 		if ($m___ === 0 || $n___ === 0) {
 			return 0;
 		}
-		return _X_lcm($m___, $n___);
+		return _F_lcm($m___, $n___);
 	}
 
 	function lcm_r(
@@ -47,7 +47,7 @@ namespace std
 			$first___->_F_next();
 			$n++;
 		}
-		return _X_lcmv($m, $n);
+		return _F_lcmv($m, $n);
 	}
 } /* EONS */
 

@@ -28,9 +28,9 @@ namespace std
 	const rand                = '\std\rand';
 	const rand                = '\std\srand';
 
-	function _X_random_dev_1(int $nbytes___)
+	function _F_random_dev_1(int $nbytes___)
 	{
-		if (_X_os_nix() && $nbytes___ > 0) {
+		if (_F_os_nix() && $nbytes___ > 0) {
 			$fp = @\fopen('/dev/urandom', 'rb');
 			if ($fp === false) {
 				$fp = @\fopen('/dev/random', 'rb');
@@ -51,9 +51,9 @@ namespace std
 		return null;
 	}
 
-	function _X_random_dev_2(int $nbytes___)
+	function _F_random_dev_2(int $nbytes___)
 	{
-		if (_X_os_nix() && $nbytes___ > 0) {
+		if (_F_os_nix() && $nbytes___ > 0) {
 			if (false !== ($fp = @\popen("`which dd` if=/dev/urandom bs=1 count=" . $nbytes___ . " 2> /dev/null", "r"))) {
 				$r = @\stream_get_contents($fp);
 				@\pclose($fp);
@@ -63,9 +63,9 @@ namespace std
 		return null;
 	}
 
-	function _X_random_dev_3(int $nbytes___)
+	function _F_random_dev_3(int $nbytes___)
 	{
-		if (_X_os_nix() && $nbytes___ > 0) {
+		if (_F_os_nix() && $nbytes___ > 0) {
 			if (false !== ($fp = @\popen("`which openssl` rand " . $nbytes___ . " 2> /dev/null", "r"))) {
 				$r = @\stream_get_contents($fp);
 				@\pclose($fp);
@@ -75,7 +75,7 @@ namespace std
 		return null;
 	}
 
-	function _X_random_slot(float &$ent___)
+	function _F_random_slot(float &$ent___)
 	{
 		static $_S_dev = null;
 		if (\is_null($_S_dev)) {
@@ -96,7 +96,7 @@ namespace std
 		return  $_S_dev[0];
 	}
 
-	function _X_random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
+	function _F_random(int $min___ = 0, int $max___ = 0, int $seed___ = 0)
 	{
 		if ($seed___ != 0) {
 			\mt_srand($seed);
@@ -113,7 +113,7 @@ namespace std
 			$max___ = \mt_getrandmax();
 		}
 		if ($max___ < $min___) {
-			 _X_throw_invalid_argument("Invalid argument error");
+			 _F_throw_invalid_argument("Invalid argument error");
 		}
 		return \mt_rand($min___, $max___);
 	}
@@ -148,26 +148,26 @@ namespace std
 	{ return $min___ + (\mt_rand() / \mt_getrandmax()) * ($max___ - $min___); }
 
 	function random()
-	{ return _X_random(0, \mt_rand(), 0); }
+	{ return _F_random(0, \mt_rand(), 0); }
 
 	function srandom(int $seed___)
-	{ return _X_random(0, \mt_rand(), $seed___); }
+	{ return _F_random(0, \mt_rand(), $seed___); }
 
 	function rand()
-	{ return _X_random(0, \mt_rand(), 0); }
+	{ return _F_random(0, \mt_rand(), 0); }
 
 	function srand(int $seed___)
-	{ return _X_random(0, \mt_rand(), $seed___); }
+	{ return _F_random(0, \mt_rand(), $seed___); }
 
 	function getrandom(&$dest___, int $dlen___, int $flgs___)
 	{
 		if ($dlen___ > 0) {
-			if (_X_os_nix()) {
-				$dest___ = _X_random_dev_1($dlen___);
+			if (_F_os_nix()) {
+				$dest___ = _F_random_dev_1($dlen___);
 				if (\is_null($dest___)) {
-					$dest___ = _X_random_dev_2($dlen___);
+					$dest___ = _F_random_dev_2($dlen___);
 					if (\is_null($dest___)) {
-						$dest___ = _X_random_dev_3($dlen___);
+						$dest___ = _F_random_dev_3($dlen___);
 					}
 					if (\is_null($dest___)) {
 						seterrno(EFAULT);
@@ -176,7 +176,7 @@ namespace std
 				}
 			} else {
 				$entropy = 0;
-				$device = _X_random_slot($entropy);
+				$device = _F_random_slot($entropy);
 				$dest___ = $device($dlen___);
 			}
 			return 0;

@@ -17,25 +17,25 @@
 
 namespace std
 {
-	function _X_lcm(int $a___, int $b___)
+	function _F_lcm(int $a___, int $b___)
 	{
-		$c = _X_gcd($a___, $b___);
+		$c = _F_gcd($a___, $b___);
 		return $c !== 0 ? \intval(($a___ * $b___) / ($c)) : 0;
 	}
 
-	function _X_lcmv(array &$m___, int $n___)
+	function _F_lcmv(array &$m___, int $n___)
 	{
 		$a = \abs(\intval($m___[0]));
 		for ($i = 1; $i < $n___; $i++) {
 			$m = \abs(\intval($m___[$i]));
-			if (($c = _X_gcd($m, $a))) {
+			if (($c = _F_gcd($m, $a))) {
 				$a = \intval(($m * $a) / $c);
 			}
 		}
 		return $a;
 	}
 
-	function _X_gcd(int $m___, int $n___)
+	function _F_gcd(int $m___, int $n___)
 	{
 		$a = $m___ < 0 ? -($m___) : $m___;
 		$b = $n___ < 0 ? -($n___) : $n___;
@@ -44,23 +44,23 @@ namespace std
 		return $b;
 	}
 
-	function _X_ratio_is_integral(int &$num___, int &$den___)
+	function _F_ratio_is_integral(int &$num___, int &$den___)
 	{ return (($num___ % $den___) === 0); }
 
-	function _X_ratio_is_real(int &$num___, int &$den___)
+	function _F_ratio_is_real(int &$num___, int &$den___)
 	{ return (($num___ % $den___) !== 0); }
 
-	function _X_ratio_gcd(int &$m___, int &$n___)
+	function _F_ratio_gcd(int &$m___, int &$n___)
 	{
-		if ($gcd = _X_gcd($m___, $n___)) {
+		if ($gcd = _F_gcd($m___, $n___)) {
 			$m___ = \intval($m___ / $gcd);
 			$n___ = \intval($n___ / $gcd);
 		} else {
-			_X_throw_overflow_error("Divide by zero error");
+			_F_throw_overflow_error("Divide by zero error");
 		}
 	}
 
-	function _X_ratio_nearest(float $x, int &$num___, int &$den___)
+	function _F_ratio_nearest(float $x, int &$num___, int &$den___)
 	{
 		$m1 = 1;
 		$m2 = 0;
@@ -101,13 +101,13 @@ namespace std
 		$den___ = $n1;
 	}
 
-	function _X_ratio_reduce(
+	function _F_ratio_reduce(
 		  int &$num1___
 		, int &$den1___
 		, int &$num2___
 		, int &$den2___
 	) {
-		if ($lcm = _X_lcm($den1___, $den2___)) {
+		if ($lcm = _F_lcm($den1___, $den2___)) {
 			$n1 = \intval($num1___ * \intval($lcm / $den1___));
 			$n2 = \intval($num2___ * \intval($lcm / $den2___));
 			$num1___ = $n1;
@@ -115,11 +115,11 @@ namespace std
 			$num2___ = $n2;
 			$den2___ = $lcm;
 		} else {
-			_X_throw_overflow_error("Divide by zero error");
+			_F_throw_overflow_error("Divide by zero error");
 		}
 	}
 
-	function _X_ratio_add(
+	function _F_ratio_add(
 		  int $num1___
 		, int $den1___
 		, int $num2___
@@ -129,10 +129,10 @@ namespace std
 	) {
 		$m___ = (($num1___ * $den2___) + ($den1___ * $num2___));
 		$n___ = ($den1___ * $den2___);
-		_X_ratio_gcd($m___, $n___);
+		_F_ratio_gcd($m___, $n___);
 	}
 
-	function _X_ratio_add_int( 
+	function _F_ratio_add_int( 
 		  int $num1___
 		, int $den1___
 		, int $int___
@@ -141,10 +141,10 @@ namespace std
 	) {
 		$num2 = $int___;
 		$den2 = 1;
-		_X_ratio_add($num1___, $den1___, $num2, $den2, $m___, $n___);
+		_F_ratio_add($num1___, $den1___, $num2, $den2, $m___, $n___);
 	}
 
-	function _X_ratio_add_real( 
+	function _F_ratio_add_real( 
 		  int   $num1___
 		, int   $den1___
 		, float $real___
@@ -153,11 +153,11 @@ namespace std
 	) {
 		$num2 = 0;
 		$den2 = 0;
-		_X_ratio_nearest($real___, $num2, $den2);
-		_X_ratio_add($num1___, $den1___, $num2, $den2, $m___, $n___);
+		_F_ratio_nearest($real___, $num2, $den2);
+		_F_ratio_add($num1___, $den1___, $num2, $den2, $m___, $n___);
 	}
 
-	function _X_ratio_subtract(
+	function _F_ratio_subtract(
 		  int $num1___
 		, int $den1___
 		, int $num2___
@@ -167,10 +167,10 @@ namespace std
 	) {
 		$m___ = (($num1___ * $den2___) - ($den1___ * $num2___));
 		$n___ = ($den1___ * $den2___);
-		_X_ratio_gcd($m___, $n___);
+		_F_ratio_gcd($m___, $n___);
 	}
 
-	function _X_ratio_multiply(
+	function _F_ratio_multiply(
 		  int $num1___
 		, int $den1___
 		, int $num2___
@@ -180,10 +180,10 @@ namespace std
 	) {
 		$m___ = ($num1___ * $num2___);
 		$n___ = ($den1___ * $den2___);
-		_X_ratio_gcd($m___, $n___);
+		_F_ratio_gcd($m___, $n___);
 	}
 
-	function _X_ratio_divide(
+	function _F_ratio_divide(
 		  int $num1___
 		, int $den1___
 		, int $num2___
@@ -193,7 +193,7 @@ namespace std
 	) {
 		$m___ = ($num1___ * $den2___);
 		$n___ = ($den1___ * $num2___);
-		_X_ratio_gcd($m___, $n___);
+		_F_ratio_gcd($m___, $n___);
 	}
 } /* EONS */
 

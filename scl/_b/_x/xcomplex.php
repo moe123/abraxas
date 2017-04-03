@@ -17,9 +17,9 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace std\math
+namespace std
 {
-	function _X_cabs(complex $z___) : float
+	function _F_cabs(complex $z___) : float
 	{ return \sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag); }
 
 	function creal(complex $z___) : float
@@ -80,7 +80,7 @@ namespace std\math
 
 	function cpow(complex $z1___, complex $z2___) : complex
 	{
-		if (_X_FP_zeroed($z1___->_M_real, $z1___->_M_imag)) {
+		if (_F_FP_zeroed($z1___->_M_real, $z1___->_M_imag)) {
 			return $x1;
 		}
 		//!# W (ϴ), R (ρ), B (β)
@@ -94,7 +94,7 @@ namespace std\math
 
 	function csqrt(complex $z___) : complex
 	{
-		if (_X_FP_zeroed($z___->_M_real, $z___->_M_imag)) {
+		if (_F_FP_zeroed($z___->_M_real, $z___->_M_imag)) {
 			return $x;
 		}
 
@@ -106,14 +106,14 @@ namespace std\math
 			: \sqrt($b) * \sqrt(0.5 * (($a / $b) + \sqrt(1.0 + ($a / $b) * ($a / $b))))
 		);
 
-		if ($z___->_M_real > 0.0 || _X_FP_iszero($z___->_M_real)) {
+		if ($z___->_M_real > 0.0 || _F_FP_iszero($z___->_M_real)) {
 			return new complex(
 				  $W
 				, $z___->_M_imag / (2.0 * $W)
 			);
 		}
 
-		$I = ($z___->_M_imag > 0.0 || _X_FP_iszero($z___->_M_imag)) ? $W : -($W);
+		$I = ($z___->_M_imag > 0.0 || _F_FP_iszero($z___->_M_imag)) ? $W : -($W);
 		return new complex(
 			  $z___->_M_imag / (2.0 * $I)
 			, $I
@@ -168,7 +168,7 @@ namespace std\math
 	function cinv(complex $z___) : complex 
 	{
 		$h = \hypot($z___->_M_real, $z___->_M_imag);
-		if (_X_FP_iszero($h)) {
+		if (_F_FP_iszero($h)) {
 			return new complex(0.0, -(copysign(0.0, $z->_M_imag)));
 		}
 		$t = (1.0 / $h);
@@ -205,7 +205,7 @@ namespace std\math
 	function cdiv(complex $z1___, complex $z2___) : complex 
 	{
 		$d = $z2___->_M_real * $z2___->_M_real + $z2___->_M_imag * $z2___->_M_imag;
-		if (_X_FP_iszero($d)) {
+		if (_F_FP_iszero($d)) {
 			return new complex(\NAN, \NAN);
 		}
 		$R = ($z1___->_M_real * $z2___->_M_real + $z1___->_M_imag * $z2___->_M_imag) / $d;
@@ -229,7 +229,7 @@ namespace std\math
 			return new complex(\NAN, \NAN);
 		}
 
-		if (_X_FP_iszero($x___)) {
+		if (_F_FP_iszero($x___)) {
 			return new complex(0.0, 0.0);
 		}
 
@@ -246,7 +246,7 @@ namespace std\math
 			return new complex(\NAN, \NAN);
 		}
 
-		if (_X_FP_iszero($x___)) {
+		if (_F_FP_iszero($x___)) {
 			return new complex(0.0, 0.0);
 		}
 
@@ -366,7 +366,7 @@ namespace std\math
 			return new complex(\M_PI_2, -($z___->_M_imag));
 		}
 
-		if (_X_FP_iszero($z___->_M_real)) {
+		if (_F_FP_iszero($z___->_M_real)) {
 			return new complex(\M_PI_2, -($z___->_M_imag));
 		}
 
@@ -443,7 +443,7 @@ namespace std\math
 				return new complex($z___->_M_imag, $z___->_M_real);
 			}
 
-			if (_X_FP_iszero($z___->_M_imag)) {
+			if (_F_FP_iszero($z___->_M_imag)) {
 				return $z___;
 			}
 			return new complex($z___->_M_real, $z___->_M_real);

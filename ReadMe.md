@@ -386,18 +386,14 @@ PHP7 built with:
 
 ### Files
 
-##### Bindings
-> [xalgorithm](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xalgorithm.php?ts=3)<br>
+##### Bindings Lib X
 > [xcomplex](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xcomplex.php?ts=3)<br>
-> [xcontainer_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xcontainer_traits.php?ts=3)<br>
 > [xendian](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xendian.php?ts=3)<br>
 > [xerrno](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xerrno.php?ts=3)<br>
-> [xiterator_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xiterator_traits.php?ts=3)<br>
 > [xlocale](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xlocale.php?ts=3)<br>
 > [xmath](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xmath.php?ts=3)<br>
 > [xmathdefs](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xmathdefs.php?ts=3)<br>
 > [xnumeric](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xnumeric.php?ts=3)<br>
-> [xoperator_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xoperator_traits.php?ts=3)<br>
 > [xostype](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xostype.php?ts=3)<br>
 > [xsignal](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xsignal.php?ts=3)<br>
 > [xio](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xio.php?ts=3)<br>
@@ -406,7 +402,6 @@ PHP7 built with:
 > [xtime](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xtime.php?ts=3)<br>
 > [xtimezone](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xtimezone.php?ts=3)<br>
 > [xunilib](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xunilib.php?ts=3)<br>
-> [xutility_traits](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xutility_traits.php?ts=3)<br>
 > [xutsname](https://github.com/moe123/abraxas/blob/master/scl/_b/_x/xutsname.php?ts=3)<br>
 
 ##### Basic implementation

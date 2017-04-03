@@ -47,7 +47,7 @@ namespace std
 		[ "offset" => (-12 * 60)       , "stdzone" => "BIT" , "dlzone" =>  null     ], /* Baker Island */
 	];
 
-	function _X_tztab(int $zone___, int $dst___)
+	function _F_tztab(int $zone___, int $dst___)
 	{
 		foreach (_N_zonetab as &$v) {
 			if ($v["offset"] ==  -($zone___)) {
@@ -72,7 +72,7 @@ namespace std
 		);
 	}
 
-	function _X_tzname(string $tzabbr___)
+	function _F_tzname(string $tzabbr___)
 	{
 		if ($tzabbr___ != "GMT" && $tzabbr___ != "UTC") {
 			if (false !== ($tz = \timezone_name_from_abbr($tzabbr___))) {
@@ -83,9 +83,9 @@ namespace std
 		return "Europe/London";
 	}
 
-	function _X_tzsys_1()
+	function _F_tzsys_1()
 	{
-		if (!_X_os_windows()) {
+		if (!_F_os_windows()) {
 			if (false !== ($tz = @\readlink("/etc/localtime"))) {
 				if (false !== ($tz = \substr($tz, 20))) {
 					seterrno(NOERR);
@@ -93,15 +93,15 @@ namespace std
 				}
 			}
 		} else {
-			return _X_tzsys_2();
+			return _F_tzsys_2();
 		}
 		seterrno(EINVAL);
-		return _X_tzsys_2();
+		return _F_tzsys_2();
 	}
 
-	function _X_tzsys_2()
+	function _F_tzsys_2()
 	{
-		if (_X_os_windows()) {
+		if (_F_os_windows()) {
 			$cmd = "tzutil /g";
 		} else {
 			$cmd = "`which ls` -l /etc/localtime|/usr/bin/cut -d'/' -f7,8";
@@ -111,12 +111,12 @@ namespace std
 			return $tz;
 		}
 		seterrno(EINVAL);
-		return _X_tzsys_3();
+		return _F_tzsys_3();
 	}
 
-	function _X_tzsys_3()
+	function _F_tzsys_3()
 	{
-		if (!_X_os_windows()) {
+		if (!_F_os_windows()) {
 			if (false !== ($tz = \exec("`which date` +%Z | xargs"))) {
 				if (false !== ($tz != \timezone_name_from_abbr($tz))) {
 					seterrno(NOERR);
@@ -125,10 +125,10 @@ namespace std
 			}
 		}
 		seterrno(EINVAL);
-		return _X_tzsys_4();
+		return _F_tzsys_4();
 	}
 
-	function _X_tzsys_4()
+	function _F_tzsys_4()
 	{
 		if (false !== ($tz = \getenv("TZNAME"))) {
 			seterrno(NOERR);
@@ -139,10 +139,10 @@ namespace std
 			return $tz;
 		}
 		seterrno(EINVAL);
-		return _X_tzsys_5();
+		return _F_tzsys_5();
 	}
 
-	function _X_tzsys_5()
+	function _F_tzsys_5()
 	{
 		$l = \file_get_contents("http://ip-api.com/json");
 		$a = \json_decode($l, true);
@@ -151,11 +151,11 @@ namespace std
 			return $a["timezone"];
 		}
 		seterrno(EINVAL);
-		return _X_tzname("GMT");
+		return _F_tzname("GMT");
 	}
 
 	function tzsys()
-	{ return _X_tzsys_1(); }
+	{ return _F_tzsys_1(); }
 
 	function tzname()
 	{ return \date_default_timezone_get(); }
@@ -203,7 +203,7 @@ namespace std
 	{ return tzset(); }
 
 	function timezone(int $zone___, int $dst___)
-	{ return _X_tztab($zone___, $dst___); }
+	{ return _F_tztab($zone___, $dst___); }
 } /* EONS */
 
 /* EOF */

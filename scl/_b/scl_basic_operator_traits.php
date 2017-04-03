@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xoperator_traits.php
+// scl_basic_operator_traits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -27,7 +27,7 @@ namespace std
 			} else if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				$this->_M_container[$offset___] = $val___;
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -42,10 +42,10 @@ namespace std
 		function offsetUnset($offset___)
 		{
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				_X_splice($this->_M_container, $offset___, 1);
+				_F_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -54,7 +54,7 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
@@ -81,7 +81,7 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
@@ -108,7 +108,7 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}
@@ -119,16 +119,16 @@ namespace std
 		function offsetSet($offset___, $val___)
 		{
 			if (\is_null($offset___)) {
-				if (!_X_value_exists($this, $val___)) {
+				if (!_F_value_exists($this, $val___)) {
 					$this->_M_container[] = $val___;
 					++$this->_M_size;
 				}
 			} else if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				if (!_X_value_exists($this, $val___)) {
+				if (!_F_value_exists($this, $val___)) {
 					$this->_M_container[$offset___] = $val___;
 				}
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -143,10 +143,10 @@ namespace std
 		function offsetUnset($offset___)
 		{
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				_X_splice($this->_M_container, $offset___, 1);
+				_F_splice($this->_M_container, $offset___, 1);
 				--$this->_M_size;
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 		}
 
@@ -155,7 +155,7 @@ namespace std
 			if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
 				return $this->_M_container[$offset___];
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return null;
 		}

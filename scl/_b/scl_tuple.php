@@ -31,7 +31,7 @@ namespace std
 		function tuple_1(array $list_initializer)
 		{
 			foreach ($list_initializer as &$val) {
-				_X_push_back($this->_M_container, $val);
+				_F_push_back($this->_M_container, $val);
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace std
 				$this->_F_unpackv($list_initializer);
 			} else {
 				foreach ($list_initializer as &$val) {
-					_X_push_back($this->_M_container, $val);
+					_F_push_back($this->_M_container, $val);
 				}
 			}
 		}

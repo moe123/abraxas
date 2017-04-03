@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xalgorithm.php
+// scl_basic_algorithm.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -17,12 +17,12 @@
 
 namespace std
 {
-	function _X_compare(
+	function _F_compare(
 		  basic_iterable &$c1___
 		, basic_iterable &$c2___
 		, callable          $compare___ = null
 	) {
-		$r = _X_u8gh_cmp(\strval($s1___), \strval($s2___), $compare___);
+		$r = _F_u8gh_cmp(\strval($s1___), \strval($s2___), $compare___);
 		if ($r < 0) {
 			return comparison_result::ascending;
 		}
@@ -32,12 +32,12 @@ namespace std
 		return comparison_result::same;
 	}
 
-	function _X_compare_s(
+	function _F_compare_s(
 		  string   $u8s1___
 		, string   $u8s2___
 		, callable $compare___ = null
 	) {
-		$r = _X_u8gh_cmp($u8s1___, $u8s2___, $compare___);
+		$r = _F_u8gh_cmp($u8s1___, $u8s2___, $compare___);
 		if ($r < 0) {
 			return comparison_result::ascending;
 		}
@@ -47,7 +47,7 @@ namespace std
 		return comparison_result::same;
 	}
 
-	function _X_compare_r(
+	function _F_compare_r(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
@@ -61,17 +61,17 @@ namespace std
 				$first1___->_M_ptr::container_category === basic_iterable_tag::basic_u8string &&
 				$first2___->_M_ptr::container_category === basic_iterable_tag::basic_u8string
 		)) {
-			$s1 = _X_u8gh_substr(
+			$s1 = _F_u8gh_substr(
 				\strval($first1___->_M_ptr)
 				, $first1___->_F_pos()
 				, distance($first1___, $last1___)
 			);
-			$s2 = _X_u8gh_substr(
+			$s2 = _F_u8gh_substr(
 				\strval($first2___->_M_ptr)
 				, $first2___->_F_pos()
 				, distance($first2___, $last2___)
 			);
-			$r = _X_u8gh_cmp($s1, $s2, $compare___);
+			$r = _F_u8gh_cmp($s1, $s2, $compare___);
 			if ($r < 0) {
 				return comparison_result::ascending;
 			}
@@ -80,11 +80,11 @@ namespace std
 			}
 			return comparison_result::same;
 		}
-		_X_throw_invalid_argument("Invalid type error");
+		_F_throw_invalid_argument("Invalid type error");
 		return comparison_result::ascending;
 	}
 
-	function _X_sort(
+	function _F_sort(
 		  basic_iterable &$c___
 		, callable $compare___ = null
 	) {
@@ -113,7 +113,7 @@ namespace std
 		}
 	}
 
-	function _X_sort_r(
+	function _F_sort_r(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $compare___ = null
@@ -122,11 +122,11 @@ namespace std
 			$first___::iterator_category === basic_iterator_tag::duo_iterator ||
 			$first___::iterator_category === basic_iterator_tag::insert_iterator
 		) {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		if ($first___->_M_ptr->_M_size) {
 			if ($first___->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
-				_X_sort($first___->_M_ptr, $compare___);
+				_F_sort($first___->_M_ptr, $compare___);
 				$first___->_F_seek_end();
 				$last___->_F_seek_end();
 			} else if ($first___->_M_ptr::container_category === basic_iterable_tag::basic_forward_list) {
@@ -167,7 +167,7 @@ namespace std
 		}
 	}
 
-	function _X_stable_sort(
+	function _F_stable_sort(
 		  basic_iterable &$c___
 		, callable $compare___ = null
 	) {
@@ -179,7 +179,7 @@ namespace std
 			if ($c___::container_category === basic_iterable_tag::basic_dict) {
 				$a1 = array_keys($c___->_M_container);
 				$a2 = [];
-				$c___->_M_size = _X_merge_usort(
+				$c___->_M_size = _F_merge_usort(
 					  $a1
 					, $c___->_M_size
 					, $comp
@@ -190,14 +190,14 @@ namespace std
 				$c___->_M_container = $a2;
 			} else if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				$a = $c___->_F_dump();
-				_X_merge_usort(
+				_F_merge_usort(
 					  $a
 					, $c___->_M_size
 					, $comp
 				);
 				$c___->_F_from_array($a, true);
 			} else {
-				$c___->_M_size = _X_merge_usort(
+				$c___->_M_size = _F_merge_usort(
 					  $c___->_M_container
 					, $c___->_M_size
 					, $comp
@@ -206,7 +206,7 @@ namespace std
 		}
 	}
 
-	function _X_intersection(
+	function _F_intersection(
 		  basic_iterable $c1___
 		, basic_iterable $c2___
 		, insert_iterator $out_first___
@@ -215,7 +215,7 @@ namespace std
 			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
 			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
 		) {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
@@ -246,12 +246,12 @@ namespace std
 				$out_first___->_F_seek_end();
 			}
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return $out_first___;
 	}
 
-	function _X_difference(
+	function _F_difference(
 		  basic_iterable $c1___
 		, basic_iterable $c2___
 		, insert_iterator $out_first___
@@ -260,7 +260,7 @@ namespace std
 			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
 			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
 		) {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		if ($c1___->_M_size && $c2___->_M_size) {
 			$c1 = null;
@@ -291,12 +291,12 @@ namespace std
 				$out_first___->_F_seek_end();
 			}
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return $out_first___;
 	}
 
-	function _X_unique(basic_iterable &$c___, callable $binaryPredicate___ = null)
+	function _F_unique(basic_iterable &$c___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 1) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -307,13 +307,13 @@ namespace std
 					$c___->_M_container = \array_unique($c___->_M_container, SORT_REGULAR);
 					$c___->_M_size = \count($c___->_M_container);
 				} else {
-					_X_unique_b($c___, $binaryPredicate___);
+					_F_unique_b($c___, $binaryPredicate___);
 				}
 			}
 		}
 	}
 
-	function _X_unique_b(basic_iterable &$c___, callable $binaryPredicate___ = null)
+	function _F_unique_b(basic_iterable &$c___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 1) {
 			$p = $binaryPredicate___;
@@ -338,7 +338,7 @@ namespace std
 		}
 	}
 
-	function _X_reverse(basic_iterable &$c___)
+	function _F_reverse(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 1) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -349,7 +349,7 @@ namespace std
 		}
 	}
 
-	function _X_insert(basic_iterable &$c___, int $pos___, $val___)
+	function _F_insert(basic_iterable &$c___, int $pos___, $val___)
 	{
 		if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 			$c___->_F_insert_at_index($pos___, $val___);
@@ -359,7 +359,7 @@ namespace std
 		}
 	}
 
-	function _X_slice(basic_iterable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
+	function _F_slice(basic_iterable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
 	{
 		if ($c___->_M_size > 0) {
 			$slice = null;
@@ -382,7 +382,7 @@ namespace std
 		}
 	}
 
-	function _X_splice(basic_iterable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
+	function _F_splice(basic_iterable &$c___, int $pos___, int $len___ = numeric_limits_int::max)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -404,7 +404,7 @@ namespace std
 		}
 	}
 
-	function _X_merge_usort(
+	function _F_merge_usort(
 		  array &$a___
 		, callable $compare___
 	) {
@@ -414,8 +414,8 @@ namespace std
 			$a_1 = \array_slice($a___, 0, $mid);
 			$a_2 = \array_slice($a___, $mid);
 
-			_X_merge_usort($a_1, $compare___);
-			_X_merge_usort($a_2, $compare___);
+			_F_merge_usort($a_1, $compare___);
+			_F_merge_usort($a_2, $compare___);
 
 			if ($compare___(\end($a_1), $a_2[0]) < 1) {
 				$a___ = \array_merge($a_1, $a_2);
@@ -444,7 +444,7 @@ namespace std
 		return $sz;
 	}
 
-	function _X_push_front(basic_iterable &$c___, $val___, $key = null)
+	function _F_push_front(basic_iterable &$c___, $val___, $key = null)
 	{
 		if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 			$c___->_F_insert_first($val___);
@@ -467,7 +467,7 @@ namespace std
 		}
 	}
 
-	function _X_push_back(basic_iterable &$c___, $val___, $key = null)
+	function _F_push_back(basic_iterable &$c___, $val___, $key = null)
 	{
 		if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 			$c___->_F_insert_last($val___);
@@ -485,7 +485,7 @@ namespace std
 		}
 	}
 
-	function _X_pop_front(basic_iterable &$c___)
+	function _F_pop_front(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -497,7 +497,7 @@ namespace std
 		}
 	}
 
-	function _X_pop_back(basic_iterable &$c___)
+	function _F_pop_back(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -509,7 +509,7 @@ namespace std
 		}
 	}
 	
-	function _X_offset_exists(basic_iterable &$c___, $offset___, callable $binaryPredicate___ = null)
+	function _F_offset_exists(basic_iterable &$c___, $offset___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_dict) {
@@ -531,7 +531,7 @@ namespace std
 		return false;
 	}
 
-	function _X_value_exists(basic_iterable &$c___, $val___, callable $binaryPredicate___ = null)
+	function _F_value_exists(basic_iterable &$c___, $val___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 0) {
 			$p = $binaryPredicate___;
@@ -563,7 +563,7 @@ namespace std
 		return false;
 	}
 
-	function _X_offsets(basic_iterable &$c1___, basic_iterable &$c2___)
+	function _F_offsets(basic_iterable &$c1___, basic_iterable &$c2___)
 	{
 		if ($c1___->_M_size > 0) {
 			if ($c1___::container_category === basic_iterable_tag::basic_dict) {
@@ -586,7 +586,7 @@ namespace std
 		}
 	}
 
-	function _X_values(basic_iterable &$c1___, basic_iterable &$c2___)
+	function _F_values(basic_iterable &$c1___, basic_iterable &$c2___)
 	{
 		if ($c1___->_M_size > 0) {
 			if ($c1___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -604,10 +604,10 @@ namespace std
 		}
 	}
 
-	function _X_reindex(basic_iterable &$c___)
+	function _F_reindex(basic_iterable &$c___)
 	{
 		if ($c___::container_category === basic_iterable_tag::basic_dict) {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		} else {
 			if ($c___::container_category !== basic_iterable_tag::basic_forward_list) {
 				$c___->_M_container = \array_values($c___->_M_container);
@@ -615,7 +615,7 @@ namespace std
 		}
 	}
 
-	function _X_remove(basic_iterable &$c___, $val___)
+	function _F_remove(basic_iterable &$c___, $val___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
@@ -640,14 +640,14 @@ namespace std
 						}
 					}
 					foreach ($idx as &$v) {
-						_X_splice($c___, $v, 1);
+						_F_splice($c___, $v, 1);
 					}
 				}
 			}
 		}
 	}
 
-	function _X_remove_first_n(basic_iterable &$c___, $val___, $n___)
+	function _F_remove_first_n(basic_iterable &$c___, $val___, $n___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_dict) {
@@ -679,20 +679,20 @@ namespace std
 					}
 				}
 				foreach ($idx as &$v) {
-					_X_splice($c___, $v, 1);
+					_F_splice($c___, $v, 1);
 				}
 			}
 		}
 	}
 
-	function _X_remove_first(basic_iterable &$c___, $val___)
-	{ _X_remove_first_n($c___, $val___, 1); }
+	function _F_remove_first(basic_iterable &$c___, $val___)
+	{ _F_remove_first_n($c___, $val___, 1); }
 
-	function _X_remove_last_n(basic_iterable &$c___, $val___, $n___)
+	function _F_remove_last_n(basic_iterable &$c___, $val___, $n___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_dict) {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			} else {
 				$idx = [];
 				$j = 0;
@@ -706,20 +706,20 @@ namespace std
 					}
 				}
 				foreach ($idx as &$v) {
-					_X_splice($c___, $v, 1);
+					_F_splice($c___, $v, 1);
 				}
 			}
 		}
 	}
 
-	function _X_remove_last(basic_iterable &$c___, $val___)
-	{ _X_remove_last_n($c___, $val___, 1); }
+	function _F_remove_last(basic_iterable &$c___, $val___)
+	{ _F_remove_last_n($c___, $val___, 1); }
 
-	function _X_remove_if(basic_iterable &$c___, callable $unaryPredicate___)
+	function _F_remove_if(basic_iterable &$c___, callable $unaryPredicate___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_dict) {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			} else {
 				$idx = [];
 				for ($i = 0; $i < $c___->_M_size; $i++) {
@@ -728,18 +728,18 @@ namespace std
 					}
 				}
 				foreach ($idx as &$v) {
-					_X_splice($c___, $v, 1);
+					_F_splice($c___, $v, 1);
 				}
 			}
 		}
 	}
 
-	function _X_reserve(basic_iterable &$c___, int $sz___, $val___ = ignore)
+	function _F_reserve(basic_iterable &$c___, int $sz___, $val___ = ignore)
 	{
 		if ($c___::container_category === basic_iterable_tag::basic_dict) {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		} else {
-			_X_clear_all($c___);
+			_F_clear_all($c___);
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 				for ($i = 0 ; $i <= $sz___; $i++) {
 					$c___->_F_insert_last($val___);
@@ -754,7 +754,7 @@ namespace std
 		}
 	}
 
-	function _X_clear_all(basic_iterable &$c___)
+	function _F_clear_all(basic_iterable &$c___)
 	{
 		if ($c___->_M_size > 0) {
 			if ($c___::container_category === basic_iterable_tag::basic_forward_list) {

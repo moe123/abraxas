@@ -58,7 +58,7 @@ namespace std
 	{
 		function __invoke($x___)
 		{
-			_X_throw_logic_error("No match for 'operator()'");
+			_F_throw_logic_error("No match for 'operator()'");
 			return null;
 		}
 	} /* EOC */
@@ -67,7 +67,7 @@ namespace std
 	{
 		function __invoke($x___, $y___)
 		{
-			_X_throw_logic_error("No match for 'operator()'");
+			_F_throw_logic_error("No match for 'operator()'");
 			return null;
 		}
 	} /* EOC */
@@ -149,7 +149,7 @@ namespace std
 	function equal_to($l___, $r___)
 	{
 		if (\is_float($l___) || \is_float($r___)) {
-			return _X_FP_equal($l___, $r___);
+			return _F_FP_equal($l___, $r___);
 		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) == 0;
@@ -160,7 +160,7 @@ namespace std
 	function greater_equal($l___, $r___)
 	{
 		if (\is_float($l___) || \is_float($r___)) {
-			return ($l___ > $r___ || _X_FP_equal($l___, $r___));
+			return ($l___ > $r___ || _F_FP_equal($l___, $r___));
 		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) >= 0;
@@ -171,7 +171,7 @@ namespace std
 	function less_equal($l___, $r___)
 	{
 		if (\is_float($l___) || \is_float($r___)) {
-			return ($l___ < $r___ || _X_FP_equal($l___, $r___));
+			return ($l___ < $r___ || _F_FP_equal($l___, $r___));
 		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) <= 0;
@@ -249,7 +249,7 @@ namespace std
 				}
 			}
 			if (\preg_grep('/^' . \preg_quote("^std@_", '/') . '/', $args___)) {
-				_X_throw_invalid_argument("Placeholder error");
+				_F_throw_invalid_argument("Placeholder error");
 			}
 			return @\call_user_func_array($f___, $args___);
 		};
@@ -276,7 +276,7 @@ namespace std
 		try {
 			return $f___(...$args___);
 		} catch(\Throwable $ex) {
-			_X_throw_error("Invocation failure : ". $ex->getMessage());
+			_F_throw_error("Invocation failure : ". $ex->getMessage());
 		};
 		return null;
 	}
@@ -286,7 +286,7 @@ namespace std
 		try {
 			return $f___(...$args___);
 		} catch(\Throwable $ex) {
-			_X_throw_error("Invocation failure : ". $ex->getMessage());
+			_F_throw_error("Invocation failure : ". $ex->getMessage());
 		};
 		return null;
 	}

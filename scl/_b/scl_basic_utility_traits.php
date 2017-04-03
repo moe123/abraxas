@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xutility_traits.php
+// scl_basic_utility_traits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -17,7 +17,7 @@
 
 namespace std
 {
-	function _X_copy($v___)
+	function _F_copy($v___)
 	{
 		if (\is_resource($v___) || !\is_object($v___)) {
 			return $v___;
@@ -36,7 +36,7 @@ namespace std
 	{
 		function __clone() {
 			foreach($this as $k => $v) {
-				$this->{$k} = _X_copy($v);
+				$this->{$k} = _F_copy($v);
 			}
 		}
 	}
@@ -76,7 +76,7 @@ namespace std
 		{
 			if ($argc___ > 0) {
 				if (!$this->_F_ctor_call($argc___, $argv___)) {
-					_X_throw_error("No matching constructor");
+					_F_throw_error("No matching constructor");
 				}
 			}
 		}

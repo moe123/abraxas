@@ -76,13 +76,13 @@ namespace std
 	define('std\FP_ILOGB0'   , (-2147483647 - 1));
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
 
-	function _X_compute_nan()
+	function _F_compute_nan()
 	{ return @(0.0/0.0); }
 
-	function _X_compute_inf()
+	function _F_compute_inf()
 	{ return @(1.0/0.0); }
 
-	function _X_compute_pi()
+	function _F_compute_pi()
 	{
 		static $_S_PI_const = null;
 		if (\is_null($_S_PI_const)) {
@@ -91,7 +91,7 @@ namespace std
 		return $_S_PI_const;
 	}
  
-	function _X_compute_e()
+	function _F_compute_e()
 	{
 		static $_S_E_const = null;
 		if (\is_null($_S_E_const)) {
@@ -100,28 +100,28 @@ namespace std
 		return $_S_E_const;
 	}
 
-	function _X_FP_equal(float $l___, float $r___)
+	function _F_FP_equal(float $l___, float $r___)
 	{
-		if (_X_FP_iszero($l___) && _X_FP_iszero($r___)) {
+		if (_F_FP_iszero($l___) && _F_FP_iszero($r___)) {
 			return true;
 		}
 		return ($l___ == $r___ || \abs($l___ - $r___) < FLT_EPSILON);
 	}
 
-	function _X_FP_istwo(float $x___)
-	{ return ($x___ == 2.0 || _X_FP_equal($x___, 2.0)); }
+	function _F_FP_istwo(float $x___)
+	{ return ($x___ == 2.0 || _F_FP_equal($x___, 2.0)); }
 
-	function _X_FP_isone(float $x___)
-	{ return ($x___ == 1.0 || _X_FP_equal($x___, 1.0)); }
+	function _F_FP_isone(float $x___)
+	{ return ($x___ == 1.0 || _F_FP_equal($x___, 1.0)); }
 
-	function _X_FP_iszero(float $x___)
+	function _F_FP_iszero(float $x___)
 	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < FLT_EPSILON); }
 
-	function _X_FP_zeroed(...$args___)
+	function _F_FP_zeroed(...$args___)
 	{
 		$ret = false;
 		foreach ($args___ as $x) {
-			if (_X_FP_iszero($x)) {
+			if (_F_FP_iszero($x)) {
 				$ret = true;
 			} else {
 				$ret = false;
@@ -131,12 +131,12 @@ namespace std
 		return $ret;
 	}
 
-	function _X_FP_ishalf(float $x___)
+	function _F_FP_ishalf(float $x___)
 	{ return \abs($x___) - \intval(\abs($x___)) == 0.5; }
 
-	function _X_FP_nearest_int(float $x___)
+	function _F_FP_nearest_int(float $x___)
 	{
-		if (_X_FP_ishalf($x___)) {
+		if (_F_FP_ishalf($x___)) {
 			if (\fmod(\ceil($x___), 2.0) == 0) {
 				$x = \ceil($x___);
 			} else {
@@ -148,20 +148,20 @@ namespace std
 		return $x;
 	}
 
-	function _X_FP_extract_sign($x___)
+	function _F_FP_extract_sign($x___)
 	{
 		$x = \strval($x___);
 		return ($x[0] == '-' || $x[0] == '+') ? $x[0] : '+';
 	}
 
-	function _X_FP_same_sign(float $x___, float $y___)
+	function _F_FP_same_sign(float $x___, float $y___)
 	{
-		$sx = _X_FP_extract_sign($x___);
-		$sy = _X_FP_extract_sign($y___);
+		$sx = _F_FP_extract_sign($x___);
+		$sy = _F_FP_extract_sign($y___);
 		return ($sx === $sy);
 	}
 
-	function _X_get_sign($x___)
+	function _F_get_sign($x___)
 	{
 		if (\is_numeric($x___)) {
 			$x = \strval($x___);
@@ -205,7 +205,7 @@ namespace std
 			return FP_NAN;
 		} else if (!\is_finite($x___)) {
 			return FP_SUBNORMAL;
-		} else if (_X_FP_iszero($x___)) {
+		} else if (_F_FP_iszero($x___)) {
 			return FP_ZERO;
 		}
 		return FP_NORMAL;
@@ -243,13 +243,13 @@ namespace std
 	{ return \intval($x___ > $y___); }
 	
 	function isgreaterequal(float $x___, float $y___)
-	{ return \intval($x___ > $y___ || _X_FP_equal($x___, $y___)); }
+	{ return \intval($x___ > $y___ || _F_FP_equal($x___, $y___)); }
 
 	function isless(float $x___, float $y___)
 	{ return \intval($x___ < $y___); }
 
 	function islessequal(float $x___, float $y___)
-	{ return \intval($x___ < $y___ || _X_FP_equal($x___, $y___)); }
+	{ return \intval($x___ < $y___ || _F_FP_equal($x___, $y___)); }
 
 	function islessgreater(float $x___, float $y___)
 	{ return \intval($y___ > $x___ || $x___ > $y___); }
@@ -283,11 +283,11 @@ namespace std
 
 	function fma(float $x___, float $y___, float $z___)
 	{
-		if (\is_infinite($x___) && _X_FP_iszero($y___) && \is_nan($z___)) {
+		if (\is_infinite($x___) && _F_FP_iszero($y___) && \is_nan($z___)) {
 			return \NAN;
 		}
 
-		if (\is_infinite($y___) && _X_FP_iszero($x___) && \is_nan($z___)) {
+		if (\is_infinite($y___) && _F_FP_iszero($x___) && \is_nan($z___)) {
 			return \NAN;
 		}
 
@@ -346,7 +346,7 @@ namespace std
 			return \NAN;
 		}
 
-		if (_X_FP_iszero($x___)) {
+		if (_F_FP_iszero($x___)) {
 			return copysign(0.0, $x___);
 		}
 
@@ -369,20 +369,20 @@ namespace std
 			return $x;
 		}
 
-		if (_X_FP_iszero($y)) {
+		if (_F_FP_iszero($y)) {
 			return -(\NAN);
 		}
 
-		if (!_X_FP_same_sign($x, $y)) {
+		if (!_F_FP_same_sign($x, $y)) {
 			$a = copysign($y, $x);
 		} else {
 			$a = $y;
 		}
 
-		$n = _X_FP_nearest_int($x / $a);
+		$n = _F_FP_nearest_int($x / $a);
 		$r = $x - $n * $a;
 
-		if (_X_FP_iszero($r)) {
+		if (_F_FP_iszero($r)) {
 			return copysign($r, $a);
 		}
 		return $r;
@@ -679,7 +679,7 @@ namespace std
 
 	function nthrt(float $x___, int $n___)
 	{
-		if (_X_FP_iszero($x___) || $n___ < 1) {
+		if (_F_FP_iszero($x___) || $n___ < 1) {
 			return $x___;
 		}
 		$rt = \pow(\abs($x___), 1.0 / \abs($n___));
@@ -703,7 +703,7 @@ namespace std
 		if (\is_nan($x___)) {
 			return \NAN;
 		}
-		if (_X_FP_iszero($x___)) {
+		if (_F_FP_iszero($x___)) {
 			return \INF;
 		}
 		return \log(\abs($x___), FLT_RADIX);
@@ -719,11 +719,11 @@ namespace std
 			return \NAN;
 		}
 
-		if ($x___ < 0.0 || _X_FP_iszero($x___)) {
+		if ($x___ < 0.0 || _F_FP_iszero($x___)) {
 			return \INF;
 		}
 
-		if (_X_FP_isone($x___) || _X_FP_istwo($x___)) {
+		if (_F_FP_isone($x___) || _F_FP_istwo($x___)) {
 			return 0.0;
 		}
 
@@ -744,17 +744,17 @@ namespace std
 
 	function lgamma_r(float $x___, int &$signp___)
 	{
-		if ($x___ < 0.0 || _X_FP_iszero($x___)) {
+		if ($x___ < 0.0 || _F_FP_iszero($x___)) {
 			$intp = 0.0;
 
 			$f = modf(-($x___), $intp);
-			if (_X_FP_iszero($f)) {
+			if (_F_FP_iszero($f)) {
 				$signp___ = signbit($x___) ? -1 : 1;
 				seterrno(ERANGE);
 				return HUGE_VAL;
 			}
 
-			$signp___ = (!_X_FP_iszero(\fmod($intp, 2.0))) ? 1 : -1;
+			$signp___ = (!_F_FP_iszero(\fmod($intp, 2.0))) ? 1 : -1;
 			$s = \sin(\M_PI * $f);
 			if ($s < 0.0) {
 				$s = -($s);
@@ -779,7 +779,7 @@ namespace std
 	{
 		$sign = 1;
 
-		if (_X_FP_iszero($x___)) {
+		if (_F_FP_iszero($x___)) {
 			seterrno(ERANGE);
 			return (1.0 / $x___) < 0 ? -(HUGE_VAL) : HUGE_VAL;
 		}
@@ -788,7 +788,7 @@ namespace std
 			$intp = 0.0;
 
 			$f = modf(-($x___), $intp);
-			if (_X_FP_iszero($f)) {
+			if (_F_FP_iszero($f)) {
 				seterrno(EDOM);
 				return \NAN;
 			}

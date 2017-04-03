@@ -39,7 +39,7 @@ namespace std
 
 		function & reserve(int $size, $fill = null)
 		{
-			_X_reserve($this, $size, $fill);
+			_F_reserve($this, $size, $fill);
 			return $this;
 		}
 
@@ -48,7 +48,7 @@ namespace std
 			if ($this->_M_size) {
 				return $this->_M_container[0];
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -57,7 +57,7 @@ namespace std
 			if ($this->_M_size) {
 				return $this->_M_container[$this->_M_size - 1];
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -66,40 +66,40 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				return $this->_M_container[$index];
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
 		function & push_front($val)
 		{
-			_X_push_front($this, $val);
+			_F_push_front($this, $val);
 			return $this;
 		}
 
 		function & pop_front()
 		{
-			_X_pop_front($this);
+			_F_pop_front($this);
 			return $this;
 		}
 
 		function & push_back($val)
 		{
-			_X_push_back($this, $val);
+			_F_push_back($this, $val);
 			return $this;
 		}
 
 		function & pop_back()
 		{
-			_X_pop_back($this);
+			_F_pop_back($this);
 			return $this;
 		}
 
 		function & insert(int $index, $val)
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
-				_X_insert($this, $index, $val);
+				_F_insert($this, $index, $val);
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -108,11 +108,11 @@ namespace std
 		{
 			if ($first::iterator_category === $last::iterator_category) {
 				while ($first != $last) {
-					_X_insert($this, $first->_F_pos(), $first->_F_this());
+					_F_insert($this, $first->_F_pos(), $first->_F_this());
 					$first->next();
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -133,7 +133,7 @@ namespace std
 
 		function & assign(ordered_list &$olist)
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			foreach ($olist->_M_container as &$val) {
 				$this->push_back($val);
 			}
@@ -142,7 +142,7 @@ namespace std
 
 		function & assign_r(basic_iterator $first, basic_iterator $last)
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			$this->merge_r($first, $last);
 			return $this;
 		}
@@ -163,20 +163,20 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
 
 		function & slice(int $pos, int $len)
 		{
-			_X_slice($this, $pos, $len);
+			_F_slice($this, $pos, $len);
 			return $this;
 		}
 
 		function & slice_r(basic_iterator $first, basic_iterator $last)
 		{
-			_X_slice($this, $first->_F_pos(), distance($first, $last));
+			_F_slice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
 		}
 
@@ -199,38 +199,38 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
 
 		function & reverse()
 		{
-			_X_reverse($this);
+			_F_reverse($this);
 			return $this;
 		}
 
 		function & unique()
 		{
-			_X_unique($this);
+			_F_unique($this);
 			return $this;
 		}
 
 		function & unique_if(callable $binaryPredicate)
 		{
-			_X_unique_b($this, $binaryPredicate);
+			_F_unique_b($this, $binaryPredicate);
 			return $this;
 		}
 
 		function & remove($val)
 		{
-			_X_remove($this, $val);
+			_F_remove($this, $val);
 			return $this;
 		}
 
 		function & remove_if(callable $unaryPredicate)
 		{
-			_X_remove_if($this, $unaryPredicate);
+			_F_remove_if($this, $unaryPredicate);
 			return $this;
 		}
 
@@ -238,11 +238,11 @@ namespace std
 		{
 			if ($index >= 0 && $index < $this->_M_size) {
 				if (($index + $len) > $this->_M_size) {
-					_X_throw_out_of_range("Out of Range error");
+					_F_throw_out_of_range("Out of Range error");
 				}
-				_X_splice($this, $index, $len);
+				_F_splice($this, $index, $len);
 			} else {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -255,19 +255,19 @@ namespace std
 
 		function & erase_from(basic_iterator $first)
 		{
-			_X_splice($this, $first->_F_pos());
+			_F_splice($this, $first->_F_pos());
 			return $this;
 		}
 
 		function & erase_r(basic_iterator $first, basic_iterator $last)
 		{
-			_X_splice($this, $first->_F_pos(), distance($first, $last));
+			_F_splice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
 		}
 
 		function & clear()
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			return $this;
 		}
 

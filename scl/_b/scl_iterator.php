@@ -29,7 +29,7 @@ namespace std
 			$ostream___ = $ostream___();
 		}
 		if (!($ostream___ instanceof \std\basic_ostream)) {
-			_X_throw_invalid_argument("Invalid argument error");
+			_F_throw_invalid_argument("Invalid argument error");
 		}
 		return new ostream_iterator($ostream___, $sep___);
 	}
@@ -54,7 +54,7 @@ namespace std
 				}
 			}
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return $n;
 	}

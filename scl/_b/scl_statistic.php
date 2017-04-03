@@ -34,7 +34,7 @@ namespace std
 			}
 			return $med;
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return \NAN;
 	}
@@ -64,7 +64,7 @@ namespace std
 			}
 			return 0.0;
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return \NAN;
 	}
@@ -81,7 +81,7 @@ namespace std
 			}
 			return $sum;
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return \NAN;
 	}
@@ -107,7 +107,7 @@ namespace std
 			}
 			return 0.0;
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return \NAN;
 	}
@@ -138,7 +138,7 @@ namespace std
 			}
 			return 0.0;
 		} else {
-			_X_throw_invalid_argument("Invalid type error");
+			_F_throw_invalid_argument("Invalid type error");
 		}
 		return \NAN;
 	}

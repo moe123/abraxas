@@ -78,8 +78,8 @@ namespace std
 	function complex_equal(complex $l, complex $r)
 	{
 		return (
-			_X_FP_equal($l->_M_real, $r->_M_real) &&
-			_X_FP_equal($l->_M_imag, $r->_M_imag)
+			_F_FP_equal($l->_M_real, $r->_M_real) &&
+			_F_FP_equal($l->_M_imag, $r->_M_imag)
 		);
 	}
 

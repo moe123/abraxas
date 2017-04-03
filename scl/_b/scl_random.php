@@ -32,7 +32,7 @@ namespace std
 
 		function __construct()
 		{
-			$this->_M_dev = _X_random_slot($this->_M_ent);
+			$this->_M_dev = _F_random_slot($this->_M_ent);
 			$this->reset();
 		}
 
@@ -230,7 +230,7 @@ namespace std
 				$gen->discard(1);
 			}
 
-			if (_X_FP_zeroed($a, $b)) {
+			if (_F_FP_zeroed($a, $b)) {
 				return (
 					  $this->_M_a
 					+ ($gen($gen::min(), $gen::max()) / $gen::max())

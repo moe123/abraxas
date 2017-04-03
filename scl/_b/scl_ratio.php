@@ -32,7 +32,7 @@ namespace std
 
 		function ratio_1(float $x)
 		{
-			_X_ratio_nearest($x, $this->_M_num, $this->_M_den);
+			_F_ratio_nearest($x, $this->_M_num, $this->_M_den);
 			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
 
@@ -46,7 +46,7 @@ namespace std
 				$this->_M_den = $den;
 			}
 			if ($this->_M_den == 0) {
-				_X_throw_overflow_error("Divide by zero error");
+				_F_throw_overflow_error("Divide by zero error");
 			}
 			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
@@ -243,7 +243,7 @@ namespace std
 	function & ratio_muliply(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_X_ratio_multiply(
+		_F_ratio_multiply(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -258,7 +258,7 @@ namespace std
 	function & ratio_divide(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_X_ratio_divide(
+		_F_ratio_divide(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -273,7 +273,7 @@ namespace std
 	function & ratio_add(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_X_ratio_add(
+		_F_ratio_add(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -288,7 +288,7 @@ namespace std
 	function & ratio_subtract(basic_ratio $l, basic_ratio $r)
 	{
 		$ra = new ratio;
-		_X_ratio_subtract(
+		_F_ratio_subtract(
 			  $l->num()
 			, $l->den()
 			, $r->num()
@@ -305,7 +305,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() == $r->num());
 		}
-		return _X_FP_equal($l->mir(), $r->mir());
+		return _F_FP_equal($l->mir(), $r->mir());
 	}
 
 	function ratio_not_equal(basic_ratio $l, basic_ratio $r)
@@ -324,7 +324,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() <= $r->num());
 		}
-		return ($l->mir() < $r->mir() || _X_FP_equal($l->mir(), $r->mir()));
+		return ($l->mir() < $r->mir() || _F_FP_equal($l->mir(), $r->mir()));
 	}
 
 	function ratio_greater(basic_ratio $l, basic_ratio $r)
@@ -340,7 +340,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() >= $r->num());
 		}
-		return ($l->mir() > $r->mir() || _X_FP_equal($l->mir(), $r->mir()));
+		return ($l->mir() > $r->mir() || _F_FP_equal($l->mir(), $r->mir()));
 	}
 } /* EONS */
 

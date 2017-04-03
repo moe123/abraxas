@@ -30,10 +30,10 @@ $fn = std\bond('entropy', $dev);
 print_r($fn());
 print_r($dev);
 
-echo std\_X_formatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
+echo std\_F_formatln("{2} {1} '{'} {0}", "world", "hello", 0.4);
 
 // print_r(std\is_callable(std\null_callable));
-// print_r(std\is_callable(std\bond('std\_X_format')));
+// print_r(std\is_callable(std\bond('std\_F_format')));
 
 std\make_pair(3, 4);
 
@@ -52,7 +52,7 @@ $n1 = $l->num();
 $d1 = $l->den();
 $n2 = $r->num();
 $d2 = $r->den();
-std\_X_ratio_reduce($n1, $d1, $n2, $d2);
+std\_F_ratio_reduce($n1, $d1, $n2, $d2);
 
 //std\cout($n1)("/")($d1)(std\tab)($n2)("/")($d2);
 

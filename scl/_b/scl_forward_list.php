@@ -39,7 +39,7 @@ namespace std
 
 		function & reserve(int $size, $fill = null)
 		{
-			_X_reserve($this, $size, $fill);
+			_F_reserve($this, $size, $fill);
 			return $this;
 		}
 
@@ -72,7 +72,7 @@ namespace std
 			if ($index >= 0 && $index < $this->_M_size) {
 				return $this->_F_get_at($index);
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -90,7 +90,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -109,7 +109,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -122,7 +122,7 @@ namespace std
 
 		function & assign(forward_list &$fwdl)
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			$this->_F_merge($fwdl, $val);
 			return $this;
 		}
@@ -148,7 +148,7 @@ namespace std
 					$first->next();
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
@@ -189,14 +189,14 @@ namespace std
 		function & sort(callable $compare = null)
 		{
 			if ($this->_M_size) {
-				_X_sort($this, $compare);
+				_F_sort($this, $compare);
 			}
 			return $this;
 		}
 
 		function & reverse()
 		{
-			_X_reverse($this);
+			_F_reverse($this);
 			return $this;
 		}
 
@@ -208,7 +208,7 @@ namespace std
 
 		function & clear()
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			return $this;
 		}
 	}

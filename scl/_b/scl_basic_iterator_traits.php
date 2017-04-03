@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 //
-// xiterator_traits.php
+// scl_basic_iterator_traits.php
 //
 // Copyright (C) 2017 Moe123. All rights reserved.
 //
@@ -161,7 +161,7 @@ namespace std
 				$this->_M_pos++;
 			}
 			if ($this->_M_pos > $this->_M_ptr->_M_size) {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -209,8 +209,8 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (!_X_offset_exists($this->_M_ptr, $this->_M_pos)) {
-				_X_throw_error("Cannot assign a value to a non existing offset error");
+			if (!_F_offset_exists($this->_M_ptr, $this->_M_pos)) {
+				_F_throw_error("Cannot assign a value to a non existing offset error");
 			}
 			$this->_M_ptr->_M_container[$this->_M_pos] = $val___;
 			return $this;
@@ -230,8 +230,8 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (!_X_offset_exists($this->_M_ptr, $this->_M_pos)) {
-				_X_throw_error("Cannot assign a value to a non existing offset error");
+			if (!_F_offset_exists($this->_M_ptr, $this->_M_pos)) {
+				_F_throw_error("Cannot assign a value to a non existing offset error");
 			}
 			$this->_M_ptr->_F_replace_data_at($this->_M_pos, $val___);
 			return $this;
@@ -255,7 +255,7 @@ namespace std
 				$this->_M_ptr->set_item($val___);
 			} else {
 				$this->_M_ptr->set($this->_M_ptr->item_at($this->_M_pos)->first, $val___);
-				// _X_throw_error("Cannot assign value type error");
+				// _F_throw_error("Cannot assign value type error");
 			}
 			return $this;
 		}
@@ -274,8 +274,8 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (!_X_offset_exists($this->_M_ptr, $this->_M_pos)) {
-				_X_throw_error("Cannot assign a value to a non existing offset error");
+			if (!_F_offset_exists($this->_M_ptr, $this->_M_pos)) {
+				_F_throw_error("Cannot assign a value to a non existing offset error");
 			}
 			$this->_M_ptr->_M_container[$this->_M_pos] = $val___;
 			return $this;
@@ -311,7 +311,7 @@ namespace std
 				$this->_M_pos++;
 			}
 			if ($this->_M_pos > $this->_M_ptr->_M_size) {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -359,22 +359,22 @@ namespace std
 			if ($this->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
 				if ($val___ instanceof \std\pair) {
 					if (static::iterator_category === basic_iterator_tag::front_insert_iterator) {
-						_X_push_front($this->_M_ptr, $val___->second, $val___->first);
+						_F_push_front($this->_M_ptr, $val___->second, $val___->first);
 					} else if (static::iterator_category === basic_iterator_tag::back_insert_iterator) {
-						_X_push_back($this->_M_ptr, $val___->second, $val___->first);
+						_F_push_back($this->_M_ptr, $val___->second, $val___->first);
 					}
 				} else {
 					if (static::iterator_category === basic_iterator_tag::front_insert_iterator) {
-						_X_push_front($this->_M_ptr, $val___->second, $this->_M_ptr->item_at($this->_M_pos)->first);
+						_F_push_front($this->_M_ptr, $val___->second, $this->_M_ptr->item_at($this->_M_pos)->first);
 					} else if (static::iterator_category === basic_iterator_tag::back_insert_iterator) {
-						_X_push_back($this->_M_ptr, $val___->second, $this->_M_ptr->item_at($this->_M_pos)->first);
+						_F_push_back($this->_M_ptr, $val___->second, $this->_M_ptr->item_at($this->_M_pos)->first);
 					}
-					// _X_throw_error("Cannot assign value type error");
+					// _F_throw_error("Cannot assign value type error");
 				}
 			} else if (static::iterator_category === basic_iterator_tag::front_insert_iterator) {
-				_X_push_front($this->_M_ptr, $val___);
+				_F_push_front($this->_M_ptr, $val___);
 			} else if (static::iterator_category === basic_iterator_tag::back_insert_iterator) {
-				_X_push_back($this->_M_ptr, $val___);
+				_F_push_back($this->_M_ptr, $val___);
 			}
 			return $this;
 		}
@@ -434,7 +434,7 @@ namespace std
 				--$this->_M_pos;
 			}
 			if ($this->_M_pos < -1) {
-				_X_throw_out_of_range("Out of Range error");
+				_F_throw_out_of_range("Out of Range error");
 			}
 			return $this;
 		}
@@ -483,8 +483,8 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (!_X_offset_exists($this->_M_ptr, $this->_M_pos)) {
-				_X_throw_error("Cannot assign a value to a non existing offset error");
+			if (!_F_offset_exists($this->_M_ptr, $this->_M_pos)) {
+				_F_throw_error("Cannot assign a value to a non existing offset error");
 			}
 			$this->_M_ptr->_M_container[$this->_M_pos] = $val___;
 			return $this;
@@ -504,8 +504,8 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (!_X_offset_exists($this->_M_ptr, $this->_M_pos)) {
-				_X_throw_error("Cannot assign a value to a non existing offset error");
+			if (!_F_offset_exists($this->_M_ptr, $this->_M_pos)) {
+				_F_throw_error("Cannot assign a value to a non existing offset error");
 			}
 			$this->_M_ptr->_F_replace_data_at($this->_M_pos, $val___);
 			return $this;
@@ -529,7 +529,7 @@ namespace std
 				$this->_M_ptr->set_item($val___);
 			} else {
 				$this->_M_ptr->set($this->_M_ptr->item_at($this->_M_pos)->first, $val___);
-				// _X_throw_error("Cannot assign value type error");
+				// _F_throw_error("Cannot assign value type error");
 			}
 			return $this;
 		}
@@ -548,8 +548,8 @@ namespace std
 	{
 		function & _F_assign($val___)
 		{
-			if (!_X_offset_exists($this->_M_ptr, $this->_M_pos)) {
-				_X_throw_error("Cannot assign a value to a non existing offset error");
+			if (!_F_offset_exists($this->_M_ptr, $this->_M_pos)) {
+				_F_throw_error("Cannot assign a value to a non existing offset error");
 			}
 			$this->_M_ptr->_M_container[$this->_M_pos] = $val___;
 			return $this;

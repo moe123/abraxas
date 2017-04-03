@@ -127,7 +127,7 @@ namespace std
 		function compare($l, $r)
 		{
 			if (false === ($r = $this->_M_collator->compare(\strval($l), \strval($r), $this->_M_flag))) {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $r;
 		}

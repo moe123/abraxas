@@ -35,14 +35,6 @@ namespace
 
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xio.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "xlib.php";
-	
-	
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xexception.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xiterator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xcontainer_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xoperator_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xutility_traits.php";
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xalgorithm.php";
 } /* EONS */
 
 namespace std
@@ -76,7 +68,7 @@ namespace std
 
 	function clock_millitime()
 	{
-		if (_X_os_64bit()) {
+		if (_F_os_64bit()) {
 			$tm = \explode(' ', \microtime());
 			return (\intval($tm[1]) * 1000) + (\intval(\round($tm[0] * 1000)));
 		}
@@ -86,7 +78,7 @@ namespace std
 
 	function clock_microtime()
 	{
-		if (_X_os_64bit()) {
+		if (_F_os_64bit()) {
 			$tm = \explode(' ', \microtime());
 			return (\intval($tm[1])) * 1000000 + (\intval(\round($tm[0] * 1000000)));
 		}
@@ -96,7 +88,7 @@ namespace std
 
 	function clock_nanotime()
 	{
-		if (_X_os_64bit()) {
+		if (_F_os_64bit()) {
 			$tm = \explode(' ', \microtime());
 			return (\intval($tm[1])) * 1000000000 + (\intval(\round($tm[0] * 1000000000)));
 		}
@@ -116,7 +108,7 @@ namespace std
 
 	function getdomainname(string &$dest___, int $destsz___ = -1)
 	{
-		if (_X_os_windows()) {
+		if (_F_os_windows()) {
 			$cmd = "wmic computersystem get domain";
 		} else {
 			$cmd = "`which domainname`";
@@ -253,7 +245,7 @@ namespace std
 	{
 		if (\function_exists('\posix_getppid')) {
 			return posix_getppid();
-		} else if (_X_os_windows()) {
+		} else if (_F_os_windows()) {
 			return \intval(\exec("`wmic.exe process where (processid=" . \getmypid() . ") get parentprocessid"));
 		} else {
 			return \intval(\exec("`which ps` -o ppid= " . \getmypid() . " | xargs"));

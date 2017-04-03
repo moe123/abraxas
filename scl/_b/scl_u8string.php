@@ -29,7 +29,7 @@ namespace std
 			$binlen = 0;
 			if (strlen($s)) {
 				if ($encoding !== basic_encoding::utf8) {
-					$s = _X_u8gh_convert($s, $encoding);
+					$s = _F_u8gh_convert($s, $encoding);
 					$binlen = strlen($s);
 				}
 			}
@@ -41,7 +41,7 @@ namespace std
 			$binlen = 0;
 			if (strlen($s)) {
 				if ($encoding !== basic_encoding::utf8) {
-					$s = _X_u16gh_convert($s, $encoding);
+					$s = _F_u16gh_convert($s, $encoding);
 					$binlen = strlen($s);
 				}
 			}
@@ -72,7 +72,7 @@ namespace std
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
 			if ($binlen) {
-				$this->_M_container = _X_u8gh_split($s, $this->_M_size);
+				$this->_M_container = _F_u8gh_split($s, $this->_M_size);
 			}
 			return $this;
 		}
@@ -130,34 +130,34 @@ namespace std
 		}
 
 		function substr_compare(u8string &$u8, $pos, $len = -1)
-		{ return _X_u8gh_substr_cmp($this, $u8, $pos, $len); }
+		{ return _F_u8gh_substr_cmp($this, $u8, $pos, $len); }
 
 		function substr_localized_compare(u8string &$u8, locale &$loc, $pos, $len = -1)
-		{ return _X_u8gh_substr_cmp($this, $u8, $pos, $len, $loc); }
+		{ return _F_u8gh_substr_cmp($this, $u8, $pos, $len, $loc); }
 
 		function compare(u8string &$u8)
-		{ return _X_u8_cmp($this, $u8); }
+		{ return _F_u8_cmp($this, $u8); }
 
 		function localized_compare(u8string &$u8, locale &$loc)
-		{ return _X_u8_cmp($this, $u8, $loc); }
+		{ return _F_u8_cmp($this, $u8, $loc); }
 
 		function compare_s(string $s8)
 		{
 			$u8 = (new u8string)->assign_s($s, $encoding);
-			return _X_u8_cmp($this, $u8);
+			return _F_u8_cmp($this, $u8);
 		}
 
 		function localized_compare_s(string $s8, locale &$loc)
 		{
 			$u8 = (new u8string)->assign_s($s, $encoding);
-			return _X_u8_cmp($this, $u8, $loc);
+			return _F_u8_cmp($this, $u8, $loc);
 		}
 
 		function find(u8string &$u8, int $pos = 0)
-		{ return _X_u8_find($this, $u8, $pos); }
+		{ return _F_u8_find($this, $u8, $pos); }
 
 		function rfind(u8string &$u8, int $pos = 0)
-		{ return _X_u8_rfind($this, $u8, $pos); }
+		{ return _F_u8_rfind($this, $u8, $pos); }
 
 		function & append(u8string &$u8)
 		{
@@ -181,7 +181,7 @@ namespace std
 			$s = u8string::to_utf8($s, $encoding, $binlen);
 			if ($binlen) {
 				$c = 0;
-				$a = _X_u8gh_split($s, $c);
+				$a = _F_u8gh_split($s, $c);
 				if ($this->_M_size && $c) {
 					foreach ($a as &$v) {
 						$this->_M_container[] = $v;
@@ -219,7 +219,7 @@ namespace std
 			$s = u8string::to_utf8($s, $encoding, $binlen);
 			if ($binlen) {
 				$c = 0;
-				$a = _X_u8gh_split($s, $c);
+				$a = _F_u8gh_split($s, $c);
 				if ($this->_M_size && $c) {
 					foreach ($this->_M_container as &$v) {
 						$a[] = $v;
@@ -236,16 +236,16 @@ namespace std
 
 		function & reverse()
 		{
-			_X_reverse($this);
+			_F_reverse($this);
 			return $this;
 		}
 
 		function bom()
-		{ return _X_u8gh_get_bom(); }
+		{ return _F_u8gh_get_bom(); }
 
 		function & clear()
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			return $this;
 		}
 

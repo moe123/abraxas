@@ -31,7 +31,7 @@ namespace std
 		{
 			$c = \count($list_initializer);
 			if (($c & 1) != 0) {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			for ($i = 0; $i < $c; $i += 2) {
 				$this->set(
@@ -47,14 +47,14 @@ namespace std
 		function keys()
 		{
 			$vec = new vector;
-			_X_offsets($this, $vec);
+			_F_offsets($this, $vec);
 			return $vec;
 		}
 
 		function values()
 		{
 			$vec = new vector;
-			_X_values($this, $vec);
+			_F_values($this, $vec);
 			return $vec;
 		}
 
@@ -69,7 +69,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -84,7 +84,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -99,7 +99,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_X_throw_out_of_range("Out of Range error");
+			_F_throw_out_of_range("Out of Range error");
 			return null;
 		}
 
@@ -114,7 +114,7 @@ namespace std
 					++$idx;
 				}
 			}
-			_X_throw_logic_error("Key does not exist error");
+			_F_throw_logic_error("Key does not exist error");
 			return -1;
 		}
 
@@ -129,24 +129,24 @@ namespace std
 					++$idx;
 				}
 			}
-			_X_throw_logic_error("Value does not exist error");
+			_F_throw_logic_error("Value does not exist error");
 			return -1;
 		}
 
 		function has_key(string $key)
-		{ return _X_offset_exists($this->_M_container, $key); }
+		{ return _F_offset_exists($this->_M_container, $key); }
 
 		function del(string $key)
 		{ unset($this->_M_container[$key]); }
 
 		function pop(string $key)
 		{
-			if (_X_offset_exists($this->_M_container, $key)) {
+			if (_F_offset_exists($this->_M_container, $key)) {
 				$pop = $this->_M_container[$key];
 				unset($this->_M_container[$key]);
 				return $pop;
 			}
-			_X_throw_logic_error("Key does not exist error");
+			_F_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
@@ -163,36 +163,36 @@ namespace std
 
 		function pop_item(string $key)
 		{
-			if (_X_offset_exists($this->_M_container, $key)) {
+			if (_F_offset_exists($this->_M_container, $key)) {
 				$pop_item = new pair($key, $this->_M_container[$key]);
 				unset($this->_M_container[$key]);
 				return $pop_item;
 			}
-			_X_throw_logic_error("Key does not exist error");
+			_F_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
 		function get(string $key)
 		{
-			if (_X_offset_exists($this->_M_container, $key)) {
+			if (_F_offset_exists($this->_M_container, $key)) {
 				return $this->_M_container[$key];
 			}
-			_X_throw_logic_error("Key does not exist error");
+			_F_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
 		function get_item(string $key)
 		{
-			if (_X_offset_exists($this->_M_container, $key)) {
+			if (_F_offset_exists($this->_M_container, $key)) {
 				return new pair($key, $this->_M_container[$key]);
 			}
-			_X_throw_logic_error("Key does not exist error");
+			_F_throw_logic_error("Key does not exist error");
 			return null;
 		}
 
 		function & set(string $key, $val)
 		{
-			$exists = _X_offset_exists($this->_M_container, $key);
+			$exists = _F_offset_exists($this->_M_container, $key);
 			$this->_M_container[$key] = $val;
 			if (!$exists) {
 				++$this->_M_size;
@@ -202,7 +202,7 @@ namespace std
 
 		function & set_item(pair &$pair)
 		{
-			$exists = _X_offset_exists($this->_M_container, $pair->first);
+			$exists = _F_offset_exists($this->_M_container, $pair->first);
 			$this->_M_container[$pair->first] = $pair->second;
 			if (!$exists) {
 				++$this->_M_size;
@@ -254,7 +254,7 @@ namespace std
 				$first::iterator_category === basic_iterator_tag::duo_iterator ||
 				$first::iterator_category === basic_iterator_tag::ostream_iterator
 			) {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			if ($first::iterator_category === $last::iterator_category) {
 				if ($first->_M_ptr::container_category === basic_iterable_tag::basic_dict) {
@@ -271,17 +271,17 @@ namespace std
 						$first->next();
 					}
 				} else {
-					_X_throw_invalid_argument("Invalid type error");
+					_F_throw_invalid_argument("Invalid type error");
 				}
 			} else {
-				_X_throw_invalid_argument("Invalid type error");
+				_F_throw_invalid_argument("Invalid type error");
 			}
 			return $this;
 		}
 
 		function & clear()
 		{
-			_X_clear_all($this);
+			_F_clear_all($this);
 			return $this;
 		}
 
