@@ -67,12 +67,9 @@ namespace std
 	function & iter_assign_position(basic_iterator &$it___, int $pos___, $val___)
 	{
 		$pos = $it___->_F_pos();
-		
 		$it___->_F_seek($pos___);
 		$it___->_F_assign($val___);
-
 		$it___->_F_seek($pos);
-
 		return $it___;
 	}
 
@@ -99,12 +96,9 @@ namespace std
 	function & iter_assign_copy_position(basic_iterator &$it___, int $pos___, $val___)
 	{
 		$pos = $it___->_F_pos();
-		
 		$it___->_F_seek($pos___);
 		$it___->_F_assign(_X_copy($val___));
-
 		$it___->_F_seek($pos);
-
 		return $it___;
 	}
 
@@ -118,6 +112,15 @@ namespace std
 	{
 		$it___->_F_assign(_X_copy($val___));
 		return $it___;
+	}
+
+	function iter_value_at_position(basic_iterator &$it___, int $pos___)
+	{
+		$pos = $it___->_F_pos();
+		$it___->_F_seek($pos___);
+		$val = $it___->_F_this();
+		$it___->_F_seek($pos);
+		return $val;
 	}
 
 	function iter_position(basic_iterator &$it___)
