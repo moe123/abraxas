@@ -33,6 +33,22 @@ namespace std
 		return $_S_bo;
 	}
 
+	function bswap($x___)
+	{
+		$h = \dechex($x___);
+		if (\strlen($h) <= 2) {
+			return $x___;
+		}
+		$b = \unpack("H*", \strrev(\pack("H*", $h)));
+		return \hexdec($b[1]);
+	}
+
+	function pack_swap($x___)
+	{
+		$v = \array_reverse(\unpack('C*', $x___));
+		return \pack("C*", ...$v);
+	}
+
 	function pack_int8(int $x___)
 	{ return \pack("c", $x___); }
 

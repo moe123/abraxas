@@ -17,6 +17,7 @@
 
 namespace std
 {
+	const operator      = '\std\operator';
 	const greater       = '\std\greater';
 	const less          = '\std\less';
 	const multiplies    = '\std\multiplies';
@@ -101,6 +102,52 @@ namespace std
 			$this->_M_val = $v___;
 		}
 	} /* EOC */
+
+	function operator(string $op___)
+	{
+		static $_S_operator_tab = null;
+
+		if (\is_null($_S_operator_tab)) {
+			$_S_operator_tab = [
+				'(*)'   => function($l, $r) { return $l * $r;                           },
+				'(/)'   => function($l, $r) { return $l / $r;                           },
+				'(%)'   => function($l, $r) { return $l % $r;                           },
+				'(+)'   => function($l, $r) { return $l + $r;                           },
+				'(-)'   => function($l, $r) { return $l - $r;                           },
+				'(.)'   => function($l, $r) { return $l . $r;                           },
+				'(<<)'  => function($l, $r) { return $l << $r;                          },
+				'(>>)'  => function($l, $r) { return $l >> $r;                          },
+				'(<)'   => function($l, $r) { return $l < $r;                           },
+				'(<=)'  => function($l, $r) { return $l <= $r;                          },
+				'(>)'   => function($l, $r) { return $l > $r;                           },
+				'(>=)'  => function($l, $r) { return $l >= $r;                          },
+				'(==)'  => function($l, $r) { return $l == $r;                          },
+				'(!=)'  => function($l, $r) { return $l != $r;                          },
+				'(===)' => function($l, $r) { return $l === $r;                         },
+				'(!==)' => function($l, $r) { return $l !== $r;                         },
+				'(&)'   => function($l, $r) { return $l & $r;                           },
+				'(^)'   => function($l, $r) { return $l ^ $r;                           },
+				'(|)'   => function($l, $r) { return $l | $r;                           },
+				'(&&)'  => function($l, $r) { return $l && $r;                          },
+				'(||)'  => function($l, $r) { return $l || $r;                          },
+				'(**)'  => function($l, $r) { return $l ** $r;                          },
+				'(<=>)' => function($l, $r) { return $l == $r ? 0 : ($l < $r ? -1 : 1); },
+				'(%=%)' => function($l, $r) { return $l instanceof $r;                  },
+			
+				'([])'  => function & (&$l, $i) { return $l[$i];                        },
+				'(=)'   => function & (&$l, $r) { return $l = $r;                       },
+				'(@=)'  => function & (&$l, $r) { return $l = _F_copy($r);              },
+				'(+=)'  => function & (&$l, $r) { return $l += $r;                      },
+				'(-=)'  => function & (&$l, $r) { return $l -= $r;                      },
+				'(.=)'  => function & (&$l, $r) { return $l .= $r;                      },
+				'(<--)' => function & (&$x) { return --$x;                              },
+				'(>--)' => function & (&$x) { return $x--;                              },
+				'(<++)' => function & (&$x) { return ++$x;                              },
+				'(>++)' => function & (&$x) { return $x++;                              }
+			];
+		}
+		return $_S_operator_tab[$op___];
+	}
 
 	function greater($l___, $r___)
 	{
