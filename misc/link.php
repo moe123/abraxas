@@ -225,7 +225,7 @@ print_r($v->rbegin());
 //print_r($v->end());
 print_r($v->rend());
 std\cout(
-	std\range_lcm($v->begin(), $v->end(5))
+	std\span_lcm($v->begin(), $v->end(5))
 )(std\endl);
 
 $v  = std\make_vector(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3);
@@ -389,6 +389,10 @@ std\cout("trunc(-Inf) = ")(std\trunc(-(std\INFINITY)))(std\endl);
 
 $intp = 0;
 std\cout("modf(145.8, &intp) = ")(std\modf(145.8, $intp))(" ")($intp)(std\endl);
+
+$v = std\make_vector(1, 3, 3, 6, 7, 8, 9);
+
+std\cout(std\span_median($v->begin(), $v->end()))(std\endl);
 
 std\stop(0);
 

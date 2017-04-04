@@ -264,7 +264,7 @@ std\cout($dv)(std\endl);
 // [ 3 4 5 1 2 ]
 
 $v = std\make_vector(2, 7, 3, 9, 4);
-$lcm = std\range_lcm($v->begin(), $v->end());
+$lcm = std\span_lcm($v->begin(), $v->end());
 std\cout($lcm)(std\endl);
 
 ...

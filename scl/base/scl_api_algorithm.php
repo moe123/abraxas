@@ -17,177 +17,6 @@
 
 namespace std
 {
-	function _F_median(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			if (1 < ($dist = iter_distance($first___, $last___))) {
-				$med  = 0.0;
-				if (($dist % 2) == 0) {
-					$med  = iter_value_at_position($first___, \intdiv($dist, 2));
-					$med += iter_value_at_position($first___, \intdiv($dist, 2) - 1);
-					$med /= 2.0;
-				} else {
-					$med = iter_value_at_position($first___, \intdiv($dist, 2));
-				}
-				return $med;
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_mode(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$pos = $first->_M_pos;
-			$cnt = function ($v) use($pos, $first___, $last___)
-			{
-				$ret = 0;
-				$cur = $first___->_M_pos;
-				$first___->_F_seek($pos);
-				while ($first___ != $last___) {
-				if ($first___->_F_this() == $v) {
-						$ret++;
-					}
-					$first___->_F_next();
-				}
-				$first___->_F_seek($cur);
-				return $ret;
-			};
-			return max_element($first___, $last___, $cnt);
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_mid_range(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$pos      = $first___->_M_pos;
-			$largest  = max_element($first___, $last___);
-			$first___->_F_seek($pos);
-			$smallest = min_element($first___, $last___);
-			$first___->_F_seek($pos);
-			return ($largest->_F_this() - $smallest->_F_this());
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_mean(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = iter_distance($first___, $last___);
-			if (0 < $dist) {
-				$sum  = 0.0;
-				while ($first___ != $last___) {
-					$sum += $first___->_F_this();
-					$first___->_F_next();
-				}
-				return $sum / $dist;
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_summation(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$sum  = 0.0;
-			while ($first___ != $last___) {
-				$sum += $first___->_F_this();
-				$first___->_F_next();
-			}
-			return $sum;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_variance(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, bool           $unbiased___ = true
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$dist = iter_distance($first___, $last___);
-			if (0 < $dist) {
-				$mean = mean((clone $first___), $last___);
-				$sum  = 0.0;
-				while ($first___ != $last___) {
-					$sum += \pow($first___->_F_this() - $mean, 2);
-					$first___->_F_next();
-				}
-				if (1 < $dist && $unbiased___) {
-					return ($sum / ($dist - 1));
-				}
-				return ($sum / $dist);
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_covariance(
-		  basic_iterator $first1___
-		, basic_iterator $last1___
-		, basic_iterator $first2___
-		, basic_iterator $last2___
-		, bool           $unbiased___ = true
-	) {
-		if (
-			$first1___::iterator_category === $last1___::iterator_category &&
-			$first2___::iterator_category === $last2___::iterator_category
-		) {
-			$dist  = \max(
-				  iter_distance($first1___, $last1___)
-				, iter_distance($first2___, $last2___)
-			);
-			if (0 < $dist) {
-				$mean1 = mean((clone $first1___), $last1___);
-				$mean2 = mean((clone $first2___), $last2___);
-				$sum   = 0.0;
-				while ($first1___ != $last1___ && $first2___ != $last2___) {
-					$sum += ($first1___->_F_this() - $mean1) * ($first2___->_F_this() - $mean2);
-				}
-				if (1 < $dist && $unbiased___) {
-					return ($sum / ($dist - 1));
-				}
-				return ($sum / $dist);
-			}
-			return 0.0;
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
-	function _F_standard_deviation(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, bool           $unbiased___ = true
-	) { return \sqrt(_F_variance($first___, $last___, $unbiased___)); }
-
 	function _F_compare(
 		  basic_iterable &$c1___
 		, basic_iterable &$c2___
@@ -204,13 +33,13 @@ namespace std
 			if ($r > 0) {
 				return comparison_result::descending;
 			}
-			return comparison_result::same;
-		}
-		if ($c1___ < $c2___) {
-			return comparison_result::ascending;
-		}
-		if ($c1___ > $c2___) {
-			return comparison_result::descending;
+		} else {
+			if ($c1___ < $c2___) {
+				return comparison_result::ascending;
+			}
+			if ($c1___ > $c2___) {
+				return comparison_result::descending;
+			}
 		}
 		return comparison_result::same;
 	}
@@ -296,7 +125,7 @@ namespace std
 		}
 	}
 
-	function _F_range_sort(
+	function _F_span_sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $compare___ = null
@@ -948,6 +777,90 @@ namespace std
 			}
 		}
 	}
+
+	function _F_iter_swap_position(basic_iterator &$it___, int $pos1___, int $pos2___)
+	{
+		$pos = $it___->_F_pos();
+
+		$it___->_F_seek($pos1___);
+		$v1 = $it___->_F_this();
+
+		$it___->_F_seek($pos2___);
+		$v2 = $it___->_F_this();
+
+		$it___->_F_seek($pos1___);
+		$it___->_F_assign($v2);
+
+		$it___->_F_seek($pos2___);
+		$it___->_F_assign($v1);
+
+		$it___->_F_seek($pos);
+	}
+
+	function & _F__F_iter_assign_position(basic_iterator &$it___, int $pos___, $val___)
+	{
+		$pos = $it___->_F_pos();
+		$it___->_F_seek($pos___);
+		$it___->_F_assign($val___);
+		$it___->_F_seek($pos);
+		return $it___;
+	}
+
+	function & _F__F_iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
+	{
+		$to___->_F_assign($from___->_F_this());
+		return $to___;
+	}
+
+	function & _F_iter_assign(basic_iterator &$it___, $val___)
+	{
+		$it___->_F_assign($val___);
+		return $it___;
+	}
+
+	function _F_iter_swap_copy(basic_iterator &$it1___, basic_iterator &$it2___)
+	{
+		$v1 = _F_copy($it1___->_F_this());
+		$v2 = _F_copy($it2___->_F_this());
+		$it1___->_F_assign($v2);
+		$it2___->_F_assign($v1);
+	}
+
+	function & _F_iter_assign_copy_position(basic_iterator &$it___, int $pos___, $val___)
+	{
+		$pos = $it___->_F_pos();
+		$it___->_F_seek($pos___);
+		$it___->_F_assign(_F_copy($val___));
+		$it___->_F_seek($pos);
+		return $it___;
+	}
+
+	function _F_iter_assign_copy_to(basic_iterator &$from___, basic_iterator &$to___)
+	{
+		$to___->_F_assign(_F_copy($from___->_F_this()));
+		return $to___;
+	}
+
+	function & _F_iter_assign_copy(basic_iterator &$it___, $val___)
+	{
+		$it___->_F_assign(_F_copy($val___));
+		return $it___;
+	}
+
+	function _F_iter_value_at_position(basic_iterator &$it___, int $pos___)
+	{
+		$pos = $it___->_F_pos();
+		$it___->_F_seek($pos___);
+		$val = $it___->_F_this();
+		$it___->_F_seek($pos);
+		return $val;
+	}
+
+	function _F_iter_position(basic_iterator &$it___)
+	{ return $it___->_F_pos(); }
+
+	function _F_iter_value(basic_iterator &$it___)
+	{ return $it___->_F_this(); }
 } /* EONS */
 
 /* EOF */

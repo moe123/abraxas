@@ -193,7 +193,7 @@ namespace std
 		function & slice_sort(int $start, int $end, callable $compare = null)
 		{
 			if ($this->_M_size) {
-				_F_range_sort(
+				_F_span_sort(
 					  $this
 					, $this->begin($start)
 					, $this->end($end)
