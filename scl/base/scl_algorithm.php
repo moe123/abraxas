@@ -1498,7 +1498,13 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $compare___ = null
-	) { _F_span_sort($first___, $last___, $compare___); }
+	) { _F_slice_sort($first___, $last___, $compare___); }
+
+	function stable_sort(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $compare___ = null
+	) { _F_slice_stable_sort($first___, $last___, $compare___); }
 } /* EONS */
 
 /* EOF */

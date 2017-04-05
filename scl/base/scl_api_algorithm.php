@@ -125,7 +125,7 @@ namespace std
 		}
 	}
 
-	function _F_span_sort(
+	function _F_slice_sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $compare___ = null
@@ -179,7 +179,13 @@ namespace std
 		}
 	}
 
-	function _F_stable_sort(
+	function _F_slice_stable_sort(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable $compare___ = null
+	) { _F_slice_sort($first___, $last___, $compare___); }
+
+	function _F_stable_sort_all(
 		  basic_iterable &$c___
 		, callable $compare___ = null
 	) {

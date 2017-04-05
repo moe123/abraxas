@@ -363,24 +363,24 @@ namespace std
 		return trunc($x___);
 	}
 
-	function remainder(float $x, float $y)
+	function remainder(float $x___, float $y___)
 	{
-		if (\is_infinite($y)) {
-			return $x;
+		if (\is_infinite($y___)) {
+			return $x___;
 		}
 
-		if (_F_FP_iszero($y)) {
+		if (_F_FP_iszero($y___)) {
 			return -(\NAN);
 		}
 
-		if (!_F_FP_same_sign($x, $y)) {
-			$a = copysign($y, $x);
+		if (!_F_FP_same_sign($x___, $y___)) {
+			$a = copysign($y___, $x___);
 		} else {
-			$a = $y;
+			$a = $y___;
 		}
 
-		$n = _F_FP_nearest_int($x / $a);
-		$r = $x - $n * $a;
+		$n = _F_FP_nearest_int($x___ / $a);
+		$r = $x___ - $n * $a;
 
 		if (_F_FP_iszero($r)) {
 			return copysign($r, $a);

@@ -193,7 +193,7 @@ namespace std
 		function & slice_sort(int $start, int $end, callable $compare = null)
 		{
 			if ($this->_M_size) {
-				_F_span_sort(
+				_F_slice_sort(
 					  $this
 					, $this->begin($start)
 					, $this->end($end)
@@ -211,11 +211,28 @@ namespace std
 			return $this;
 		}
 
+		function & stable_sort(callable $compare = null)
+		{
+			if ($this->_M_size) {
+				_F_stable_sort_all($this, $compare);
+			}
+			return $this;
+		}
+
 		function & reverse_sort(callable $compare = null)
 		{
 			if ($this->_M_size) {
 				_F_reverse($this);
 				_F_sort_all($this, $compare);
+			}
+			return $this;
+		}
+
+		function & reverse_stable_sort(callable $compare = null)
+		{
+			if ($this->_M_size) {
+				_F_reverse($this);
+				_F_stable_sort_all($this, $compare);
 			}
 			return $this;
 		}
