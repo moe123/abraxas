@@ -19,13 +19,13 @@ namespace std
 {
 	abstract class basic_ratio_tag
 	{
-		const basic_base  = 0;
-		const basic_const = 1;
+		const basic_ratio = 0;
+		const const_ratio = 1;
 	}
 
 	abstract class basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_base;
+		const container_category = basic_ratio_tag::basic_ratio;
 
 		const num = 0;
 		const den = 0;
@@ -44,7 +44,7 @@ namespace std
 
 	final class _C_ratio_unum extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1;
@@ -53,7 +53,7 @@ namespace std
 
 	final class _C_ratio_atto extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1000000000000000000;
@@ -62,7 +62,7 @@ namespace std
 
 	final class _C_ratio_femto extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1000000000000000;
@@ -71,7 +71,7 @@ namespace std
 
 	final class _C_ratio_pico extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1000000000000;
@@ -80,7 +80,7 @@ namespace std
 
 	final class _C_ratio_nano extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1000000000;
@@ -89,7 +89,7 @@ namespace std
 
 	final class _C_ratio_micro extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1000000;
@@ -98,7 +98,7 @@ namespace std
 
 	final class _C_ratio_milli extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 1000;
@@ -107,7 +107,7 @@ namespace std
 
 	final class _C_ratio_centi extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 100;
@@ -116,7 +116,7 @@ namespace std
 
 	final class _C_ratio_deci extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1;
 		const den = 10;
@@ -125,7 +125,7 @@ namespace std
 
 	final class _C_ratio_deca extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 10;
 		const den = 1;
@@ -134,7 +134,7 @@ namespace std
 
 	final class _C_ratio_hecto extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 100;
 		const den = 1;
@@ -143,7 +143,7 @@ namespace std
 
 	final class _C_ratio_kilo extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1000;
 		const den = 1;
@@ -152,7 +152,7 @@ namespace std
 
 	final class _C_ratio_mega extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1000000;
 		const den = 1;
@@ -161,7 +161,7 @@ namespace std
 
 	final class _C_ratio_giga extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1000000000;
 		const den = 1;
@@ -170,7 +170,7 @@ namespace std
 
 	final class _C_ratio_tera extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1000000000000;
 		const den = 1;
@@ -179,7 +179,7 @@ namespace std
 
 	final class _C_ratio_peta extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1000000000000000;
 		const den = 1;
@@ -188,7 +188,7 @@ namespace std
 
 	final class _C_ratio_exa extends basic_ratio
 	{
-		const container_category = basic_ratio_tag::basic_const;
+		const container_category = basic_ratio_tag::const_ratio;
 
 		const num = 1000000000000000000;
 		const den = 1;

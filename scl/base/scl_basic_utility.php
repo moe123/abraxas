@@ -398,7 +398,7 @@ namespace std
 
 	function make_irange(int $a___ , int $b___ = null, int $s___ = 1)
 	{
-		if (\is_null($a___)) {
+		if (\is_null($b___)) {
 			return new irange($a___);
 		}
 		return new irange($a___, $b___, $s___);

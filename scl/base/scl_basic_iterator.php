@@ -19,15 +19,15 @@ namespace std
 {
 	abstract class basic_iterator_tag
 	{
-		const basic_iterator          = 10;
-		const forward_iterator        = 20;
-		const reverse_iterator        = 30;
-		const insert_iterator         = 40;
-		const duo_iterator           = 50;
+		const basic_iterator        = 10;
+		const forward_iterator      = 20;
+		const reverse_iterator      = 30;
+		const insert_iterator       = 40;
+		const duo_iterator          = 50;
 
-		const back_insert_iterator    = 41;
-		const front_insert_iterator   = 42;
-		const ostream_iterator        = 41;
+		const back_insert_iterator  = 41;
+		const front_insert_iterator = 42;
+		const ostream_iterator      = 41;
 
 		
 	} /* EOC */
