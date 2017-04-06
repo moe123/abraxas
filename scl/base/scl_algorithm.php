@@ -339,6 +339,118 @@ namespace std
 		return $largest;
 	}
 
+	function mismatch(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+	) {
+		if ($first1___::iterator_category === $last1___::iterator_category) {
+			while ($first1___ != $last1___) {
+				if ($first1___->_F_this() != $first2___->_F_this()) {
+					break;
+				}
+				$first1___->_F_next();
+				$first2___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return new pair($first1___, $first2___);
+	}
+
+	function mismatch_b(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first1___::iterator_category === $last1___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, $r) { return $l == $r; };
+			}
+			while ($first1___ != $last1___) {
+				if (!$p($first1___->_F_this(), $first2___->_F_this())) {
+					break;
+				}
+				$first1___->_F_next();
+				$first2___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return new pair($first1___, $first2___);
+	}
+
+	function prev_permutation(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			if ($first___ == $last___) {
+				return false;
+			}
+			$it0 = clone $last___;
+			if ($first___ == $it0->_F_prev()) {
+				return false;
+			}
+			while (true) {
+				$it1 = clone $it0;
+				if ($it1->_F_this() < $it0->_F_prev()->_F_this()) {
+						$it2 = clone $last___;
+						while (!($it2->_F_prev()->_F_this() < $it0->_F_this())) { /* NOP */ }
+						iter_swap($it0, $it2);
+						reverse($it1, $last___);
+						return true;
+				}
+				if ($it0 == $first___) {
+					reverse($first___, $last___);
+					break;
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
+	function prev_permutation_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, $r) { return $l < $r; };
+			}
+			if ($first___ == $last___) {
+				return false;
+			}
+			$it0 = clone $last___;
+			if ($first___ == $it0->_F_prev()) {
+				return false;
+			}
+			while (true) {
+				$it1 = clone $it0;
+				if ($p($it1->_F_this(), $it0->_F_prev()->_F_this())) {
+						$it2 = clone $last___;
+						while (!$p($it2->_F_prev()->_F_this(), $it0->_F_this())) { /* NOP */ }
+						iter_swap($it0, $it2);
+						reverse($it1, $last___);
+						return true;
+				}
+				if ($it0 == $first___) {
+					reverse($first___, $last___);
+					break;
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
 	function swap_ranges(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
