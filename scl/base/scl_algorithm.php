@@ -433,9 +433,72 @@ namespace std
 			}
 			while (true) {
 				$it1 = clone $it0;
-				if ($p($it1->_F_this(), $it0->_F_prev()->_F_this())) {
+				if ($it1->_F_this() < $it0->_F_prev()->_F_this()) {
 						$it2 = clone $last___;
-						while (!$p($it2->_F_prev()->_F_this(), $it0->_F_this())) { /* NOP */ }
+						while (!($it2->_F_prev()->_F_this() < $it0->_F_this())) { /* NOP */ }
+						iter_swap($it0, $it2);
+						reverse($it1, $last___);
+						return true;
+				}
+				if ($it0 == $first___) {
+					reverse($first___, $last___);
+					break;
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
+	function next_permutation(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$it0 = clone $last___;
+			if ($first___ == $last___ || $first___ == $it0->_F_prev()) {
+				return false;
+			}
+			while (true) {
+				$it1 = clone $it0;
+				if ($p($it0->_F_prev()->_F_this(), $it1->_F_this())) {
+						$it2 = clone $last___;
+						while (!$p($it0->_F_this(), $it2->_F_prev()->_F_this())) { /* NOP */ }
+						iter_swap($it0, $it2);
+						reverse($it1, $last___);
+						return true;
+				}
+				if ($it0 == $first___) {
+					reverse($first___, $last___);
+					break;
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
+	function next_permutation_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, $r) { return $l < $r; };
+			}
+			$it0 = clone $last___;
+			if ($first___ == $last___ || $first___ == $it0->_F_prev()) {
+				return false;
+			}
+			while (true) {
+				$it1 = clone $it0;
+				if ($p($it0->_F_prev()->_F_this(), $it1->_F_this())) {
+						$it2 = clone $last___;
+						while (!$p($it0->_F_this(), $it2->_F_prev()->_F_this())) { /* NOP */ }
 						iter_swap($it0, $it2);
 						reverse($it1, $last___);
 						return true;

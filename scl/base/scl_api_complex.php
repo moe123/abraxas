@@ -341,35 +341,29 @@ namespace std
 			if (\is_nan($z___->_M_imag)) {
 				return new complex($z___->_M_imag, $z___->_M_real);
 			}
-
 			if (\is_infinite($z___->_M_imag)) {
 				if ($z___->_M_real < 0.0) {
 					return new complex(0.75 * \M_PI, -($z___->_M_imag));
 				}
 				return new complex(0.25 * \M_PI, -($z___->_M_imag));
 			}
-
 			if ($z___->_M_real < 0.0) {
 				return new complex(\M_PI, signbit($z___->_M_imag) ? -($z___->_M_real) : $z___->_M_real);
 			}
 			return new complex(0.0, signbit($z___->_M_imag) ? $z___->_M_real : -($z___->_M_real));
 		}
-
 		if (\is_nan($z___->_M_real)) {
 			if (\is_infinite($z___->_M_imag)) {
 				return new complex($z___->_M_real, -($z___->_M_imag));
 			}
 			return new complex($z___->_M_real, $z___->_M_real);
 		}
-
 		if (\is_infinite($z___->_M_imag)) {
 			return new complex(\M_PI_2, -($z___->_M_imag));
 		}
-
 		if (_F_FP_iszero($z___->_M_real)) {
 			return new complex(\M_PI_2, -($z___->_M_imag));
 		}
-
 		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
 		if (signbit($z___->_M_imag)) {
 			return new complex(\abs($z->_M_imag), \abs($z->_M_real));
@@ -408,20 +402,16 @@ namespace std
 			}
 			return new complex($z___->_M_real, copysign(0.0, $z___->_M_imag));
 		}
-
 		if (\is_nan($z___->_M_real)) {
 			if (\is_infinite($z___->_M_imag)) {
 				return new complex(\abs($z___->_M_imag), $z___->_M_real);
 			}
 			return new complex($z___->_M_real, $z___->_M_real);
 		}
-
 		if (\is_infinite($z___->_M_imag)) {
 			return new complex(\abs($z___->_M_imag), copysign(\M_PI_2, $z___->_M_imag));
 		}
-
 		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
-
 		return new complex(copysign($z->_M_real, 0.0), copysign($z->_M_imag, $z___->_M_imag));
 	}
 
@@ -431,7 +421,6 @@ namespace std
 			if (\is_nan($z___->_M_imag)) {
 				return $z___;
 			}
-
 			if (\is_infinite($z___->_M_imag)) {
 				return new complex($z___->_M_real, copysign(\M_PI * 0.25, $z___->_M_imag));
 			}
@@ -442,19 +431,16 @@ namespace std
 			if (\is_infinite($z___->_M_imag)) {
 				return new complex($z___->_M_imag, $z___->_M_real);
 			}
-
 			if (_F_FP_iszero($z___->_M_imag)) {
 				return $z___;
 			}
 			return new complex($z___->_M_real, $z___->_M_real);
 		}
-
 		if (\is_infinite($z___->_M_imag)) {
 			return new complex(copysign($z___->_M_imag, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
 		}
 		
 		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
-
 		return new complex(copysign($z->_M_real, $z___->_M_real), copysign($z->_M_imag, $z___->_M_imag));
 	}
 
@@ -463,28 +449,22 @@ namespace std
 		if (\is_infinite($z___->_M_imag)) {
 			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
 		}
-
 		if (\is_nan($z___->_M_imag)) {
-			if (\is_infinite($z___->_M_real) || $z___->_M_real == 0) {
+			if (\is_infinite($z___->_M_real) || _F_FP_iszero($z___->_M_real)) {
 				return new complex(copysign(0.0, $z___->_M_real), $z___->_M_imag);
 			}
 			return new complex($z___->_M_imag, $z___->_M_imag);
 		}
-
 		if (\is_nan($z___->_M_real)) {
 			return new complex($z___->_M_real, $z___->_M_real);
 		}
-
 		if (\is_infinite($z___->_M_real)) {
 			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
 		}
-
-		if (\abs($z___->_M_real) == _Tp(1) && $z___->_M_imag == 0.0) {
+		if (_F_FP_isone(\abs($z___->_M_real)) && _F_FP_iszero($z___->_M_imag)) {
 			return new complex(copysign(\INF, $z___->_M_real), copysign(0.0, $z___->_M_imag));
 		}
-
 		$z = cdiv(clog(cdiv(cadd(new complex(1.0), $z___) , csub(new complex(1.0), $z___))), new complex(2.0));
-
 		return new complex(copysign($z->_M_real, $z___->_M_real), copysign($z->_M_imag, $z___->_M_imag));
 	}
 } /* EONS */

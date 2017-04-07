@@ -286,11 +286,9 @@ namespace std
 		if (\is_infinite($x___) && _F_FP_iszero($y___) && \is_nan($z___)) {
 			return \NAN;
 		}
-
 		if (\is_infinite($y___) && _F_FP_iszero($x___) && \is_nan($z___)) {
 			return \NAN;
 		}
-
 		return \round(($x___ * $y___) + $z___);
 	}
 
@@ -341,19 +339,15 @@ namespace std
 		if (\is_infinite($x___)) {
 			return $x___;
 		}
-
 		if (\is_nan($x___)) {
 			return \NAN;
 		}
-
 		if (_F_FP_iszero($x___)) {
 			return copysign(0.0, $x___);
 		}
-
 		if ($x___ > 0.0 ) {
 			return \floor($x___);
 		}
-
 		return \ceil($x___);
 	}
 
@@ -368,20 +362,16 @@ namespace std
 		if (\is_infinite($y___)) {
 			return $x___;
 		}
-
 		if (_F_FP_iszero($y___)) {
 			return -(\NAN);
 		}
-
 		if (!_F_FP_same_sign($x___, $y___)) {
 			$a = copysign($y___, $x___);
 		} else {
 			$a = $y___;
 		}
-
 		$n = _F_FP_nearest_int($x___ / $a);
 		$r = $x___ - $n * $a;
-
 		if (_F_FP_iszero($r)) {
 			return copysign($r, $a);
 		}
@@ -714,25 +704,20 @@ namespace std
 		if (\is_infinite($x___)) {
 			return \INF;
 		}
-
 		if (\is_nan($x___)) {
 			return \NAN;
 		}
-
 		if ($x___ < 0.0 || _F_FP_iszero($x___)) {
 			return \INF;
 		}
-
 		if (_F_FP_isone($x___) || _F_FP_istwo($x___)) {
 			return 0.0;
 		}
-
 		$e = 1.0;
 		while ($x___ < 8) {
 			$e *= $x___;
 			$x___++; 
 		}
-
 		$ix2 = (1.0 / ($x___ * $x___));
 		return (((((((((-0.029550653594771) * $ix2 + (0.0064102564102566 )) * $ix2
 			+ (-0.0019175269175269 ))        * $ix2 + (0.00084175084175084)) * $ix2
@@ -746,23 +731,19 @@ namespace std
 	{
 		if ($x___ < 0.0 || _F_FP_iszero($x___)) {
 			$intp = 0.0;
-
 			$f = modf(-($x___), $intp);
 			if (_F_FP_iszero($f)) {
 				$signp___ = signbit($x___) ? -1 : 1;
 				seterrno(ERANGE);
 				return HUGE_VAL;
 			}
-
 			$signp___ = (!_F_FP_iszero(\fmod($intp, 2.0))) ? 1 : -1;
 			$s = \sin(\M_PI * $f);
 			if ($s < 0.0) {
 				$s = -($s);
 			}
-
 			return 1.1447298858494001741 - \log($s) - lgamma_s(1 - $x___);
 		}
-
 		$signp___ = 1;
 		return lgamma_s($x___);
 	}
@@ -778,24 +759,19 @@ namespace std
 	function tgamma(float $x___)
 	{
 		$sign = 1;
-
 		if (_F_FP_iszero($x___)) {
 			seterrno(ERANGE);
 			return (1.0 / $x___) < 0 ? -(HUGE_VAL) : HUGE_VAL;
 		}
-
 		if ($x___ < 0.0) {
 			$intp = 0.0;
-
 			$f = modf(-($x___), $intp);
 			if (_F_FP_iszero($f)) {
 				seterrno(EDOM);
 				return \NAN;
 			}
 		}
-
 		$g = lgamma_r($x___, $sign);
-
 		return $sign * \exp($g);
 	}
 } /* EONS */

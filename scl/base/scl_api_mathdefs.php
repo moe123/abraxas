@@ -369,7 +369,6 @@ namespace std
 	{
 		$i = 1024 / 2;
 		$j = 1024 / 2;
-
 		if ($x___ < 1.0) {
 			$g = 1.0 / $x___;
 			while (true) {
@@ -403,10 +402,8 @@ namespace std
 		} else {
 			$i = 1;
 		}
-
 		$e___ = $i;
 		$i = -($i);
-
 		if ($i < 0) {
 			$x___ /= _N_pow2_tab(-($i));
 		} else if ($i < 1024) {
@@ -414,7 +411,6 @@ namespace std
 		} else {
 			$x___ = ($x___ * _N_pow2_tab(1024 -1)) * _N_pow2_tab($i - (1024 -1));
 		}
-
 		return $x___;
 	}
 
