@@ -536,7 +536,7 @@ namespace std
 		return false;
 	}
 
-function is_permutation(
+	function is_permutation(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
 		, basic_iterator $first2___
