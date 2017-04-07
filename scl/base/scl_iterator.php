@@ -47,26 +47,10 @@ namespace std
 	{ $it___->_F_advance($dist___); }
 
 	function next(basic_iterator $it___, int $n___ = -1)
-	{
-		if ($n > 1) {
-			for ($i = 0; $i < $n; $i++) {
-				$it___->_F_next();
-			}
-			return $it___;
-		}
-		return $it___->_F_next();
-	}
+	{ return iter_next($it___, $n___); }
 
 	function prev(basic_iterator $it___, int $n___ = -1)
-	{
-		if ($n > 1) {
-			for ($i = 0; $i < $n; $i++) {
-				$it___->_F_prev();
-			}
-			return $it___;
-		}
-		return $it___->_F_prev();
-	}
+	{ return iter_prev($it___, $n___); }
 
 	function begin(basic_iterable &$iterable___, $offset___ = -1)
 	{ return $iterable___->begin($offset___); }

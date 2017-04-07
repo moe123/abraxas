@@ -64,6 +64,28 @@ namespace std
 		return $n;
 	}
 
+	function iter_next(basic_iterator $it___, int $n___ = -1)
+	{
+		if ($n > 1) {
+			for ($i = 0; $i < $n; $i++) {
+				$it___->_F_next();
+			}
+			return $it___;
+		}
+		return $it___->_F_next();
+	}
+
+	function iter_prev(basic_iterator $it___, int $n___ = -1)
+	{
+		if ($n > 1) {
+			for ($i = 0; $i < $n; $i++) {
+				$it___->_F_prev();
+			}
+			return $it___;
+		}
+		return $it___->_F_prev();
+	}
+
 	function shuffle(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -508,6 +530,115 @@ namespace std
 					break;
 				}
 			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
+function is_permutation(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			for (; $first1___ != $last1___; $first1___->_F_next(), $first2___->_F_next()) {
+				if (!($first1___->_F_this() == $first2___->_F_this())) {
+					$c0 = iter_distance($first1___, $last1___);
+					if ($c0 == 1) {
+						return false;
+					}
+					$last2 = clone iter_next($first2___, $c0);
+					$it0   = clone $first1___;
+					for (; $it0 != $last1___; $it0->_F_next()) {
+						$it1 = clone $first1___;
+						for (; $it1 != $it0; $it1->_F_next()) {
+							if ($it1->_F_this() == $it0->_F_this()) {
+								goto JUMP_NEXT_;
+							}
+						}
+						$c2 = 0;
+						$it1 = clone $first2___;
+						for (; $it1 != $last2; $it1->_F_next()) {
+							if ($it0->_F_this() == $it1->_F_this()) {
+								++$c2;
+							}
+						}
+						if ($c2 == 0) {
+							return false;
+						}
+						$c1 = 1;
+						$it1 = clone $it0->_F_next();
+						for (; $it1 != $last1___; $it1->_F_next()) {
+							if ($it0->_F_this() == $it1->_F_this()) {
+								++$c1;
+							}
+						}
+						if ($c1 != $c2) {
+							return false;
+						}
+				JUMP_NEXT_:
+					}
+				}
+			}
+			return true;
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
+	function is_permutation_b(
+		  basic_iterator $first1___
+		, basic_iterator $last1___
+		, basic_iterator $first2___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, $r) { return $l == $r; };
+			}
+			for (; $first1___ != $last1___; $first1___->_F_next(), $first2___->_F_next()) {
+				if (!$p($first1___->_F_this(), $first2___->_F_this())) {
+					$c0 = iter_distance($first1___, $last1___);
+					if ($c0 == 1) {
+						return false;
+					}
+					$last2 = clone iter_next($first2___, $c0);
+					$it0   = clone $first1___;
+					for (; $it0 != $last1___; $it0->_F_next()) {
+						$it1 = clone $first1___;
+						for (; $it1 != $it0; $it1->_F_next()) {
+							if ($p($it1->_F_this(), $it0->_F_this())) {
+								goto JUMP_NEXT_;
+							}
+						}
+						$c2 = 0;
+						$it1 = clone $first2___;
+						for (; $it1 != $last2; $it1->_F_next()) {
+							if ($p($it0->_F_this(), $it1->_F_this())) {
+								++$c2;
+							}
+						}
+						if ($c2 == 0) {
+							return false;
+						}
+						$c1 = 1;
+						$it1 = clone $it0->_F_next();
+						for (; $it1 != $last1___; $it1->_F_next()) {
+							if ($p($it0->_F_this(), $it1->_F_this())) {
+								++$c1;
+							}
+						}
+						if ($c1 != $c2) {
+							return false;
+						}
+				JUMP_NEXT_:
+					}
+				}
+			}
+			return true;
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
