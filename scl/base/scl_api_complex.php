@@ -33,10 +33,12 @@ namespace std
 
 	function cnorm(complex $z___) : float
 	{
-		if (\is_infinite($z___->_M_real))
+		if (\is_infinite($z___->_M_real)) {
 			return \abs($z___->_M_real);
-		if (\is_infinite($z___->_M_imag))
+		}
+		if (\is_infinite($z___->_M_imag)) {
 			return \abs($z___->_M_imag);
+		}
 		return $z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag;
 	}
 
@@ -88,7 +90,6 @@ namespace std
 		$W = \atan2($z1___->_M_imag, $z1___->_M_real);
 		$R = \exp($l * $z2___->_M_real - $z2___->_M_imag * $W);
 		$B = $W * $z2___->_M_real + $z2___->_M_imag * $l;
-
 		return new complex($R * \cos($B), $R * \sin($B));
 	}
 
@@ -97,22 +98,18 @@ namespace std
 		if (_F_FP_zeroed($z___->_M_real, $z___->_M_imag)) {
 			return $x;
 		}
-
 		$a = \abs($z___->_M_real);
 		$b = \abs($z___->_M_imag);
-
 		$W = (($a >= $b)
 			? \sqrt($a) * \sqrt(0.5 * (1.0 + \sqrt(1.0 + ($b / $a) * ($b / $a))))
 			: \sqrt($b) * \sqrt(0.5 * (($a / $b) + \sqrt(1.0 + ($a / $b) * ($a / $b))))
 		);
-
 		if ($z___->_M_real > 0.0 || _F_FP_iszero($z___->_M_real)) {
 			return new complex(
 				  $W
 				, $z___->_M_imag / (2.0 * $W)
 			);
 		}
-
 		$I = ($z___->_M_imag > 0.0 || _F_FP_iszero($z___->_M_imag)) ? $W : -($W);
 		return new complex(
 			  $z___->_M_imag / (2.0 * $I)
@@ -138,26 +135,22 @@ namespace std
 		if (\is_nan($rho___) || signbit($rho___)) {
 			return new complex(\NAN, \NAN);
 		}
-
 		if (\is_nan($theta___)) {
 			if (\is_infinite($rho___)) {
 					return new complex($rho___, $theta___);
 			}
 			return new complex($theta___, $theta___);
 		}
-
 		if (\is_infinite($theta___)) {
 			if (\is_infinite($rho___)) {
 					return new complex($rho___, \NAN);
 			}
 			return new complex(\NAN, \NAN);
 		}
-
 		$R = $rho___ * \cos($theta___);
 		if (\is_nan($R)) {
 			$R = 0.0;
 		}
-			
 		$I = $rho___ * \sin($theta___);
 		if (\is_nan($I)) {
 			$I = 0.0;
@@ -224,15 +217,12 @@ namespace std
 		if (\is_infinite($x___)) {
 			return new complex(\INF, \INF);
 		}
-
 		if (\is_nan($x___)) {
 			return new complex(\NAN, \NAN);
 		}
-
 		if (_F_FP_iszero($x___)) {
 			return new complex(0.0, 0.0);
 		}
-
 		return new complex($z___->_M_real * x___, $z___->_M_imag * x___);
 	}
 
@@ -241,15 +231,12 @@ namespace std
 		if (\is_infinite($x___)) {
 			return new complex(\INF, \INF);
 		}
-
 		if (\is_nan($x___)) {
 			return new complex(\NAN, \NAN);
 		}
-
 		if (_F_FP_iszero($x___)) {
 			return new complex(0.0, 0.0);
 		}
-
 		return new complex($z___->_M_real / x___, $z___->_M_imag / x___);
 	}
 
