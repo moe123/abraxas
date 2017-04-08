@@ -25,7 +25,7 @@ namespace std
 		if (\is_array($v___)) {
 			$a = [];
 			foreach ($v___ as $k => $v) {
-				$a[$k] = $this->_F_deep_copy($v);
+				$a[$k] = $this->_F_copy($v);
 			}
 			return $a;
 		}

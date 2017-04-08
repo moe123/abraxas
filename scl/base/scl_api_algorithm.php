@@ -557,13 +557,6 @@ namespace std
 				if ($c___::container_category === basic_iterable_tag::basic_forward_list) {
 					return $c___->_F_find_data($val___) > 0 ? true : false;
 				} else {
-					/*
-					foreach ($c___->_M_container as $k => $v) {
-						if ($v == $val___) {
-							return true;
-						}
-					}
-					*/
 					return \in_array($val___, $c___->_M_container);
 				}
 			} else {
@@ -803,7 +796,7 @@ namespace std
 		$it___->_F_seek($pos);
 	}
 
-	function & _F__F_iter_assign_position(basic_iterator &$it___, int $pos___, $val___)
+	function & _F_iter_assign_position(basic_iterator &$it___, int $pos___, $val___)
 	{
 		$pos = $it___->_F_pos();
 		$it___->_F_seek($pos___);
@@ -812,7 +805,7 @@ namespace std
 		return $it___;
 	}
 
-	function & _F__F_iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
+	function & _F_iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
 	{
 		$to___->_F_assign($from___->_F_this());
 		return $to___;

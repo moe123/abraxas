@@ -481,9 +481,6 @@ namespace std
 
 	function strtod(string $str___, &$endptr___ = null)
 	{
-		if ($base___ > 36 || $base___ < 2) {
-			return 0;
-		}
 		$r = \floatval($str___);
 		if (!\is_null($endptr___)) {
 			if (false !== ($span = \strpos($str___, \strval(\abs($r))))) {
