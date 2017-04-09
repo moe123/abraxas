@@ -392,14 +392,17 @@ std\cout("modf(145.8, &intp) = ")(std\modf(145.8, $intp))(" ")($intp)(std\endl);
 
 $v = std\make_vector(1, 3, 3, 6, 7, 8, 9);
 
-std\cout(std\span_median($v->begin(), $v->end()))(std\endl)(std\endl);
+std\cout("median     = ")(std\span_median($v->begin(), $v->end()))(std\endl)(std\endl);
 
-std\cout(std\exp2(4))(std\endl);
-std\cout(std\exp2(0.5))(std\endl);
-std\cout(std\exp2(-4))(std\endl);
-std\cout(std\exp2(-0))(std\endl);
-std\cout(std\exp2(-(std\INFINITY)))(std\endl);
-std\cout(std\exp2(1024))(std\endl);
+std\cout("expm1(-Inf)    = ")(std\expm1(-(std\INFINITY)))(std\endl);
+
+
+std\cout("exp2(4)    = ")(std\exp2(4))(std\endl);
+std\cout("exp2(0.5)  = ")(std\exp2(0.5))(std\endl);
+std\cout("exp2(-4)   = ")(std\exp2(-4))(std\endl);
+std\cout("exp2(-0)   = ")(std\exp2(-0))(std\endl);
+std\cout("exp2(-Inf) = ")(std\exp2(-(std\INFINITY)))(std\endl);
+std\cout("exp2(1024) = ")(std\exp2(1024))(std\endl);
 
 std\stop(0);
 

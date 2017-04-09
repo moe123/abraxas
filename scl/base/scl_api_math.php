@@ -505,7 +505,11 @@ namespace std
 		if ($x___ instanceof \std\complex) {
 			return cexp($x___);
 		}
-		return \exp($x___);
+		$x = \exp($x___);
+		if (\is_infinite($x)) {
+			seterrno(ERANGE);
+		}
+		return $x;
 	}
 
 	function exp2($x___)
@@ -513,11 +517,21 @@ namespace std
 		if ($x___ instanceof \std\complex) {
 			return cpow(new complex(2.0), $x___);
 		}
-		return \pow(2, $x___);
+		$x = \pow(2, $x___);
+		if (\is_infinite($x)) {
+			seterrno(ERANGE);
+		}
+		return $x;
 	}
 
 	function expm1(float $x___)
-	{ return \expm1($x___); }
+	{
+		$x = \expm1($x___);
+		if (\is_infinite($x)) {
+			seterrno(ERANGE);
+		}
+		return $x;
+	}
 
 	function pow($x___, $y___) {
 		if ($x___ instanceof \std\complex || $y___ instanceof \std\complex) {
@@ -542,14 +556,6 @@ namespace std
 
 	function log2(float $x___)
 	{ return \log($x___, 2); }
-
-	function logn($x___)
-	{
-		if ($x___ instanceof \std\complex) {
-			return clog($x___);
-		}
-		return \log($x___);
-	}
 
 	function log10($x___)
 	{
