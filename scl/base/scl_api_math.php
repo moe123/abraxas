@@ -508,6 +508,14 @@ namespace std
 		return \exp($x___);
 	}
 
+	function exp2($x___)
+	{
+		if ($x___ instanceof \std\complex) {
+			return cpow(new complex(2.0), $x___);
+		}
+		return \pow(2, $x___);
+	}
+
 	function expm1(float $x___)
 	{ return \expm1($x___); }
 
