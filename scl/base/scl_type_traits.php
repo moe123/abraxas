@@ -17,6 +17,19 @@
 
 namespace std
 {
+	const string_type     = "string";
+	const array_type      = "array";
+	const object_type     = "object";
+	const resource_type   = "resource";
+	const null_type       = "NULL";
+	const int_type        = "int";
+	const long_type       = "int";
+	const difference_type = "int";
+	const bool_type       = "boolean";
+	const size_type       = "int";
+	const float_type      = "double";
+	const double_type     = "double";
+
 	function is_null($v___)
 	{ return \is_null($v___) || (\is_string($v___) && $v___ === ignore); }
 
@@ -74,6 +87,24 @@ namespace std
 			|| $v___ instanceof \std\quad
 			|| $v___ instanceof \std\quint
 		);
+	}
+
+	function is_pod($v___)
+	{ return \is_scalar($v___); }
+
+	function is_signed($v___)
+	{ return (\is_numeric($v___) && (strval($v___)[0] == '-' || strval($v___)[0] == '+')); }
+
+	function is_unsigned($v___)
+	{ return !(is_signed($v___)); }
+
+	function is_abstract($v___)
+	{
+		if (\is_object($v___)) {
+			$rc = new \ReflectionClass($v___);
+			return $rc->isAbstract();
+		}
+		return false;
 	}
 	
 	function is_countable($v___)
