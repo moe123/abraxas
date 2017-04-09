@@ -684,6 +684,9 @@ namespace std
 
 	function erf(float $x___)
 	{ return _F_erf_f77($x___); }
+
+	function erfc(float $x___)
+	{ return (1.0 - (erf($x___))); }
 } /* EONS */
 
 /* EOF */
