@@ -365,7 +365,7 @@ namespace std
 		, 1021 => 2.2471164185779E+307, 1022 => 4.4942328371558E+307, 1023 => 8.9884656743116E+307
 	];
 
-	function frexp(float $x___, int &$e___)
+	function _F_frexp(float $x___, int &$e___)
 	{
 		$i = 1024 / 2;
 		$j = 1024 / 2;
@@ -414,7 +414,7 @@ namespace std
 		return $x___;
 	}
 
-	function ldexp(float $x___, int $n___)
+	function _F_ldexp(float $x___, int $n___)
 	{
 		if ($n___ < 0.0) {
 			 $x___ /= _N_pow2_tab(-($n___));
@@ -426,8 +426,17 @@ namespace std
 		return $x___;
 	}
 
+	function frexp(float $x___, int &$e___)
+	{
+		$e___ = (\floor(\log($float, 2)) + 1 );
+		return ($x___ * \pow(2, -($e___)));
+	}
+
+	function ldexp(float $x___, int $n___)
+	{ return ($x___ * \pow(2, $n___)); }
+
 	function erf(float $x___)
-	{ return _F_erf_cheung($x___); }
+	{ return _F_erf_f77($x___); }
 }
 
 /* EOF */
