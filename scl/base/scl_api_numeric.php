@@ -17,60 +17,6 @@
 
 namespace std
 {
-	function _F_erf_cheung(float $x___)
-	{
-		$a = copysign(1.0, $x___);
-		$x = \abs($x___);
-		$v = (1.0 / (1.0 + 0.3275911 * $x));
-		return ($a * (1.0 - (
-			((((1.061405429 * $v + -1.4531520271) * $v) + 1.421413741) 
-				* $v + -0.284496736) * $v + 0.254829592) * $v * \exp(-$x * $x)
-		));
-	}
-
-	function _F_erf_f77(float $x___)
-	{
-		$v = (1 / (1 + 0.5 * \abs($x___)));
-		$Τ = $v * \exp(
-				- $x___ * $x___
-				- 1.26551223
-				+ 1.00002368 * $v
-				+ 0.37409196 * $v * $v
-				+ 0.09678418 * $v * $v * $v
-				- 0.18628806 * $v * $v * $v * $v
-				+ 0.27886807 * $v * $v * $v * $v * $v
-				- 1.13520398 * $v * $v * $v * $v * $v * $v
-				+ 1.48851587 * $v * $v * $v * $v * $v * $v * $v
-				- 0.82215223 * $v * $v * $v * $v * $v * $v * $v * $v
-				+ 0.17087277 * $v * $v * $v * $v * $v * $v * $v * $v * $v
-		);
-		if ($x___ >= 0) {
-			return 1 - $Τ;
-		}
-		return $Τ - 1;
-	}
-
-	function _F_npdf(float $x___, float $mu___, float $sigma___)
-	{
-		return ((\exp(-1.0 * ($x___ - $mu___) * ($x___ - $mu___) /
-			(2.0 * $sigma___ * $sigma___)) / ($sigma___ * 2.50662827463100024161)
-		));
-	}
-
-	function _F_ncdf_1(float $x___, float $mu___, float $sigma___)
-	{ return (0.5 * (1.0 + _F_erf_cheung(($x___ - $mu___) / ($sigma___ * 1.41421356237309514547)))); }
-
-	function _F_ncdf_2(float $x___, float $mu___, float $sigma___)
-	{
-		$a = 0;
-		for ($i = 1; $i < (1000000 - 1); $i++) {
-			$a += npdf($x___ + $i * ($x___ + 1000) / 1000000, $mu___, $sigma___);
-		}
-		return ((($x___ + 1000) / 1000000) * ((npdf($x___, $mu___, $sigma___)
-			+ npdf(-1000, $mu___, $sigma___)) / 2.0 + $a)
-		);
-	}
-
 	function _F_lcm(int $a___, int $b___)
 	{
 		$c = _F_gcd($a___, $b___);

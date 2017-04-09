@@ -18,35 +18,8 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
-namespace
-{
-	if (\intval(PHP_MAJOR_VERSION . PHP_MINOR_VERSION . PHP_RELEASE_VERSION) < 7200) {
-		define('PHP_FLOAT_EPSILON', 0.00000011920928955078125);
-		define('PHP_FLOAT_MIN'    , \floatval(PHP_INT_MIN));
-		define('PHP_FLOAT_MAX'    , \floatval(PHP_INT_MAX));
-	}
-} /* EONS */
-
 namespace std
 {
-	define('std\FLT_EPSILON'  , PHP_FLOAT_EPSILON);
-	define('std\FLT_SIZE'     , PHP_INT_SIZE);
-	define('std\FLT_MAX'      , PHP_FLOAT_MAX);
-	define('std\FLT_LOWEST'   , -PHP_FLOAT_MAX);
-	define('std\FLT_MIN'      , PHP_FLOAT_MIN);
-	define('std\FLT_RADIX'    , 2);
-
-	define('std\FE_DOWNWARD'   , 10);
-	define('std\FE_TONEAREST'  , 20);
-	define('std\FE_TOWARDZERO' , 30);
-	define('std\FE_UPWARD'     , 40);
-
-	define('std\SINT_EPSILON' , 0);
-	define('std\SINT_SIZE'    , PHP_INT_SIZE);
-	define('std\SINT_MAX'     , PHP_INT_MAX);
-	define('std\SINT_LOWEST'  , -PHP_INT_MAX);
-	define('std\SINT_MIN'     , PHP_INT_MIN);
-
 	define('std\FP_NAN'       , 1);
 	define('std\FP_INFINITE'  , 2);
 	define('std\FP_ZERO'      , 3);
@@ -73,102 +46,13 @@ namespace std
 	define('std\M_SQRT2'    , 1.41421356237309504880168872420969808 ); /* sqrt(2)        */
 	define('std\M_SQRT1_2'  , 0.707106781186547524400844362104849039); /* 1/sqrt(2)      */
 
+	define('std\FE_DOWNWARD'   , 10);
+	define('std\FE_TONEAREST'  , 20);
+	define('std\FE_TOWARDZERO' , 30);
+	define('std\FE_UPWARD'     , 40);
+
 	define('std\FP_ILOGB0'   , (-2147483647 - 1));
 	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
-
-	function _F_compute_nan()
-	{ return @(0.0/0.0); }
-
-	function _F_compute_inf()
-	{ return @(1.0/0.0); }
-
-	function _F_compute_pi()
-	{
-		static $_S_PI_const = null;
-		if (\is_null($_S_PI_const)) {
-			$_S_PI_const = \atan2(+0.0, -0.0);
-		}
-		return $_S_PI_const;
-	}
- 
-	function _F_compute_e()
-	{
-		static $_S_E_const = null;
-		if (\is_null($_S_E_const)) {
-			$_S_E_const = \exp(1.0);
-		}
-		return $_S_E_const;
-	}
-
-	function _F_FP_equal(float $l___, float $r___)
-	{
-		if (_F_FP_iszero($l___) && _F_FP_iszero($r___)) {
-			return true;
-		}
-		return ($l___ == $r___ || \abs($l___ - $r___) < FLT_EPSILON);
-	}
-
-	function _F_FP_istwo(float $x___)
-	{ return ($x___ == 2.0 || _F_FP_equal($x___, 2.0)); }
-
-	function _F_FP_isone(float $x___)
-	{ return ($x___ == 1.0 || _F_FP_equal($x___, 1.0)); }
-
-	function _F_FP_iszero(float $x___)
-	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < FLT_EPSILON); }
-
-	function _F_FP_zeroed(...$args___)
-	{
-		$ret = false;
-		foreach ($args___ as $x) {
-			if (_F_FP_iszero($x)) {
-				$ret = true;
-			} else {
-				$ret = false;
-				break;
-			}
-		}
-		return $ret;
-	}
-
-	function _F_FP_ishalf(float $x___)
-	{ return \abs($x___) - \intval(\abs($x___)) == 0.5; }
-
-	function _F_FP_nearest_int(float $x___)
-	{
-		if (_F_FP_ishalf($x___)) {
-			if (\fmod(\ceil($x___), 2.0) == 0) {
-				$x = \ceil($x___);
-			} else {
-				$x = \floor($x___);
-			}
-		} else {
-			$x = \ceil($x___);
-		}
-		return $x;
-	}
-
-	function _F_FP_extract_sign($x___)
-	{
-		$x = \strval($x___);
-		return ($x[0] == '-' || $x[0] == '+') ? $x[0] : '+';
-	}
-
-	function _F_FP_same_sign(float $x___, float $y___)
-	{
-		$sx = _F_FP_extract_sign($x___);
-		$sy = _F_FP_extract_sign($y___);
-		return ($sx === $sy);
-	}
-
-	function _F_get_sign($x___)
-	{
-		if (\is_numeric($x___)) {
-			$x = \strval($x___);
-			return ($x[0] == '-') ? -1 : ($x[0] == '+') ? 1 : 0;
-		}
-		return SINT_MAX;
-	}
 
 	$GLOBALS["^std@_g_signgam"] = 1;
 	$GLOBALS["^std@_g_rndmode"] = FE_TONEAREST;
@@ -788,6 +672,18 @@ namespace std
 		$g = lgamma_r($x___, $sign);
 		return $sign * \exp($g);
 	}
+
+	function frexp(float $x___, int &$e___)
+	{
+		$e___ = (\floor(\log($float, 2)) + 1 );
+		return ($x___ * \pow(2, -($e___)));
+	}
+
+	function ldexp(float $x___, int $n___)
+	{ return ($x___ * \pow(2, $n___)); }
+
+	function erf(float $x___)
+	{ return _F_erf_f77($x___); }
 } /* EONS */
 
 /* EOF */
