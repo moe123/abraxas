@@ -206,11 +206,11 @@ std\copy($v->begin(2), $v->begin(4), std\duotator(
 	  std\duotator(
 		  std\back_inserter($c1)
 		, std\front_inserter($c2)
-	)
+	  )
 	, std\duotator(
 		  std\back_inserter($c3)
 		, std\front_inserter($c4)
-	)
+	  )
 ));
 
 ```
