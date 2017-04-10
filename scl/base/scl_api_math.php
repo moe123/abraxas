@@ -387,7 +387,7 @@ namespace std
 	function topolar($x___, float &$rho___, float &$theta___)
 	{
 		$rho___   = abs($x___);
-		$theta___ = args($x___);
+		$theta___ = arg($x___);
 	}
 
 	function exp($x___)
