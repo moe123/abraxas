@@ -203,7 +203,7 @@ $c3 = std\make_ordered_list();
 $c4 = std\make_forward_list();
 
 std\copy($v->begin(2), $v->begin(4), std\duotator(
-	std\duotator(
+	  std\duotator(
 		  std\back_inserter($c1)
 		, std\front_inserter($c2)
 	)
