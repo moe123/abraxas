@@ -384,6 +384,12 @@ namespace std
 	function polar(float $rho___, float $theta___ = 0.0)
 	{ return cpolar($rho___, $theta___); }
 
+	function topolar($x___, float &$rho___, float &$theta___)
+	{
+		$rho___   = abs($x___);
+		$theta___ = args($x___);
+	}
+
 	function exp($x___)
 	{
 		if ($x___ instanceof \std\complex) {
