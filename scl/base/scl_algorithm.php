@@ -303,6 +303,16 @@ namespace std
 	}
 
 	function minmax(
+		  &$v1___
+		, &$v2___
+	) {
+		if ($v1___ < $v2___) {
+			return new pair($v2___, $v1___);
+		}
+		return new pair($v1___, $v2___);
+	}
+
+	function minmax_b(
 		           &$v1___
 		,          &$v2___
 		, callable  $binaryPredicate___ = null
@@ -318,6 +328,23 @@ namespace std
 	}
 
 	function min_element(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) {
+		if ($first___ == $last___) {
+			return $last___;
+		}
+		$smallest = clone $first___;
+		$first___->_F_next();
+		for (; $first___ != $last___; $first___->_F_next()) {
+			if ($first___->_F_this() < $smallest->_F_this()) {
+				$smallest = clone $first___;
+			}
+		}
+		return $smallest;
+	}
+
+	function min_element_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $binaryPredicate___ = null
@@ -342,6 +369,23 @@ namespace std
 	function max_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
+	) {
+		if ($first___ == $last___) {
+			return $last___;
+		}
+		$largest = clone $first___;
+		$first___->_F_next();
+		for (; $first___ != $last___; $first___->_F_next()) {
+			if ($largest->_F_this() < $first___->_F_this()) {
+				$largest = clone $first___;
+			}
+		}
+		return $largest;
+	}
+
+	function max_element_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
 		, callable       $binaryPredicate___ = null
 	) {
 		$p = $binaryPredicate___;
@@ -359,6 +403,99 @@ namespace std
 			}
 		}
 		return $largest;
+	}
+
+	function minmax_element(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) {
+		$pair_it = new pair(clone $first___, clone $first___);
+		if ($first___ != $last___) {
+			if ($first___->_F_next() != $last___) {
+				 if ($first___->_F_this() < $pair_it->first->_F_this()) {
+					$pair_it->first = clone $first___;
+				} else {
+					$pair_it->second = clone $first___;
+				}
+				while ($first___->_F_next() != $last___) {
+					$it = clone $first___;
+					if ($first___->_F_next() == $last___) {
+							if ($it->_F_this() < $pair_it->first->_F_this()) {
+								$pair_it->first = clone $it;
+							} else if (!($it->_F_this() < $pair_it->second->_F_this())) {
+								$pair_it->second = clone $it;
+							}
+							break;
+					} else {
+							if ($first___->_F_this() < $it->_F_this()) {
+								if ($first___->_F_this() < $pair_it->first->_F_this()) {
+									$pair_it->first = clone $first___;
+								}
+								if ($it->_F_this() < $pair_it->second->_F_this()) {
+									$pair_it->second = clone $it;
+								}
+							} else {
+								if ($it->_F_this() < $pair_it->first->_F_this()) {
+									$pair_it->first = clone $it;
+								}
+								if ($first___->_F_this() < $pair_it->second->_F_this()) {
+									$pair_it->second = clone $first___;
+								}
+							}
+					}
+				 }
+			}
+		}
+		return $pair_it;
+	}
+
+	function minmax_element_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		$pair_it = new pair(clone $first___, clone $first___);
+		if ($first___ != $last___) {
+			if ($first___->_F_next() != $last___) {
+				 if ($p($first___->_F_this(), $pair_it->first->_F_this())) {
+					$pair_it->first = clone $first___;
+				} else {
+					$pair_it->second = clone $first___;
+				}
+				while ($first___->_F_next() != $last___) {
+					$it = clone $first___;
+					if ($first___->_F_next() == $last___) {
+							if ($p($it->_F_this(), $pair_it->first->_F_this())) {
+								$pair_it->first = clone $it;
+							} else if (!$p($it->_F_this(), $pair_it->second->_F_this())) {
+								$pair_it->second = clone $it;
+							}
+							break;
+					} else {
+							if ($p($first___->_F_this(), $it->_F_this())) {
+								if ($p($first___->_F_this(), $pair_it->first->_F_this())) {
+									$pair_it->first = clone $first___;
+								}
+								if (!$p($it->_F_this(), $pair_it->second->_F_this())) {
+									$pair_it->second = clone $it;
+								}
+							} else {
+								if ($p($it->_F_this(), $pair_it->first->_F_this())) {
+									$pair_it->first = clone $it;
+								}
+								if (!$p($first___->_F_this(), $pair_it->second->_F_this())) {
+									$pair_it->second = clone $first___;
+								}
+							}
+					}
+				 }
+			}
+		}
+		return $pair_it;
 	}
 
 	function mismatch(

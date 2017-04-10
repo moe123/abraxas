@@ -55,19 +55,19 @@ namespace std
 		}
 
 		function u8string_1(u8string &$u8)
-		{ $this->assign_from($u8); }
+		{ $this->assign($u8); }
 
 		function u8string_2(string $s, int $encoding)
-		{ $this->string_assign($s, $encoding); }
+		{ $this->assign_s($s, $encoding); }
 
-		function & assign_from(u8string &$u8)
+		function & assign(u8string &$u8)
 		{
 			$this->_M_container = $u8->_M_container;
 			$this->_M_size      = $u8->_M_size;
 			return $this;
 		}
 
-		function & string_assign_from(string $s, int $encoding = basic_encoding::utf8)
+		function & assign_s(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
@@ -96,7 +96,7 @@ namespace std
 			return $this;
 		}
 
-		function & string_insert_at(int $pos, string $s, int $encoding = basic_encoding::utf8)
+		function & insert_s(int $pos, string $s, int $encoding = basic_encoding::utf8)
 		{
 			$u8 = new u8string($s, $encoding);
 			$this->insert($u8, $pos);
@@ -141,13 +141,13 @@ namespace std
 		function localized_compare(u8string &$u8, locale &$loc)
 		{ return _F_u8_cmp($this, $u8, $loc); }
 
-		function string_compare(string $s8)
+		function compare_s(string $s8)
 		{
 			$u8 = (new u8string)->string_assign($s, $encoding);
 			return _F_u8_cmp($this, $u8);
 		}
 
-		function localized_string_compare(string $s8, locale &$loc)
+		function localized_compare_s(string $s8, locale &$loc)
 		{
 			$u8 = (new u8string)->string_assign($s, $encoding);
 			return _F_u8_cmp($this, $u8, $loc);
@@ -175,7 +175,7 @@ namespace std
 			return $this;
 		}
 
-		function & string_append(string $s, int $encoding = basic_encoding::utf8)
+		function & append_s(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
@@ -213,7 +213,7 @@ namespace std
 			return $this;
 		}
 
-		function & string_prepend(string $s, int $encoding = basic_encoding::utf8)
+		function & prepend_s(string $s, int $encoding = basic_encoding::utf8)
 		{
 			$binlen = 0;
 			$s = u8string::to_utf8($s, $encoding, $binlen);
