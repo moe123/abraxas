@@ -216,7 +216,7 @@ std\copy($v->begin(2), $v->begin(4), std\duotator(
 ```
 
 #### | Algorithms
-A large number of algorithms have been already written, in the same way than `C++ STL`, it requires
+A large number of algorithms have been already written <sub><sup>(1)</sup></sub>, in the same way than `C++ STL`, it requires
 a certain type of iterator. The design is an hybrid one, tacking advantages of 
 existing x functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
@@ -226,6 +226,8 @@ It should be noted that unlike the `C++ STL`, for convenience, (as everything is
 at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
 or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
 (however, for well-known reasons, reusing `Inserters` or `Duo-Iterator` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
+
+<sub><sup>1 - </sup></sub><sub><sup>std\accumulate, std\accumulate_b, std\adjacent_find, std\adjacent_find_b, std\all_of, std\any_of, std\binary_search, std\clamp, std\copy, std\copy_backward, std\copy_if, std\copy_n, std\count, std\count_element, std\count_element_if, std\count_if, std\equal, std\fill, std\fill_n, std\find, std\find_end, std\find_first_of, std\find_if, std\find_if_not, std\for_each, std\for_each_n, std\generate, std\generate_n, std\includes, std\inner_product, std\inner_product_b, std\iota, std\iota_f, std\is_permutation, std\is_permutation_b, std\iter_distance, std\iter_next, std\iter_prev, std\iter_swap, std\lazy_copy, std\lazy_copy_backward, std\lazy_copy_if, std\lazy_copy_n, std\lexicographical_compare, std\lower_bound, std\max, std\max_element, std\max_element_b, std\merge, std\min, std\min_element, std\min_element_b, std\minmax, std\minmax_b, std\minmax_element, std\minmax_element_b, std\mismatch, std\mismatch_b, std\next_permutation, std\next_permutation_b, std\none_of, std\partial_sum, std\partial_sum_b, std\partition, std\partition_point, std\place_fill_n, std\place_generate_n, std\place_iota, std\place_iota_f, std\prev_permutation, std\prev_permutation_b, std\remove, std\remove_if, std\replace, std\replace_if, std\reverse, std\rotate, std\rotate_copy, std\search, std\search_n, std\set_difference, std\set_intersection, std\set_symmetric_difference, std\set_union, std\shuffle, std\sort, std\stable_sort, std\swap, std\swap_ranges, std\transform, std\transform_b, std\transform_s, std\unique, std\unique_b, std\unique_copy, std\unique_copy_b, std\upper_bound</sup></sub>
 
 ```php
 ...
