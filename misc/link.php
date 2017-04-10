@@ -441,7 +441,7 @@ $f3_even = std\make_ordered_list();
 $f4_even = std\make_forward_list();
 
 std\copy($v->begin(), $pv, std\duotator(
-	std\duotator(
+	  std\duotator(
 		  std\back_inserter($f1_even)
 		, std\front_inserter($f2_even)
 	),
