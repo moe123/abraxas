@@ -102,6 +102,11 @@ namespace std
 		}
 	}
 
+	function random_shuffle(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) { shuffle($first___, $last___); }
+
 	function lower_bound(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -226,7 +231,7 @@ namespace std
 		, basic_iterator $last___
 		, basic_iterator $d_out_first___
 	) {
-		return copy(
+		return lazy_copy(
 			  $first___
 			, clone $n_first___
 			, copy($n_first___, $last___, $d_out_first___)
@@ -262,20 +267,41 @@ namespace std
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
 	) {
-		$dist = iter_distance($first___, $last___);
-		while ($dist > 0)
-		{
+		$cnt = iter_distance($first___, $last___);
+		while ($cnt > 0) {
 			$it = clone $first___;
-			$step = \intdiv($dist, 2);
+			$step = \intdiv($cnt, 2);
 			$it->_F_advance($step);
 			if ($unaryPredicate___($it->_F_this())) {
 				$first___ = clone $it->_F_next();
-				$dist -= ($step + 1);
+				$cnt -= ($step + 1);
 			} else {
-				$dist = $step;
+				$cnt = $step;
 			}
 		}
 		return first;
+	}
+
+	function is_partitioned(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $unaryPredicate___
+	) {
+		for (; $first___ != $last___; $first___->_F_next()) {
+			if (!$unaryPredicate___($first___->_F_this())) {
+				break;
+			}
+		}
+		if ( $first___ == $last___ ) {
+			return true;
+		}
+		$first___->_F_next();
+		for (; $first___ != $last___; $first___->_F_next()) {
+			if ($unaryPredicate___($first___->_F_this())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	function min(
@@ -420,30 +446,30 @@ namespace std
 				while ($first___->_F_next() != $last___) {
 					$it = clone $first___;
 					if ($first___->_F_next() == $last___) {
-							if ($it->_F_this() < $pair_it->first->_F_this()) {
-								$pair_it->first = clone $it;
-							} else if (!($it->_F_this() < $pair_it->second->_F_this())) {
+						if ($it->_F_this() < $pair_it->first->_F_this()) {
+							$pair_it->first = clone $it;
+						} else if (!($it->_F_this() < $pair_it->second->_F_this())) {
+							$pair_it->second = clone $it;
+						}
+						break;
+					} else {
+						if ($first___->_F_this() < $it->_F_this()) {
+							if ($first___->_F_this() < $pair_it->first->_F_this()) {
+								$pair_it->first = clone $first___;
+							}
+							if ($it->_F_this() < $pair_it->second->_F_this()) {
 								$pair_it->second = clone $it;
 							}
-							break;
-					} else {
-							if ($first___->_F_this() < $it->_F_this()) {
-								if ($first___->_F_this() < $pair_it->first->_F_this()) {
-									$pair_it->first = clone $first___;
-								}
-								if ($it->_F_this() < $pair_it->second->_F_this()) {
-									$pair_it->second = clone $it;
-								}
-							} else {
-								if ($it->_F_this() < $pair_it->first->_F_this()) {
-									$pair_it->first = clone $it;
-								}
-								if ($first___->_F_this() < $pair_it->second->_F_this()) {
-									$pair_it->second = clone $first___;
-								}
+						} else {
+							if ($it->_F_this() < $pair_it->first->_F_this()) {
+								$pair_it->first = clone $it;
 							}
+							if ($first___->_F_this() < $pair_it->second->_F_this()) {
+								$pair_it->second = clone $first___;
+							}
+						}
 					}
-				 }
+				}
 			}
 		}
 		return $pair_it;
@@ -691,7 +717,7 @@ namespace std
 						$it1 = clone $first1___;
 						for (; $it1 != $it0; $it1->_F_next()) {
 							if ($it1->_F_this() == $it0->_F_this()) {
-								goto JUMP_NEXT_;
+								goto NEXT_ITER;
 							}
 						}
 						$c2 = 0;
@@ -714,7 +740,7 @@ namespace std
 						if ($c1 != $c2) {
 							return false;
 						}
-				JUMP_NEXT_:
+				NEXT_ITER:
 					}
 				}
 			}
@@ -748,7 +774,7 @@ namespace std
 						$it1 = clone $first1___;
 						for (; $it1 != $it0; $it1->_F_next()) {
 							if ($p($it1->_F_this(), $it0->_F_this())) {
-								goto JUMP_NEXT_;
+								goto NEXT_ITER;
 							}
 						}
 						$c2 = 0;
@@ -771,7 +797,7 @@ namespace std
 						if ($c1 != $c2) {
 							return false;
 						}
-				JUMP_NEXT_:
+				NEXT_ITER:
 					}
 				}
 			}
@@ -1617,6 +1643,41 @@ namespace std
 		return false;
 	}
 
+	function equal_range(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		,                $val___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first1___::iterator_category === $last1___::iterator_category) {
+			$p = $binaryPredicate___;
+			if (\is_null($p)) {
+				$p = function ($l, $r) { return $l < $r; };
+			}
+			while ($cnt != 0) {
+				$step = \intdiv($cnt, 2);
+				$it = clone $first___;
+				$it->_F_advance($step);
+				if ($p($it->_F_this(), $val___)) {
+						$first___ = clone $it->_F_next();
+						$cnt -= ($step + 1);
+				} else if ($p($val___, $it->_F_this())) {
+						$last___ = clone $it;
+						$cnt = $step;
+				} else {
+						$it2 = clone $it;
+						return new pair(
+							lower_bound($first___, $it, $val___, $p),
+							upper_bound($it2->_F_next(), $last___, $val___, $p)
+						);
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return new pair($first___, $first___);
+	}
+
 	function count_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1715,7 +1776,7 @@ namespace std
 		}
 		while ($first1___ != $last1___) {
 			if (first2 == last2) {
-				return copy($first1___, $last1___, $out___);
+				return lazy_copy($first1___, $last1___, $out___);
 			}
 			if ($p($first1___->_F_this(), $first2___->_F_this())) {
 				$out___->_F_assign($first1___->_F_this());
@@ -1745,7 +1806,7 @@ namespace std
 		}
 		while ($first1___ != $last1___) {
 			if ($first2___ == $last2___) {
-				return copy($first1___, $last1___, $out___);
+				return lazy_copy($first1___, $last1___, $out___);
 			}
 			if ($p($first1___->_F_this(), $first2___->_F_this())) {
 				$out___->_F_assign($first1___->_F_this());
@@ -1761,7 +1822,7 @@ namespace std
 				$first2___->_F_next();
 			}
 		}
-		return copy($first2___, $last2___, $out___);
+		return lazy_copy($first2___, $last2___, $out___);
 	}
 
 	function set_union(
@@ -1778,7 +1839,7 @@ namespace std
 		}
 		while ($first1___ != $last1___) {
 			if ($first2___ == $last2___)
-				return copy($first1___, $last1___, $out___);
+				return lazy_copy($first1___, $last1___, $out___);
 			if ($p($first2___->_F_this(), $first1___->_F_this())) {
 				$out___->_F_assign($first2___->_F_this());
 				$first2___->_F_next();
@@ -1791,7 +1852,7 @@ namespace std
 			}
 			$out___->_F_next();
 		}
-		return copy($first2___, $last2___, $out___);
+		return lazy_copy($first2___, $last2___, $out___);
 	}
 
 	function replace(
@@ -1908,7 +1969,7 @@ namespace std
 	) {
 		while ($first1___ != $last1___) {
 			$c = $unaryOperation___($first1___->_F_this());
-			copy($c->begin(), $c->end(), $out___);
+			lazy_copy($c->begin(), $c->end(), $out___);
 			$first1___->_F_next();
 		}
 	}
