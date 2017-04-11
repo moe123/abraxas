@@ -1838,8 +1838,9 @@ namespace std
 			$p = function ($l, $r) { return $l < $r; };
 		}
 		while ($first1___ != $last1___) {
-			if ($first2___ == $last2___)
+			if ($first2___ == $last2___) {
 				return lazy_copy($first1___, $last1___, $out___);
+			}
 			if ($p($first2___->_F_this(), $first1___->_F_this())) {
 				$out___->_F_assign($first2___->_F_this());
 				$first2___->_F_next();
@@ -1996,6 +1997,193 @@ namespace std
 			$first2___->_F_next();
 		}
 		return ($first1___ == $last1___) && ($first2___ != $last2___);
+	}
+
+	function heap_siftup(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, int            $len___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		if ($len___ > 1) {
+			$len___ = \intdiv(($len___ - 2), 2);
+			$it = clone $first___;
+			$it->_F_advance($len___);
+			if ($p($it->_F_this(), $last___->_F_prev()->_F_this())) {
+				$top = _F_copy($last___->_F_this());
+				do {
+					$last___->_F_assign($it->_F_this());
+					$last___ = clone $it;
+					if ($len___ == 0) {
+						break;
+					}
+					$len___ = \intdiv(($len___ - 1), 2);
+					$it = clone $first___;
+					$it->_F_advance($len___);
+				} while ($p($it->_F_this(), $top));
+				$last___->_F_assign($top);
+			}
+		}
+	}
+
+	function heap_siftdown(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, basic_iterator $start___
+		, int            $len___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		$child_idx = $start___->_F_pos() - $first___->_F_pos();
+		if ($len___ < 2 || \indiv(($len___ - 2), 2) < $child_idx) {
+			return;
+		}
+		$child_idx = 2 * $child_idx + 1;
+		$child_it = clone $first___;
+		$child_it->_F_advance($child_idx);
+
+		$it = clone $child_it;
+		$it->_F_next();
+		if (($child_idx + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
+			$child_it->_F_next();
+			++$child_idx;
+		}
+		if ($p($child_it->_F_this(), $start___->_F_this())) {
+			return;
+		}
+		$top = _F_copy($start___->_F_this());
+		do {
+			$start___->_F_assign($child_it->_F_this());
+			$start___ = clone $child_it;
+			if (\intdiv(($len___ - 2), 2) < $child_idx) {
+				break;
+			}
+			$child_idx = 2 * $child_idx + 1;
+			$child_it = clone $first___;
+			$child_it->_F_advance($child_idx);
+
+			$it = clone $child_it;
+			$it->_F_next();
+
+			if (($child_idx + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
+				$child_it->_F_next();
+				++$child_idx;
+			}
+		} while (!$p($child_it->_F_this(), $top));
+		$start___->_F_assign($top);
+	}
+
+	function push_heap(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		heap_siftup(
+			  $first___
+			, $last___
+			, ($last___->_F_pos() - $first___->_F_pos())
+			, $p
+		);
+	}
+
+	function pop_heap(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		$n  = $last___->_F_pos() - $first___->_F_pos();
+		if ($n > 1) {
+			iter_swap($first___, $last___->_F_prev());
+			heap_siftdown(
+				  $first___
+				, $last___
+				, clone $first___
+				, ($n - 1)
+				, $p
+			);
+		}
+	}
+
+	function make_heap(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		$n  = $last___->_F_pos() - $first___->_F_pos();
+		if ($n > 1) {
+			for ($step = \intdiv(($n - 2), 2); $step >= 0; --$step) {
+				$start = clone $first___;
+				$start->_F_advance($step);
+				heap_siftdown($first___, $last___, $start, $n, $p);
+			}
+		}
+	}
+
+	function is_sorted_until(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) {
+		if ($first___ != $last___) {
+			$it = clone $last___;
+			while ($it->_F_next() != $last___) {
+				if ($it->_F_this() < $last___->_F_this()) {
+					return $it;
+				}
+				$last___ = clone $it;
+			}
+		}
+		return $last___;
+	}
+
+	function is_sorted_until_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		if ($first___ != $last___) {
+			$it = clone $last___;
+			while ($it->_F_next() != $last___) {
+				if ($p($it->_F_this(), $last___->_F_this())) {
+					return $it;
+				}
+				$last___ = clone $it;
+			}
+		}
+		return $last___;
+	}
+
+	function is_sorted(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		if (\is_null($binaryPredicate___)) {
+			return is_sorted_until($first___, $last___) == $last___;
+		}
+		return is_sorted_until_b($first___, $last___, $binaryPredicate___) == $last___;
 	}
 
 	function sort(
