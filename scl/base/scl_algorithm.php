@@ -129,9 +129,9 @@ namespace std
 				}
 				$it->_F_advance($step);
 				if ($p($it->_F_this(), $val___)) {
-						$it->_F_next();
-						$first___ = clone $it;
-						$cnt -= $step + 1;
+					$it->_F_next();
+					$first___ = clone $it;
+					$cnt -= $step + 1;
 				} else {
 					$cnt = $step;
 				}
@@ -162,9 +162,9 @@ namespace std
 				}
 				$it->_F_advance($step);
 				if (!$p($val___, $it->_F_this())) {
-						$it->_F_next();
-						$first___ = clone $it;
-						$cnt -= $step + 1;
+					$it->_F_next();
+					$first___ = clone $it;
+					$cnt -= $step + 1;
 				} else {
 					$cnt = $step;
 				}
