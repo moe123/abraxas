@@ -495,28 +495,28 @@ namespace std
 				while ($first___->_F_next() != $last___) {
 					$it = clone $first___;
 					if ($first___->_F_next() == $last___) {
-							if ($p($it->_F_this(), $pair_it->first->_F_this())) {
-								$pair_it->first = clone $it;
-							} else if (!$p($it->_F_this(), $pair_it->second->_F_this())) {
+						if ($p($it->_F_this(), $pair_it->first->_F_this())) {
+							$pair_it->first = clone $it;
+						} else if (!$p($it->_F_this(), $pair_it->second->_F_this())) {
+							$pair_it->second = clone $it;
+						}
+						break;
+					} else {
+						if ($p($first___->_F_this(), $it->_F_this())) {
+							if ($p($first___->_F_this(), $pair_it->first->_F_this())) {
+								$pair_it->first = clone $first___;
+							}
+							if (!$p($it->_F_this(), $pair_it->second->_F_this())) {
 								$pair_it->second = clone $it;
 							}
-							break;
-					} else {
-							if ($p($first___->_F_this(), $it->_F_this())) {
-								if ($p($first___->_F_this(), $pair_it->first->_F_this())) {
-									$pair_it->first = clone $first___;
-								}
-								if (!$p($it->_F_this(), $pair_it->second->_F_this())) {
-									$pair_it->second = clone $it;
-								}
-							} else {
-								if ($p($it->_F_this(), $pair_it->first->_F_this())) {
-									$pair_it->first = clone $it;
-								}
-								if (!$p($first___->_F_this(), $pair_it->second->_F_this())) {
-									$pair_it->second = clone $first___;
-								}
+						} else {
+							if ($p($it->_F_this(), $pair_it->first->_F_this())) {
+								$pair_it->first = clone $it;
 							}
+							if (!$p($first___->_F_this(), $pair_it->second->_F_this())) {
+								$pair_it->second = clone $first___;
+							}
+						}
 					}
 				 }
 			}
@@ -582,11 +582,11 @@ namespace std
 			while (true) {
 				$it1 = clone $it0;
 				if ($it1->_F_this() < $it0->_F_prev()->_F_this()) {
-						$it2 = clone $last___;
-						while (!($it2->_F_prev()->_F_this() < $it0->_F_this())) { /* NOP */ }
-						iter_swap($it0, $it2);
-						reverse($it1, $last___);
-						return true;
+					$it2 = clone $last___;
+					while (!($it2->_F_prev()->_F_this() < $it0->_F_this())) { /* NOP */ }
+					iter_swap($it0, $it2);
+					reverse($it1, $last___);
+					return true;
 				}
 				if ($it0 == $first___) {
 					reverse($first___, $last___);
@@ -619,11 +619,11 @@ namespace std
 			while (true) {
 				$it1 = clone $it0;
 				if ($it1->_F_this() < $it0->_F_prev()->_F_this()) {
-						$it2 = clone $last___;
-						while (!($it2->_F_prev()->_F_this() < $it0->_F_this())) { /* NOP */ }
-						iter_swap($it0, $it2);
-						reverse($it1, $last___);
-						return true;
+					$it2 = clone $last___;
+					while (!($it2->_F_prev()->_F_this() < $it0->_F_this())) { /* NOP */ }
+					iter_swap($it0, $it2);
+					reverse($it1, $last___);
+					return true;
 				}
 				if ($it0 == $first___) {
 					reverse($first___, $last___);
@@ -648,11 +648,11 @@ namespace std
 			while (true) {
 				$it1 = clone $it0;
 				if ($p($it0->_F_prev()->_F_this(), $it1->_F_this())) {
-						$it2 = clone $last___;
-						while (!$p($it0->_F_this(), $it2->_F_prev()->_F_this())) { /* NOP */ }
-						iter_swap($it0, $it2);
-						reverse($it1, $last___);
-						return true;
+					$it2 = clone $last___;
+					while (!$p($it0->_F_this(), $it2->_F_prev()->_F_this())) { /* NOP */ }
+					iter_swap($it0, $it2);
+					reverse($it1, $last___);
+					return true;
 				}
 				if ($it0 == $first___) {
 					reverse($first___, $last___);
@@ -682,11 +682,11 @@ namespace std
 			while (true) {
 				$it1 = clone $it0;
 				if ($p($it0->_F_prev()->_F_this(), $it1->_F_this())) {
-						$it2 = clone $last___;
-						while (!$p($it0->_F_this(), $it2->_F_prev()->_F_this())) { /* NOP */ }
-						iter_swap($it0, $it2);
-						reverse($it1, $last___);
-						return true;
+					$it2 = clone $last___;
+					while (!$p($it0->_F_this(), $it2->_F_prev()->_F_this())) { /* NOP */ }
+					iter_swap($it0, $it2);
+					reverse($it1, $last___);
+					return true;
 				}
 				if ($it0 == $first___) {
 					reverse($first___, $last___);
@@ -1433,11 +1433,11 @@ namespace std
 		while (true) {
 			$search = search($first___, $last___, $s_first___, $s_last___);
 			if ($search == $last___) {
-					return $it;
+				return $it;
 			} else {
-					$it = $search;
-					$first___ = clone $it;
-					$first___->_F_next();
+				$it = $search;
+				$first___ = clone $it;
+				$first___->_F_next();
 			}
 		}
 		return $it;
@@ -1454,8 +1454,7 @@ namespace std
 		if (\is_null($p)) {
 			$p = function ($l, $r) { return $l < $r; };
 		}
-		for (; $first2___ != $last2___; $first1___->_F_next())
-		{
+		for (; $first2___ != $last2___; $first1___->_F_next()) {
 			if (($first1___ == $last1___) || $p($first2___->_F_this(), $first1___->_F_this())) {
 				return false;
 			}
@@ -1659,17 +1658,17 @@ namespace std
 				$it = clone $first___;
 				$it->_F_advance($step);
 				if ($p($it->_F_this(), $val___)) {
-						$first___ = clone $it->_F_next();
-						$cnt -= ($step + 1);
+					$first___ = clone $it->_F_next();
+					$cnt -= ($step + 1);
 				} else if ($p($val___, $it->_F_this())) {
-						$last___ = clone $it;
-						$cnt = $step;
+					$last___ = clone $it;
+					$cnt = $step;
 				} else {
-						$it2 = clone $it;
-						return new pair(
-							lower_bound($first___, $it, $val___, $p),
-							upper_bound($it2->_F_next(), $last___, $val___, $p)
-						);
+					$it2 = clone $it;
+					return new pair(
+						lower_bound($first___, $it, $val___, $p),
+						upper_bound($it2->_F_next(), $last___, $val___, $p)
+					);
 				}
 			}
 		} else {
@@ -1746,12 +1745,12 @@ namespace std
 		) {
 			while ($first1___ != $last1___ && $first2___ != $last2___) {
 				if ($p($first1___->_F_this(), $first2___->_F_this())) {
-						$first1___->_F_next();
+					$first1___->_F_next();
 				} else {
 					if (!$p($first2___->_F_this(), $first1___->_F_this())) {
-							$out___->_F_assign($first1___->_F_this());
-							$out___->_F_next();
-							$first1___->_F_next();
+						$out___->_F_assign($first1___->_F_this());
+						$out___->_F_next();
+						$first1___->_F_next();
 					}
 					$first2___->_F_next();
 				}
@@ -2068,10 +2067,8 @@ namespace std
 			$child_pos = 2 * $child_pos + 1;
 			$child_it = clone $first___;
 			$child_it->_F_advance($child_pos);
-
 			$it = clone $child_it;
 			$it->_F_next();
-
 			if (($child_pos + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
 				$child_it->_F_next();
 				++$child_pos;
