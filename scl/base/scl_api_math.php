@@ -589,6 +589,9 @@ namespace std
 	function round(float $x___)
 	{ return \round($x___); }
 
+	function lrint(float $x___)
+	{ return \intval(\round($x___)); }
+
 	function logb(float $x___)
 	{
 		if (\is_infinite($x___)) {
@@ -693,6 +696,12 @@ namespace std
 
 	function erfc(float $x___)
 	{ return (1.0 - (erf($x___))); }
+
+	function sincosf(float $x___, float &$sin___, float &$cos___)
+	{
+		$sin___ = \sin($x___);
+		$cos___ = \cos($x___);
+	}
 } /* EONS */
 
 /* EOF */

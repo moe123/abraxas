@@ -419,18 +419,22 @@ namespace std
 	}
 
 	function _F_FP_ishalf(float $x___)
-	{ return \abs($x___) - \intval(\abs($x___)) == 0.5; }
+	{ return _F_FP_equal($x___, 0.5); }
 
 	function _F_FP_nearest_int(float $x___)
 	{
 		if (_F_FP_ishalf($x___)) {
-			if (\fmod(\ceil($x___), 2.0) == 0) {
+			if (_F_FP_iszero(\fmod(\ceil($x___), 2.0))) {
 				$x = \ceil($x___);
 			} else {
 				$x = \floor($x___);
 			}
 		} else {
-			$x = \ceil($x___);
+			if (!(\intval($x___) & 1)) {
+				$x = \floor($x___);
+			} else {
+				$x = \ceil($x___);
+			}
 		}
 		return $x;
 	}
@@ -439,6 +443,19 @@ namespace std
 	{
 		$x = \strval($x___);
 		return ($x[0] == '-' || $x[0] == '+') ? $x[0] : '+';
+	}
+
+	function _F_FP_del_sign($x___, int &$sign___)
+	{
+		$sign___ = 0;
+		$x = \strval($x___);
+		if ($x[0] == '-') {
+			$sign___ = -1;
+			return \floatval($x___) * (-1);
+		} else if ($x[0] == '+') {
+			$sign___ = 1;
+		}
+		return \floatval($x___);
 	}
 
 	function _F_FP_same_sign(float $x___, float $y___)
@@ -583,7 +600,7 @@ namespace std
 	}
 
 	function _F_ncdf_1(float $x___, float $mu___, float $sigma___)
-	{ return (0.5 * (1.0 + _F_erf_cheung(($x___ - $mu___) / ($sigma___ * 1.41421356237309514547)))); }
+	{ return (0.5 * (1.0 + _F_erf_f77(($x___ - $mu___) / ($sigma___ * 1.41421356237309514547)))); }
 
 	function _F_ncdf_2(float $x___, float $mu___, float $sigma___)
 	{

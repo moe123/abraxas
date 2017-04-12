@@ -2014,7 +2014,7 @@ namespace std
 			$it = clone $first___;
 			$it->_F_advance($len___);
 			if ($p($it->_F_this(), $last___->_F_prev()->_F_this())) {
-				$top = _F_copy($last___->_F_this());
+				$top = $last___->_F_this();
 				do {
 					$last___->_F_assign($it->_F_this());
 					$last___ = clone $it;
@@ -2041,40 +2041,40 @@ namespace std
 		if (\is_null($p)) {
 			$p = function ($l, $r) { return $l < $r; };
 		}
-		$child_idx = $start___->_F_pos() - $first___->_F_pos();
-		if ($len___ < 2 || \indiv(($len___ - 2), 2) < $child_idx) {
+		$child_pos = $start___->_F_pos() - $first___->_F_pos();
+		if ($len___ < 2 || \indiv(($len___ - 2), 2) < $child_pos) {
 			return;
 		}
-		$child_idx = 2 * $child_idx + 1;
+		$child_pos = 2 * $child_pos + 1;
 		$child_it = clone $first___;
-		$child_it->_F_advance($child_idx);
+		$child_it->_F_advance($child_pos);
 
 		$it = clone $child_it;
 		$it->_F_next();
-		if (($child_idx + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
+		if (($child_pos + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
 			$child_it->_F_next();
-			++$child_idx;
+			++$child_pos;
 		}
 		if ($p($child_it->_F_this(), $start___->_F_this())) {
 			return;
 		}
-		$top = _F_copy($start___->_F_this());
+		$top = $start___->_F_this();
 		do {
 			$start___->_F_assign($child_it->_F_this());
 			$start___ = clone $child_it;
-			if (\intdiv(($len___ - 2), 2) < $child_idx) {
+			if (\intdiv(($len___ - 2), 2) < $child_pos) {
 				break;
 			}
-			$child_idx = 2 * $child_idx + 1;
+			$child_pos = 2 * $child_pos + 1;
 			$child_it = clone $first___;
-			$child_it->_F_advance($child_idx);
+			$child_it->_F_advance($child_pos);
 
 			$it = clone $child_it;
 			$it->_F_next();
 
-			if (($child_idx + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
+			if (($child_pos + 1) < $len___ && $p($child_it->_F_this(), $it->_F_this())) {
 				$child_it->_F_next();
-				++$child_idx;
+				++$child_pos;
 			}
 		} while (!$p($child_it->_F_this(), $top));
 		$start___->_F_assign($top);
@@ -2109,10 +2109,11 @@ namespace std
 		$n  = $last___->_F_pos() - $first___->_F_pos();
 		if ($n > 1) {
 			iter_swap($first___, $last___->_F_prev());
+			$start = clone $first___;
 			heap_siftdown(
 				  $first___
 				, $last___
-				, clone $first___
+				, $start
 				, ($n - 1)
 				, $p
 			);
