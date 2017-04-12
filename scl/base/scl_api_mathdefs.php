@@ -447,15 +447,18 @@ namespace std
 
 	function _F_FP_del_sign($x___, int &$sign___)
 	{
-		$sign___ = 0;
-		$x = \strval($x___);
-		if ($x[0] == '-') {
-			$sign___ = -1;
-			return \floatval($x___) * (-1);
-		} else if ($x[0] == '+') {
-			$sign___ = 1;
+		if (\is_numeric($x___)) {
+			$sign___ = 0;
+			$x = \strval($x___);
+			if ($x[0] == '-') {
+				$sign___ = -1;
+				return \floatval($x___) * (-1);
+			} else if ($x[0] == '+') {
+				$sign___ = 1;
+			}
+			return \floatval($x___);
 		}
-		return \floatval($x___);
+		return \NAN;
 	}
 
 	function _F_FP_same_sign(float $x___, float $y___)
@@ -495,7 +498,7 @@ namespace std
 			$x = \strval($x___);
 			return ($x[0] == '-') ? -1 : ($x[0] == '+') ? 1 : 0;
 		}
-		return SINT_MAX;
+		return \NAN;
 	}
 
 	function _F_frexp(float $x___, int &$e___)
