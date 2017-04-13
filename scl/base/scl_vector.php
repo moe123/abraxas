@@ -186,7 +186,7 @@ namespace std
 
 		function & erase(basic_iterator $first, basic_iterator $last)
 		{
-			_F_splice($this, $first, distance($first, $last));
+			_F_splice($this, $first->_F_pos(), distance($first, $last));
 			return $this;
 		}
 

@@ -404,6 +404,20 @@ std\cout("exp2(-0)   = ")(std\exp2(-0))(std\endl);
 std\cout("exp2(-Inf) = ")(std\exp2(-(std\INFINITY)))(std\endl);
 std\cout("exp2(1024) = ")(std\exp2(1024))(std\endl);
 
+function binomial(int $n, int $k)
+{ return (1.0 / (($n + 1) * std\beta($n - $k + 1, $k + 1))); }
+
+std\cout("Pascal's triangle:")(std\endl);
+for ($n = 1; $n < 10; ++$n) {
+	for($k = 0; $k < (20 - $n * 2); ++$k) {
+		std\cout(' ');
+	}
+	for($k = 1; $k < $n; ++$k) {
+		std\cout('   ')(std\round(binomial($n, $k)))(' ');
+	}
+	std\cout(std\endl);
+}
+
 std\stop(0);
 
 $v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);

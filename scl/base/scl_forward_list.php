@@ -186,6 +186,18 @@ namespace std
 			return $this;
 		}
 
+		function & erase(basic_iterator $first, basic_iterator $last)
+		{
+			_F_splice($this, $first->_F_pos(), distance($first, $last));
+			return $this;
+		}
+
+		function & slice_erase(int $start, int $end)
+		{
+			_F_splice($this, $start, ($end - $start));
+			return $this;
+		}
+
 		function & sort(callable $compare = null)
 		{
 			if ($this->_M_size) {
