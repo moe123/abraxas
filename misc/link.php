@@ -405,15 +405,25 @@ std\cout("exp2(-Inf) = ")(std\exp2(-(std\INFINITY)))(std\endl);
 std\cout("exp2(1024) = ")(std\exp2(1024))(std\endl);
 
 function binomial(int $n, int $k)
-{ return (1.0 / (($n + 1) * std\beta($n - $k + 1, $k + 1))); }
+{
+	return (
+		1.0 / (($n + 1) * std\beta($n - $k + 1, $k + 1))
+	);
+}
 
 std\cout("Pascal's triangle:")(std\endl);
+$buf = "";
 for ($n = 1; $n < 10; ++$n) {
 	for($k = 0; $k < (20 - $n * 2); ++$k) {
 		std\cout(' ');
 	}
 	for($k = 1; $k < $n; ++$k) {
-		std\cout('   ')(std\round(binomial($n, $k)))(' ');
+		std\sprintf(
+			  $buf
+			, "% 3d "
+			, std\round(binomial($n, $k))
+		);
+		std\cout($buf);
 	}
 	std\cout(std\endl);
 }
