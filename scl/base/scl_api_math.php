@@ -685,6 +685,9 @@ namespace std
 	function beta(float $x___, float $y___)
 	{ return (\exp(lgamma_s($x___) + lgamma_s($y___) - lgamma_s($x___ + $y___))); }
 
+	function _F_beta(float $x___, float $y___)
+	{ return (tgamma($x___) * tgamma($y___) / tgamma($x___ + $y___)); }
+
 	function frexp(float $x___, int &$e___)
 	{
 		$e___ = (\floor(\log($float, 2)) + 1 );
