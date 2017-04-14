@@ -808,7 +808,6 @@ namespace std
 			$set___ ?
 				  $ios___->setf(ios_base::hex)
 				: $ios___->unsetf(ios_base::hex);
-			$ios___->setf(ios_base::hex);
 			return $ios___;
 		};
 	}
@@ -820,7 +819,6 @@ namespace std
 			$set___ ?
 				  $ios___->setf(ios_base::dec)
 				: $ios___->unsetf(ios_base::dec);
-			$ios___->setf(ios_base::hex);
 			return $ios___;
 		};
 	}
@@ -844,10 +842,28 @@ namespace std
 			$set___ ?
 				  $ios___->setf(ios_base::showbase)
 				: $ios___->unsetf(ios_base::showbase);
-			$ios___->setf(ios_base::hex);
 			return $ios___;
 		};
 	}
+
+	function setiosflags(int $fmtflgs___)
+	{
+		return function & (basic_ios &$ios___) use ($fmtflgs___)
+		{
+			$ios___->setf($fmtflgs___);
+			return $ios___;
+		};
+	}
+
+	function resetiosflags(int $fmtflgs___)
+	{
+		return function & (basic_ios &$ios___) use ($fmtflgs___)
+		{
+			$ios___->unsetf($fmtflgs___);
+			return $ios___;
+		};
+	}
+
 } /* EONS */
 
 /* EOF */
