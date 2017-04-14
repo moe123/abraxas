@@ -863,7 +863,6 @@ namespace std
 			return $ios___;
 		};
 	}
-
 } /* EONS */
 
 /* EOF */
