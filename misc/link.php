@@ -418,7 +418,7 @@ for ($n = 1; $n < 10; ++$n) {
 		std\cout(' ');
 	}
 	for($k = 1; $k < $n; ++$k) {
-		std\cout(std\setfill(' '))(std\setw(3))(std\round(binomial($n, $k)))(' ');
+		std\cout(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(' ');
 	}
 	std\cout(std\endl);
 }
@@ -426,7 +426,7 @@ for ($n = 1; $n < 10; ++$n) {
 std\cout(std\endl);
 std\cout(std\showbase(true))(std\hex(true))(2)(std\showbase(false))(2)(std\endl);
 
-std\stop(0);
+// std\stop(0);
 
 $v = std\make_vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 std\cout("Original vector: ")(std\endl);

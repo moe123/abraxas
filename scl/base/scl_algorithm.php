@@ -2117,6 +2117,23 @@ namespace std
 		}
 	}
 
+	function sort_heap(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		$p = $binaryPredicate___;
+		if (\is_null($p)) {
+			$p = function ($l, $r) { return $l < $r; };
+		}
+		$n  = $last___->_F_pos() - $first___->_F_pos();
+		for (; $n > 1; $last___->_F_prev(), --$n) {
+			iter_swap($first___, $last___->_F_prev());
+			$start = clone $first___;
+			heap_siftdown($first___, $last___, $start, ($n - 1), $p);
+		}
+	}
+
 	function make_heap(
 		  basic_iterator $first___
 		, basic_iterator $last___
