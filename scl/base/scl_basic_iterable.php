@@ -33,7 +33,7 @@ namespace std
 {
 	abstract class basic_iterable_tag
 	{
-		const basic_iterable   = 0;
+		const basic_iterable     = 0;
 		const basic_forward_list = 3;
 		const basic_ordered_list = 1;
 		const basic_ordered_set  = 1;

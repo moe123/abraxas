@@ -418,15 +418,13 @@ for ($n = 1; $n < 10; ++$n) {
 		std\cout(' ');
 	}
 	for($k = 1; $k < $n; ++$k) {
-		std\sprintf(
-			  $buf
-			, "% 3d "
-			, std\round(binomial($n, $k))
-		);
-		std\cout($buf);
+		std\cout(std\setfill(' '))(std\setw(3))(std\round(binomial($n, $k)))(' ');
 	}
 	std\cout(std\endl);
 }
+
+std\cout(std\endl);
+std\cout(std\showbase(true))(std\hex(true))(2)(std\showbase(false))(2)(std\endl);
 
 std\stop(0);
 

@@ -22,9 +22,15 @@ namespace
 
 namespace std
 {
-	const cin  = '\std\cin';
-	const cout = '\std\cout';
-	const cerr = '\std\cerr';
+	const cin       = '\std\cin';
+	const cout      = '\std\cout';
+	const cerr      = '\std\cerr';
+
+	const boolalpha = '\std\boolalpha';
+	const showbase  = '\std\showbase';
+	const hex       = '\std\hex';
+	const dec       = '\std\dec';
+	const oct       = '\std\oct';
 
 	abstract class char_utils
 	{
@@ -92,6 +98,8 @@ namespace std
 	abstract class basic_ios
 	{
 		var $_M_locale   = null;
+		var $_M_width    = 0;
+		var $_M_fill     = " ";
 		var $_M_sstate   = ios_base::goodbit;
 		var $_M_fmtflags = ios_base::nomask;
 
@@ -124,9 +132,9 @@ namespace std
 					}
 				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::hex) != 0)) {
 					if (($this->_M_fmtflags & ios_base::showbase) != 0) {
-						$v___ = \dechex($v___);
-					} else {
 						$v___ = "0x" . \dechex($v___);
+					} else {
+						$v___ = \dechex($v___);
 					}
 				} else if (\is_integer($v___) && (($this->_M_fmtflags & ios_base::oct) != 0)) {
 					$v___ = \decoct($v___);
@@ -135,6 +143,11 @@ namespace std
 				}
 			} else if (\is_bool($v___)) {
 				$v___ = $v___ ? 1 : 0;
+			}
+			if (\is_string($v___)) {
+				$this->_M_width = 0;
+			} else if ($this->_M_width) {
+				$v___ = \str_pad($v___, $this->_M_width, $this->_M_fill, \STR_PAD_LEFT);
 			}
 			return $v___;
 		}
@@ -366,8 +379,13 @@ namespace std
 		var $_M_handle_p = null;
 		var $_M_count_p  = 0;
 
-		function __invoke($d___, int $fls___ = ios_base::nomask)
-		{ return $this->fmtflags_assign($fls___)->write($d___)->fmtflags_clear(); }
+		function __invoke($d___)
+		{
+			if(\is_callable($d___)) {
+				return $d___($this);
+			}
+			return $this->write($d___);
+		}
 
 		function & write($d___, int $c___ = -1)
 		{
@@ -703,28 +721,105 @@ namespace std
 		return $_S_cin;
 	}
 
-	function & cout($d___ = null, int $fl___ = ios_base::nomask)
+	function & cout($d___ = null)
 	{
 		static $_S_cout = null;
 		if (\is_null($_S_cout)) {
 			$_S_cout = new _C_ostream_cout;
 		}
 		if (!\is_null($d___)) {
-			$_S_cout = $_S_cout($d___, $fl___);
+			$_S_cout = $_S_cout($d___);
 		}
 		return $_S_cout;
 	}
 
-	function & cerr($d___ = null, int $fl___ = ios_base::nomask)
+	function & cerr($d___ = null)
 	{
 		static $_S_cerr = null;
 		if (\is_null($_S_cerr)) {
 			$_S_cerr = new _C_ostream_cerr;
 		}
 		if (!\is_null($d___)) {
-			$_S_cerr = $_S_cerr($d___, $fl___);
+			$_S_cerr = $_S_cerr($d___);
 		}
 		return $_S_cerr;
+	}
+
+	function setw(int $n___)
+	{
+		return function & (basic_ios &$ios___) use ($n___)
+		{
+			$ios___->_M_width = $n___;
+			return $ios___;
+		};
+	}
+
+	function setfill(string $ch___)
+	{
+		return function & (basic_ios &$ios___) use ($ch___)
+		{
+			$ios___->_M_fill = $ch___;
+			return $ios___;
+		};
+	}
+
+	function boolalpha(bool $set___)
+	{
+		return function & (basic_ios &$ios___) use ($set___)
+		{
+			$set___ ?
+				  $ios___->setf(ios_base::alpha)
+				: $ios___->unsetf(ios_base::alpha);
+			return $ios___;
+		};
+	}
+
+	function hex(bool $set___)
+	{
+		return function & (basic_ios &$ios___) use ($set___)
+		{
+			$set___ ?
+				  $ios___->setf(ios_base::hex)
+				: $ios___->unsetf(ios_base::hex);
+			$ios___->setf(ios_base::hex);
+			return $ios___;
+		};
+	}
+
+	function dec(bool $set___)
+	{
+		return function & (basic_ios &$ios___) use ($set___)
+		{
+			$set___ ?
+				  $ios___->setf(ios_base::dec)
+				: $ios___->unsetf(ios_base::dec);
+			$ios___->setf(ios_base::hex);
+			return $ios___;
+		};
+	}
+
+	function oct(bool $set___)
+	{
+		return function & (basic_ios &$ios___) use ($set___)
+		{
+			$set___ ?
+				  $ios___->setf(ios_base::oct)
+				: $ios___->unsetf(ios_base::oct);
+			$ios___->setf(ios_base::hex);
+			return $ios___;
+		};
+	}
+
+	function showbase(bool $set___)
+	{
+		return function & (basic_ios &$ios___) use ($set___)
+		{
+			$set___ ?
+				  $ios___->setf(ios_base::showbase)
+				: $ios___->unsetf(ios_base::showbase);
+			$ios___->setf(ios_base::hex);
+			return $ios___;
+		};
 	}
 } /* EONS */
 
