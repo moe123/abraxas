@@ -99,7 +99,7 @@ namespace std
 	{
 		var $_M_locale   = null;
 		var $_M_width    = 0;
-		var $_M_fill     = " ";
+		var $_M_fill     = char_utils::sp;
 		var $_M_sstate   = ios_base::goodbit;
 		var $_M_fmtflags = ios_base::nomask;
 
