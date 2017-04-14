@@ -103,7 +103,7 @@ namespace std
 		var $_M_sstate   = ios_base::goodbit;
 		var $_M_fmtflags = ios_base::nomask;
 
-		function & _F_put(&$v___) 
+		function & _F_apply_mask(&$v___) 
 		{
 			if ($this->_M_fmtflags != ios_base::nomask && (\is_float($v___) || \is_integer($v___) || \is_bool($v___))) {
 				if (\is_bool($v___) && (($this->_M_fmtflags & ios_base::alpha) != 0)) {
@@ -229,8 +229,14 @@ namespace std
 		var $_M_handle_g = null;
 		var $_M_count_g  = 0;
 
+		function __toString()
+		{ return $this->_M_count_g; }
+
 		function __invoke(&$d___, int $c___ = -1)
 		{
+			if(\is_callable($d___)) {
+				return $d___($this);
+			}
 			$this->read($d___, $c___);
 			return $this;
 		}
@@ -248,6 +254,9 @@ namespace std
 				$this->_M_count_g = 0;
 			} else {
 				$this->_M_count_g = memlen($d___);
+				if ($this->_M_fmtflags != ios_base::nomask || $this->_M_width > 0) {
+					$this->_F_apply_mask($d___);
+				}
 			}
 			if (\feof($this->_M_handle_g)) {
 				$this->clear(ios_base::eofbit);
@@ -274,6 +283,9 @@ namespace std
 				$this->_M_count_g = 0;
 			} else {
 				$this->_M_count_g = memlen($d___);
+				if ($this->_M_fmtflags != ios_base::nomask || $this->_M_width > 0) {
+					$this->_F_apply_mask($d___);
+				}
 			}
 			if (\feof($this->_M_handle_g)) {
 				$this->clear(ios_base::eofbit);
@@ -314,6 +326,9 @@ namespace std
 				$this->_M_count_g = 0;
 			} else {
 				$this->_M_count_g = memlen($d___);
+				if ($this->_M_fmtflags != ios_base::nomask || $this->_M_width > 0) {
+					$this->_F_apply_mask($d___);
+				}
 			}
 			if (\feof($this->_M_handle_g)) {
 				$this->clear(ios_base::eofbit);
@@ -376,6 +391,9 @@ namespace std
 
 	abstract class basic_ostream extends basic_ios
 	{
+		function __toString()
+		{ return $this->_M_count_p; }
+
 		var $_M_handle_p = null;
 		var $_M_count_p  = 0;
 
@@ -397,9 +415,12 @@ namespace std
 
 			$r = false;
 			if ($c___ > 0) {
-				$r = \fwrite($this->_M_handle_p, $this->_F_put($d___), $c___);
+				$r = \fwrite($this->_M_handle_p, $d___, $c___);
 			} else {
-				$r = \fwrite($this->_M_handle_p, $this->_F_put($d___));
+				if ($this->_M_fmtflags != ios_base::nomask || $this->_M_width > 0) {
+					$this->_F_apply_mask($d___);
+				}
+				$r = \fwrite($this->_M_handle_p, $d___);
 			}
 			if ($r === false) {
 				$this->setstate(ios_base::badbit|ios_base::failbit);
@@ -493,6 +514,9 @@ namespace std
 
 	class basic_istringstream extends basic_istream
 	{
+		function __toString()
+		{ return $this->str(); }
+
 		function __construct(string &$buf)
 		{
 			$this->_M_handle_g = \fopen('php://memory', 'wb+');
@@ -546,6 +570,9 @@ namespace std
 
 	class basic_ostringstream extends basic_ostream
 	{
+		function __toString()
+		{ return $this->str(); }
+
 		function __construct()
 		{
 			$this->_M_handle_p = \fopen('php://memory', 'wb+');
