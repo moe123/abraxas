@@ -407,7 +407,7 @@ std\cout("exp2(1024) = ")(std\exp2(1024))(std\endl);
 function binomial(int $n, int $k)
 {
 	return (
-		1.0 / (($n + 1) * std\beta($n - $k + 1, $k + 1))
+		1.0 / (($n + 1) * std\beta_log($n - $k + 1, $k + 1))
 	);
 }
 
