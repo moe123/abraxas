@@ -34,10 +34,12 @@ namespace std
 	function cnorm(complex $z___) : float
 	{
 		if (\is_infinite($z___->_M_real)) {
-			return \abs($z___->_M_real);
+			// return \abs($z___->_M_real);
+			return \INF;
 		}
 		if (\is_infinite($z___->_M_imag)) {
-			return \abs($z___->_M_imag);
+			//return \abs($z___->_M_imag);
+			return \INF;
 		}
 		return $z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag;
 	}
@@ -105,12 +107,24 @@ namespace std
 			: \sqrt($b) * \sqrt(0.5 * (($a / $b) + \sqrt(1.0 + ($a / $b) * ($a / $b))))
 		);
 		if ($z___->_M_real > 0.0 || _F_FP_iszero($z___->_M_real)) {
+			if (_F_FP_iszero($W)) {
+				return new complex(
+					  \NAN
+					, \NAN
+				);
+			}
 			return new complex(
 				  $W
 				, $z___->_M_imag / (2.0 * $W)
 			);
 		}
-		$I = ($z___->_M_imag > 0.0 || _F_FP_iszero($z___->_M_imag)) ? $W : -($W);
+		$I = ($z___->_M_imag > 0.0 || _F_FP_iszero($I)) ? $W : -($W);
+		if (_F_FP_iszero($I)) {
+			return new complex(
+				  \NAN
+				, \NAN
+			);
+		}
 		return new complex(
 			  $z___->_M_imag / (2.0 * $I)
 			, $I
