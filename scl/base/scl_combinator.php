@@ -37,7 +37,7 @@ namespace std
 		, bool           &$res___
 		, callable        $unaryFunction___
 	) {
-		$res___ = true;
+		$res___ = false;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while($first___ != $last___) {
 				if (!$unaryFunction___($first___->_F_this())) {
