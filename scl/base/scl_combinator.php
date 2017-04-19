@@ -31,6 +31,48 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
+	function & every_of(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable $unaryFunction___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$res = false;
+			while($first___ != $last___) {
+				if (!$unaryFunction___($first___->_F_this())) {
+					$res = false;
+					break;
+				}
+				$res = true;
+			}
+			return $res;
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
+	function & some_of(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable $unaryFunction___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$res = false;
+			while($first___ != $last___) {
+				if ($unaryFunction___($first___->_F_this())) {
+					$res = true;
+					break;
+				}
+				$res = false;
+			}
+			return $res;
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return false;
+	}
+
 	function & apply_to(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -53,9 +95,25 @@ namespace std
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while ($first___ != $last___) {
 				$c = $unaryOperation___($first___->_F_this());
-				copy($c->begin(), $c->end(), $out___);
+				lazy_copy($c->begin(), $c->end(), $out___);
 				$first___->_F_next();
 			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $first___->_M_ptr;
+	}
+
+	function to_one(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			$it = clone $first___;
+			sort($it, $last___);
+			$it = unique_b($first___, $last___, $binaryPredicate___);
+			$it___->_M_ptr->erase($it, $last___);
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
@@ -141,9 +199,10 @@ namespace std
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_ostream   $out___
+		, string          $join___ = ','
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			lazy_copy($first___, $last___, stream_inserter($out___, ", "));
+			lazy_copy($first___, $last___, stream_inserter($out___, $join___));
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}

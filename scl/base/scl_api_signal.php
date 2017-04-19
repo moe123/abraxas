@@ -22,8 +22,8 @@ namespace std
 	define('std\SIGQUIT',  3); /* quit */
 	define('std\SIGILL' ,  4); /* illegal instruction (not reset when caught) */
 	define('std\SIGTRAP',  5); /* trace trap (not reset when caught) */
-	define('std\SIGABRT',  6); /* emulate instruction executed */
-	define('std\SIGEMT' ,  7); /* abort program */
+	define('std\SIGABRT',  6); /* abort program */
+	define('std\SIGEMT' ,  7); /* emulate instruction executed */
 	define('std\SIGFPE' ,  8); /* floating-point exception */ 
 	define('std\SIGKILL',  9); /* kill (cannot be caught or ignored) */
 	define('std\SIGBUS' , 10); /* bus error */
@@ -53,20 +53,27 @@ namespace std
 	function signal(int $sig___, callable $f___ = null)
 	{
 		switch ($sig___) {
+			/* uncatchable */
 			case SIGTRAP:
 				exit(SIGTRAP);
 			break;
 			case SIGILL:
+				_F_throw_error("Received signal SIGILL, Illegal error.");
 				exit(SIGILL);
 			break;
 			case SIGABRT:
+				_F_throw_error("Received signal SIGABRT, Abort error.");
 				exit(SIGABRT);
+			break;
+			case SIGBUS:
+				_F_throw_error("Received signal SIGBUS, Bus error.");
+				exit(SIGBUS);
 			break;
 			case SIGKILL:
 				exit(SIGKILL);
 			break;
 		}
-		if (!\is_null()) {
+		if (!\is_null($f___)) {
 			$f___($sig___);
 		} else {
 			exit($sig___);
@@ -76,16 +83,22 @@ namespace std
 
 	function kill(int $pid___, int $sig___ = SIGKILL)
 	{
-		if ($pid___ == getpid()) {
-			signal($sig___);
-		} else if (\function_exists('\posix_kill')) {
-			\posix_kill($pid___, $sig___);
-		} else if (_F_os_windows()) {
-			\exec("taskkill.exe /F /T /PID " . $pid___);
-		} else {
-			\exec("`which kill` -" . $sig___ . " " . $pid___);
+		if ($sig___ >= 1) {
+			if ($pid___ == getpid()) {
+				signal($sig___);
+			} else if (\function_exists('\posix_kill')) {
+				\posix_kill($pid___, $sig___);
+			} else if (_F_os_windows()) {
+				\exec("taskkill.exe /F /T /PID " . $pid___);
+			} else {
+				\exec("`which kill` -" . $sig___ . " " . $pid___);
+			}
 		}
+		return 0;
 	}
+
+	function raise(int $sig___)
+	{ return kill(getpid(), $sig___); }
 
 	function strsignal(int $sig___)
 	{
