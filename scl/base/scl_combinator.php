@@ -31,7 +31,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function every_of(
+	function & every_of(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, bool           &$res___
@@ -52,7 +52,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function nothing_of(
+	function & nothing_of(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, bool           &$res___
@@ -73,7 +73,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function some_of(
+	function & some_of(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, bool           &$res___
@@ -107,7 +107,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function flat_to(
+	function & flat_to(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_iterator  $out___
@@ -125,7 +125,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function to_one(
+	function & to_one(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $binaryPredicate___ = null
@@ -141,7 +141,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function filter(
+	function & filter(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
@@ -158,7 +158,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function filter_not(
+	function & filter_not(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
@@ -172,7 +172,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function foldr(
+	function & foldr(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_ostream   $out___
@@ -196,7 +196,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function foldl(
+	function & foldl(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_ostream   $out___
@@ -216,7 +216,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function combine_to(
+	function & combine_to(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_ostream   $out___
