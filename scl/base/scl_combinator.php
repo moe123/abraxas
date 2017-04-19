@@ -44,6 +44,24 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
+	function flat_to(
+		  basic_iterator  $first___
+		, basic_iterator  $last___
+		, basic_iterator  $out___
+		, callable $unaryOperation___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			while ($first___ != $last___) {
+				$c = $unaryOperation___($first___->_F_this());
+				copy($c->begin(), $c->end(), $out___);
+				$first___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $first___->_M_ptr;
+	}
+
 	function filter(
 		  basic_iterator $first___
 		, basic_iterator $last___
