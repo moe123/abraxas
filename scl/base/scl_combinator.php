@@ -18,13 +18,13 @@
 
 namespace std
 {
-	function & for_in(
+	function & each_in(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $unaryFunction___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			for_each($c___->begin(), $c___->end(), $unaryFunction___);
+			for_each($first___, $last___, $unaryFunction___);
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
