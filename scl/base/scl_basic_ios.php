@@ -234,7 +234,7 @@ namespace std
 
 		function __invoke(&$d___, int $c___ = -1)
 		{
-			if(\is_callable($d___)) {
+			if(!($d___ instanceof basic_ios) && \is_callable($d___)) {
 				return $d___($this);
 			}
 			$this->read($d___, $c___);
@@ -399,7 +399,7 @@ namespace std
 
 		function __invoke($d___)
 		{
-			if(\is_callable($d___)) {
+			if(!($d___ instanceof basic_ios) && \is_callable($d___)) {
 				return $d___($this);
 			}
 			return $this->write($d___);
@@ -566,6 +566,10 @@ namespace std
 			}
 			return $str;
 		}
+		
+		function data()
+		{ return $this->str(); }
+
 	} /* EOC */
 
 	class basic_ostringstream extends basic_ostream
@@ -592,7 +596,7 @@ namespace std
 		function & str()
 		{
 			$str = "";
-			$off = \ftell($this->_M_handle_g);
+			$off = \ftell($this->_M_handle_p);
 			if ($off === false) {
 				$this->setstate(ios_base::badbit|ios_base::failbit);
 				$off = -1;
@@ -614,6 +618,9 @@ namespace std
 			}
 			return $str;
 		}
+
+		function data()
+		{ return $this->str(); }
 	} /* EOC */
 
 	class basic_ifstream extends basic_istream

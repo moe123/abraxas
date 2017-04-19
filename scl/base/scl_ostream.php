@@ -19,6 +19,9 @@ namespace std
 {
 	final class ostream extends basic_ostream
 	{ /* NOP */ } /* EOC */
+
+	final class ostringstream extends basic_ostringstream
+	{ /* NOP */ }
 } /* EONS */
 
 /* EOF */

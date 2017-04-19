@@ -18,6 +18,7 @@ require_once "iostream.php";
 require_once "irange.php";
 require_once "locale.php";
 require_once "vector.php";
+require_once "functional.php";
 require_once "ordered_list.php";
 require_once "ordered_set.php";
 require_once "forward_list.php";
@@ -407,7 +408,7 @@ std\cout("exp2(1024) = ")(std\exp2(1024))(std\endl);
 function binomial(int $n, int $k)
 {
 	return (
-		1.0 / (($n + 1) * std\beta_log($n - $k + 1, $k + 1))
+		1.0 / (($n + 1) * std\beta($n - $k + 1, $k + 1))
 	);
 }
 
@@ -434,6 +435,12 @@ foreach ($v as $i) {
 	std\cout($i)(std\space);
 }
 std\cout(std\endl);
+
+$oss = std\make_ostringstream();
+std\combine_to(std\begin($v), std\end($v), $oss);
+std\cout($oss);
+std\cout(std\endl);
+
 std\cout("Partition: ")(std\endl);
 $pv = std\partition(
 	  $v->begin()

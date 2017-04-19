@@ -434,6 +434,15 @@ namespace std
 	function make_quint($a1___, $a2___, $a3___, $a4___, $a5___)
 	{ return new quint($a1___, $a2___, $a3___, $a4___, $a5___); }
 
+	function make_ostringstream()
+	{ return new ostringstream; }
+
+	function make_istringstream(string &$s___)
+	{ return new istringstream($s___); }
+
+	function make_ifstream(string $fname___, int $m___ = ios_base::in)
+	{ return new ifstream($fname___, $m___); }
+
 	function iterable_copy(basic_iterable &$c___)
 	{ return clone $c___; }
 } /* EONS */

@@ -609,12 +609,15 @@ namespace std
 	{
 		$a = 0;
 		for ($i = 1; $i < (1000000 - 1); $i++) {
-			$a += npdf($x___ + $i * ($x___ + 1000) / 1000000, $mu___, $sigma___);
+			$a += _F_npdf($x___ + $i * ($x___ + 1000) / 1000000, $mu___, $sigma___);
 		}
-		return ((($x___ + 1000) / 1000000) * ((npdf($x___, $mu___, $sigma___)
-			+ npdf(-1000, $mu___, $sigma___)) / 2.0 + $a)
+		return ((($x___ + 1000) / 1000000) * ((_F_npdf($x___, $mu___, $sigma___)
+			+ _F_npdf(-1000, $mu___, $sigma___)) / 2.0 + $a)
 		);
 	}
+
+	function _F_beta(float $x___, float $y___)
+	{ return (tgamma($x___) * tgamma($y___) / tgamma($x___ + $y___)); }
 }
 
 /* EOF */
