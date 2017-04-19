@@ -240,6 +240,12 @@ namespace std
 			return $this;
 		}
 
+		function str()
+		{ return _F_u8gh_join($this->_M_container); }
+
+		function data()
+		{ return _F_u8gh_join($this->_M_container); }
+
 		function bom()
 		{ return _F_u8gh_get_bom(); }
 

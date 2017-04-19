@@ -31,46 +31,67 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function & every_of(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, callable $unaryFunction___
+	function every_of(
+		  basic_iterator  $first___
+		, basic_iterator  $last___
+		, bool           &$res___
+		, callable        $unaryFunction___
 	) {
+		$res___ = true;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			$res = false;
 			while($first___ != $last___) {
 				if (!$unaryFunction___($first___->_F_this())) {
-					$res = false;
+					$res___ = false;
 					break;
 				}
-				$res = true;
+				$res___ = true;
 			}
-			return $res;
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return false;
+		return $first___->_M_ptr;
 	}
 
-	function & some_of(
-		  basic_iterator $first___
-		, basic_iterator $last___
-		, callable $unaryFunction___
+	function nothing_of(
+		  basic_iterator  $first___
+		, basic_iterator  $last___
+		, bool           &$res___
+		, callable        $unaryFunction___
 	) {
+		$res___ = true;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			$res = false;
 			while($first___ != $last___) {
 				if ($unaryFunction___($first___->_F_this())) {
-					$res = true;
+					$res___ = false;
 					break;
 				}
-				$res = false;
+				$res___ = true;
 			}
-			return $res;
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return false;
+		return $first___->_M_ptr;
+	}
+
+	function some_of(
+		  basic_iterator  $first___
+		, basic_iterator  $last___
+		, bool           &$res___
+		, callable        $unaryFunction___
+	) {
+		$res___ = false;
+		if ($first___::iterator_category === $last___::iterator_category) {
+			while($first___ != $last___) {
+				if ($unaryFunction___($first___->_F_this())) {
+					$res___ = true;
+					break;
+				}
+				$res___ = false;
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $first___->_M_ptr;
 	}
 
 	function & apply_to(

@@ -162,6 +162,9 @@ namespace std
 		return $out;
 	}
 
+	function _F_u8gh_join(array &$u8gh___)
+	{ return @\implode('', $u8gh___); }
+
 	function _F_u8gh_subv(string $s___, int $pos___, int $len___ = -1)
 	{
 		$out = [];

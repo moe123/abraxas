@@ -63,7 +63,7 @@ namespace std
 		{ return $this->_M_container; }
 
 		function __toString()
-		{ return @\implode('', $this->_M_container); }
+		{ return _F_u8gh_join($this->_M_container); }
 
 		function to_array()
 		{ return $this->__toArray(); }
@@ -71,7 +71,7 @@ namespace std
 		function to_string()
 		{
 			if ($this->_M_size) {
-				return "\"" . @\implode('', $this->_M_container) . "\"";
+				return "\"" . _F_u8gh_join($this->_M_container) . "\"";
 			}
 			return "\"\"";
 		}
