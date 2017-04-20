@@ -121,7 +121,7 @@ namespace std
 			while ($first___ != $last___) {
 				$v = $first___->_F_this();
 				if ($v instanceof basic_iterable) {
-					flat_to($v->begin(), $v->end(), $out___, $unaryOperation___);
+					flat_to($v->begin(), $v->end(), $out___, $p);
 				} else {
 					$out___->_F_assign($p($v));
 					$out___->_F_next();
