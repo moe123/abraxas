@@ -12,6 +12,11 @@
  * @brief      The Math numerics library declares a set of functions to compute 
  *             common mathematical operations and transformations on integral, 
  *             real-floating-point and complex type (@todo rational numbers support).
+ * @comment
+ *             A native support would be nice to have i.e precision loss, performances 
+ *             issues, naive shortcuts, etc. Take it as an incomplete wish list for a
+ *             more complete and robust math library ; a starting point ¯\(ツ)/¯.
+ *
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
