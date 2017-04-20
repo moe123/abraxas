@@ -86,6 +86,23 @@ namespace std
 		return $it___->_F_prev();
 	}
 
+	function iter_access(basic_iterator &$it___, int $pos___)
+	{
+		$pos = $it___->_F_pos();
+		$it___->_F_seek($pos___);
+		$v = $it___->_F_this();
+		$it___->_F_seek($pos);
+		return $v;
+	}
+
+	function iter_assign(basic_iterator &$it___, int $pos___, $val___)
+	{
+		$pos = $it___->_F_pos();
+		$it___->_F_seek($pos___);
+		$it___->_F_assign($val___);
+		$it___->_F_seek($pos);
+	}
+
 	function shuffle(
 		  basic_iterator $first___
 		, basic_iterator $last___
