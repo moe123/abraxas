@@ -9,7 +9,7 @@
  
 /*!
  * @project    Abraxas (Standard Container Library).
- * @brief      Functional combinators library,  \(^o^)/ @Haskell.
+ * @brief      Functional combinators library, \(^o^)/ @Haskell.
  * @author     Moe123 2017.
  * @maintainer Moe123 2017.
  *
@@ -111,12 +111,21 @@ namespace std
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_iterator  $out___
-		, callable $unaryOperation___
+		, callable $unaryOperation___ = null
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
+			$p = $unaryOperation___;
+			if (\is_null($p)) {
+				$p = function (&$v) { return $v; };
+			}
 			while ($first___ != $last___) {
-				$c = $unaryOperation___($first___->_F_this());
-				lazy_copy($c->begin(), $c->end(), $out___);
+				$v = $first___->_F_this();
+				if ($v instanceof basic_iterable) {
+					flat_to($v->begin(), $v->end(), $out___, $unaryOperation___);
+				} else {
+					$out___->_F_assign($p($v));
+					$out___->_F_next();
+				}
 				$first___->_F_next();
 			}
 		} else {
@@ -220,10 +229,10 @@ namespace std
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_ostream   $out___
-		, string          $join___ = ','
+		, string          $joint___ = ','
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			lazy_copy($first___, $last___, stream_inserter($out___, $join___));
+			lazy_copy($first___, $last___, stream_inserter($out___, $joint___));
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
