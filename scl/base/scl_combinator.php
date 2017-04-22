@@ -45,6 +45,7 @@ namespace std
 					break;
 				}
 				$res___ = true;
+				$first___->_F_next();
 			}
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
@@ -66,6 +67,7 @@ namespace std
 					break;
 				}
 				$res___ = true;
+				$first___->_F_next();
 			}
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
@@ -87,6 +89,7 @@ namespace std
 					break;
 				}
 				$res___ = false;
+				$first___->_F_next();
 			}
 		} else {
 			_F_throw_invalid_argument("Invalid type error");

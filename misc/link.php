@@ -425,7 +425,7 @@ for ($n = 1; $n < 10; ++$n) {
 }
 
 std\cout(std\endl);
-std\cout(std\showbase(true))(std\hex(true))(2)(std\showbase(false))(2)(std\endl);
+std\cout(std\showbase(true))(std\hex(true))(2)(std\showbase(false))(2)(std\hex(false))(std\endl);
 
 // std\stop(0);
 
@@ -503,5 +503,31 @@ while ($it != $d0->end()) {
 	$it->next();
 }
 std\cout(std\endl);
+
+
+$v1 = std\make_vector(1, 2, 3, 4, 5);
+$v2 = std\make_vector(3, 4, 5, 6, 7);
+$v3 = std\make_vector(3, 4, 5, 6, 7);
+$v0 = std\make_vector($v1, $v2, $v3);
+$d0 = std\make_vector();
+
+std\flat_to(
+	  $v0->begin()
+	, $v0->end()
+	, std\back_inserter($d0)
+	, function (&$v) { return $v / 2.0; }
+);
+
+std\cout($d0)(std\endl);
+
+$res = false;
+std\every_of(
+	  $d0->begin()
+	, $d0->end()
+	, $res
+	, function (&$v) { return std\is_floating_point($v); }
+);
+
+std\cout(std\boolalpha(true))($res)(std\endl);
 
 /* EOF */
