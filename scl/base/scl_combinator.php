@@ -97,7 +97,7 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function & apply_to(
+	function & apply_mapping(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $unaryFunction___
@@ -184,10 +184,10 @@ namespace std
 		return $first___->_M_ptr;
 	}
 
-	function & foldr(
+	function & foldr_to(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
-		, basic_ostream   $out___
+		, basic_iterator  $out___
 		, callable        $binaryOperation___
 	) {
 		if ($first___::iterator_category === $last___::iterator_category) {
@@ -200,18 +200,18 @@ namespace std
 					$buf = $binaryOperation___($buf, $first___->_F_this());
 					$first___->_F_next();
 				}
-				$out___($buf);
+				$out___->_F_assign($buf);
 			}
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
+		return $out___->_M_ptr;
 	}
 
-	function & foldl(
+	function & foldl_to(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
-		, basic_ostream   $out___
+		, basic_iterator  $out___
 		,                 $init___
 		, callable        $binaryOperation___
 	) {
@@ -221,11 +221,11 @@ namespace std
 				$buf = $binaryOperation___($buf, $first___->_F_this());
 				$first___->_F_next();
 			}
-			$out___($buf);
+			$out___->_F_assign($buf);
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
+		return $out___->_M_ptr;
 	}
 
 	function & combine_to(
@@ -241,6 +241,52 @@ namespace std
 		}
 		return $first___->_M_ptr;
 	}
+
+	/*
+	class purity
+	{
+		var $_M_c;
+
+		const fold = 0;
+		const end = 0;
+
+		static function range(int $start, int $len)
+		{ return [ $start, $len ]; }
+
+		function __construct(basic_iterable $c)
+		{ $this->_M_c = $c; }
+
+		function & apply(int $op, callable $apply, array $range = null)
+		{
+			...
+
+			case pure::fold:
+			{
+				$v          = make_vector();
+				$this->_M_c = foldl_to(
+					$c->begin($range[0])
+					, $c->begin($range[0] + $range[1])
+					, back_insert($v)
+					, $apply
+				);
+			}
+			break;
+
+			...
+
+			return $this;
+		}
+	}
+
+	$pure 
+		-> apply(std\purity::map
+				, function () {} 
+				, std\purity::range(0, 10)
+			) -> apply(std\purity::fold
+					, function () {} 
+					, std\purity::range(0, 10)
+				);
+	*/
 } /* EONS */
 
 /* EOF */
