@@ -119,14 +119,14 @@ namespace std
 
 		function & swap(ordered_list &$olist)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $olist->_M_container;
-			$this->_M_size = $olist->_M_size;
+			$this->_M_size      = $olist->_M_size;
 
 			$olist->_M_container = $c;
-			$olist->_M_size = $sz;
+			$olist->_M_size      = $sz;
 
 			return $this;
 		}

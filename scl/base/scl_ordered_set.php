@@ -45,7 +45,7 @@ namespace std
 
 		function & insert_value($val)
 		{
-			if (!_F_value_exists($this, $val)) {
+			if (!_F_entry_exists($this, $val)) {
 				_F_push_front($this, $val);
 			}
 			return $this;
@@ -66,14 +66,14 @@ namespace std
 
 		function & swap(set &$oset)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $oset->_M_container;
-			$this->_M_size = $oset->_M_size;
+			$this->_M_size      = $oset->_M_size;
 
 			$oset->_M_container = $c;
-			$oset->_M_size = $sz;
+			$oset->_M_size      = $sz;
 
 			return $this;
 		}

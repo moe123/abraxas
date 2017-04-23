@@ -41,13 +41,13 @@ namespace std
 
 		function & swap(pair &$pair)
 		{
-			$first = $this->first;
+			$first  = $this->first;
 			$second = $this->second;
 
-			$this->first = $pair->first;
+			$this->first  = $pair->first;
 			$this->second = $pair->second;
 
-			$pair->first = $first;
+			$pair->first  = $first;
 			$pair->second = $second;
 
 			return $this;

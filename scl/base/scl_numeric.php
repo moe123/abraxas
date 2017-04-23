@@ -84,11 +84,11 @@ namespace std
 				$med  = 0.0;
 				if (($dist % 2) == 0) {
 					$med = ((
-						  _F_iter_value_at_position($first___, \intdiv($dist, 2))
-						+ _F_iter_value_at_position($first___, (\intdiv($dist, 2) - 1))
+						  iter_access($first___, \intdiv($dist, 2))
+						+ iter_access($first___, (\intdiv($dist, 2) - 1))
 					) / 2.0);
 				} else {
-					$med = _F_iter_value_at_position($first___, \intdiv($dist, 2));
+					$med = iter_access($first___, \intdiv($dist, 2));
 				}
 				return $med;
 			}

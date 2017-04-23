@@ -373,17 +373,17 @@ namespace std
 			$h = $this->_M_handle_g;
 			$c = $this->_M_count_g;
 
-			$this->_M_locale = $iss___->_M_locale;
-			$this->_M_sstate = $iss___->_M_sstate;
+			$this->_M_locale   = $iss___->_M_locale;
+			$this->_M_sstate   = $iss___->_M_sstate;
 			$this->_M_fmtflags = $iss___->_M_fmtflags;
 			$this->_M_handle_g = $iss___->_M_handle_g;
-			$this->_M_count_g = $iss___->_M_count_g;
+			$this->_M_count_g  = $iss___->_M_count_g;
 
-			$iss___->_M_locale = $l;
-			$iss___->_M_sstate = $s;
+			$iss___->_M_locale   = $l;
+			$iss___->_M_sstate   = $s;
 			$iss___->_M_fmtflags = $f;
 			$iss___->_M_handle_g = $h;
-			$iss___->_M_count_g = $c;
+			$iss___->_M_count_g  = $c;
 
 			return $this;
 		}
@@ -496,17 +496,17 @@ namespace std
 			$h = $this->_M_handle_p;
 			$c = $this->_M_count_p;
 
-			$this->_M_locale = $oss___->_M_locale;
-			$this->_M_sstate = $oss___->_M_sstate;
+			$this->_M_locale   = $oss___->_M_locale;
+			$this->_M_sstate   = $oss___->_M_sstate;
 			$this->_M_fmtflags = $oss___->_M_fmtflags;
 			$this->_M_handle_p = $oss___->_M_handle_p;
-			$this->_M_count_p = $oss___->_M_count_p;
+			$this->_M_count_p  = $oss___->_M_count_p;
 
-			$oss___->_M_locale = $l;
-			$oss___->_M_sstate = $s;
+			$oss___->_M_locale   = $l;
+			$oss___->_M_sstate   = $s;
 			$oss___->_M_fmtflags = $f;
 			$oss___->_M_handle_p = $h;
-			$oss___->_M_count_p = $c;
+			$oss___->_M_count_p  = $c;
 
 			return $this;
 		}

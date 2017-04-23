@@ -105,14 +105,14 @@ namespace std
 
 		function & swap(u8string &$u8)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $u8->_M_container;
-			$this->_M_size = $u8->_M_size;
+			$this->_M_size      = $u8->_M_size;
 
 			$u8->_M_container = $c;
-			$u8->_M_size = $sz;
+			$u8->_M_size      = $sz;
 
 			return $this;
 		}
@@ -168,8 +168,8 @@ namespace std
 					}
 					$this->_M_size      += $u8->_M_size;
 				} else {
-					$this->_M_container = $u8->_M_container;
-					$this->_M_size      = $u8->_M_size;
+					$this->_M_container  = $u8->_M_container;
+					$this->_M_size       = $u8->_M_size;
 				}
 			}
 			return $this;
@@ -224,11 +224,11 @@ namespace std
 					foreach ($this->_M_container as &$v) {
 						$a[] = $v;
 					}
-					$this->_M_container = $a;
-					$this->_M_size     += $c;
+					$this->_M_container  = $a;
+					$this->_M_size      += $c;
 				} else if ($c) {
-					$this->_M_container = $a;
-					$this->_M_size      = $c;
+					$this->_M_container  = $a;
+					$this->_M_size       = $c;
 				}
 			}
 			return $this;
@@ -248,6 +248,18 @@ namespace std
 
 		function bom()
 		{ return _F_u8gh_get_bom(); }
+
+		function & erase(basic_iterator $first, basic_iterator $last)
+		{
+			_F_splice($this, $first->_F_pos(), distance($first, $last));
+			return $this;
+		}
+
+		function & slice_erase(int $start, int $end)
+		{
+			_F_splice($this, $start, ($end - $start));
+			return $this;
+		}
 
 		function & clear()
 		{

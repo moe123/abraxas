@@ -119,12 +119,12 @@ namespace std
 		function offsetSet($offset___, $val___)
 		{
 			if (\is_null($offset___)) {
-				if (!_F_value_exists($this, $val___)) {
+				if (!_F_entry_exists($this, $val___)) {
 					$this->_M_container[] = $val___;
 					++$this->_M_size;
 				}
 			} else if (\is_integer($offset___) && ($offset___ >= 0 && $offset___ < $this->_M_size)) {
-				if (!_F_value_exists($this, $val___)) {
+				if (!_F_entry_exists($this, $val___)) {
 					$this->_M_container[$offset___] = $val___;
 				}
 			} else {

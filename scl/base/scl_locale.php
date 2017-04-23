@@ -178,18 +178,18 @@ namespace std
 
 		function & swap(locale &$locale)
 		{
-			$id = $this->_M_id;
-			$name = $this->_M_name;
+			$id       = $this->_M_id;
+			$name     = $this->_M_name;
 			$collator = $this->_M_collator;
 			$caterory = $this->_M_collator;
 
-			$this->_M_id = $locale->_M_id;
-			$this->_M_name = $locale->_M_name;
+			$this->_M_id       = $locale->_M_id;
+			$this->_M_name     = $locale->_M_name;
 			$this->_M_collator = $locale->_M_collator;
 			$this->_M_caterory = $locale->_M_caterory;
 
-			$locale->_M_id = $id;
-			$locale->_M_name = $name;
+			$locale->_M_id       = $id;
+			$locale->_M_name     = $name;
 			$locale->_M_collator = $collator;
 			$locale->_M_caterory = $caterory;
 

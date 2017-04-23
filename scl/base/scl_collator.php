@@ -134,16 +134,16 @@ namespace std
 
 		function & swap(collator &$collator)
 		{
-			$coll = $this->_M_collator;
+			$coll  = $this->_M_collator;
 			$lcid  = $this->_M_locale_id;
 			$lcnm  = $this->_M_locale_name;
 
-			$this->_M_collator = $collator->_M_collator;
-			$this->_M_locale_id = $collator->_M_locale_id;
+			$this->_M_collator    = $collator->_M_collator;
+			$this->_M_locale_id   = $collator->_M_locale_id;
 			$this->_M_locale_name = $collator->_M_locale_name;
 
-			$collator->_M_collator = $coll;
-			$collator->_M_locale_id = $lcid;
+			$collator->_M_collator    = $coll;
+			$collator->_M_locale_id   = $lcid;
 			$collator->_M_locale_name = $lcnm;
 
 			return $this;

@@ -50,23 +50,23 @@ namespace std
 
 		function & swap(quint &$quint)
 		{
-			$first = $this->first;
+			$first  = $this->first;
 			$second = $this->second;
-			$third = $this->third;
+			$third  = $this->third;
 			$fourth = $this->fourth;
-			$fifth = $this->fifth;
+			$fifth  = $this->fifth;
 
-			$this->first = $quint->first;
+			$this->first  = $quint->first;
 			$this->second = $quint->second;
-			$this->third = $quint->third;
+			$this->third  = $quint->third;
 			$this->fourth = $quint->fourth;
-			$this->fifth = $quint->fifth;
+			$this->fifth  = $quint->fifth;
 
-			$quint->first = $first;
+			$quint->first  = $first;
 			$quint->second = $second;
-			$quint->third = $third;
+			$quint->third  = $third;
 			$quint->fourth = $fourth;
-			$quint->fifth = $fifth;
+			$quint->fifth  = $fifth;
 
 			return $this;
 		}

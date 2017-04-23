@@ -381,15 +381,15 @@ namespace std
 		{
 			$fnode = $this->_M_f_node;
 			$lnode = $this->_M_l_node;
-			$sz = $this->_M_size;
+			$sz    = $this->_M_size;
 
 			$this->_M_f_node = $l___->_M_f_node;
 			$this->_M_l_node = $l___->_M_l_node;
-			$this->_M_size = $l___->_M_size;
+			$this->_M_size   = $l___->_M_size;
 
 			$l___->_M_f_node = $fnode;
 			$l___->_M_l_node = $lnode;
-			$l___->_M_size = $sz;
+			$l___->_M_size   = $sz;
 		}
 
 		function & _F_insert_first(&$d___)

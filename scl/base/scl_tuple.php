@@ -48,14 +48,14 @@ namespace std
 
 		function & swap(tuple &$tuple)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $tuple->_M_container;
-			$this->_M_size = $tuple->_M_size;
+			$this->_M_size      = $tuple->_M_size;
 
 			$tuple->_M_container = $c;
-			$tuple->_M_size = $sz;
+			$tuple->_M_size      = $sz;
 
 			return $this;
 		}

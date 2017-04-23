@@ -63,8 +63,8 @@ namespace std
 
 		function & swap(comparator &$comparator)
 		{
-			$f = $this->_M_f;
-			$this->_M_f = $comparator->_M_f;
+			$f                = $this->_M_f;
+			$this->_M_f       = $comparator->_M_f;
 			$comparator->_M_f = $f;
 
 			return $this;

@@ -95,6 +95,25 @@ namespace std
 		return $v;
 	}
 
+	function iter_switch(basic_iterator &$it___, int $pos1___, int $pos2___)
+	{
+		$pos = $it___->_F_pos();
+
+		$it___->_F_seek($pos1___);
+		$v1 = $it___->_F_this();
+
+		$it___->_F_seek($pos2___);
+		$v2 = $it___->_F_this();
+
+		$it___->_F_seek($pos1___);
+		$it___->_F_assign($v2);
+
+		$it___->_F_seek($pos2___);
+		$it___->_F_assign($v1);
+
+		$it___->_F_seek($pos);
+	}
+
 	function iter_assign(basic_iterator &$it___, int $pos___, $val___)
 	{
 		$pos = $it___->_F_pos();
@@ -115,7 +134,7 @@ namespace std
 		$n  = $last___->_F_pos() - $first___->_F_pos();
 		$d = new uniform_int_distribution;
 		for ($i = ($n - 1); $i > 0; --$i) {
-			_F_iter_swap_position($first___, $i, $d($g, 0, $i));
+			iter_switch($first___, $i, $d($g, 0, $i));
 		}
 	}
 

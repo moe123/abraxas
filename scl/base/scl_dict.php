@@ -212,14 +212,14 @@ namespace std
 
 		function & swap(dict &$dict)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $dict->_M_container;
-			$this->_M_size = $dict->_M_size;
+			$this->_M_size      = $dict->_M_size;
 
 			$dict->_M_container = $c;
-			$dict->_M_size = $sz;
+			$dict->_M_size      = $sz;
 
 			return $this;
 		}

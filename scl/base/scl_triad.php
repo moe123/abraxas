@@ -44,17 +44,17 @@ namespace std
 
 		function & swap(triad &$triad)
 		{
-			$first = $this->first;
+			$first  = $this->first;
 			$second = $this->second;
-			$third = $this->third;
+			$third  = $this->third;
 
-			$this->first = $triad->first;
+			$this->first  = $triad->first;
 			$this->second = $triad->second;
-			$this->third = $triad->third;
+			$this->third  = $triad->third;
 
-			$triad->first = $first;
+			$triad->first  = $first;
 			$triad->second = $second;
-			$triad->third = $third;
+			$triad->third  = $third;
 
 			return $this;
 		}

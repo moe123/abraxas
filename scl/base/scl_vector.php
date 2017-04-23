@@ -122,14 +122,14 @@ namespace std
 
 		function & swap(vector &$vec)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $vec->_M_container;
-			$this->_M_size = $vec->_M_size;
+			$this->_M_size      = $vec->_M_size;
 
 			$vec->_M_container = $c;
-			$vec->_M_size = $sz;
+			$vec->_M_size      = $sz;
 
 			return $this;
 		}

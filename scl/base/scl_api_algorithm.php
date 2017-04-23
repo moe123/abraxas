@@ -549,7 +549,7 @@ namespace std
 		return false;
 	}
 
-	function _F_value_exists(basic_iterable &$c___, $val___, callable $binaryPredicate___ = null)
+	function _F_entry_exists(basic_iterable &$c___, $val___, callable $binaryPredicate___ = null)
 	{
 		if ($c___->_M_size > 0) {
 			$p = $binaryPredicate___;
@@ -776,90 +776,6 @@ namespace std
 			}
 		}
 	}
-
-	function _F_iter_swap_position(basic_iterator &$it___, int $pos1___, int $pos2___)
-	{
-		$pos = $it___->_F_pos();
-
-		$it___->_F_seek($pos1___);
-		$v1 = $it___->_F_this();
-
-		$it___->_F_seek($pos2___);
-		$v2 = $it___->_F_this();
-
-		$it___->_F_seek($pos1___);
-		$it___->_F_assign($v2);
-
-		$it___->_F_seek($pos2___);
-		$it___->_F_assign($v1);
-
-		$it___->_F_seek($pos);
-	}
-
-	function & _F_iter_assign_position(basic_iterator &$it___, int $pos___, $val___)
-	{
-		$pos = $it___->_F_pos();
-		$it___->_F_seek($pos___);
-		$it___->_F_assign($val___);
-		$it___->_F_seek($pos);
-		return $it___;
-	}
-
-	function & _F_iter_assign_to(basic_iterator &$from___, basic_iterator &$to___)
-	{
-		$to___->_F_assign($from___->_F_this());
-		return $to___;
-	}
-
-	function & _F_iter_assign(basic_iterator &$it___, $val___)
-	{
-		$it___->_F_assign($val___);
-		return $it___;
-	}
-
-	function _F_iter_swap_copy(basic_iterator &$it1___, basic_iterator &$it2___)
-	{
-		$v1 = _F_copy($it1___->_F_this());
-		$v2 = _F_copy($it2___->_F_this());
-		$it1___->_F_assign($v2);
-		$it2___->_F_assign($v1);
-	}
-
-	function & _F_iter_assign_copy_position(basic_iterator &$it___, int $pos___, $val___)
-	{
-		$pos = $it___->_F_pos();
-		$it___->_F_seek($pos___);
-		$it___->_F_assign(_F_copy($val___));
-		$it___->_F_seek($pos);
-		return $it___;
-	}
-
-	function _F_iter_assign_copy_to(basic_iterator &$from___, basic_iterator &$to___)
-	{
-		$to___->_F_assign(_F_copy($from___->_F_this()));
-		return $to___;
-	}
-
-	function & _F_iter_assign_copy(basic_iterator &$it___, $val___)
-	{
-		$it___->_F_assign(_F_copy($val___));
-		return $it___;
-	}
-
-	function _F_iter_value_at_position(basic_iterator &$it___, int $pos___)
-	{
-		$pos = $it___->_F_pos();
-		$it___->_F_seek($pos___);
-		$val = $it___->_F_this();
-		$it___->_F_seek($pos);
-		return $val;
-	}
-
-	function _F_iter_position(basic_iterator &$it___)
-	{ return $it___->_F_pos(); }
-
-	function _F_iter_value(basic_iterator &$it___)
-	{ return $it___->_F_this(); }
 } /* EONS */
 
 /* EOF */

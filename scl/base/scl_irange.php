@@ -64,14 +64,14 @@ namespace std
 
 		function & swap(irange &$irg)
 		{
-			$c = $this->_M_container;
+			$c  = $this->_M_container;
 			$sz = $this->_M_size;
 
 			$this->_M_container = $irg->_M_container;
-			$this->_M_size = $irg->_M_size;
+			$this->_M_size      = $irg->_M_size;
 
 			$irg->_M_container = $c;
-			$irg->_M_size = $sz;
+			$irg->_M_size      = $sz;
 
 			return $this;
 		}

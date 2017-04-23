@@ -134,7 +134,6 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
 	}
 
 	function & to_one(
@@ -150,7 +149,6 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
 	}
 
 	function & filter(
@@ -167,7 +165,6 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
 	}
 
 	function & filter_not(
@@ -181,7 +178,6 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
 	}
 
 	function & foldr_to(
@@ -205,7 +201,6 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $out___->_M_ptr;
 	}
 
 	function & foldl_to(
@@ -225,7 +220,6 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $out___->_M_ptr;
 	}
 
 	function & combine_to(
@@ -239,54 +233,7 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
-		return $first___->_M_ptr;
 	}
-
-	/*
-	class purity
-	{
-		var $_M_c;
-
-		const fold = 0;
-		const end = 0;
-
-		static function range(int $start, int $len)
-		{ return [ $start, $len ]; }
-
-		function __construct(basic_iterable $c)
-		{ $this->_M_c = $c; }
-
-		function & apply(int $op, callable $apply, array $range = null)
-		{
-			...
-
-			case pure::fold:
-			{
-				$v          = make_vector();
-				$this->_M_c = foldl_to(
-					$c->begin($range[0])
-					, $c->begin($range[0] + $range[1])
-					, back_insert($v)
-					, $apply
-				);
-			}
-			break;
-
-			...
-
-			return $this;
-		}
-	}
-
-	$pure 
-		-> apply(std\purity::map
-				, function () {} 
-				, std\purity::range(0, 10)
-			) -> apply(std\purity::fold
-					, function () {} 
-					, std\purity::range(0, 10)
-				);
-	*/
 } /* EONS */
 
 /* EOF */
