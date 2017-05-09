@@ -380,6 +380,7 @@ namespace std
 	define('std\FLT_LOWEST'   , -PHP_FLOAT_MAX);
 	define('std\FLT_MIN'      , PHP_FLOAT_MIN);
 	define('std\FLT_RADIX'    , 2);
+	define('std\FLT_MANT_DIG' , 24);
 
 	define('std\SINT_EPSILON' , 0);
 	define('std\SINT_SIZE'    , PHP_INT_SIZE);

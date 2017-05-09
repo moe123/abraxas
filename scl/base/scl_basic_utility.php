@@ -170,15 +170,13 @@ namespace std
 
 	function hash($v___)
 	{
-		return function () use ($v___) {
-			if (\is_object($v___) || \is_array($v___)) {
-				return \sha1(\serialize($v___));
-			}
-			if (\is_resource($v___)) {
-				return \sha1(print_r($v___, true));
-			}
-			return \sha1(\strval($v___));
-		};
+		if (\is_object($v___) || \is_array($v___)) {
+			return \crc32(\serialize($v___));
+		}
+		if (\is_resource($v___)) {
+			return \crc32(print_r($v___, true));
+		}
+		return \crc32(\strval($v___));
 	}
 
 	function crc32($v___)

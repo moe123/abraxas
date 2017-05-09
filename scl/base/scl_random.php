@@ -166,6 +166,54 @@ namespace std
 		}
 	} /* EOC */
 
+
+	function generate_canonical(&$__g)
+	{
+		$Dt = numeric_limits_float::digits;
+		$b = $Dt < $bits ? $Dt : $bits;
+		$logR = log2($__g::max() - $__g::min() + 1);
+		/*
+		const size_t __k = $b / $logR + ($b % $logR != 0) + ($b == 0);
+		const _RealType _Rp = _URNG::max() - _URNG::min() + _RealType(1);
+		_RealType $base = _Rp;
+		_RealType _Sp = __g() - _URNG::min();
+		for (size_t __i = 1; __i < __k; ++__i, $base *= _Rp)
+			_Sp += (__g() - _URNG::min()) * $base;
+		return _Sp / $base;
+		*/
+	}
+
+	class normal_distribution
+	{
+		var $_M_mean   = 0.0;
+		var $_M_stddev = 1.0;
+		var $_M_reset  = 0;
+
+		function __construct(float $mean = 0.0, $stddev = 1.0)
+		{
+			$this->_M_mean   = $mean;
+			$this->_M_stddev = $stddev;
+			if ($this->_M_stddev < 1.0) {
+				$this->_M_stddev = 1.0;
+			}
+		}
+
+		function mean()
+		{ return $this->_M_mean; }
+
+		function stddev()
+		{ return $this->_M_stddev; }
+
+		function min()
+		{ return -numeric_limits::infinity; }
+
+		function max()
+		{ return numeric_limits::infinity; }
+
+		function reset()
+		{ $this->_M_r = 1; }
+	} /* EOC */
+
 	final class uniform_int_distribution
 	{
 		var $_M_a = 0;

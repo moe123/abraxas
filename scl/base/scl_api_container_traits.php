@@ -341,7 +341,7 @@ namespace std
 		{ return $this->_M_size; }
 	} /* EOT */
 
-	class _C_list_node
+	class _C_linkedlist_node
 	{
 		var $_M_data = null;
 		var $_M_next = null;
@@ -394,7 +394,7 @@ namespace std
 
 		function & _F_insert_first(&$d___)
 		{
-			$n = new _C_list_node;
+			$n = new _C_linkedlist_node;
 			$n->_M_data = $d___;
 			if ($this->_M_size < 1) {
 				$this->_M_l_node = $n;
@@ -409,7 +409,7 @@ namespace std
 
 		function _F_insert_last(&$d___)
 		{
-			$n = new _C_list_node;
+			$n = new _C_linkedlist_node;
 			$n->_M_data = $d___;
 			if ($this->_M_size < 1) {
 				$this->_M_f_node = $n;
@@ -431,7 +431,7 @@ namespace std
 						return false;
 					}
 				}
-				$n = new _C_list_node;
+				$n = new _C_linkedlist_node;
 				$n->_M_data = $d___;
 
 				if ($c == $this->_M_l_node) {
@@ -477,7 +477,7 @@ namespace std
 					++$i;
 				}
 
-				$n = new _C_list_node;
+				$n = new _C_linkedlist_node;
 				$n->_M_data = $d___;
 
 				if ($c == $this->_M_l_node) {
@@ -829,11 +829,129 @@ namespace std
 		{ return new _C_reverse_iterator_linkedlist($this, $this->_M_size); }
 	} /* EOT */
 
+	class _C_hashtable_node
+	{
+		var $_M_key;
+		var $_M_val;
+	} /* EOC */
+
+	trait _T_hashtable_container
+	{
+		var $_M_count     = 0;
+		var $_M_hash      = null;
+		var $_M_equal     = null;
+		var $_M_container = [];
+		var $_M_size      = 0;
+
+		function __construct(
+			  int      $size___
+			, callable $hash_fn___  = null
+			, callable $equal_fn___ = null
+		) {
+			$this->_M_hash = $hash_fn___;	
+			if (\is_null($this->_M_hash)) {
+				$this->_M_hash = function ($v)
+				{
+					if (\is_object($v) || \is_array($v)) {
+						return \crc32(\serialize($v));
+					}
+					if (\is_resource($v)) {
+						return \crc32(print_r($v, true));
+					}
+					return \crc32(\strval($v));
+				};
+			}
+			$this->_M_equal = $equal_fn___;	
+			if (\is_null($this->_M_equal)) {
+				$this->_M_equal = function($l, &$r) { return $l == $r; };
+			}
+			$this->_M_size = $size___;
+		}
+
+		function _F_insert($k___, $v___)
+		{
+			$i = $this->_F_index_of($k___);
+			$j = $i;
+			$n = new _C_hashtable_node;
+			$n->_M_key = $k___;
+			$n->_M_val = $v___;
+			while (true) {
+				if (!isset($this->_M_container[$i]) || ($this->_M_equal)($k___, $this->_M_container[$i]->_M_key)) {
+					$this->_M_container[$i] = $n;
+					++$this->_M_count;
+					break;
+				}
+				$i = (++$i % $this->_M_size);
+				if ($i === $j) {
+					$this->_F_rehash($this->_M_size * 2);
+					return $this->_F_insert($k___, $val);
+				}
+			}
+			return $this;
+		}
+
+		function _F_del($k___)
+		{
+			$i = $this->_F_index_of($k___);
+			if (isset($this->_M_container[$i])) {
+				$this->_M_container[$i] = null;
+			}
+		}
+
+		function _F_rehash(int $n___)
+		{
+			$size = $this->_M_size;
+			$this->_M_size = $n___;
+			$buckets = [];
+			$pileup  = [];
+			for ($i = 0; $i < $size; $i++) {
+				if (!empty($this->_M_container[$i])) {
+					$n = $this->_M_container[$i];
+					$j = $this->_F_index_of($n->_M_hash);
+					if (isset($buckets[$j]) && !($this->_M_equal)($buckets[$j]->_M_hash, $n->_M_hash)) {
+						$pileup[]    = $n;
+					} else {
+						$buckets[$j] = $n;
+					}
+				}
+			}
+			$this->_M_container = $buckets;
+			foreach ($pileup as $n) {
+				$this->_F_insert($n->_M_hash, $n->_M_val);
+			}
+		}
+
+		function _F_find($k___)
+		{
+			$i = $this->_F_index_of($k___);
+			$j = $i;
+			while (true) {
+				if (!isset($this->_M_container[$i])) {
+					return null;
+				}
+				$n = $this->_M_container[$i];
+				if (($this->_M_equal)($k___, $n->_M_hash)) {
+					return $n->_M_val;
+				}
+				$i = (++$i % $this->_M_size);
+				if ($i == $j) {
+					return null;
+				}
+			}
+		}
+
+		function _F_bucket_count()
+		{ return $this->_M_count; }
+		
+		function _F_index_of($k___)
+		{ return ($this->_M_hash)($k___) % $this->_M_size; }
+	} /* EOT */
+
 	trait _T_dict_iterative
 	{
 		function getIterator()
 		{ return new _C_fwditer_associative_adaptor($this); }
-	}
+	} /* EOT */
 
 	trait _T_dict_iterable
 	{
