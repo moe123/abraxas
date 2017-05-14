@@ -166,23 +166,6 @@ namespace std
 		}
 	} /* EOC */
 
-
-	function generate_canonical(&$__g)
-	{
-		$Dt = numeric_limits_float::digits;
-		$b = $Dt < $bits ? $Dt : $bits;
-		$logR = log2($__g::max() - $__g::min() + 1);
-		/*
-		const size_t __k = $b / $logR + ($b % $logR != 0) + ($b == 0);
-		const _RealType _Rp = _URNG::max() - _URNG::min() + _RealType(1);
-		_RealType $base = _Rp;
-		_RealType _Sp = __g() - _URNG::min();
-		for (size_t __i = 1; __i < __k; ++__i, $base *= _Rp)
-			_Sp += (__g() - _URNG::min()) * $base;
-		return _Sp / $base;
-		*/
-	}
-
 	class normal_distribution
 	{
 		var $_M_mean   = 0.0;

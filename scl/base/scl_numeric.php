@@ -36,20 +36,6 @@ namespace std
 		return _F_lcm($m___, $n___);
 	}
 
-	function span_lcm(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		$m = [];
-		$n = 0;
-		while ($first___ != $last___) {
-			$m[] = $first___->_F_this();
-			$first___->_F_next();
-			$n++;
-		}
-		return _F_lcmv($m, $n);
-	}
-
 	function & median_value(
 		           &$a___
 		,          &$b___
@@ -73,6 +59,20 @@ namespace std
 			return $c___;
 		}
 		return $b___;
+	}
+
+	function span_lcm(
+		  basic_iterator $first___
+		, basic_iterator $last___
+	) {
+		$m = [];
+		$n = 0;
+		while ($first___ != $last___) {
+			$m[] = $first___->_F_this();
+			$first___->_F_next();
+			$n++;
+		}
+		return _F_lcmv($m, $n);
 	}
 
 	function span_median(

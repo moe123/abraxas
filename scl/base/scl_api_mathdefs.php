@@ -374,19 +374,45 @@ namespace std
 		, 1021 => 2.2471164185779E+307 , 1022 => 4.4942328371558E+307 , 1023 => 8.9884656743116E+307
 	];
 
-	define('std\FLT_EPSILON'  , PHP_FLOAT_EPSILON);
-	define('std\FLT_SIZE'     , PHP_INT_SIZE);
-	define('std\FLT_MAX'      , PHP_FLOAT_MAX);
-	define('std\FLT_LOWEST'   , -PHP_FLOAT_MAX);
-	define('std\FLT_MIN'      , PHP_FLOAT_MIN);
-	define('std\FLT_RADIX'    , 2);
-	define('std\FLT_MANT_DIG' , 24);
+	define('std\FLT_SIZE'       , PHP_INT_SIZE);
+	define('std\FLT_MAX'        , PHP_FLOAT_MAX);
+	define('std\FLT_LOWEST'     , -PHP_FLOAT_MAX);
+	define('std\FLT_MIN'        , PHP_FLOAT_MIN);
+	define('std\FLT_RADIX'      , 2);
+	define('std\FLT_ROUNDS'     , 1);
+	define('std\FLT_EPSILON'    , PHP_FLOAT_EPSILON);
 
-	define('std\SINT_EPSILON' , 0);
-	define('std\SINT_SIZE'    , PHP_INT_SIZE);
-	define('std\SINT_MAX'     , PHP_INT_MAX);
-	define('std\SINT_LOWEST'  , -PHP_INT_MAX);
-	define('std\SINT_MIN'     , PHP_INT_MIN);
+	define('std\DBL_MANT_DIG'   , 53);
+	define('std\DBL_EPSILON'    , PHP_FLOAT_EPSILON);
+	define('std\DBL_DIG'        , 15);
+	define('std\DBL_MIN_EXP'    , -1021);
+	define('std\DBL_MIN_10_EXP' , -307);
+	define('std\DBL_MAX_EXP'    , 1024);
+	define('std\DBL_MAX_10_EXP' , 308);
+
+	if (FLT_SIZE < 8) {
+		define('std\FLT_MANT_DIG'   , 24);
+		define('std\FLT_DIG'        , 6);
+		define('std\FLT_MIN_EXP'    , -125);
+		define('std\FLT_MAX_EXP'    , 128);
+		define('std\FLT_MIN_10_EXP' , -37);
+		define('std\FLT_MAX_10_EXP' , 38);
+	} else {
+		define('std\FLT_MANT_DIG'   , DBL_MANT_DIG);
+		define('std\FLT_DIG'        , DBL_DIG);
+		define('std\FLT_MIN_EXP'    , DBL_MIN_EXP);
+		define('std\FLT_MAX_EXP'    , DBL_MAX_EXP);
+		define('std\FLT_MIN_10_EXP' , DBL_MIN_10_EXP);
+		define('std\FLT_MAX_10_EXP' , DBL_MAX_10_EXP);
+	}
+
+	define('std\SINT_EPSILON'  , 0);
+	define('std\SINT_SIZE'     , PHP_INT_SIZE);
+	define('std\SINT_MAX'      , PHP_INT_MAX);
+	define('std\SINT_LOWEST'   , -PHP_INT_MAX);
+	define('std\SINT_MIN'      , PHP_INT_MIN);
+	define('std\SINT_DIG'   , (int)((PHP_INT_SIZE * 8) - 1));
+	define('std\SINT_DIG10' , (int)(((PHP_INT_SIZE * 8) - 1) * 0.30102999566398));
 
 	function _F_FP_equal(float $l___, float $r___)
 	{

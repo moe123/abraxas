@@ -26,6 +26,7 @@ namespace std
 		const min      = FLT_MIN;
 		const infinity = INFINITY;
 		const digits   = FLT_MANT_DIG;
+		const digits10 = FLT_DIG;
 	} /* EOC */
 
 	abstract class numeric_limits_double extends numeric_limits_float
@@ -39,7 +40,8 @@ namespace std
 		const lowest   = SINT_LOWEST;
 		const min      = SINT_MIN;
 		const infinity = INFINITY;
-		const digits   = (SINT_SIZE >= 8 ? (64 - 1) : (32 - 1));
+		const digits   = SINT_DIG;
+		const digits10 = SINT_DIG10;
 	} /* EOC */
 
 	abstract class numeric_limits_long extends numeric_limits_int
