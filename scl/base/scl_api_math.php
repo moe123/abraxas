@@ -49,15 +49,15 @@ namespace std
 	define('std\M_2_PI'     , 0.636619772367581343075535053490057448); /* 2/pi           */
 	define('std\M_2_SQRTPI' , 1.12837916709551257389615890312154517 ); /* 2/sqrt(pi)     */
 	define('std\M_SQRT2'    , 1.41421356237309504880168872420969808 ); /* sqrt(2)        */
-	define('std\M_SQRT1_2'  , 0.707106781186547524400844362104849039); /* 1/sqrt(2)      */
+	define('std\M_1_SQRT2'  , 0.707106781186547524400844362104849039); /* 1/sqrt(2)      */
 
 	define('std\FE_DOWNWARD'   , 10);
 	define('std\FE_TONEAREST'  , 20);
 	define('std\FE_TOWARDZERO' , 30);
 	define('std\FE_UPWARD'     , 40);
 
-	define('std\FP_ILOGB0'   , (-2147483647 - 1));
-	define('std\FP_ILOGBNAN' , (-2147483647 - 1));
+	define('std\FP_ILOGB0'   , SINT_MAX);
+	define('std\FP_ILOGBNAN' , SINT_LOWEST);
 
 	$GLOBALS["^std@_g_signgam"] = 1;
 	$GLOBALS["^std@_g_rndmode"] = FE_TONEAREST;
@@ -609,6 +609,20 @@ namespace std
 			return \INF;
 		}
 		return \log(\abs($x___), FLT_RADIX);
+	}
+
+	function ilogb(float $x___)
+	{
+		if (\is_infinite($x___)) {
+			return SINT_MAX;
+		}
+		if (\is_nan($x___)) {
+			return FP_ILOGBNAN;
+		}
+		if (_F_FP_iszero($x___)) {
+			return FP_ILOGB0;
+		}
+		return \intval(logb($x___));
 	}
 
 	function lgamma_s(float $x___)
