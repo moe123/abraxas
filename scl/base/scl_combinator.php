@@ -22,7 +22,7 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $unaryFunction___
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			for_each($first___, $last___, $unaryFunction___);
 		} else {
@@ -36,7 +36,7 @@ namespace std
 		, basic_iterator  $last___
 		, bool           &$res___
 		, callable        $unaryFunction___
-	) {
+	) : basic_iterable {
 		$res___ = false;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while($first___ != $last___) {
@@ -58,7 +58,7 @@ namespace std
 		, basic_iterator  $last___
 		, bool           &$res___
 		, callable        $unaryFunction___
-	) {
+	) : basic_iterable {
 		$res___ = true;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while($first___ != $last___) {
@@ -80,7 +80,7 @@ namespace std
 		, basic_iterator  $last___
 		, bool           &$res___
 		, callable        $unaryFunction___
-	) {
+	) : basic_iterable {
 		$res___ = false;
 		if ($first___::iterator_category === $last___::iterator_category) {
 			while($first___ != $last___) {
@@ -101,7 +101,7 @@ namespace std
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable $unaryFunction___
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			transform($first___, $last___, clone $first___, $unaryFunction___);
 		} else {
@@ -115,7 +115,7 @@ namespace std
 		, basic_iterator  $last___
 		, basic_iterator  $out___
 		, callable $unaryOperation___ = null
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$p = $unaryOperation___;
 			if (\is_null($p)) {
@@ -134,30 +134,33 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $out___->_M_ptr;
 	}
 
 	function & to_one(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $binaryPredicate___ = null
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$it = clone $first___;
 			sort($it, $last___);
 			$it = unique_b($first___, $last___, $binaryPredicate___);
 			$it___->_M_ptr->erase($it, $last___);
+			return $it___->_M_ptr;
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $first___->_M_ptr;
 	}
 
 	function & filter(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
-			filter_if_not($first___, $last___,
+			return filter_if_not($first___, $last___,
 				function (&$v) use($unaryPredicate___) {
 					return !$unaryPredicate___($v);
 				}
@@ -165,27 +168,30 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $first___->_M_ptr;
 	}
 
 	function & filter_not(
 		  basic_iterator $first___
 		, basic_iterator $last___
 		, callable       $unaryPredicate___
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$it = remove_if($first___, $last___, $unaryPredicate___);
 			$it___->_M_ptr->erase($it, $last___);
+			return $it___->_M_ptr;
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $first___->_M_ptr;
 	}
 
-	function & foldr_to(
+	function & fold(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_iterator  $out___
 		, callable        $binaryOperation___
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			if ($first___ == $last___) {
 				_F_throw_invalid_argument("Invalid type error");
@@ -201,15 +207,16 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $out___->_M_ptr;
 	}
 
-	function & foldl_to(
+	function & fold_init(
 		  basic_iterator  $first___
 		, basic_iterator  $last___
 		, basic_iterator  $out___
 		,                 $init___
 		, callable        $binaryOperation___
-	) {
+	) : basic_iterable {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			$buf = $init___;
 			while ($first___ != $last___) {
@@ -220,6 +227,7 @@ namespace std
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $out___->_M_ptr;
 	}
 
 	function & combine_to(
@@ -227,12 +235,13 @@ namespace std
 		, basic_iterator  $last___
 		, basic_ostream   $out___
 		, string          $joint___ = ','
-	) {
+	) : basic_ostream {
 		if ($first___::iterator_category === $last___::iterator_category) {
 			lazy_copy($first___, $last___, stream_inserter($out___, $joint___));
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
+		return $out___;
 	}
 } /* EONS */
 

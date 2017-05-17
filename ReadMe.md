@@ -228,8 +228,8 @@ std\copy($v->begin(2), $v->begin(4), std\duotator(
 
 #### | Algorithms
 A large number of algorithms have been already written <sub><sup>(1)</sup></sub>, in the same way than `C++ STL`, it requires
-a certain type of iterator. The design is an hybrid one, tacking advantages of 
-existing x functions (not always, depends on performances, zero-copying / COW and what can 
+a certain type of iterator. The design is a hybrid one, tacking advantages of 
+existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
 this is transparent to the end-user).
 

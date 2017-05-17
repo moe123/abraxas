@@ -42,10 +42,11 @@ namespace std
 		const ht   = "\t";
 		const lf   = "\n";
 		const cr   = "\r";
-		const nbsp = "&nbsp;";
 		const crlf = "\r\n";
 		const lfcr = "\n\r";
-		
+		const nbsp = "&nbsp;";
+		const lnbr = "<br>";
+
 		static function to_int($c___)
 		{ return unpack_uint8($c___); }
 		
@@ -58,8 +59,9 @@ namespace std
 	const blank       = char_utils::sp;
 	const space       = char_utils::sp;
 	const unbreakable = char_utils::nbsp;
-	const tab         = char_utils::ht;
+	const linebreak   = char_utils::lnbr;
 	const tabulation  = char_utils::ht;
+	const tab         = char_utils::ht;
 
 	abstract class ios_base
 	{
