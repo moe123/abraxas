@@ -206,19 +206,19 @@ std\cout(std\endl);
 
 ...
 
-// duo_iterator madness
+// zip_iterator
 
 $c1 = std\make_ordered_list();
 $c2 = std\make_forward_list();
 $c3 = std\make_ordered_list();
 $c4 = std\make_forward_list();
 
-std\copy($v->begin(2), $v->begin(4), std\duotator(
-	  std\duotator(
+std\copy($v->begin(2), $v->begin(4), std\zip_iterator(
+	  std\zip_iterator(
 		  std\back_inserter($c1)
 		, std\front_inserter($c2)
 	  )
-	, std\duotator(
+	, std\zip_iterator(
 		  std\back_inserter($c3)
 		, std\front_inserter($c4)
 	  )

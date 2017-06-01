@@ -131,7 +131,7 @@ namespace std
 		if (\is_null($g)) {
 			$g = new cryptographically_secure_engine;
 		}
-		$n  = $last___->_F_pos() - $first___->_F_pos();
+		$n = $last___->_F_pos() - $first___->_F_pos();
 		$d = new uniform_int_distribution;
 		for ($i = ($n - 1); $i > 0; --$i) {
 			iter_switch($first___, $i, $d($g, 0, $i));
@@ -2187,6 +2187,70 @@ namespace std
 				heap_siftdown($first___, $last___, $start, $n, $p);
 			}
 		}
+	}
+
+	function sample(
+		  basic_iterator  $first___
+		, basic_iterator  $last___
+		, insert_iterator $out___
+		, int             $n___
+		, callable        $gen___ = null
+	) {
+		if (
+			   $first___::iterator_category === $last___::iterator_category
+			&& $n___ >= 0
+		) {
+			$g = $gen___;
+			if (\is_null($g)) {
+				$g = new cryptographically_secure_engine;
+			}
+			$n = iter_distance($first___, $last___);
+			$d = new uniform_int_distribution;
+			for ($n___ = min($n___, $n); $n___ != 0 ; $first___->_F_next()) {
+				$r = $d($g, 0,  --$n);
+				if ($r < $n___) {
+					$out___->_F_assign($first___->_F_this());
+					$out___->_F_next();
+					--$n___;
+				}
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return $out___;
+	}
+
+	function reduce(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		,                $init___ = null
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			if (\is_null($init___)) {
+				$init___ = $first___->_F_this();
+				$first___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return accumulate($first___, $last___, $init___);
+	}
+
+	function reduce_b(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		,                $init___
+		, callable       $binaryOperation___
+	) {
+		if ($first___::iterator_category === $last___::iterator_category) {
+			if (\is_null($init___)) {
+				$init___ = $first___->_F_this();
+				$first___->_F_next();
+			}
+		} else {
+			_F_throw_invalid_argument("Invalid type error");
+		}
+		return accumulate_b($first___, $last___, $init___, $binaryOperation___);
 	}
 
 	function is_sorted_until(

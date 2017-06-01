@@ -34,7 +34,7 @@ namespace std
 		return new ostream_iterator($ostream___, $sep___);
 	}
 
-	function duotator(basic_iterator $first1___, basic_iterator $first2___)
+	function zip_iterator(basic_iterator $first1___, basic_iterator $first2___)
 	{ return new duo_iterator($first1___, $first2___); }
 
 	function iterator_copy(basic_iterator &$it___)

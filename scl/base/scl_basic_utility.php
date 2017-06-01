@@ -441,6 +441,9 @@ namespace std
 	function make_ifstream(string $fname___, int $m___ = ios_base::in)
 	{ return new ifstream($fname___, $m___); }
 
+	function make_u8string(string $s___ = "", int $encoding___ = encoding::utf8)
+	{ return new u8string($s___, $encoding___); }
+
 	function iterable_copy(basic_iterable &$c___)
 	{ return clone $c___; }
 } /* EONS */

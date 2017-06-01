@@ -85,13 +85,13 @@ namespace std
 		function __destruct()
 		{ $this->_M_dev = null; }
 
-		function __invoke(int $a = 0, int $b = -1)
+		function __invoke(int $a = numeric_limits_int::max, int $b = numeric_limits_int::max)
 		{
-			if ($a < 0) {
+			if ($a === numeric_limits_int::max) {
 				$a = cryptographically_secure_engine::min();
 			}
 
-			if ($b < 1) {
+			if ($b === numeric_limits_int::max) {
 				$b = cryptographically_secure_engine::max();
 			}
 
@@ -128,13 +128,13 @@ namespace std
 		function __destruct()
 		{ $this->_M_dev = null; }
 
-		function __invoke(int $a = 0, int $b = -1)
+		function __invoke(int $a = numeric_limits_int::max, int $b = numeric_limits_int::max)
 		{
-			if ($a < 0) {
+			if ($a === numeric_limits_int::max) {
 				$a = mersenne_twister_engine::min();
 			}
 
-			if ($b < 1) {
+			if ($b === numeric_limits_int::max) {
 				$b = mersenne_twister_engine::max();
 			}
 
@@ -213,17 +213,25 @@ namespace std
 			$this->_M_r = 0;
 		}
 
-		function __invoke(pseudo_random_engine &$gen, int $a = 0, int $b = -1)
-		{
+		function __invoke(
+			  pseudo_random_engine &$gen
+			, int $a = numeric_limits_int::max
+			, int $b = numeric_limits_int::max
+		) {
 			if ($this->_M_r > 0) {
 				$this->_M_r = 0;
 				$gen->seed();
 				$gen->discard(1);
 			}
 
-			if ($a <= 0 && $b < 1) {
-				return $gen($this->_M_a, $this->_M_b);
+			if ($a === numeric_limits_int::max) {
+				$a = $this->_M_a;
 			}
+
+			if ($b === numeric_limits_int::max) {
+				$b = $this->_M_b;
+			}
+
 			return $gen($a, $b);
 		}
 

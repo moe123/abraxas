@@ -24,6 +24,7 @@ require_once "ordered_set.php";
 require_once "forward_list.php";
 require_once "random.php";
 require_once "tuple.php";
+require_once "u8string.php";
 
 $dev = new std\random_device;
 
@@ -469,12 +470,12 @@ $f2_even = std\make_forward_list();
 $f3_even = std\make_ordered_list();
 $f4_even = std\make_forward_list();
 
-std\copy($v->begin(), $pv, std\duotator(
-	  std\duotator(
+std\copy($v->begin(), $pv, std\zip_iterator(
+	  std\zip_iterator(
 		  std\back_inserter($f1_even)
 		, std\front_inserter($f2_even)
 	),
-	std\duotator(
+	std\zip_iterator(
 		  std\back_inserter($f3_even)
 		, std\front_inserter($f4_even)
 	)
@@ -518,7 +519,7 @@ std\flat_to(
 	, function (&$v) { return $v / 2.0; }
 );
 
-std\cout($d0)(std\endl);
+std\cerr($d0)(std\endl);
 
 $res = false;
 std\every_of(
@@ -529,5 +530,17 @@ std\every_of(
 );
 
 std\cout(std\boolalpha(true))($res)(std\endl);
+
+$out = std\make_u8string();
+$in  = std\make_u8string("abçdéf©h");
+
+std\sample(
+	  $in->begin()
+	, $in->end()
+	, std\back_inserter($out)
+	, 5
+);
+
+std\cerr("five random characters out of ")($in)(" : ")($out)(std\endl);
 
 /* EOF */

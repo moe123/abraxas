@@ -30,8 +30,9 @@ namespace std
 			if (strlen($s)) {
 				if ($encoding !== basic_encoding::utf8) {
 					$s = _F_u8gh_convert($s, $encoding);
-					$binlen = strlen($s);
 				}
+				$binlen = strlen($s);
+				return $s;
 			}
 			return "";
 		}
@@ -40,10 +41,11 @@ namespace std
 		{
 			$binlen = 0;
 			if (strlen($s)) {
-				if ($encoding !== basic_encoding::utf8) {
+				if ($encoding !== basic_encoding::utf16) {
 					$s = _F_u16gh_convert($s, $encoding);
-					$binlen = strlen($s);
 				}
+				$binlen = strlen($s);
+				return $s;
 			}
 			return "";
 		}
@@ -105,14 +107,12 @@ namespace std
 
 		function & swap(u8string &$u8)
 		{
-			$c  = $this->_M_container;
-			$sz = $this->_M_size;
-
+			$c                  = $this->_M_container;
+			$sz                 = $this->_M_size;
 			$this->_M_container = $u8->_M_container;
 			$this->_M_size      = $u8->_M_size;
-
-			$u8->_M_container = $c;
-			$u8->_M_size      = $sz;
+			$u8->_M_container   = $c;
+			$u8->_M_size        = $sz;
 
 			return $this;
 		}
