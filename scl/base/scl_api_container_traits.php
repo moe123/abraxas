@@ -1,5 +1,5 @@
 <?php
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8, tab-width: 3 -*-
 
 //
 // scl_basic_container_traits.php
