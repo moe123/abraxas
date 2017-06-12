@@ -36,12 +36,21 @@ Extended functionalities:
 ```php
 /* IEEE Std 1003.1-2001 like complex number arithmetic. */
 ```
+
+@see [Complex](https://github.com/moe123/abraxas/blob/master/scl/base/scl_api_complex.php?ts=3)<br>
 <sub><sup>std\creal, std\cimag, std\cabs, std\cnorm, std\carg, std\cexp, std\clog, std\clog10, std\cpow, std\csqrt, std\cconj, std\cproj, std\cpolar, std\cinv, std\cneg, std\cadd, std\csub, std\cmul, std\cdiv, std\cfadd, std\cfsub, std\cfmul, std\cfdiv, std\cfsqrt, std\csec, std\csech, std\ccsc, std\ccsch, std\ccot, std\ccoth, std\cacot, std\cacoth, std\ccos, std\csin, std\ctan, std\ccosh, std\csinh, std\ctanh, std\cacos, std\casin, std\catan, std\cacosh, std\casinh, std\catanh</sub></sup>
 
 ```php
 /* Extended mathematical, trigonometric templates with complex support. */
 ```
+
+@see [Math](https://github.com/moe123/abraxas/blob/master/scl/base/scl_api_math.php?ts=3) | [Mathdefs](https://github.com/moe123/abraxas/blob/master/scl/base/scl_api_mathdefs.php?ts=3)<br>
 <sub><sup>std\setsigngam, std\signgam, std\fesetround, std\fpclassify, std\isnan, std\isnormal, std\isfinite, std\isinf, std\copysign, std\isgreater, std\isgreaterequal, std\isless, std\islessequal, std\islessgreater, std\isunordered, std\signbit, std\fabs, std\fmod, std\modf, std\fmax, std\fmin, std\fdim, std\fma, std\fdeg2rad, std\frad2deg, std\fsec, std\fcsc, std\fcot, std\fsech, std\fcsch, std\fcoth, std\facsc, std\fasec, std\facot, std\fasech, std\facsch, std\facoth, std\trunc, std\nearbyint, std\remainder, std\hypot, std\fact, std\abs, std\real, std\imag, std\arg, std\sec, std\csc, std\cot, std\sech, std\csch, std\coth, std\norm, std\conj, std\proj, std\polar, std\topolar, std\exp, std\exp2, std\expm1, std\pow, std\log, std\log2, std\log10, std\log1p, std\sqrt, std\cos, std\cosh, std\sin, std\sinh, std\tan, std\tanh, std\acos, std\acosh, std\asin, std\asinh, std\atan2, std\atan, std\atanh, std\cbrt, std\ftrt, std\nthrt, std\ceil, std\floor, std\round, std\lrint, std\logb, std\ilogb, std\lgamma_s, std\lgamma_r, std\lgamma, std\tgamma, std\beta, std\frexp, std\ldexp, std\erf, std\erfc, std\sincosf</sub></sup>
+
+#### | Caveats
+In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
+measures and designs such as adding more comparator callbacks in the `Algorithms` component.
+We try as much as we can to re-introduce type safety on any internal structures (∩｀-´)⊃━☆ﾟ.*･｡ﾟ.
 
 ```php
 
@@ -69,11 +78,6 @@ while (!std\cin($buf)->eof()) {
 
 ...
 ```
-
-#### | Caveats
-In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
-measures and designs such as adding more comparator callbacks in the `Algorithms` component.
-We try as much as we can to re-introduce type safety on any internal structures (∩｀-´)⊃━☆ﾟ.*･｡ﾟ.
 
 #### | Containers
 It contains sequence containers and associative containers and maybe in the future public 
