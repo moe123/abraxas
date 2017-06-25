@@ -2587,6 +2587,19 @@ namespace std
 		return is_sorted_until_b($first___, $last___, $binaryPredicate___) == $last___;
 	}
 
+	function linear_sort(
+		  basic_iterator $first___
+		, basic_iterator $last___
+		, callable       $binaryPredicate___ = null
+	) {
+		for (; $first___ != $last___; $first___->_F_next()) {
+			iter_swap(
+				  $first___
+				, min_element_b(clone $first___, $last___, $binaryPredicate___)
+			);
+		}
+	}
+
 	function sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
