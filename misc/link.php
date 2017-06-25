@@ -413,19 +413,19 @@ function binomial(int $n, int $k)
 	);
 }
 
-std\cout("Pascal's triangle:")(std\endl);
+std\cerr("Pascal's triangle:")(std\endl);
 $buf = "";
 for ($n = 1; $n < 10; ++$n) {
 	for($k = 0; $k < (20 - $n * 2); ++$k) {
-		std\cout(' ');
+		std\cerr(' ');
 	}
 	for($k = 1; $k < $n; ++$k) {
-		std\cout(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(' ');
+		std\cerr(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(' ');
 	}
-	std\cout(std\endl);
+	std\cerr(std\endl);
 }
 
-std\cout(std\endl);
+std\cerr(std\endl);
 std\cout(std\showbase(true))(std\hex(true))(2)(std\showbase(false))(2)(std\hex(false))(std\endl);
 
 // std\stop(0);

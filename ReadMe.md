@@ -76,7 +76,56 @@ while (!std\cin($buf)->eof()) {
 	std\cout($buf);
 }
 
+function binomial(int $n, int $k)
+{
+	return (
+		1.0 / (($n + 1) * std\beta($n - $k + 1, $k + 1))
+	);
+}
+
+std\cerr("Pascal's triangle:")(std\endl);
+$buf = "";
+for ($n = 1; $n < 10; ++$n) {
+	for($k = 0; $k < (20 - $n * 2); ++$k) {
+		std\cerr(' ');
+	}
+	for($k = 1; $k < $n; ++$k) {
+		std\cerr(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(' ');
+	}
+	std\cerr(std\endl);
+}
+
+std\cerr(std\endl);
+
 ...
+
+std\cout("remainder(+5.1, +3.0) = ")(std\remainder(+5.1, +3.0))(std\endl);
+std\cout("remainder(-5.1, +3.0) = ")(std\remainder(-5.1, +3.0))(std\endl);
+std\cout("remainder(+5.1, -3.0) = ")(std\remainder(+5.1, -3.0))(std\endl);
+std\cout("remainder(-5.1, -3.0) = ")(std\remainder(-5.1, -3.0))(std\endl);
+std\cout("remainder(+1.0, +2.0) = ")(std\remainder(+1.0, 2.0))(std\endl);
+std\cout("remainder(+5.0, +2.0) = ")(std\remainder(+5.0, 2.0))(std\endl);
+std\cout("remainder(+6.0, +2.0) = ")(std\remainder(+6.0, 2.0))(std\endl);
+std\cout("remainder(+6.0, +3.0) = ")(std\remainder(+6.0, 3.0))(std\endl);
+std\cout("remainder(+7.0, +2.0) = ")(std\remainder(+7.0, 2.0))(std\endl);
+std\cout("remainder(+9.0, +2.0) = ")(std\remainder(+9.0, 2.0))(std\endl);
+
+...
+
+std\cout("remainder(-0.0, +1.0) = ")(std\remainder(-0.0, +1.0))(std\endl);
+std\cout("remainder(+0.0, -1.0) = ")(std\remainder(+0.0, -1.0))(std\endl);
+std\cout("remainder(+5.1, +Inf) = ")(std\remainder(+5.1, std\INFINITY))(std\endl);
+std\cout("remainder(+5.1, +0.0) = ")(std\remainder(+5.1, +0.0))(std\endl);
+
+...
+
+std\cout("trunc(+2.7) = ")(std\trunc(+2.7))(std\endl);
+std\cout("trunc(-2.9) = ")(std\trunc(-2.9))(std\endl);
+std\cout("trunc(-0.0) = ")(std\trunc(-0.0))(std\endl);
+std\cout("trunc(-Inf) = ")(std\trunc(-(std\INFINITY)))(std\endl);
+
+...
+
 ```
 
 #### | Containers

@@ -52,7 +52,7 @@ namespace std
 
 	/*!
 		template<Iter1, Iter2>
-		int iter_distance(Iter1 it1, Iter2 it2);
+		void iter_swap(Iter1 it1, Iter2 it2);
 	*/
 	function iter_swap(basic_iterator &$it1___, basic_iterator &$it2___)
 	{
