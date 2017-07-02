@@ -23,7 +23,7 @@ namespace std
 		const forward_iterator      = 20;
 		const reverse_iterator      = 30;
 		const insert_iterator       = 40;
-		const duo_iterator          = 50;
+		const zip_iterator          = 50;
 
 		const back_insert_iterator  = 41;
 		const front_insert_iterator = 42;
@@ -235,12 +235,12 @@ namespace std
 		}
 	} /* EOC */
 
-	final class duo_iterator extends basic_iterator
+	final class zip_iterator extends basic_iterator
 	{
-		const iterator_category = basic_iterator_tag::duo_iterator;
+		const iterator_category = basic_iterator_tag::zip_iterator;
 
 		use _T_basic_iterator;
-		use _T_duo_iterator;
+		use _T_zip_iterator;
 
 		function first()
 		{ return $this->_F_first(); }

@@ -641,7 +641,7 @@ namespace std
 		{ return $this->_M_pos; }
 	}
 
-	trait _T_duo_iterator
+	trait _T_zip_iterator
 	{
 		var $_M_first  = null;
 		var $_M_second = null;

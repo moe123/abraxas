@@ -67,7 +67,7 @@ namespace std
 		, callable       $compare___ = null
 	) {
 		if ((
-				$first1___::iterator_category !== basic_iterator_tag::duo_iterator &&
+				$first1___::iterator_category !== basic_iterator_tag::zip_iterator &&
 				$first2___::iterator_category !== basic_iterator_tag::insert_iterator
 			) && (
 				$first1___->_M_ptr::container_category === basic_iterable_tag::basic_u8string &&
@@ -131,7 +131,7 @@ namespace std
 		, callable $compare___ = null
 	) {
 		if (
-			$first___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$first___::iterator_category === basic_iterator_tag::zip_iterator ||
 			$first___::iterator_category === basic_iterator_tag::insert_iterator
 		) {
 			_F_throw_invalid_argument("Invalid type error");
@@ -230,7 +230,7 @@ namespace std
 		, insert_iterator $out_first___
 	) {
 		if (
-			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$out_first___::iterator_category === basic_iterator_tag::zip_iterator ||
 			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
 		) {
 			_F_throw_invalid_argument("Invalid type error");
@@ -275,7 +275,7 @@ namespace std
 		, insert_iterator $out_first___
 	) {
 		if (
-			$out_first___::iterator_category === basic_iterator_tag::duo_iterator ||
+			$out_first___::iterator_category === basic_iterator_tag::zip_iterator ||
 			$out_first___::iterator_category === basic_iterator_tag::ostream_iterator
 		) {
 			_F_throw_invalid_argument("Invalid type error");

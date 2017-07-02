@@ -251,7 +251,7 @@ namespace std
 		function & range_update(basic_iterator $first, basic_iterator $last)
 		{
 			if (
-				$first::iterator_category === basic_iterator_tag::duo_iterator ||
+				$first::iterator_category === basic_iterator_tag::zip_iterator ||
 				$first::iterator_category === basic_iterator_tag::ostream_iterator
 			) {
 				_F_throw_invalid_argument("Invalid type error");

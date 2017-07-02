@@ -35,7 +35,7 @@ namespace std
 	}
 
 	function zip_iterator(basic_iterator $first1___, basic_iterator $first2___)
-	{ return new duo_iterator($first1___, $first2___); }
+	{ return new zip_iterator($first1___, $first2___); }
 
 	function iterator_copy(basic_iterator &$it___)
 	{ return clone $it___; }
