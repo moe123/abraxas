@@ -94,7 +94,7 @@ namespace std
 		) {
 			$this->_M_locale_id        = $locale->_M_id;
 			$this->_M_locale_name      = locale::canonicalize_id($this->_M_locale_id);
-			$this->_M_collator = new \Collator($this->_M_locale_name);
+			$this->_M_collator         = new \Collator($this->_M_locale_name);
 			$this->set_level($collator_level);
 			$this->set_flag($collator_flag);
 		}
@@ -136,14 +136,12 @@ namespace std
 
 		function & swap(collator &$collator)
 		{
-			$coll  = $this->_M_collator;
-			$lcid  = $this->_M_locale_id;
-			$lcnm  = $this->_M_locale_name;
-
-			$this->_M_collator    = $collator->_M_collator;
-			$this->_M_locale_id   = $collator->_M_locale_id;
-			$this->_M_locale_name = $collator->_M_locale_name;
-
+			$coll                     = $this->_M_collator;
+			$lcid                     = $this->_M_locale_id;
+			$lcnm                     = $this->_M_locale_name;
+			$this->_M_collator        = $collator->_M_collator;
+			$this->_M_locale_id       = $collator->_M_locale_id;
+			$this->_M_locale_name     = $collator->_M_locale_name;
 			$collator->_M_collator    = $coll;
 			$collator->_M_locale_id   = $lcid;
 			$collator->_M_locale_name = $lcnm;

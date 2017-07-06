@@ -527,7 +527,7 @@ namespace std
 		if ($x___ < 1.0) {
 			$g = 1.0 / $x___;
 			while (true) {
-				$j = ($j + 1) / 2;
+				$j = \intdiv(($j + 1), 2);
 				if ($g < _N_pow2_tab($i)) {
 					$i -= $j;
 				} else if ($j == 1 && $g < _N_pow2_tab($i + 1)) {
@@ -542,7 +542,7 @@ namespace std
 			$i = -($i);
 		} else if ($x___ > 1.0) {
 			while (true) {
-				$j = ($j + 1) / 2;
+				$j = \intdiv(($j + 1), 2);
 				if ($x___ > _N_pow2_tab($i)) {
 					$i += $j;
 				} else if ($j == 1 && $x___ > _N_pow2_tab($i-1)) {
