@@ -16,6 +16,8 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
+declare(strict_types=1);
+
 namespace std
 {
 	function & each_in(

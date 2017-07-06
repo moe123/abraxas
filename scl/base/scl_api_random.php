@@ -15,6 +15,8 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
+declare(strict_types=1);
+
 namespace std
 {
 	define('std\GRND_RANDOM'   , 1);

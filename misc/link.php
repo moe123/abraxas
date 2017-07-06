@@ -182,7 +182,7 @@ std\place_generate_n(
 
 std\cout($v);
 
-function fn(int $one, string $two, bool $three, int $four) { 
+function fn(int $one, string $two, bool $three, float $four) { 
 	std\cerr($one, std\ios_base::hex)(std\endl)
 		($two)(std\endl)
 			($three, std\ios_base::alpha)(std\endl)
@@ -198,8 +198,8 @@ $fn = std\bind(
 	, 0.00000099988888888
 );
 
-std\invoke($fn, 16, 0.8);
-std\invoke($fn, 4, 0);
+std\invoke($fn, 16, true);
+std\invoke($fn, 4, false);
 
 //\ini_set('log_errors', "1");
 //\ini_set('display_errors', "1");

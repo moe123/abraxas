@@ -17,6 +17,8 @@
  * @copyright  (C) Moe123. All rights reserved.
  */
 
+declare(strict_types=1);
+
 namespace std
 {
 	function _F_cabs(complex $z___) : float
