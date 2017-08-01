@@ -291,7 +291,7 @@ this is transparent to the end-user).
 It should be noted that unlike the `C++ STL`, for convenience, (as everything is handled 
 at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
 or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
-(however, for well-known reasons, reusing `Inserters` or `Duo-Iterator` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
+(however, for well-known reasons, reusing `Inserters` or `Zip-Iterator` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
 
 <sub><sup>1 - </sup></sub><sub><sup>std\accumulate, std\adjacent_find, std\all_of, std\any_of, std\binary_search, std\clamp, std\copy_backward, std\copy_if, std\copy_n, std\copy, std\count_if, std\count, std\equal_range, std\equal, std\fill_n, std\fill, std\find_end, std\find_first_of, std\find_if_not, std\find_if, std\find, std\for_each_n, std\for_each, std\generate_n, std\generate, std\heap_pop, std\heap_push, std\includes, std\inner_product, std\iota, std\is_permutation, std\is_sorted_until, std\is_sorted, std\iter_swap, std\lexicographical_compare, std\lower_bound, std\make_heap, std\max_element, std\max, std\merge, std\min_element, std\min, std\minmax_element, std\minmax, std\mismatch, std\next_permutation, std\none_of, std\partial_sum, std\partition_point, std\partition, std\prev_permutation, std\remove_if, std\remove, std\replace_if, std\replace, std\reverse, std\rotate_copy, std\rotate, std\search_n, std\search, std\set_difference, std\set_intersection, std\set_symmetric_difference, std\set_union, std\shuffle, std\sort_heap, std\sort, std\stable_sort, std\swap_ranges, std\swap, std\transform, std\unique_copy, std\unique, std\upper_bound</sup></sub>
 
