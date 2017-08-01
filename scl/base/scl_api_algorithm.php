@@ -22,7 +22,7 @@ namespace std
 	function _F_compare(
 		  basic_iterable &$c1___
 		, basic_iterable &$c2___
-		, callable          $compare___ = null
+		, callable        $compare___ = null
 	) {
 		if (
 			$c1___::container_category === basic_iterable_tag::basic_u8string &&
@@ -100,7 +100,7 @@ namespace std
 
 	function _F_sort_all(
 		  basic_iterable &$c___
-		, callable $compare___ = null
+		, callable        $compare___ = null
 	) {
 		if ($c___->_M_size) {
 			if ($c___::container_category === basic_iterable_tag::basic_dict) {
@@ -130,7 +130,7 @@ namespace std
 	function _F_slice_sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) {
 		if (
 			$first___::iterator_category === basic_iterator_tag::zip_iterator ||
@@ -184,12 +184,12 @@ namespace std
 	function _F_slice_stable_sort(
 		  basic_iterator $first___
 		, basic_iterator $last___
-		, callable $compare___ = null
+		, callable       $compare___ = null
 	) { _F_slice_sort($first___, $last___, $compare___); }
 
 	function _F_stable_sort_all(
 		  basic_iterable &$c___
-		, callable $compare___ = null
+		, callable        $compare___ = null
 	) {
 		if ($c___->_M_size > 1) {
 			$comp = $compare___;
@@ -227,8 +227,8 @@ namespace std
 	}
 
 	function _F_intersection(
-		  basic_iterable $c1___
-		, basic_iterable $c2___
+		  basic_iterable  $c1___
+		, basic_iterable  $c2___
 		, insert_iterator $out_first___
 	) {
 		if (
@@ -272,8 +272,8 @@ namespace std
 	}
 
 	function _F_difference(
-		  basic_iterable $c1___
-		, basic_iterable $c2___
+		  basic_iterable  $c1___
+		, basic_iterable  $c2___
 		, insert_iterator $out_first___
 	) {
 		if (
