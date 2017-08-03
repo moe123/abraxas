@@ -192,7 +192,7 @@ std\cout($v);
 #### | Iterators
 Abraxas implements five different types of iterators: `Forward-Bidirectional`, `Reverse-Bidirectional`, `Back-Inserter`, `Front-Inserter` and `Zip-Iterator`. Like the `C++ STL`, Abraxas `Iterators` implementation is now fully opaque to the `Algorithms` component. `Iterators` have a `first()` and `second()` member ; where `first()` is the key or numerical index (depends on the container category) and `second()` the value.
 
-@Note: unlike the STL, we use `forward` as opposed to `reverse` ; every Abraxas `Iterators` are by design `bidirectional`, `inputtable` and `random accessible` i.e their functions are driven by usage not by implementation (Not entirely true, but as we say: cui licet quod est plus licet utique quod est minus).
+@Note: unlike the STL, we use `forward` as opposed to `reverse` ; every Abraxas `Iterators` are by design `bidirectional`, `inputtable` and `random accessible` i.e their functions are driven by usage not by implementation (Not entirely true as most of `Algorithms` component is optimized for `Forward-*` iterators i.e this is a trade of, anyhow as we say: cui licet quod est plus licet utique quod est minus).
 
 ```php
 
@@ -282,8 +282,7 @@ std\copy($v->begin(2), $v->begin(4), std\zip_iterator(
 ```
 
 #### | Algorithms
-A large number of algorithms have been already written <sub><sup>(1)</sup></sub>, in the same way than `C++ STL`, it requires
-a certain type of iterator. The design is a hybrid one, tacking advantages of 
+A large number of algorithms have been already written <sub><sup>(1)</sup></sub>, in the same way than the `C++ STL`, it requires a certain type/category of iterator. The design is a hybrid one, tacking advantages of 
 existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
 be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
 this is transparent to the end-user).

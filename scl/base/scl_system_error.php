@@ -17,7 +17,7 @@
 
 namespace
 {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "xerrno.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_errno.php";
 } /* EONS */
 
 namespace std
