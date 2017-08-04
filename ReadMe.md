@@ -87,10 +87,10 @@ std\cerr("Pascal's triangle:")(std\endl);
 $buf = "";
 for ($n = 1; $n < 10; ++$n) {
 	for($k = 0; $k < (20 - $n * 2); ++$k) {
-		std\cerr(' ');
+		std\cerr(std\space);
 	}
 	for($k = 1; $k < $n; ++$k) {
-		std\cerr(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(' ');
+		std\cerr(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(std\space);
 	}
 	std\cerr(std\endl);
 }
@@ -409,6 +409,7 @@ $fn = std\bind(
 	, -123
 );
 
+// Type checking ; should fail
 std\invoke($fn, 1, 0.8);
 std\invoke($fn, 4, -0.1333);
 
