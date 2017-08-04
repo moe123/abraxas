@@ -33,6 +33,7 @@ namespace
 
 namespace std
 {
+	const nullptr     = null;
 	const ignore      = '\std\ignore';
 	const hash        = '\std\hash';
 	const crc32       = '\std\crc32';
