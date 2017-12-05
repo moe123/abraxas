@@ -101,33 +101,6 @@ namespace std
 		return \NAN;
 	}
 
-	function span_mode(
-		  basic_iterator $first___
-		, basic_iterator $last___
-	) {
-		if ($first___::iterator_category === $last___::iterator_category) {
-			$pos = $first->_M_pos;
-			$cnt = function ($v) use($pos, $first___, $last___)
-			{
-				$ret = 0;
-				$cur = $first___->_M_pos;
-				$first___->_F_seek($pos);
-				while ($first___ != $last___) {
-					if ($first___->_F_this() == $v) {
-						$ret++;
-					}
-					$first___->_F_next();
-				}
-				$first___->_F_seek($cur);
-				return $ret;
-			};
-			return max_element_b($first___, $last___, $cnt);
-		} else {
-			_F_throw_invalid_argument("Invalid type error");
-		}
-		return \NAN;
-	}
-
 	function span_middle(
 		  basic_iterator $first___
 		, basic_iterator $last___
