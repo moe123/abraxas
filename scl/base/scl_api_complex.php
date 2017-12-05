@@ -100,7 +100,7 @@ namespace std
 	function csqrt(complex $z___) : complex
 	{
 		if (_F_FP_zeroed($z___->_M_real, $z___->_M_imag)) {
-			return $x;
+			return $z;
 		}
 		$a = \abs($z___->_M_real);
 		$b = \abs($z___->_M_imag);

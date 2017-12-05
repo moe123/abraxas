@@ -113,7 +113,7 @@ namespace std
 				$cur = $first___->_M_pos;
 				$first___->_F_seek($pos);
 				while ($first___ != $last___) {
-				if ($first___->_F_this() == $v) {
+					if ($first___->_F_this() == $v) {
 						$ret++;
 					}
 					$first___->_F_next();
@@ -121,7 +121,7 @@ namespace std
 				$first___->_F_seek($cur);
 				return $ret;
 			};
-			return max_element($first___, $last___, $ret);
+			return max_element_b($first___, $last___, $cnt);
 		} else {
 			_F_throw_invalid_argument("Invalid type error");
 		}
