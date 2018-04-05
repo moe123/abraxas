@@ -20,31 +20,30 @@ declare(strict_types=1);
 namespace std
 {
 	class basic_exception extends _C_exception
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class runtime_error extends _C_runtime_error
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class logic_error extends _C_logic_error
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class overflow_error extends _C_overflow_error
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class underflow_error extends _C_underflow_error
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class invalid_argument extends _C_invalid_argument
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class domain_error extends _C_domain_error
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class length_error extends _C_length_error
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 
 	class out_of_range extends _C_out_of_range
-	{ /* NOP */ }
+	{ /* NOP */ } /* EOC */
 } /* EONS */
-
 /* EOF */

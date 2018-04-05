@@ -32,5 +32,4 @@ namespace std
 	abstract class ios extends ios_base
 	{ /* NOP */ } /* EOC */
 } /* EONS */
-
 /* EOF */

@@ -222,5 +222,4 @@ namespace std
 		, bool           $unbiased___ = true
 	) { return \sqrt(span_variance($first___, $last___, $unbiased___)); }
 } /* EONS */
-
 /* EOF */

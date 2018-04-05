@@ -122,5 +122,4 @@ namespace std
 		return \gettype($l) == \gettype($r);
 	}
 } /* EONS */
-
 /* EOF */

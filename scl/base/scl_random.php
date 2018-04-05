@@ -297,5 +297,4 @@ namespace std
 		{ return $this->_M_b; }
 	} /* EOC */
 } /* EONS */
-
 /* EOF */

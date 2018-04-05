@@ -78,5 +78,4 @@ namespace std
 	function & rend_p(reverse_iterator $it___, $offset___ = -1)
 	{ return $it___->_F_seek_end($offset___); }
 } /* EONS */
-
 /* EOF */

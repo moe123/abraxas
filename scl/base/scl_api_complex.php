@@ -471,5 +471,4 @@ namespace std
 		return new complex(copysign($z->_M_real, $z___->_M_real), copysign($z->_M_imag, $z___->_M_imag));
 	}
 } /* EONS */
-
 /* EOF */

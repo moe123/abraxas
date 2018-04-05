@@ -345,5 +345,4 @@ namespace std
 		return ($l->mir() > $r->mir() || _F_FP_equal($l->mir(), $r->mir()));
 	}
 } /* EONS */
-
 /* EOF */

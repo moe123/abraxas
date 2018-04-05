@@ -1091,5 +1091,4 @@ namespace std
 		}
 	} /* EOT */
 } /* EONS */
-
 /* EOF */

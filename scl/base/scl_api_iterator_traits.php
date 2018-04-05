@@ -734,5 +734,4 @@ namespace std
 		{ return new pair($this->_M_first->_F_second(), $this->_M_second->_F_second()); }
 	}
 } /* EONS */
-
 /* EOF */

@@ -2614,5 +2614,4 @@ namespace std
 		, callable       $compare___ = null
 	) { _F_slice_stable_sort($first___, $last___, $compare___); }
 } /* EONS */
-
 /* EOF */

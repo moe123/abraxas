@@ -82,5 +82,4 @@ namespace std
 		{ return $this->_M_size; }
 	} /* EOC */
 } /* EONS */
-
 /* EOF */

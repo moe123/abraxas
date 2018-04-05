@@ -198,5 +198,4 @@ namespace std
 		_F_ratio_gcd($m___, $n___);
 	}
 } /* EONS */
-
 /* EOF */

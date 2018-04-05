@@ -207,5 +207,4 @@ namespace std
 	function timezone(int $zone___, int $dst___)
 	{ return _F_tztab($zone___, $dst___); }
 } /* EONS */
-
 /* EOF */

@@ -50,5 +50,4 @@ namespace std
 		const container_category = basic_iterable_tag::basic_iterable;
 	} /* EOC */
 } /* EONS */
-
 /* EOF */

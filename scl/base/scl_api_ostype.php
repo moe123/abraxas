@@ -67,5 +67,4 @@ namespace std
 	function _F_os_64bit()
 	{ return (\PHP_INT_SIZE >= 8); }
 } /* EONS */
-
 /* EOF */

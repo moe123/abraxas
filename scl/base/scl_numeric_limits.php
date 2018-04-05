@@ -49,5 +49,4 @@ namespace std
 	abstract class numeric_limits_long extends numeric_limits_int
 	{ /* NOP */ }
 } /* EONS */
-
 /* EOF */

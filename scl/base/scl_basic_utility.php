@@ -448,5 +448,4 @@ namespace std
 	function iterable_copy(basic_iterable &$c___)
 	{ return clone $c___; }
 } /* EONS */
-
 /* EOF */

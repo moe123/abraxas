@@ -285,5 +285,4 @@ namespace std
 	function & errno()
 	{ return $GLOBALS["^std@_g_errno"]; }
 } /* EONS */
-
 /* EOF */

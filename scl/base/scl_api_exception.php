@@ -85,5 +85,4 @@ namespace std
 	function _F_throw_overflow_error(string $what)
 	{ throw new _C_overflow_error($what); }
 } /* EONS */
-
 /* EOF */

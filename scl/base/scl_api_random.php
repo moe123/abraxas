@@ -196,5 +196,4 @@ namespace std
 		return getrandom($dest___, $dlen___, GRND_RANDOM);
 	}
 } /* EONS */
-
 /* EOF */

@@ -26,20 +26,6 @@ namespace std
 		var $release  = ""; /* Current release level of this implementation. */
 		var $version  = ""; /* Current version level of this release. */
 		var $machine  = ""; /* Name of the hardware type on which the system is running. */
-
-		function __construct(
-			  string $sysname___
-			, string $nodename___
-			, string $release___
-			, string $version___
-			, string $machine___
-		) {
-			$this->sysname  = $sysname___;
-			$this->nodename = $nodename___;
-			$this->release  = $release___;
-			$this->version  = $version___;
-			$this->machine  = $machine___;
-		}
 	} /* EOC */
 
 	function uname(utsname &$n___)
@@ -52,5 +38,4 @@ namespace std
 		return 0;
 	}
 } /* EONS */
-
 /* EOF */

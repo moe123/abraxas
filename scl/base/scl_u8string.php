@@ -274,7 +274,6 @@ namespace std
 
 		function empty()
 		{ return $this->_M_size > 0 ? false : true; }
-	}
+	} /* EOC */
 } /* EONS */
-
 /* EOF */

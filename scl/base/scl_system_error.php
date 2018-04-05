@@ -104,5 +104,4 @@ namespace std
 		const wrong_protocol_type                 = EPROTOTYPE;
 	} /* EOC */
 } /* EONS */
-
 /* EOF */

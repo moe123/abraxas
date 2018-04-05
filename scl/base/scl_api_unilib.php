@@ -21,8 +21,9 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_endian.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_ostype.php";
 
-	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_math.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_mathdefs.php";
+	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_math.php";
+
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_numeric.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "scl_api_complex.php";
 
@@ -254,5 +255,4 @@ namespace std
 		return -1;
 	}
 } /* EONS */
-
 /* EOF */

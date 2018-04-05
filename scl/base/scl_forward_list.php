@@ -251,7 +251,6 @@ namespace std
 			_F_clear_all($this);
 			return $this;
 		}
-	}
+	} /* EOC */
 } /* EONS */
-
 /* EOF */

@@ -21,5 +21,4 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_basic_forward_list.php";
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_forward_list.php";
 } /* EONS */
-
 /* EOF */

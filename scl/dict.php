@@ -31,5 +31,4 @@ namespace
 	require_once __DIR__ . DIRECTORY_SEPARATOR . "base" . DIRECTORY_SEPARATOR . "scl_dict.php";
 	
 } /* EONS */
-
 /* EOF */

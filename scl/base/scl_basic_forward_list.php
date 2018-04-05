@@ -63,5 +63,4 @@ namespace std
 		}
 	}
 } /* EONS */
-
 /* EOF */

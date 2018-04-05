@@ -197,5 +197,4 @@ namespace std
 		const mir = 1000000000000000000.0;
 	} /* EOC */
 } /* EONS */
-
 /* EOF */

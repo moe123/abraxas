@@ -727,5 +727,4 @@ namespace std
 		$cos___ = \cos($x___);
 	}
 } /* EONS */
-
 /* EOF */

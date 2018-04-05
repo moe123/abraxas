@@ -232,5 +232,4 @@ namespace std
 	function pack_double_v(...$v___)
 	{ return \pack("d*", ...$v___); }
 } /* EONS */
-
 /* EOF */

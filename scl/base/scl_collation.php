@@ -111,5 +111,4 @@ namespace std
 		];
 	}
 } /* EONS */
-
 /* EOF */

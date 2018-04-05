@@ -507,5 +507,4 @@ namespace std
 		return $r;
 	}
 } /* EONS */
-
 /* EOF */

@@ -88,5 +88,4 @@ namespace std
 	function complex_not_equal(complex $l, complex $r)
 	{ return (!complex_equal($l, $r)); }
 } /* EONS */
-
 /* EOF */

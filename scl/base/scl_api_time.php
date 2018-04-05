@@ -401,5 +401,4 @@ namespace std
 		return 0;
 	}
 } /* EONS */
-
 /* EOF */

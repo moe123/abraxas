@@ -226,5 +226,4 @@ namespace std
 		return $loc;
 	}
 } /* EONS */
-
 /* EOF */

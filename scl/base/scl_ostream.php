@@ -25,5 +25,4 @@ namespace std
 	final class ostringstream extends basic_ostringstream
 	{ /* NOP */ }
 } /* EONS */
-
 /* EOF */

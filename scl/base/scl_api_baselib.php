@@ -71,5 +71,4 @@ namespace std
 		exit($e___);
 	}
 } /* EONS */
-
 /* EOF */

@@ -28,5 +28,4 @@ namespace std
 	final class istringstream extends basic_istringstream
 	{ /* NOP */ }
 } /* EONS */
-
 /* EOF */

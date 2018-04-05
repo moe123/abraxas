@@ -246,5 +246,4 @@ namespace std
 		return $out___;
 	}
 } /* EONS */
-
 /* EOF */

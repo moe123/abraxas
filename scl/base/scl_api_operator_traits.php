@@ -240,5 +240,4 @@ namespace std
 		}
 	}
 } /* EONS */
-
 /* EOF */

@@ -382,5 +382,4 @@ namespace std
 	function is_binary_function(callable $f___)
 	{ return (($f___ instanceof \std\binary_function) || count_args($f___) == 2); }
 } /* EONS */
-
 /* EOF */

@@ -216,5 +216,4 @@ namespace std
 	function get_locale()
 	{ return locale::get_global(); }
 } /* EONS */
-
 /* EOF */

@@ -25,5 +25,4 @@ namespace std
 	class exception extends basic_exception
 	{ /* NOP */ }
 } /* EONS */
-
 /* EOF */
