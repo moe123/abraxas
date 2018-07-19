@@ -53,10 +53,9 @@ namespace std
 
 	function & complex_copy(complex $z)
 	{
-		$x = new complex;
 		$this->_M_real = $z->_M_real;
 		$this->_M_imag = $z->_M_imag;
-		return $x;
+		return $this;
 	}
 
 	function & complex_invert(complex $z)
@@ -80,8 +79,8 @@ namespace std
 	function complex_equal(complex $l, complex $r)
 	{
 		return (
-			_F_FP_equal($l->_M_real, $r->_M_real) &&
-			_F_FP_equal($l->_M_imag, $r->_M_imag)
+			$l->_M_real == $r->_M_real &&
+			$l->_M_imag == $r->_M_imag
 		);
 	}
 

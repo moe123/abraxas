@@ -271,7 +271,7 @@ namespace std
 				$gen->discard(1);
 			}
 
-			if (_F_FP_zeroed($a, $b)) {
+			if ($a == 0.0 && $b == 0.0) {
 				return (
 					  $this->_M_a
 					+ ($gen($gen::min(), $gen::max()) / $gen::max())

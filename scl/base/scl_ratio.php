@@ -307,7 +307,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() == $r->num());
 		}
-		return _F_FP_equal($l->mir(), $r->mir());
+		return $l->mir() == $r->mir();
 	}
 
 	function ratio_not_equal(basic_ratio $l, basic_ratio $r)
@@ -326,7 +326,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() <= $r->num());
 		}
-		return ($l->mir() < $r->mir() || _F_FP_equal($l->mir(), $r->mir()));
+		return ($l->mir() < $r->mir() || $l->mir() == $r->mir());
 	}
 
 	function ratio_greater(basic_ratio $l, basic_ratio $r)
@@ -342,7 +342,7 @@ namespace std
 		if ($l->den() == $r->den()) {
 			return ($l->num() >= $r->num());
 		}
-		return ($l->mir() > $r->mir() || _F_FP_equal($l->mir(), $r->mir()));
+		return ($l->mir() > $r->mir() || $l->mir() == $r->mir());
 	}
 } /* EONS */
 /* EOF */

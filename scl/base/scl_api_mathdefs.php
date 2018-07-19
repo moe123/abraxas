@@ -406,44 +406,10 @@ namespace std
 	define('std\SINT_DIG'     , (int)((PHP_INT_SIZE * 8) - 1));
 	define('std\SINT_DIG10'   , (int)(((PHP_INT_SIZE * 8) - 1) * 0.30102999566398));
 
-	function _F_FP_equal(float $l___, float $r___)
-	{
-		if (_F_FP_iszero($l___) && _F_FP_iszero($r___)) {
-			return true;
-		}
-		return ($l___ == $r___ || \abs($l___ - $r___) < FLT_EPSILON);
-	}
-
-	function _F_FP_istwo(float $x___)
-	{ return ($x___ == 2.0 || _F_FP_equal($x___, 2.0)); }
-
-	function _F_FP_isone(float $x___)
-	{ return ($x___ == 1.0 || _F_FP_equal($x___, 1.0)); }
-
-	function _F_FP_iszero(float $x___)
-	{ return ($x___ == -0.0 || $x___ == 0.0 || \abs($x___) < FLT_EPSILON); }
-
-	function _F_FP_zeroed(...$args___)
-	{
-		$ret = false;
-		foreach ($args___ as $x) {
-			if (_F_FP_iszero($x)) {
-				$ret = true;
-			} else {
-				$ret = false;
-				break;
-			}
-		}
-		return $ret;
-	}
-
-	function _F_FP_ishalf(float $x___)
-	{ return _F_FP_equal($x___, 0.5); }
-
 	function _F_FP_nearest_int(float $x___)
 	{
-		if (_F_FP_ishalf($x___)) {
-			if (_F_FP_iszero(\fmod(\ceil($x___), 2.0))) {
+		if ($x___ = 0.5) {
+			if (\fmod(\ceil($x___), 2.0)) {
 				$x = \ceil($x___);
 			} else {
 				$x = \floor($x___);

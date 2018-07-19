@@ -86,8 +86,8 @@ namespace std
 
 	function cpow(complex $z1___, complex $z2___) : complex
 	{
-		if (_F_FP_zeroed($z1___->_M_real, $z1___->_M_imag)) {
-			return $x1;
+		if ($z1___->_M_real == 0.0 && $z1___->_M_imag == 0.0) {
+			return $z1___;
 		}
 		//!# W (ϴ), R (ρ), B (β)
 		$l = \log(\sqrt($z1___->_M_real * $z1___->_M_real + $z1___->_M_imag * $z1___->_M_imag));
@@ -99,8 +99,8 @@ namespace std
 
 	function csqrt(complex $z___) : complex
 	{
-		if (_F_FP_zeroed($z___->_M_real, $z___->_M_imag)) {
-			return $z;
+		if ($z___->_M_real == 0.0 && $z___->_M_imag == 0.0) {
+			return $z___;
 		}
 		$a = \abs($z___->_M_real);
 		$b = \abs($z___->_M_imag);
@@ -108,8 +108,8 @@ namespace std
 			? \sqrt($a) * \sqrt(0.5 * (1.0 + \sqrt(1.0 + ($b / $a) * ($b / $a))))
 			: \sqrt($b) * \sqrt(0.5 * (($a / $b) + \sqrt(1.0 + ($a / $b) * ($a / $b))))
 		);
-		if ($z___->_M_real > 0.0 || _F_FP_iszero($z___->_M_real)) {
-			if (_F_FP_iszero($W)) {
+		if ($z___->_M_real > 0.0 || $z___->_M_real == 0.0) {
+			if ($W == 0.0) {
 				return new complex(
 					  \NAN
 					, \NAN
@@ -120,8 +120,8 @@ namespace std
 				, $z___->_M_imag / (2.0 * $W)
 			);
 		}
-		$I = ($z___->_M_imag > 0.0 || _F_FP_iszero($I)) ? $W : -($W);
-		if (_F_FP_iszero($I)) {
+		$I = ($z___->_M_imag > 0.0 || $I  == 0.0) ? $W : -($W);
+		if ($I  == 0.0) {
 			return new complex(
 				  \NAN
 				, \NAN
@@ -177,8 +177,8 @@ namespace std
 	function cinv(complex $z___) : complex 
 	{
 		$h = \hypot($z___->_M_real, $z___->_M_imag);
-		if (_F_FP_iszero($h)) {
-			return new complex(0.0, -(copysign(0.0, $z->_M_imag)));
+		if ($h == 0.0) {
+			return new complex(0.0, -(copysign(0.0, $z___->_M_imag)));
 		}
 		$t = (1.0 / $h);
 		return new complex(
@@ -188,7 +188,7 @@ namespace std
 	}
 
 	function cneg(complex $z___) : complex 
-	{ return new complex(-($z___->_M_real), -($z->_M_imag)); }
+	{ return new complex(-($z___->_M_real), -($z___->_M_imag)); }
 
 	function cadd(complex $z1___, complex $z2___) : complex 
 	{
@@ -214,7 +214,7 @@ namespace std
 	function cdiv(complex $z1___, complex $z2___) : complex 
 	{
 		$d = $z2___->_M_real * $z2___->_M_real + $z2___->_M_imag * $z2___->_M_imag;
-		if (_F_FP_iszero($d)) {
+		if ($d == 0.0) {
 			return new complex(\NAN, \NAN);
 		}
 		$R = ($z1___->_M_real * $z2___->_M_real + $z1___->_M_imag * $z2___->_M_imag) / $d;
@@ -236,7 +236,7 @@ namespace std
 		if (\is_nan($x___)) {
 			return new complex(\NAN, \NAN);
 		}
-		if (_F_FP_iszero($x___)) {
+		if ($x___ == 0.0) {
 			return new complex(0.0, 0.0);
 		}
 		return new complex($z___->_M_real * x___, $z___->_M_imag * x___);
@@ -250,7 +250,7 @@ namespace std
 		if (\is_nan($x___)) {
 			return new complex(\NAN, \NAN);
 		}
-		if (_F_FP_iszero($x___)) {
+		if ($x___ == 0.0) {
 			return new complex(0.0, 0.0);
 		}
 		return new complex($z___->_M_real / x___, $z___->_M_imag / x___);
@@ -364,7 +364,7 @@ namespace std
 		if (\is_infinite($z___->_M_imag)) {
 			return new complex(\M_PI_2, -($z___->_M_imag));
 		}
-		if (_F_FP_iszero($z___->_M_real)) {
+		if ($z___->_M_real == 0.0) {
 			return new complex(\M_PI_2, -($z___->_M_imag));
 		}
 		$z = clog(cadd($z___, csqrt(csub(cpow($z___, new complex(2.0)), new complex(1.0)))));
@@ -434,7 +434,7 @@ namespace std
 			if (\is_infinite($z___->_M_imag)) {
 				return new complex($z___->_M_imag, $z___->_M_real);
 			}
-			if (_F_FP_iszero($z___->_M_imag)) {
+			if ($z___->_M_imag == 0.0) {
 				return $z___;
 			}
 			return new complex($z___->_M_real, $z___->_M_real);
@@ -453,7 +453,7 @@ namespace std
 			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
 		}
 		if (\is_nan($z___->_M_imag)) {
-			if (\is_infinite($z___->_M_real) || _F_FP_iszero($z___->_M_real)) {
+			if (\is_infinite($z___->_M_real) || $z___->_M_real == 0.0) {
 				return new complex(copysign(0.0, $z___->_M_real), $z___->_M_imag);
 			}
 			return new complex($z___->_M_imag, $z___->_M_imag);
@@ -464,7 +464,7 @@ namespace std
 		if (\is_infinite($z___->_M_real)) {
 			return new complex(copysign(0.0, $z___->_M_real), copysign(\M_PI_2, $z___->_M_imag));
 		}
-		if (_F_FP_isone(\abs($z___->_M_real)) && _F_FP_iszero($z___->_M_imag)) {
+		if (\abs($z___->_M_real) == 1.0 && $z___->_M_imag == 0.0) {
 			return new complex(copysign(\INF, $z___->_M_real), copysign(0.0, $z___->_M_imag));
 		}
 		$z = cdiv(clog(cdiv(cadd(new complex(1.0), $z___) , csub(new complex(1.0), $z___))), new complex(2.0));

@@ -96,7 +96,7 @@ namespace std
 			return FP_NAN;
 		} else if (!\is_finite($x___)) {
 			return FP_SUBNORMAL;
-		} else if (_F_FP_iszero($x___)) {
+		} else if ($x___ == 0.0) {
 			return FP_ZERO;
 		}
 		return FP_NORMAL;
@@ -134,13 +134,13 @@ namespace std
 	{ return \intval($x___ > $y___); }
 	
 	function isgreaterequal(float $x___, float $y___)
-	{ return \intval($x___ > $y___ || _F_FP_equal($x___, $y___)); }
+	{ return \intval($x___ > $y___ || $x___ == $y___); }
 
 	function isless(float $x___, float $y___)
 	{ return \intval($x___ < $y___); }
 
 	function islessequal(float $x___, float $y___)
-	{ return \intval($x___ < $y___ || _F_FP_equal($x___, $y___)); }
+	{ return \intval($x___ < $y___ || $x___ == $y___); }
 
 	function islessgreater(float $x___, float $y___)
 	{ return \intval($y___ > $x___ || $x___ > $y___); }
@@ -174,10 +174,10 @@ namespace std
 
 	function fma(float $x___, float $y___, float $z___)
 	{
-		if (\is_infinite($x___) && _F_FP_iszero($y___) && \is_nan($z___)) {
+		if (\is_infinite($x___) && $y___ == 0.0 && \is_nan($z___)) {
 			return \NAN;
 		}
-		if (\is_infinite($y___) && _F_FP_iszero($x___) && \is_nan($z___)) {
+		if (\is_infinite($y___) && $x___ == 0.0 && \is_nan($z___)) {
 			return \NAN;
 		}
 		return \round(($x___ * $y___) + $z___);
@@ -233,7 +233,7 @@ namespace std
 		if (\is_nan($x___)) {
 			return \NAN;
 		}
-		if (_F_FP_iszero($x___)) {
+		if ($x___ == 0.0) {
 			return copysign(0.0, $x___);
 		}
 		if ($x___ > 0.0 ) {
@@ -253,7 +253,7 @@ namespace std
 		if (\is_infinite($y___)) {
 			return $x___;
 		}
-		if (_F_FP_iszero($y___)) {
+		if ($y___ == 0.0) {
 			return -(\NAN);
 		}
 		if (!_F_FP_same_sign($x___, $y___)) {
@@ -263,7 +263,7 @@ namespace std
 		}
 		$n = _F_FP_nearest_int($x___ / $a);
 		$r = $x___ - $n * $a;
-		if (_F_FP_iszero($r)) {
+		if ($r == 0.0) {
 			return copysign($r, $a);
 		}
 		return $r;
@@ -580,7 +580,7 @@ namespace std
 
 	function nthrt(float $x___, int $n___)
 	{
-		if (_F_FP_iszero($x___) || $n___ < 1) {
+		if ($x___ == 0.0 || $n___ < 1) {
 			return $x___;
 		}
 		$rt = \pow(\abs($x___), 1.0 / \abs($n___));
@@ -607,7 +607,7 @@ namespace std
 		if (\is_nan($x___)) {
 			return \NAN;
 		}
-		if (_F_FP_iszero($x___)) {
+		if ($x___  == 0.0) {
 			return \INF;
 		}
 		return \log(\abs($x___), FLT_RADIX);
@@ -621,7 +621,7 @@ namespace std
 		if (\is_nan($x___)) {
 			return FP_ILOGBNAN;
 		}
-		if (_F_FP_iszero($x___)) {
+		if ($x___ == 0.0) {
 			return FP_ILOGB0;
 		}
 		return \intval(logb($x___));
@@ -635,10 +635,10 @@ namespace std
 		if (\is_nan($x___)) {
 			return \NAN;
 		}
-		if ($x___ < 0.0 || _F_FP_iszero($x___)) {
+		if ($x___ < 0.0 || $x___ == 0.0) {
 			return \INF;
 		}
-		if (_F_FP_isone($x___) || _F_FP_istwo($x___)) {
+		if ($x___ == 1.0 || $x___ == 2.0) {
 			return 0.0;
 		}
 		$e = 1.0;
@@ -657,15 +657,15 @@ namespace std
 
 	function lgamma_r(float $x___, int &$signp___)
 	{
-		if ($x___ < 0.0 || _F_FP_iszero($x___)) {
+		if ($x___ < 0.0 || $x___ == 0.0) {
 			$intp = 0.0;
 			$f = modf(-($x___), $intp);
-			if (_F_FP_iszero($f)) {
+			if ($f == 0.0) {
 				$signp___ = signbit($x___) ? -1 : 1;
 				seterrno(ERANGE);
 				return HUGE_VAL;
 			}
-			$signp___ = (!_F_FP_iszero(\fmod($intp, 2.0))) ? 1 : -1;
+			$signp___ = (\fmod($intp, 2.0)) != 0.0 ? 1 : -1;
 			$s = \sin(\M_PI * $f);
 			if ($s < 0.0) {
 				$s = -($s);
@@ -687,14 +687,14 @@ namespace std
 	function tgamma(float $x___)
 	{
 		$sign = 1;
-		if (_F_FP_iszero($x___)) {
+		if ($x___ == 0.0) {
 			seterrno(ERANGE);
 			return (1.0 / $x___) < 0 ? -(HUGE_VAL) : HUGE_VAL;
 		}
 		if ($x___ < 0.0) {
 			$intp = 0.0;
 			$f = modf(-($x___), $intp);
-			if (_F_FP_iszero($f)) {
+			if ($f == 0.0) {
 				seterrno(EDOM);
 				return \NAN;
 			}
@@ -721,7 +721,7 @@ namespace std
 	function erfc(float $x___)
 	{ return (1.0 - (erf($x___))); }
 
-	function sincosf(float $x___, float &$sin___, float &$cos___)
+	function sincos(float $x___, float &$sin___, float &$cos___)
 	{
 		$sin___ = \sin($x___);
 		$cos___ = \cos($x___);

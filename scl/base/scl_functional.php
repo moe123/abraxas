@@ -197,9 +197,6 @@ namespace std
 
 	function equal_to($l___, $r___)
 	{
-		if (\is_float($l___) || \is_float($r___)) {
-			return _F_FP_equal($l___, $r___);
-		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) == 0;
 		}
@@ -208,9 +205,6 @@ namespace std
 
 	function greater_equal($l___, $r___)
 	{
-		if (\is_float($l___) || \is_float($r___)) {
-			return ($l___ > $r___ || _F_FP_equal($l___, $r___));
-		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) >= 0;
 		}
@@ -219,9 +213,6 @@ namespace std
 
 	function less_equal($l___, $r___)
 	{
-		if (\is_float($l___) || \is_float($r___)) {
-			return ($l___ < $r___ || _F_FP_equal($l___, $r___));
-		}
 		if (is_string($l___) || is_string($r___)) {
 			return \strcmp(\strval($l___), \strval($r___)) <= 0;
 		}
