@@ -375,12 +375,22 @@ namespace std
 	];
 
 	define('std\FLT_SIZE'       , PHP_INT_SIZE);
+	define('std\FLT_MAX'        , floatval(PHP_INT_MAX));
+	define('std\FLT_LOWEST'     , -floatval(PHP_INT_MAX));
+	define('std\FLT_MIN'        , \floatval(PHP_INT_MIN));
+	define('std\FLT_RADIX'      , 2);
+	define('std\FLT_ROUNDS'     , 1);
+	define('std\FLT_EPSILON'    , 0.00000011920928955078125);
+
+	/*
+	define('std\FLT_SIZE'       , PHP_INT_SIZE);
 	define('std\FLT_MAX'        , PHP_FLOAT_MAX);
 	define('std\FLT_LOWEST'     , -PHP_FLOAT_MAX);
 	define('std\FLT_MIN'        , PHP_FLOAT_MIN);
 	define('std\FLT_RADIX'      , 2);
 	define('std\FLT_ROUNDS'     , 1);
 	define('std\FLT_EPSILON'    , PHP_FLOAT_EPSILON);
+	*/
 
 	if (FLT_SIZE < 8) {
 		define('std\FLT_MANT_DIG'   , 24);

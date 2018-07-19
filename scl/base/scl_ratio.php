@@ -34,7 +34,15 @@ namespace std
 
 		function ratio_1(float $x)
 		{
+			echo "------\n";
+			echo $x;
+			echo "\n";
 			_F_ratio_nearest($x, $this->_M_num, $this->_M_den);
+
+			echo $this->_M_num;
+			echo "\n";
+			echo $this->_M_den;
+			echo "\n";
 			$this->_M_mir = \floatval($this->_M_num / $this->_M_den);
 		}
 

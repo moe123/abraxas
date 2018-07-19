@@ -97,6 +97,10 @@ namespace std
 			$n1 = (($a * $n1) + $n2);
 			$n2 = $p;
 			$b = $b - $a;
+			echo $m1 . " / " . $n1 . "\n";
+			echo "->" . $m1 / $n1 . "\n";
+			echo FLT_EPSILON . "\n";
+			echo ($n * FLT_EPSILON) . "\n";
 		} while (\abs($n - $m1 / $n1) > ($n * FLT_EPSILON));
 
 		$num___ = $m1 * $sign;
