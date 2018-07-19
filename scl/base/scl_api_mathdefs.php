@@ -408,7 +408,7 @@ namespace std
 
 	function _F_FP_nearest_int(float $x___)
 	{
-		if ($x___ = 0.5) {
+		if ($x___ == 0.5) {
 			if (\fmod(\ceil($x___), 2.0)) {
 				$x = \ceil($x___);
 			} else {
