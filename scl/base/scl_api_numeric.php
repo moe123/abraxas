@@ -64,6 +64,7 @@ namespace std
 
 	function _F_ratio_nearest(float $x, int &$num___, int &$den___)
 	{
+		$es = \floatval(1E-5);
 		$m1 = 1;
 		$m2 = 0;
 		$n1 = 0;
@@ -77,7 +78,7 @@ namespace std
 			$n = ($x);
 			$sign = 1;
 		}
-		if ($n < FLT_EPSILON) {
+		if ($n < $es) {
 			$num___ = 0;
 			$den___ = 1;
 			return;
@@ -97,11 +98,7 @@ namespace std
 			$n1 = (($a * $n1) + $n2);
 			$n2 = $p;
 			$b = $b - $a;
-			echo $m1 . " / " . $n1 . "\n";
-			echo "->" . $m1 / $n1 . "\n";
-			echo FLT_EPSILON . "\n";
-			echo ($n * FLT_EPSILON) . "\n";
-		} while (\abs($n - $m1 / $n1) > ($n * FLT_EPSILON));
+		} while (\abs($n - $m1 / $n1) > ($n * $es));
 
 		$num___ = $m1 * $sign;
 		$den___ = $n1;
