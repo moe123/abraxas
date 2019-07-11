@@ -208,22 +208,22 @@ namespace std
 	{ return 1.0 / \tanh($x___); }
 
 	function facsc(float $x___)
-	{ return 1.0 / \asin($x___); }
+	{ return \asin(1.0 / $x___); }
 
 	function fasec(float $x___)
-	{ return 1.0 / \acos($x___); }
+	{ return \acos(1.0 / $x___); }
 
 	function facot(float $x___)
-	{ return 1.0 / \atan($x___); }
+	{ return \atan(1.0 / $x___); }
 
 	function fasech(float $x___)
-	{ return 1.0 / \acosh($x___); }
+	{ return \acosh(1.0 / $x___); }
 
 	function facsch(float $x___)
-	{ return 1.0 / \asinh($x___); }
+	{ return \asinh(1.0 / $x___); }
 
 	function facoth(float $x___)
-	{ return 1.0 / \atanh($x___); }
+	{ return \atanh(1.0 / $x___); }
 
 	function trunc(float $x___)
 	{
@@ -666,7 +666,7 @@ namespace std
 				return HUGE_VAL;
 			}
 			$signp___ = (\fmod($intp, 2.0)) != 0.0 ? 1 : -1;
-			$s = \sin(\M_PI * $f);
+			$s        = \sin(\M_PI * $f);
 			if ($s < 0.0) {
 				$s = -($s);
 			}
@@ -679,7 +679,7 @@ namespace std
 	function lgamma(float $x___)
 	{
 		$sign = 1;
-		$g = lgamma_r($x___, $sign);
+		$g    = lgamma_r($x___, $sign);
 		setsigngam($sign);
 		return $g;
 	}
