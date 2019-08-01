@@ -66,24 +66,24 @@ namespace std
 	abstract class ios_base
 	{
 		/* seekdir */
-		const beg     = \SEEK_SET;
-		const end     = \SEEK_END;
-		const cur     = \SEEK_CUR;
+		const beg         = \SEEK_SET;
+		const end         = \SEEK_END;
+		const cur         = \SEEK_CUR;
 
 		/* openmode */
-		const app     = 1 << 0;
-		const binary  = 1 << 1;
-		const bin     = 1 << 1;
-		const in      = 1 << 2;
-		const out     = 1 << 3;
-		const trunc   = 1 << 4;
-		const ate     = 1 << 5;
+		const app         = 1 << 0;
+		const binary      = 1 << 1;
+		const bin         = 1 << 1;
+		const in          = 1 << 2;
+		const out         = 1 << 3;
+		const trunc       = 1 << 4;
+		const ate         = 1 << 5;
 
 		/* iostate */
-		const goodbit = 0;
-		const badbit  = 1 << 0;
-		const failbit = 1 << 1;
-		const eofbit  = 1 << 2;
+		const goodbit     = 0;
+		const badbit      = 1 << 0;
+		const failbit     = 1 << 1;
+		const eofbit      = 1 << 2;
 
 		/* fmtflags */
 		const nomask      = 0;
@@ -104,6 +104,61 @@ namespace std
 		var $_M_fill     = char_utils::sp;
 		var $_M_sstate   = ios_base::goodbit;
 		var $_M_fmtflags = ios_base::nomask;
+
+		function _F_strmode(int $m___)
+		{
+			$r = '';
+			$w = '';
+			$a = '';
+			if (($m___ & ios_base::in) != 0) {
+				$r = 'r';
+				if (($m___ & ios_base::bin) != 0) {
+					$w = 'rb';
+				}
+			}
+
+			if (($m___ & ios_base::in|ios_base::out) != 0) {
+				$r = 'r+';
+				if (($m___ & ios_base::bin) != 0) {
+					$w = 'rb+';
+				}
+			}
+			
+			if (($m___ & ios_base::out) != 0 ) {
+				$w = 'w';
+				if (($m___ & ios_base::bin) != 0) {
+					$w = 'wb';
+				}
+			}
+
+			if (($m___ & ios_base::out|ios_base::trunc) != 0) {
+				$w = 'w';
+				if (($m___ & ios_base::bin) != 0) {
+					if (($m___ & ios_base::bin) != 0) {
+						$w = 'bw';
+					}
+				}
+			}
+
+			if (($m___ & ios_base::in|ios_base::out|ios_base::trunc) != 0) {
+				$w = 'w+';
+				if (($m___ & ios_base::bin) != 0) {
+					$w = 'bw+';
+				}
+			}
+
+			if (($m___ & ios_base::out|ios_base::app) != 0) {
+				$r = '';
+				$w = '';
+				$a = 'a';
+			}
+			if (($m___ & ios_base::in|ios_base::out|ios_base::app) != 0) {
+				$r = '';
+				$w = '';
+				$a = 'a+';
+			}
+			return $r . $w . $a;
+		}
 
 		function & _F_apply_mask(&$v___) 
 		{
@@ -627,46 +682,6 @@ namespace std
 
 	class basic_ifstream extends basic_istream
 	{
-		function _F_strmode(int $m___)
-		{
-			$r = '';
-			$w = '';
-			$a = '';
-			if (($m___ & ios_base::in) != 0) {
-				$r = 'r';
-			}
-
-			/*
-			if (($m___ & ios_base::in|ios_base::out) != 0) {
-				$r = 'r+';
-			}
-			
-			if (($m___ & ios_base::out) != 0 ) {
-				$w = 'w';
-			}
-			if (($m___ & ios_base::out|ios_base::trunc) != 0) {
-				$w = 'w';
-			}
-
-			if (($m___ & ios_base::in|ios_base::out|ios_base::trunc) != 0) {
-				$w = 'w+';
-			}
-
-			if (($m___ & ios_base::out|ios_base::app) != 0) {
-				$a = 'a';
-			}
-			if (($m___ & ios_base::in|ios_base::out|ios_base::app) != 0) {
-				$a = 'a+';
-			}
-			*/
-			$mode .= $r . $w . $a;
-
-			if (($m___ & ios_base::bin) != 0) {
-				$mode .= 'b';
-			}
-			return $mode;
-		}
-
 		function _F_get_mode($h___)
 		{
 			if ($this->_M_handle_g !== null && \is_resource($h___)) {

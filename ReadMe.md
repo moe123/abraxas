@@ -48,9 +48,7 @@ Extended functionalities:
 <sub><sup>std\setsigngam, std\signgam, std\fesetround, std\fpclassify, std\isnan, std\isnormal, std\isfinite, std\isinf, std\copysign, std\isgreater, std\isgreaterequal, std\isless, std\islessequal, std\islessgreater, std\isunordered, std\signbit, std\fabs, std\fmod, std\modf, std\fmax, std\fmin, std\fdim, std\fma, std\fdeg2rad, std\frad2deg, std\fsec, std\fcsc, std\fcot, std\fsech, std\fcsch, std\fcoth, std\facsc, std\fasec, std\facot, std\fasech, std\facsch, std\facoth, std\trunc, std\nearbyint, std\remainder, std\hypot, std\fact, std\abs, std\real, std\imag, std\arg, std\sec, std\csc, std\cot, std\sech, std\csch, std\coth, std\norm, std\conj, std\proj, std\polar, std\topolar, std\exp, std\exp2, std\expm1, std\pow, std\log, std\log2, std\log10, std\log1p, std\sqrt, std\cos, std\cosh, std\sin, std\sinh, std\tan, std\tanh, std\acos, std\acosh, std\asin, std\asinh, std\atan2, std\atan, std\atanh, std\cbrt, std\ftrt, std\nthrt, std\ceil, std\floor, std\round, std\lrint, std\logb, std\ilogb, std\lgamma_s, std\lgamma_r, std\lgamma, std\tgamma, std\beta, std\frexp, std\ldexp, std\erf, std\erfc, std\sincos</sub></sup>
 
 #### | Caveats
-In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced 
-measures and designs such as adding more comparator callbacks in the `Algorithms` component.
-We try as much as we can to re-introduce type safety on any internal structures (∩｀-´)⊃━☆ﾟ.*･｡ﾟ.
+In PHP, one of the difficulties is the lack of logical operator overloads on object, thus we adopted counterbalanced measures and designs such as adding more comparator callbacks in the `Algorithms` component. We try as much as we can to re-introduce type safety on any internal structures (∩｀-´)⊃━☆ﾟ.*･｡ﾟ.
 
 ```php
 
@@ -90,7 +88,7 @@ for ($n = 1; $n < 10; ++$n) {
 		std\cerr(std\space);
 	}
 	for($k = 1; $k < $n; ++$k) {
-		std\cerr(std\setfill("0"))(std\setw(3))(std\round(binomial($n, $k)))(std\space);
+		std\cerr(std\setfill('0'))(std\setw(3))(std\round(binomial($n, $k)))(std\space);
 	}
 	std\cerr(std\endl);
 }
@@ -282,15 +280,9 @@ std\copy($v->begin(2), $v->begin(4), std\zip_iterator(
 ```
 
 #### | Algorithms
-A large number of algorithms have been already written <sub><sup>(1)</sup></sub>, in the same way than the `C++ STL`, it requires a certain type/category of iterator. The design is a hybrid one, tacking advantages of 
-existing builtin functions (not always, depends on performances, zero-copying / COW and what can 
-be done in the most elegant way. The author choices control entirely the outcome of those; anyhow, 
-this is transparent to the end-user).
+A large number of algorithms have been already written <sub><sup>(1)</sup></sub>, in the same way than the `C++ STL`, it requires a certain type/category of iterator. The design is a hybrid one, tacking advantages of existing builtin features when necessary. ANyways, the author choices control entirely the outcome of those; anyhow, this is transparent to the end-user.
 
-It should be noted that unlike the `C++ STL`, for convenience, (as everything is handled 
-at runtime) `Iterators` are in a exhausted state after use (avoiding explicit parameter copies 
-or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`
-(however, for well-known reasons, reusing `Inserters` or `Zip-Iterator` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
+It should be noted that unlike the `C++ STL`, for convenience, (as everything is handled at runtime) `Iterators` are for sure in a clean exhausted state after use (avoiding explicit parameter copies or intrusive hidden offset resets). Thus ; they can be reused ; @see `begin_p` or `end_p`(however, for well-known reasons, reusing `Inserters` or `Zip-Iterator` is placed in the `undefined behavior` category ¯\\_(ツ)_/¯ ).
 
 <sub><sup>1 - </sup></sub><sub><sup>std\accumulate, std\adjacent_find, std\all_of, std\any_of, std\binary_search, std\clamp, std\copy_backward, std\copy_if, std\copy_n, std\copy, std\count_if, std\count, std\equal_range, std\equal, std\fill_n, std\fill, std\find_end, std\find_first_of, std\find_if_not, std\find_if, std\find, std\for_each_n, std\for_each, std\generate_n, std\generate, std\heap_pop, std\heap_push, std\includes, std\inner_product, std\iota, std\is_permutation, std\is_sorted_until, std\is_sorted, std\iter_swap, std\lexicographical_compare, std\lower_bound, std\make_heap, std\max_element, std\max, std\merge, std\min_element, std\min, std\minmax_element, std\minmax, std\mismatch, std\next_permutation, std\none_of, std\partial_sum, std\partition_point, std\partition, std\prev_permutation, std\remove_if, std\remove, std\replace_if, std\replace, std\reverse, std\rotate_copy, std\rotate, std\search_n, std\search, std\set_difference, std\set_intersection, std\set_symmetric_difference, std\set_union, std\shuffle, std\sort_heap, std\sort, std\stable_sort, std\swap_ranges, std\swap, std\transform, std\unique_copy, std\unique, std\upper_bound</sup></sub>
 
@@ -409,7 +401,7 @@ $fn = std\bind(
 	, -123
 );
 
-// Type checking ; should fail
+// Type checking.
 std\invoke($fn, 1, 0.8);
 std\invoke($fn, 4, -0.1333);
 

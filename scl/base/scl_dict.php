@@ -120,12 +120,12 @@ namespace std
 			return -1;
 		}
 
-		function first_index_of_value(string $val)
+		function first_index_of_value($val)
 		{
 			if ($this->_M_size > 0) {
 				$idx = 0;
 				foreach ($this->_M_container as $k => &$v) {
-					if ($val == $v) {
+					if ($val === $v) {
 						return $idx;
 					}
 					++$idx;
