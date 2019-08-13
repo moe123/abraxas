@@ -51,11 +51,11 @@ namespace std
 		if (\is_nan($z___->_M_real) || \is_nan($z___->_M_imag)) {
 			return \NAN;
 		}
-		$A = \atan2($z___->_M_imag, $z___->_M_real);
-		if (\M_PI < $A || $A < (\M_PI * - 1)) {
+		$a = \atan2($z___->_M_imag, $z___->_M_real);
+		if (\M_PI < $a || $a < (\M_PI * - 1)) {
 			return \INF;
 		}
-		return $A;
+		return $a;
 	}
 
 	function cexp(complex $z___) : complex
@@ -152,15 +152,15 @@ namespace std
 			}
 			return new complex(\NAN, \NAN);
 		}
-		$R = $rho___ * \cos($theta___);
-		if (\is_nan($R)) {
-			$R = 0.0;
+		$r = $rho___ * \cos($theta___);
+		if (\is_nan($r)) {
+			$r = 0.0;
 		}
-		$I = $rho___ * \sin($theta___);
-		if (\is_nan($I)) {
-			$I = 0.0;
+		$i = $rho___ * \sin($theta___);
+		if (\is_nan($i)) {
+			$i = 0.0;
 		}
-		return new complex($R, $I);
+		return new complex($r, $i);
 	}
 
 	function cinv(complex $z___) : complex 
@@ -181,23 +181,23 @@ namespace std
 
 	function cadd(complex $z1___, complex $z2___) : complex 
 	{
-		$R = $z1___->_M_real + $z2___->_M_real;
-		$I = $z1___->_M_imag + $z2___->_M_imag;
-		return new complex($R, $I);
+		$r = $z1___->_M_real + $z2___->_M_real;
+		$i = $z1___->_M_imag + $z2___->_M_imag;
+		return new complex($r, $i);
 	}
 
 	function csub(complex $z1___, complex $z2___) : complex 
 	{
-		$R = $z1___->_M_real - $z2___->_M_real;
-		$I = $z1___->_M_imag - $z2___->_M_imag;
-		return new complex($R, $I);
+		$r = $z1___->_M_real - $z2___->_M_real;
+		$i = $z1___->_M_imag - $z2___->_M_imag;
+		return new complex($r, $i);
 	}
 
 	function cmul(complex $z1___, complex $z2___) : complex 
 	{
-		$R = ($z1___->_M_real * $z2___->_M_real) - ($z1___->_M_imag * $z2___->_M_imag);
-		$I = ($z1___->_M_real * $z2___->_M_imag) + ($z2___->_M_real * $z1___->_M_imag);
-		return new complex($R, $I);
+		$r = ($z1___->_M_real * $z2___->_M_real) - ($z1___->_M_imag * $z2___->_M_imag);
+		$i = ($z1___->_M_real * $z2___->_M_imag) + ($z2___->_M_real * $z1___->_M_imag);
+		return new complex($r, $i);
 	}
 
 	function cdiv(complex $z1___, complex $z2___) : complex 
@@ -206,9 +206,9 @@ namespace std
 		if ($d == 0.0) {
 			return new complex(\NAN, \NAN);
 		}
-		$R = ($z1___->_M_real * $z2___->_M_real + $z1___->_M_imag * $z2___->_M_imag) / $d;
-		$I = ($z1___->_M_imag * $z2___->_M_real - $z1___->_M_real * $z2___->_M_imag) / $d;
-		return new complex($R, $I);
+		$r = ($z1___->_M_real * $z2___->_M_real + $z1___->_M_imag * $z2___->_M_imag) / $d;
+		$i = ($z1___->_M_imag * $z2___->_M_real - $z1___->_M_real * $z2___->_M_imag) / $d;
+		return new complex($r, $i);
 	}
 
 	function cfadd(complex $z___, float $x___) : complex 
