@@ -125,7 +125,7 @@ namespace std
 		$x = \abs($upb___) + 1;
 		$r = \mt_rand(0, 0x7FFFFFFE) % $x;
 		$i = 0;
-		while($r >= $x) {
+		while ($r >= $x) {
 			$r = \mt_rand(0, 0x7FFFFFFE) % $x;
 		}
 		return $r;

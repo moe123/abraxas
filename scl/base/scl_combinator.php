@@ -41,7 +41,7 @@ namespace std
 	) : basic_iterable {
 		$res___ = false;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while($first___ != $last___) {
+			while ($first___ != $last___) {
 				if (!$unaryFunction___($first___->_F_this())) {
 					$res___ = false;
 					break;
@@ -63,7 +63,7 @@ namespace std
 	) : basic_iterable {
 		$res___ = true;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while($first___ != $last___) {
+			while ($first___ != $last___) {
 				if ($unaryFunction___($first___->_F_this())) {
 					$res___ = false;
 					break;
@@ -85,7 +85,7 @@ namespace std
 	) : basic_iterable {
 		$res___ = false;
 		if ($first___::iterator_category === $last___::iterator_category) {
-			while($first___ != $last___) {
+			while ($first___ != $last___) {
 				if ($unaryFunction___($first___->_F_this())) {
 					$res___ = true;
 					break;

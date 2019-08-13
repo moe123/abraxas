@@ -275,7 +275,7 @@ namespace std
 	function fact(int $x___)
 	{
 		$v = 1;
-		for($i = 2; $i <= $x___; $i++) {
+		for ($i = 2; $i <= $x___; $i++) {
 			$v *= $i;
 		}
 		return $v;

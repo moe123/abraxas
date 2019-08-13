@@ -45,7 +45,7 @@ namespace std
 				if (static::container_category === forward_list) {
 					$stop = false;
 					if ($r___ === true) {
-						for($i = $self->_M_size - 1; $i >= 0; $i--) {
+						for ($i = $self->_M_size - 1; $i >= 0; $i--) {
 							$val = $this->_F_get_at($this->_M_pos);
 							$f___($key, $val, $stop);
 							if ($stop) {
@@ -53,7 +53,7 @@ namespace std
 							}
 						}
 					} else {
-						for($i = 0; $i < $self->_M_size; $i++) {
+						for ($i = 0; $i < $self->_M_size; $i++) {
 							$val = $this->_F_get_at($this->_M_pos);
 							$f___($key, $val, $stop);
 							if ($stop) {

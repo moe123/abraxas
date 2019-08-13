@@ -19,10 +19,10 @@ declare(strict_types=1);
 
 namespace std
 {
-	/*!
-		template<Type>
-		void swap(Type a, Type b);
-	*/
+	/*! 
+	 *  template<Type>
+	 *  void swap(Type a, Type b);
+	 */
 	function swap(&$a___, &$b___)
 	{
 		$c    = $a___;
@@ -31,14 +31,14 @@ namespace std
 	}
 
 	/*!
-		template<Type, BinaryPredicate = less>
-		Type & clamp(
-			  Type            &v
-			, Type            &lo
-			, Type            &hi
-			, BinaryPredicate  pred
-		);
-	*/
+	 *  template<Type, BinaryPredicate = less>
+	 *  Type & clamp(Type
+	 *  	  &v
+	 *  	, Type            &lo
+	 *  	, Type            &hi
+	 *  	, BinaryPredicate  pred
+	 *  );
+	 */
 	function & clamp(
 		           &$v___
 		,          &$lo___
@@ -53,9 +53,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter1, Iter2>
-		void iter_swap(Iter1 it1, Iter2 it2);
-	*/
+	 *  template<Iter1, Iter2>
+	 *  void iter_swap(Iter1 it1, Iter2 it2);
+	 */
 	function iter_swap(basic_iterator &$it1___, basic_iterator &$it2___)
 	{
 		$v1 = $it1___->_F_this();
@@ -65,9 +65,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		int iter_distance(Iter first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  int iter_distance(Iter first, Iter last);
+	 */
 	function iter_distance(basic_iterator $first___, basic_iterator $last___)
 	{
 		$n = 0;
@@ -88,9 +88,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer n = -1>
-		void iter_next(Iter it, Integer  n);
-	*/
+	 *  template<Iter, Integer n = -1>
+	 *  void iter_next(Iter it, Integer  n);
+	 */
 	function iter_next(basic_iterator $it___, int $n___ = -1)
 	{
 		if ($n > 1) {
@@ -103,9 +103,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer n = -1>
-		void iter_prev(Iter it, Integer  n);
-	*/
+	 *  template<Iter, Integer n = -1>
+	 *  void iter_prev(Iter it, Integer  n);
+	 */
 	function iter_prev(basic_iterator $it___, int $n___ = -1)
 	{
 		if ($n > 1) {
@@ -118,9 +118,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer>
-		Type iter_access(Iter it, Integer  pos);
-	*/
+	 *  template<Iter, Integer>
+	 *  Type iter_access(Iter it, Integer  pos);
+	 */
 	function iter_access(basic_iterator &$it___, int $pos___)
 	{
 		$pos = $it___->_F_pos();
@@ -131,9 +131,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer>
-		void iter_switch(Iter it, Integer  pos1, Integer  pos2);
-	*/
+	 *  template<Iter, Integer>
+	 *  void iter_switch(Iter it, Integer  pos1, Integer  pos2);
+	 */
 	function iter_switch(basic_iterator &$it___, int $pos1___, int $pos2___)
 	{
 		$pos = $it___->_F_pos();
@@ -154,9 +154,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer, Type>
-		void iter_assign(Iter it, Integer pos, Type val);
-	*/
+	 *  template<Iter, Integer, Type>
+	 *  void iter_assign(Iter it, Integer pos, Type val);
+	 */
 	function iter_assign(basic_iterator &$it___, int $pos___, $val___)
 	{
 		$pos = $it___->_F_pos();
@@ -166,13 +166,13 @@ namespace std
 	}
 
 	/*!
-		template<Iter,  UniformRandomNumberGenerator = cryptographically_secure_engine>
-		void shuffle(
-			  Iter                         first
-			, Iter                         last
-			, UniformRandomNumberGenerator gen
-		);
-	*/
+	 *  template<Iter,  UniformRandomNumberGenerator = cryptographically_secure_engine>
+	 *  void shuffle(
+	 *  	  Iter                         first
+	 *  	, Iter                         last
+	 *  	, UniformRandomNumberGenerator gen
+	 *  );
+	 */
 	function shuffle(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -190,8 +190,8 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		void shuffle(Iter first, Iter last);
+	 *  template<Iter>
+	 *  void shuffle(Iter first, Iter last);
 	*/
 	function random_shuffle(
 		  basic_iterator $first___
@@ -199,14 +199,14 @@ namespace std
 	) { shuffle($first___, $last___); }
 
 	/*!
-		template<Iter, Type, BinaryPredicate = less>
-		Iter lower_bound(
-			  Iter            first
-			, Iter            last
-			, Type            val
-			, BinaryPredicate pred
-		);
-	*/
+	 *  template<Iter, Type, BinaryPredicate = less>
+	 *  Iter lower_bound(
+	 *  	  Iter            first
+	 *  	, Iter            last
+	 *  	, Type            val
+	 *  	, BinaryPredicate pred
+	 *  );
+	 */
 	function lower_bound(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -241,14 +241,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Type, BinaryPredicate = less>
-		Iter upper_bound(
-			  Iter            first
-			, Iter            last
-			, Type            val
-			, BinaryPredicate pred
-		);
-	*/
+	 *  template<Iter, Type, BinaryPredicate = less>
+	 *  Iter upper_bound(
+	 *  	  Iter            first
+	 *  	, Iter            last
+	 *  	, Type            val
+	 *  	, BinaryPredicate pred
+	 *  );
+	 */
 	function upper_bound(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -283,14 +283,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Type, BinaryPredicate = less>
-		bool binary_search(
-			  Iter            first
-			, Iter            last
-			, Type            val
-			, BinaryPredicate pred
-		);
-	*/
+	 *  template<Iter, Type, BinaryPredicate = less>
+	 *  bool binary_search(
+	 *  	  Iter            first
+	 *  	, Iter            last
+	 *  	, Type            val
+	 *  	, BinaryPredicate pred
+	 *  );
+	 */
 	function binary_search(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -306,9 +306,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		Iter rotate(Iter first, Iter n_first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  Iter rotate(Iter first, Iter n_first, Iter last);
+	 */
 	function rotate(
 		  basic_iterator $first___
 		, basic_iterator $n_first___
@@ -339,7 +339,7 @@ namespace std
 			$next->_F_next();
 			if ($first___ == $n_first___) {
 				$n_first___ = clone $next;
-			} else if($next == $last___) {
+			} else if ($next == $last___) {
 				$next = clone $n_first___;
 			}
 		}
@@ -347,14 +347,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter>
-		OutputIter rotate_copy(
-			  Iter       first
-			, Iter       n_first
-			, Iter       last
-			, OutputIter d_out_first
-		);
-	*/
+	 *  template<Iter, OutputIter>
+	 *  OutputIter rotate_copy(
+	 *  	  Iter       first
+	 *  	, Iter       n_first
+	 *  	, Iter       last
+	 *  	, OutputIter d_out_first
+	 *  );
+	 */
 	function rotate_copy(
 		  basic_iterator $first___
 		, basic_iterator $n_first___
@@ -372,9 +372,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, UnaryPredicate>
-		Iter partition(Iter first, Iter last, UnaryPredicate pred);
-	*/
+	 *  template<Iter, UnaryPredicate>
+	 *  Iter partition(Iter first, Iter last, UnaryPredicate pred);
+	 */
 	function partition(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -400,9 +400,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, UnaryPredicate>
-		Iter partition_point(Iter first, Iter last, UnaryPredicate pred);
-	*/
+	 *  template<Iter, UnaryPredicate>
+	 *  Iter partition_point(Iter first, Iter last, UnaryPredicate pred);
+	 */
 	function partition_point(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -424,9 +424,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, UnaryPredicate>
-		bool is_partitioned(Iter first, Iter last, UnaryPredicate pred);
-	*/
+	 *  template<Iter, UnaryPredicate>
+	 *  bool is_partitioned(Iter first, Iter last, UnaryPredicate pred);
+	 */
 	function is_partitioned(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -450,9 +450,9 @@ namespace std
 	}
 
 	/*!
-		template<Type, BinaryPredicate = less>
-		Type min(Type &a, Type &b, BinaryPredicate pred);
-	*/
+	 *  template<Type, BinaryPredicate = less>
+	 *  Type min(Type &a, Type &b, BinaryPredicate pred);
+	 */
 	function min(
 		           &$a___
 		,          &$b___
@@ -466,9 +466,9 @@ namespace std
 	}
 
 	/*!
-		template<Type, BinaryPredicate = less>
-		Type max(Type &a, Type &b, BinaryPredicate pred);
-	*/
+	 *  template<Type, BinaryPredicate = less>
+	 *  Type max(Type &a, Type &b, BinaryPredicate pred);
+	 */
 	function max(
 		           &$a___
 		,          &$b___
@@ -482,9 +482,9 @@ namespace std
 	}
 
 	/*!
-		template<Type>
-		pair<Type, Type> minmax(Type a, Type b);
-	*/
+	 *  template<Type>
+	 *  pair<Type, Type> minmax(Type a, Type b);
+	 */
 	function minmax(&$a___, &$b___) {
 		if ($a___ < $b___) {
 			return new pair($b___, $a___);
@@ -493,9 +493,9 @@ namespace std
 	}
 
 	/*!
-		template<Type, BinaryPredicate = less>
-		pair<Type, Type> minmax_b(Type a, Type b, BinaryPredicate pred);
-	*/
+	 *  template<Type, BinaryPredicate = less>
+	 *  pair<Type, Type> minmax_b(Type a, Type b, BinaryPredicate pred);
+	 */
 	function minmax_b(
 		           &$v1___
 		,          &$v2___
@@ -512,9 +512,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		Iter min_element(Iter first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  Iter min_element(Iter first, Iter last);
+	 */
 	function min_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -533,9 +533,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, BinaryPredicate = less>
-		Iter min_element_b(Iter first, Iter last, BinaryPredicate pred);
-	*/
+	 *  template<Iter, BinaryPredicate = less>
+	 *  Iter min_element_b(Iter first, Iter last, BinaryPredicate pred);
+	 */
 	function min_element_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -559,9 +559,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		Iter max_element(Iter first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  Iter max_element(Iter first, Iter last);
+	 */
 	function max_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -580,9 +580,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, BinaryPredicate = less>
-		Iter max_element_b(Iter first, Iter last, BinaryPredicate pred);
-	*/
+	 *  template<Iter, BinaryPredicate = less>
+	 *  Iter max_element_b(Iter first, Iter last, BinaryPredicate pred);
+	 */
 	function max_element_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -606,9 +606,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		pair<Iter, Iter> minmax_element(Iter first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  pair<Iter, Iter> minmax_element(Iter first, Iter last);
+	 */
 	function minmax_element(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -654,13 +654,13 @@ namespace std
 	}
 
 	/*!
-		template<Iter, BinaryPredicate = less>
-		pair<Iter, Iter> minmax_element(
-			  Iter first
-			, Iter last
-			, BinaryPredicate pred
-		);
-	*/
+	 *  template<Iter, BinaryPredicate = less>
+	 *  pair<Iter, Iter> minmax_element(
+	 *  	  Iter first
+	 *  	, Iter last
+	 *  	, BinaryPredicate pred
+	 *  );
+	 */
 	function minmax_element_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -711,9 +711,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter1, Iter2>
-		pair<Iter1, Iter2> mismatch(Iter1 first1, Iter1 last2, Iter2 first2);
-	*/
+	 *  template<Iter1, Iter2>
+	 *  pair<Iter1, Iter2> mismatch(Iter1 first1, Iter1 last2, Iter2 first2);
+	 */
 	function mismatch(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
@@ -734,14 +734,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter1, Iter2, BinaryPredicate = equal_to>
-		pair<Iter1, Iter2> mismatch_b(
-			  Iter1 first1
-			, Iter1 last2
-			, Iter2 first2
-			, BinaryPredicate pred
-		);
-	*/
+	 *  template<Iter1, Iter2, BinaryPredicate = equal_to>
+	 *  pair<Iter1, Iter2> mismatch_b(
+	 *  	  Iter1 first1
+	 *  	, Iter1 last2
+	 *  	, Iter2 first2
+	 *  	, BinaryPredicate pred
+	 *  );
+	 */
 	function mismatch_b(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
@@ -767,9 +767,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		bool prev_permutation(Iter first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  bool prev_permutation(Iter first, Iter last);
+	 */
 	function prev_permutation(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -803,9 +803,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, BinaryPredicate = less>
-		bool prev_permutation_b(Iter first, Iter last, BinaryPredicate pred);
-	*/
+	 *  template<Iter, BinaryPredicate = less>
+	 *  bool prev_permutation_b(Iter first, Iter last, BinaryPredicate pred);
+	 */
 	function prev_permutation_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -844,9 +844,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter>
-		bool next_permutation(Iter first, Iter last);
-	*/
+	 *  template<Iter>
+	 *  bool next_permutation(Iter first, Iter last);
+	 */
 	function next_permutation(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -877,9 +877,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, BinaryPredicate = less>
-		bool next_permutation_b(Iter first, Iter last, BinaryPredicate pred);
-	*/
+	 *  template<Iter, BinaryPredicate = less>
+	 *  bool next_permutation_b(Iter first, Iter last, BinaryPredicate pred);
+	 */
 	function next_permutation_b(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -915,9 +915,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter1, Iter2>
-		bool is_permutation(Iter1 first1, Iter1 last1, Iter2 first2);
-	*/
+	 *  template<Iter1, Iter2>
+	 *  bool is_permutation(Iter1 first1, Iter1 last1, Iter2 first2);
+	 */
 	function is_permutation(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
@@ -971,14 +971,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter1, Iter2, BinaryPredicate = equal_to>
-		bool is_permutation_b(
-			  Iter1 first1
-			, Iter1 last1
-			, Iter2 first2
-			, BinaryPredicate pred
-		);
-	*/
+	 *  template<Iter1, Iter2, BinaryPredicate = equal_to>
+	 *  bool is_permutation_b(
+	 *  	  Iter1 first1
+	 *  	, Iter1 last1
+	 *  	, Iter2 first2
+	 *  	, BinaryPredicate pred
+	 *  );
+	 */
 	function is_permutation_b(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
@@ -1037,9 +1037,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter1, Iter2>
-		Iter2 swap_ranges(Iter1 first1, Iter1 last1, Iter2 first2);
-	*/
+	 *  template<Iter1, Iter2>
+	 *  Iter2 swap_ranges(Iter1 first1, Iter1 last1, Iter2 first2);
+	 */
 	function swap_ranges(
 		  basic_iterator $first1___
 		, basic_iterator $last1___
@@ -1054,9 +1054,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter>
-		OutputIter copy(Iter first, Iter last, OutputIter out);
-	*/
+	 *  template<Iter, OutputIter>
+	 *  OutputIter copy(Iter first, Iter last, OutputIter out);
+	 */
 	function copy(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1075,14 +1075,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter, UnaryPredicate>
-		OutputIter copy_if(
-			  Iter           first
-			, Iter           last
-			, OutputIter     out
-			, UnaryPredicate pred
-		);
-	*/
+	 *  template<Iter, OutputIter, UnaryPredicate>
+	 *  OutputIter copy_if(
+	 *  	  Iter           first
+	 *  	, Iter           last
+	 *  	, OutputIter     out
+	 *  	, UnaryPredicate pred
+	 *  );
+	 */
 	function copy_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1105,9 +1105,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer, OutputIter>
-		OutputIter copy_n(Iter first, Integer count, OutputIter out);
-	*/
+	 *  template<Iter, Integer, OutputIter>
+	 *  OutputIter copy_n(Iter first, Integer count, OutputIter out);
+	 */
 	function copy_n(
 		  basic_iterator $first___
 		, int            $count___
@@ -1124,9 +1124,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter>
-		OutputIter copy_backward(Iter first, Iter last, OutputIter out);
-	*/
+	 *  template<Iter, OutputIter>
+	 *  OutputIter copy_backward(Iter first, Iter last, OutputIter out);
+	 */
 	function copy_backward(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1145,9 +1145,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter>
-		OutputIter lazy_copy(Iter first, Iter last, OutputIter out);
-	*/
+	 *  template<Iter, OutputIter>
+	 *  OutputIter lazy_copy(Iter first, Iter last, OutputIter out);
+	 */
 	function lazy_copy(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1166,14 +1166,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter, UnaryPredicate>
-		OutputIter lazy_copy_if(
-			  Iter           first
-			, Iter           last
-			, OutputIter     out
-			, UnaryPredicate pred
-		);
-	*/
+	 *  template<Iter, OutputIter, UnaryPredicate>
+	 *  OutputIter lazy_copy_if(
+	 *  	  Iter           first
+	 *  	, Iter           last
+	 *  	, OutputIter     out
+	 *  	, UnaryPredicate pred
+	 *  );
+	 */
 	function lazy_copy_if(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1196,9 +1196,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer, OutputIter>
-		OutputIter lazy_copy_n(Iter first, Integer count, OutputIter out);
-	*/
+	 *  template<Iter, Integer, OutputIter>
+	 *  OutputIter lazy_copy_n(Iter first, Integer count, OutputIter out);
+	 */
 	function lazy_copy_n(
 		  basic_iterator $first___
 		, int            $count___
@@ -1215,9 +1215,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, OutputIter>
-		OutputIter lazy_copy_backward(Iter first, Iter last, OutputIter out);
-	*/
+	 *  template<Iter, OutputIter>
+	 *  OutputIter lazy_copy_backward(Iter first, Iter last, OutputIter out);
+	 */
 	function lazy_copy_backward(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1236,9 +1236,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Type>
-		void fill(Iter first, Iter last, Type val);
-	*/
+	 *  template<Iter, Type>
+	 *  void fill(Iter first, Iter last, Type val);
+	 */
 	function fill(basic_iterator $first___, basic_iterator $last___, $val___)
 	{
 		while ($first___ != $last___) {
@@ -1248,9 +1248,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer, Type>
-		Iter fill_n(Iter first, Integer count, Type val);
-	*/
+	 *  template<Iter, Integer, Type>
+	 *  Iter fill_n(Iter first, Integer count, Type val);
+	 */
 	function fill_n(basic_iterator $first___, int $count___, $val___)
 	{
 		for ($i = 0; $i < $count___; $i++) {
@@ -1261,9 +1261,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Generator>
-		void generate(Iter first, Iter last, Generator gen);
-	*/
+	 *  template<Iter, Generator>
+	 *  void generate(Iter first, Iter last, Generator gen);
+	 */
 	function generate(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1276,9 +1276,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Integer, Generator>
-		void generate_n(Iter first, Integer count, Generator gen);
-	*/
+	 *  template<Iter, Integer, Generator>
+	 *  void generate_n(Iter first, Integer count, Generator gen);
+	 */
 	function generate_n(
 		  basic_iterator $first___
 		, int            $count___
@@ -1291,9 +1291,9 @@ namespace std
 	}
 
 	/*!
-		template<OutputIter, Integer, Type>
-		void place_fill_n(OutputIter out, Integer count, Type val);
-	*/
+	 *  template<OutputIter, Integer, Type>
+	 *  void place_fill_n(OutputIter out, Integer count, Type val);
+	 */
 	function place_fill_n(
 		  insert_iterator $out___
 		, int             $count___
@@ -1306,9 +1306,9 @@ namespace std
 	}
 
 	/*!
-		template<OutputIter, Integer, Generator>
-		void place_generate_n(OutputIter out, Integer count, Generator gen);
-	*/
+	 *  template<OutputIter, Integer, Generator>
+	 *  void place_generate_n(OutputIter out, Integer count, Generator gen);
+	 */
 	function place_generate_n(
 		  insert_iterator $out___
 		, int             $count___
@@ -1321,9 +1321,9 @@ namespace std
 	}
 
 	/*!
-		template<OutputIter, Integer, Type>
-		void place_generate_n(OutputIter out, Integer count, Type val);
-	*/
+	 *  template<OutputIter, Integer, Type>
+	 *  void place_generate_n(OutputIter out, Integer count, Type val);
+	 */
 	function place_iota(
 		  insert_iterator $out___
 		, int             $count___
@@ -1337,14 +1337,14 @@ namespace std
 	}
 
 	/*!
-		template<OutputIter, Integer, Type, IncrementalOperation>
-		void place_generate_n(
-			  OutputIter out
-			, Integer count
-			, Type val
-			, IncrementalOperation op
-		);
-	*/
+	 *  template<OutputIter, Integer, Type, IncrementalOperation>
+	 *  void place_generate_n(
+	 *  	  OutputIter out
+	 *  	, Integer count
+	 *  	, Type val
+	 *  	, IncrementalOperation op
+	 *  );
+	 */
 	function place_iota_f(
 		  insert_iterator $out___
 		, int             $count___
@@ -1359,9 +1359,9 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Type>
-		void iota(Iter first, Iter last, Type val);
-	*/
+	 *  template<Iter, Type>
+	 *  void iota(Iter first, Iter last, Type val);
+	 */
 	function iota(
 		  basic_iterator $first___
 		, basic_iterator $last___
@@ -1375,14 +1375,14 @@ namespace std
 	}
 
 	/*!
-		template<Iter, Type, IncrementalOperation>
-		void iota_f(
-			  Iter first
-			, Iter last
-			, Type val
-			, IncrementalOperation op
-		);
-	*/
+	 *  template<Iter, Type, IncrementalOperation>
+	 *  void iota_f(
+	 *  	  Iter first
+	 *  	, Iter last
+	 *  	, Type val
+	 *  	, IncrementalOperation op
+	 *  );
+	 */
 	function iota_f(
 		  basic_iterator $first___
 		, basic_iterator $last___

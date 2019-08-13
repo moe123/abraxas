@@ -42,7 +42,7 @@ namespace std
 		$a = $m___ < 0 ? -($m___) : $m___;
 		$b = $n___ < 0 ? -($n___) : $n___;
 		$c = $a % $b;
-		while($c > 0) { $a = $b; $b = $c; $c = $a % $b; }
+		while ($c > 0) { $a = $b; $b = $c; $c = $a % $b; }
 		return $b;
 	}
 
