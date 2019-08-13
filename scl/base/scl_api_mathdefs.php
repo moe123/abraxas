@@ -4,7 +4,7 @@
 //
 // scl_api_mathdefs.php
 //
-// Copyright (C) 2017 Moe123. All rights reserved.
+// Copyright (C) 2017-2019 Moe123. All rights reserved.
 //
  
 /*!
@@ -12,8 +12,8 @@
  * @brief      The Math numerics library declares a set of functions to compute 
  *             common mathematical operations and transformations on 
  *             integral, real-floating-point and complex type (@todo rational numbers support).
- * @author     Moe123 2017.
- * @maintainer Moe123 2017.
+ * @author     Moe123 2019.
+ * @maintainer Moe123 2019.
  *
  * @copyright  (C) Moe123. All rights reserved.
  */

@@ -4,7 +4,7 @@
 //
 // scl_api_math.php
 //
-// Copyright (C) 2017 Moe123. All rights reserved.
+// Copyright (C) 2017-2019 Moe123. All rights reserved.
 //
  
 /*!
@@ -17,8 +17,8 @@
  *             issues, naive shortcuts, etc. Take it as an incomplete wish list for a
  *             more complete and robust math library ; a starting point ¯\(ツ)/¯.
  *
- * @author     Moe123 2017.
- * @maintainer Moe123 2017.
+ * @author     Moe123 2019.
+ * @maintainer Moe123 2019.
  *
  * @copyright  (C) Moe123. All rights reserved.
  */

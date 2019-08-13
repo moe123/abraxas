@@ -4,14 +4,14 @@
 //
 // scl_combinator.php
 //
-// Copyright (C) 2017 Moe123. All rights reserved.
+// Copyright (C) 2017-2019 Moe123. All rights reserved.
 //
  
 /*!
  * @project    Abraxas (Standard Container Library).
  * @brief      Functional combinators library, \(^o^)/ @Haskell.
- * @author     Moe123 2017.
- * @maintainer Moe123 2017.
+ * @author     Moe123 2019.
+ * @maintainer Moe123 2019.
  *
  * @copyright  (C) Moe123. All rights reserved.
  */

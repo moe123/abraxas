@@ -1,4 +1,4 @@
-Copyright (C) 2017, moe123
+Copyright (C) 2017-2019, moe123
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

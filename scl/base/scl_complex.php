@@ -4,7 +4,7 @@
 //
 // scl_complex.php
 //
-// Copyright (C) 2017 Moe123. All rights reserved.
+// Copyright (C) 2017-2019 Moe123. All rights reserved.
 //
  
 /*!
@@ -12,8 +12,8 @@
  * @brief      The complex library implements the complex class to contain
  *             complex numbers in cartesian form and several functions and overloads
  *             to operate with them: hyperbolic, trigonometric, exponential, power.
- * @author     Moe123 2017.
- * @maintainer Moe123 2017.
+ * @author     Moe123 2019.
+ * @maintainer Moe123 2019.
  *
  * @copyright  (C) Moe123. All rights reserved.
  */

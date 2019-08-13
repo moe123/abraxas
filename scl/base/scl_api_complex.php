@@ -4,15 +4,15 @@
 //
 // scl_api_complex.php
 //
-// Copyright (C) 2017 Moe123. All rights reserved.
+// Copyright (C) 2017-2019 Moe123. All rights reserved.
 //
 
 /*!
  * @project    Abraxas (Standard Container Library).
  * @brief      Complex numbers and associated mathematical functions:
  *             hyperbolic, trigonometric, exponential, power.
- * @author     Moe123 2017.
- * @maintainer Moe123 2017.
+ * @author     Moe123 2019.
+ * @maintainer Moe123 2019.
  *
  * @copyright  (C) Moe123. All rights reserved.
  */
