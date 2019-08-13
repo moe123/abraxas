@@ -60,10 +60,24 @@ namespace std
 
 	function cexp(complex $z___) : complex
 	{
-		return new complex(
-			  \exp($z___->_M_real) * \cos($z___->_M_imag)
-			, \exp($z___->_M_real) * \sin($z___->_M_imag)
-		);
+		$x = 0.0;
+		$i = $z___->_M_imag;
+		if (\is_infinite($z___->_M_real)) {
+			if ($z___->_M_real < 0.0) {
+				if (!\is_finite($i)) {
+					$i = 1.0;
+				}
+			} else if ($i == 0 || !\is_finite($i)) {
+				if (\is_infinite($i)) {
+					$i = \NAN;
+				}
+				return new complex($z___->_M_real, $i);
+			}
+		} else if (\is_nan($z___->_M_real) && $z___->_M_imag == 0) {
+			return $z___;
+		}
+		$x = \exp($z___->_M_real);
+		return new complex($x * \cos($i), $x * \sin($i));
 	}
 
 	function clog(complex $z___) : complex
@@ -85,15 +99,7 @@ namespace std
 
 	function cpow(complex $z1___, complex $z2___) : complex
 	{
-		if ($z1___->_M_real == 0.0 && $z1___->_M_imag == 0.0) {
-			return $z1___;
-		}
-		//!# W (ϴ), R (ρ), B (β)
-		$l = \log(\sqrt($z1___->_M_real * $z1___->_M_real + $z1___->_M_imag * $z1___->_M_imag));
-		$W = \atan2($z1___->_M_imag, $z1___->_M_real);
-		$R = \exp($l * $z2___->_M_real - $z2___->_M_imag * $W);
-		$B = $W * $z2___->_M_real + $z2___->_M_imag * $l;
-		return new complex($R * \cos($B), $R * \sin($B));
+		return cexp(cmul($z2___, clog($z1___)));
 	}
 
 	function csqrt(complex $z___) : complex
