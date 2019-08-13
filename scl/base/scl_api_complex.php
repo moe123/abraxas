@@ -69,19 +69,18 @@ namespace std
 	function clog(complex $z___) : complex
 	{
 		return new complex(
-			  \log(\sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag))
-			, \atan2($z___->_M_imag, $z___->_M_real)
+			  \log(\cabs($z___))
+			, \carg($z___)
 		);
 	}
 
 	function clog10(complex $z___) : complex
 	{
-		$R = \log(\sqrt($z___->_M_real * $z___->_M_real + $z___->_M_imag * $z___->_M_imag));
-		$I = \atan2($z___->_M_imag, $z___->_M_real);
-		return new complex(
-			  $R * (1.0 / \log(10))
-			, $I * (1.0 / \log(10))
-		);
+		$c = 1.0 / \log(10);
+		$z = clog($z___);
+		$z->_M_real *= $c;
+		$z->_M_imag *= $c;
+		return $z;
 	}
 
 	function cpow(complex $z1___, complex $z2___) : complex
@@ -99,38 +98,22 @@ namespace std
 
 	function csqrt(complex $z___) : complex
 	{
-		if ($z___->_M_real == 0.0 && $z___->_M_imag == 0.0) {
-			return $z___;
+		if (\is_infinite($z___->_M_imag)) {
+			return new complex(\INF, $z___->_M_imag);
 		}
-		$a = \abs($z___->_M_real);
-		$b = \abs($z___->_M_imag);
-		$W = (($a >= $b)
-			? \sqrt($a) * \sqrt(0.5 * (1.0 + \sqrt(1.0 + ($b / $a) * ($b / $a))))
-			: \sqrt($b) * \sqrt(0.5 * (($a / $b) + \sqrt(1.0 + ($a / $b) * ($a / $b))))
-		);
-		if ($z___->_M_real > 0.0 || $z___->_M_real == 0.0) {
-			if ($W == 0.0) {
+		if (\is_infinite($z___->_M_real)) {
+			 if ($z___->_M_real > 0.0) {
 				return new complex(
-					  \NAN
-					, \NAN
+					  $z___->_M_real
+					, \is_nan($z___->_M_imag) ? $z___->_M_imag : copysign(0.0, $z___->_M_imag)
 				);
 			}
 			return new complex(
-				  $W
-				, $z___->_M_imag / (2.0 * $W)
+				  \is_nan($z___->_M_imag) ? $z___->_M_imag : 0.0
+				, copysign($z___->_M_real, $z___->_M_imag)
 			);
 		}
-		$I = ($z___->_M_imag > 0.0 || $I  == 0.0) ? $W : -($W);
-		if ($I  == 0.0) {
-			return new complex(
-				  \NAN
-				, \NAN
-			);
-		}
-		return new complex(
-			  $z___->_M_imag / (2.0 * $I)
-			, $I
-		);
+		return cpolar(\sqrt(cabs($z___)), carg($z___) * 0.5);
 	}
 
 	function cconj(complex $z___) : complex
